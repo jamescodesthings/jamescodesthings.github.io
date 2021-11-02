@@ -21,4 +21,5 @@ jobs:
 
 workflows:
   publish:
-    jobs: build-and-test
+    jobs:
+      - build-and-test
