@@ -1,8 +1,11 @@
 import { Component, h } from '@stencil/core';
 
+/**
+ * The root component, handles routing and app init
+ */
 @Component({
   tag: 'app-root',
-  styleUrl: 'app-root.css',
+  styleUrl: 'app-root.scss',
 })
 export class AppRoot {
   render() {
