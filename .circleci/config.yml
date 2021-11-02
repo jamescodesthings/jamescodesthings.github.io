@@ -18,6 +18,9 @@ jobs:
       - run:
           name: Lint Check
           command: npm start lint.check
+      - run:
+          name: Build www
+          command: npm start build
 
 workflows:
   publish:
