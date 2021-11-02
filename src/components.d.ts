@@ -9,6 +9,9 @@ export namespace Components {
     interface AppHome {
     }
     interface AppProfile {
+        /**
+          * A page prop
+         */
         "name": string;
     }
     interface AppRoot {
@@ -43,6 +46,9 @@ declare namespace LocalJSX {
     interface AppHome {
     }
     interface AppProfile {
+        /**
+          * A page prop
+         */
         "name"?: string;
     }
     interface AppRoot {

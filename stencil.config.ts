@@ -15,7 +15,7 @@ if (dev) {
 
 export const config: Config = {
   globalScript,
-  globalStyle: 'src/global/app.css',
+  globalStyle: 'src/global/app.scss',
   taskQueue: 'async',
   outputTargets: [
     {

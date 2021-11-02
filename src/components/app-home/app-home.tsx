@@ -1,11 +1,12 @@
 import { Component, h, Host } from '@stencil/core';
+import { isDev } from '../../helpers/is-dev';
 
 /**
  * The Home Page
  */
 @Component({
   tag: 'app-home',
-  styleUrl: 'app-home.css',
+  styleUrl: 'app-home.scss',
 })
 export class AppHome {
   render() {
@@ -13,7 +14,7 @@ export class AppHome {
       <Host>
         <ion-header>
           <ion-toolbar color="primary">
-            <ion-title>Home</ion-title>
+            <ion-title>Home {isDev() ? <small style={{ color: '#dcdcdc' }}>Dev Mode</small> : ''}</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
@@ -22,6 +23,8 @@ export class AppHome {
             and ionic/core! Check out the README for everything that comes in this starter out of the box and check out
             our docs on <a href="https://stenciljs.com">stenciljs.com</a> to get started.
           </p>
+
+          <p class="test-scss">SCSS is working if this is red.</p>
 
           <ion-button href="/profile/ionic" expand="block">
             Profile page
