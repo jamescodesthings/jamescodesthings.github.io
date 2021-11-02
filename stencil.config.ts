@@ -6,8 +6,12 @@ export const config: Config = {
   globalScript: 'src/global/app.ts',
   globalStyle: 'src/global/app.css',
   taskQueue: 'async',
-  outputTargets: [{
-    type: 'www',
-    serviceWorker: null
-  }],
+  outputTargets: [
+    {
+      type: 'www',
+      empty: true,
+      serviceWorker: null,
+      polyfills: true,
+    },
+  ],
 };

@@ -8,18 +8,35 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watch",
-    "generate": "stencil generate"
+    "prepare": "husky install",
+    "start": "nps",
+    "start:interactive": "nps-i",
+    "test": "nps test"
   },
   "devDependencies": {
-    "@ionic/core": "^5.3.2",
-    "@stencil/core": "^2.7.0",
-    "@types/jest": "^26.0.24",
-    "jest": "^26.6.3",
-    "jest-cli": "^26.6.3",
-    "puppeteer": "^10.0.0"
+    "@ionic/core": "5.8.5",
+    "@stencil/core": "2.10.0",
+    "@stencil/eslint-plugin": "0.3.1",
+    "@stencil/sass": "1.5.0",
+    "@types/jest": "26.0.24",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "debug": "4.3.2",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-jsdoc": "36.1.0",
+    "eslint-plugin-react": "7.26.1",
+    "husky": "7.0.2",
+    "jest": "26.6.3",
+    "jest-cli": "26.6.3",
+    "lint-staged": "11.2.0",
+    "nps": "5.10.0",
+    "nps-i": "1.0.2",
+    "prettier": "2.4.1",
+    "puppeteer": "10.4.0",
+    "rollup-plugin-node-polyfills": "0.2.1",
+    "serve": "12.0.1",
+    "typescript": "4.4.4"
   }
 }
