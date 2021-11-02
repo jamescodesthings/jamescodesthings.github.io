@@ -15,7 +15,7 @@ commands:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - '82:1b:10:d6:8f:17:c7:e8:cb:fb:00:a5:e2:57:20:ec'
+            - 'ee:29:0c:08:c5:93:51:32:df:48:7d:e8:b8:4e:86:43'
   gitconf:
     description: 'Sets up git config for circle'
     steps:
