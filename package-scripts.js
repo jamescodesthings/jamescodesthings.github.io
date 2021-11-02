@@ -17,7 +17,7 @@ module.exports = {
       },
       prod: {
         default: {
-          script: 'http-server ./www --proxy http://localhost:8080?',
+          script: 'http-server ./www',
           description: 'Serve using a local file server',
         },
       },

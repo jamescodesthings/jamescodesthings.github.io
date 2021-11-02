@@ -1,9 +1,8 @@
 import '@ionic/core';
-import { debug } from 'debug';
+import { createLogger } from '../services/logger';
 
 export default async (): Promise<void> => {
-  const logger = debug('app');
-  logger.enabled = true;
+  const logger = createLogger('app:base-script');
 
   logger('Base app script running');
 };
