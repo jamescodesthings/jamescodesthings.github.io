@@ -27,6 +27,11 @@ module.exports = {
       script: 'stencil build',
       description: 'Build the www target',
     },
+    // Deploy to GH pages
+    deploy: {
+      script: 'gh-pages -d www',
+      description: 'Deploy to the gh-pages branch',
+    },
     // Chores
     chore: {
       pin: {
