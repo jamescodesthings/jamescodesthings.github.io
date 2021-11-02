@@ -42,7 +42,7 @@ commands:
           name: 'Copy Circle conf to Build'
           command: |
             cp -r .circleci www/.circleci
-            echo "codesthings.com" > www/CNAME
+            echo "www.codesthings.com" > www/CNAME
   deploy_gh_pages:
     description: 'Deploy'
     steps:
