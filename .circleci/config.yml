@@ -1,0 +1,100 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:lts
+    working_directory: ~/project
+
+orbs:
+  node: circleci/node@4.7
+
+commands:
+  add_key:
+    description: 'Add Deploy Key'
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 'ee:29:0c:08:c5:93:51:32:df:48:7d:e8:b8:4e:86:43'
+  gitconf:
+    description: 'Sets up git config for circle'
+    steps:
+      - run:
+          name: 'Configure GIT'
+          command: |
+            git config user.email "jamescodesthings@gmail.com"
+            git config user.name "Circle CI"
+  save_build_to_workspace:
+    description: 'Persist build directory'
+    steps:
+      - persist_to_workspace:
+          root: ~/project
+          paths: www/*
+  attach_build_from_workspace:
+    description: 'Attach build directory'
+    steps:
+      - attach_workspace:
+          at: ~/project
+  copy_circle_conf_to_build:
+    description: 'Copies the circle config to build dir'
+    steps:
+      - run:
+          name: 'Copy Circle conf to Build'
+          command: |
+            cp -r .circleci www/.circleci
+            echo "codesthings.com" > www/CNAME
+  deploy_gh_pages:
+    description: 'Deploy'
+    steps:
+      - run:
+          name: 'Deploy to gh-pages'
+          command: npm start deploy
+
+jobs:
+  build:
+    executor: node
+    steps:
+      - add_key
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Format Check
+          command: npm start format.check
+      - run:
+          name: Lint Check
+          command: npm start lint.check
+      - run:
+          name: Build www
+          command: npm start build
+      - copy_circle_conf_to_build
+      - save_build_to_workspace
+      - store_artifacts:
+          path: ./www
+          destination: www
+
+  deploy:
+    executor: node
+    steps:
+      - add_key
+      - checkout
+      - gitconf
+      - attach_build_from_workspace
+      - node/install-packages:
+          pkg-manager: npm
+      - deploy_gh_pages
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

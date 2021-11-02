@@ -27,6 +27,11 @@ module.exports = {
       script: 'stencil build',
       description: 'Build the www target',
     },
+    // Deploy to GH pages
+    deploy: {
+      script: 'gh-pages -d www',
+      description: 'Deploy to the gh-pages branch',
+    },
     // Chores
     chore: {
       pin: {
@@ -44,8 +49,8 @@ module.exports = {
     },
     // Verification
     format: {
-      check: { script: `prettier --check`, description: 'Check that files match the format' },
-      fix: { script: `prettier --write`, description: 'Fix any unformatted files' },
+      check: { script: `prettier --check .`, description: 'Check that files match the format' },
+      fix: { script: `prettier --write .`, description: 'Fix any unformatted files' },
     },
     lint: {
       check: { script: 'eslint src', description: 'Check for linting issues' },
