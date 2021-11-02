@@ -1,5 +1,5 @@
 import '@ionic/core';
-import { debug } from 'debug';
+import { createLogger } from '../services/logger';
 
 import baseApp from './app';
 
@@ -13,9 +13,8 @@ declare global {
 }
 
 export default async (): Promise<void> => {
-  const logger = debug('app');
-  logger.enabled = true;
   window.dev = true;
+  const logger = createLogger('app:dev-script');
   logger('Dev mode script running');
 
   await baseApp();

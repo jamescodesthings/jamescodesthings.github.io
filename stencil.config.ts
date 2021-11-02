@@ -23,6 +23,11 @@ export const config: Config = {
       empty: true,
       serviceWorker: null,
       polyfills: true,
+      copy: [
+        {
+          src: './404.html',
+        },
+      ],
     },
   ],
   plugins: [sass()],
