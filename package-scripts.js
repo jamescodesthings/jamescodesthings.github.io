@@ -16,8 +16,10 @@ module.exports = {
         description: 'Run the web stencil project in HTTPS mode',
       },
       prod: {
-        script: 'serve',
-        description: 'Serve using a local file server',
+        default: {
+          script: 'http-server ./www --proxy http://localhost:8080?',
+          description: 'Serve using a local file server',
+        },
       },
     },
     // Build

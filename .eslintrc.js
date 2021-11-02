@@ -15,6 +15,7 @@ module.exports = {
     'prettier',
   ],
   ignorePatterns: [
+    'src/global/app.dev.ts',
     '.eslintrc.js',
     'stencil.config.ts',
     'stencil.config.https.ts',

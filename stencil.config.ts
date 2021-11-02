@@ -1,9 +1,20 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
+import debug from 'debug';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
-// https://stenciljs.com/docs/config
+const log = debug('stencil');
+log.enabled = true;
+const dev: boolean = process?.argv?.indexOf('--dev') !== -1;
+
+let globalScript = 'src/global/app.ts';
+if (dev) {
+  log('Developer mode');
+  globalScript = 'src/global/app.dev.ts';
+}
 
 export const config: Config = {
-  globalScript: 'src/global/app.ts',
+  globalScript,
   globalStyle: 'src/global/app.css',
   taskQueue: 'async',
   outputTargets: [
@@ -14,4 +25,8 @@ export const config: Config = {
       polyfills: true,
     },
   ],
+  plugins: [sass()],
+  rollupPlugins: {
+    after: [nodePolyfills()],
+  },
 };
