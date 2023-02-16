@@ -1,0 +1,12 @@
+@import './styles/google-fonts.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Storybook: Page Background
+ */
+body.sb-show-main {
+  @apply bg-stone-100 dark:bg-stone-800;
+}

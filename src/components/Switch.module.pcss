@@ -1,0 +1,23 @@
+.wrapper {
+  @apply inline-flex justify-start items-center cursor-pointer scale-[0.75] sm:scale-[0.8] md:scale-[0.9] lg:transform-none origin-top-left;
+}
+
+.background {
+  @apply block bg-gradient-to-tr from-gray-600 to-gray-900 w-12 md:w-10 h-7 md:h-6 rounded-full;
+  :global(.dark) & {
+    @apply from-white to-white;
+  }
+  :global(.peer:checked ~) & {
+    @apply from-rose-400 via-fuchsia-500 to-indigo-500;
+  }
+}
+
+.handle {
+  @apply border absolute left-1 top-1 bg-white w-5 h-5 md:w-4 md:h-4 rounded-full transition;
+  :global(.dark) & {
+    @apply bg-stone-700 border-stone-700;
+  }
+  :global(.peer:checked ~) & {
+    @apply translate-x-full border-white bg-white;
+  }
+}
