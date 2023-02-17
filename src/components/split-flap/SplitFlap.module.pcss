@@ -17,7 +17,7 @@
 
 .fold,
 .unfold {
-  animation-duration: 0.1s;
+  animation-duration: 0.25s;
   animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   animation-iteration-count: 1;
   animation-direction: normal;
@@ -71,6 +71,29 @@
 .unfold {
   background-size: 100% 200%;
   background-position: bottom;
+}
+
+.container.word {
+  @apply aspect-auto;
+  @apply text-4xl;
+
+  span {
+    @apply px-6 py-0;
+  }
+}
+.container.word-sm {
+  @apply aspect-auto;
+  @apply text-2xl;
+  span {
+    @apply px-4 py-0;
+  }
+}
+.container.word-xs {
+  @apply aspect-auto;
+  @apply text-xl;
+  span {
+    @apply px-3 py-0;
+  }
 }
 
 .container {

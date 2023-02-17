@@ -1,7 +1,10 @@
 import React, { AnimationEventHandler, CSSProperties, useState } from 'react';
-import { charsBetween } from '../utils/chars-between';
-import { randBetween } from '../utils/rand-between';
+import { charsBetween } from '../../utils/chars-between';
+import { randBetween } from '../../utils/rand-between';
 import styles from './SplitFlap.module.pcss';
+import { getRandomWords, KnownMethods } from '../../utils/get-random-words';
+import { startCase } from 'lodash';
+import { getClassFromStyles } from '../../utils/get-class-from-styles';
 
 interface SplitFlapProps {
   /**
@@ -23,6 +26,16 @@ interface SplitFlapProps {
    * If true give a random speed and delay
    */
   random?: boolean;
+
+  /**
+   * If provided, the number of steps before reaching value
+   */
+  steps?: number;
+
+  /**
+   * If provided, the type of word to use, if not; noun.
+   */
+  type?: KnownMethods;
 }
 
 const alphabet = [
@@ -36,23 +49,36 @@ const alphabet = [
   '!',
 ];
 
-function getClassFromStyles(prettyClassName: string | undefined): string {
-  if (!prettyClassName) return '';
+function getDictionary(value = '', length = 5, start = '', steps = 5, type: KnownMethods = 'noun') {
+  let result: string[] = [];
 
-  return styles[prettyClassName] || '';
+  if (start) result = [start];
+
+  const randomWords = getRandomWords(length, steps, type).map(word => startCase(word));
+  result = [...result, ...randomWords];
+
+  result = [...result, value];
+
+  return result;
 }
 
-export const SplitFlap = ({ start = alphabet[0], value, className, random = false }: SplitFlapProps) => {
-  const actualClassName = getClassFromStyles(className);
-  if (alphabet.indexOf(value) === -1) {
-    return <FlipCard value={'ERR'} previousValue={'ERR'} className={actualClassName} />;
+function getAlphabet(value: string, start: string | undefined, steps = Infinity) {
+  const end = alphabet.indexOf(value);
+  let startIndex = start ? alphabet.indexOf(start) : 0;
+  if (end - startIndex > steps) {
+    startIndex = end - steps;
   }
 
-  const firstStepIndex = alphabet.indexOf(start);
-  const firstStep = alphabet[firstStepIndex + 1];
+  return alphabet.slice(startIndex, end + 1);
+}
 
-  const [current, setCurrent] = useState(firstStep);
-  const [previous, setPrevious] = useState(start);
+export const SplitFlap = ({ value, className, start, steps, type, random = false }: SplitFlapProps) => {
+  const actualClassName = getClassFromStyles(styles, className);
+
+  const emptyDict: string[] = [];
+  const [dictionary, setDictionary] = useState(emptyDict);
+  const [current, setCurrent] = useState('');
+  const [previous, setPrevious] = useState('');
 
   const update = () => {
     if (current === value) {
@@ -60,10 +86,24 @@ export const SplitFlap = ({ start = alphabet[0], value, className, random = fals
     }
 
     setPrevious(current);
-    const currentIndex = alphabet.indexOf(current);
-    const next = alphabet[currentIndex + 1];
+    const currentIndex = dictionary.indexOf(current);
+    const next = dictionary[currentIndex + 1];
     setCurrent(next);
   };
+
+  if (dictionary.length === 0) {
+    if (alphabet.indexOf(value) === -1) {
+      // Treat as a full english word.
+      setDictionary(getDictionary(value, value?.length, start, steps, type));
+    } else {
+      setDictionary(getAlphabet(value, start, steps));
+    }
+  }
+
+  if (!current && !previous) {
+    setCurrent(dictionary[1]);
+    setPrevious(dictionary[0]);
+  }
 
   return (
     <>
@@ -106,7 +146,7 @@ const FlipCard = ({ previousValue, value, random = false, className, onAnimation
   const style: CSSProperties = {};
   if (random) {
     style.animationDelay = `${randBetween(0, 0.1)}s`;
-    style.animationDuration = `${randBetween(0.05, 0.2)}s`;
+    style.animationDuration = `${randBetween(0.05, 0.35)}s`;
   }
   return (
     <div className={`${styles.container} ${className}`}>

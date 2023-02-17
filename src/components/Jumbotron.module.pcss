@@ -1,0 +1,17 @@
+.jumbotron {
+  @apply w-full h-screen;
+  @apply p-14;
+  @apply bg-purple-400;
+  @apply flex justify-center items-center;
+  @apply bg-cover;
+  background: url('https://picsum.photos/1920/1080');
+}
+
+.jumbo-round {
+  @apply w-full h-screen;
+  @apply p-4 md:p-6 lg:p-10;
+  .jumbotron {
+    @apply rounded;
+    @apply w-full h-full;
+  }
+}

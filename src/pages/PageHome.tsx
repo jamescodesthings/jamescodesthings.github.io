@@ -3,6 +3,7 @@ import { Switch } from '../components/Switch';
 import { Title } from '../components/Title';
 import styles from './PageHome.module.pcss';
 import { Theme, ThemeContext } from '../context/ThemeContext';
+import { Jumbotron } from '../components/Jumbotron';
 
 export const PageHome = () => {
   const { state, dispatch } = useContext(ThemeContext);
@@ -22,9 +23,11 @@ export const PageHome = () => {
         Dark
       </Switch>
 
-      <main className={`${state} ${styles.main}`}>
-        <Title title="James Macmillan" subtitle="Senior Software Developer" />
-      </main>
+      <Jumbotron>
+        <main className={`${state} ${styles.main}`}>
+          <Title title="James Macmillan" subtitle="Senior Software Developer" />
+        </main>
+      </Jumbotron>
     </>
   );
 };
