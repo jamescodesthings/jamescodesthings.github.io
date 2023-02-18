@@ -1,0 +1,108 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:lts
+    working_directory: ~/project
+
+orbs:
+  node: circleci/node@4.7
+
+commands:
+  add_key:
+    description: 'Add Deploy Key'
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - '3e:7f:dd:c0:2e:e1:8f:c7:e8:72:79:44:12:af:d5:37'
+  gitconf:
+    description: 'Sets up git config for circle'
+    steps:
+      - run:
+          name: 'Configure GIT'
+          command: |
+            git config user.email "jamescodesthings@gmail.com"
+            git config user.name "Circle CI"
+  save_build_to_workspace:
+    description: 'Persist build directory'
+    steps:
+      - persist_to_workspace:
+          root: ~/project
+          paths: dist/*
+  attach_build_from_workspace:
+    description: 'Attach build directory'
+    steps:
+      - attach_workspace:
+          at: ~/project
+  copy_circle_conf_to_gh_pages:
+    description: 'Copies the circle config to build dir'
+    steps:
+      - run:
+          name: 'Copy Circle conf to Build'
+          command: |
+            cp -r .circleci dist/.circleci
+            echo "codesthings.com" > dist/CNAME
+  deploy_gh_pages:
+    description: 'Deploy'
+    steps:
+      - run:
+          name: 'Deploy to gh-pages'
+          command: npm run deploy:gh-pages
+
+jobs:
+  build:
+    executor: node
+    steps:
+      - add_key
+      - checkout
+      - attach_build_from_workspace
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Format Check
+          command: npm run format:check
+      - run:
+          name: Lint Check
+          command: npm run lint:check
+      - run:
+          name: Build dist
+          command: npm run build
+      - save_build_to_workspace
+      - run:
+          name: Bundle Artifacts
+          command: |
+            tar czf ./dist.tar.gz --directory=dist .
+      - store_artifacts:
+          path: ./dist.tar.gz
+          destination: dist.tar.gz
+
+  deploy:
+    executor: node
+    steps:
+      - add_key
+      - checkout
+      - gitconf
+      - attach_build_from_workspace
+      - node/install-packages:
+          pkg-manager: npm
+      - copy_circle_conf_to_gh_pages
+      - deploy_gh_pages
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+                - /feature\/.*/
+                - /hotfix\/.*/
+                - /support\/.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main

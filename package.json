@@ -16,7 +16,8 @@
     "format:check": "npm run format -- --check",
     "format:fix": "npm run format -- --write",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy:gh-pages": "gh-pages -t -d dist"
   },
   "dependencies": {
     "@faker-js/faker": "7.6.0",
@@ -51,6 +52,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.32.0",
     "eslint-plugin-storybook": "0.6.10",
+    "gh-pages": "5.0.0",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "postcss": "8.4.21",
