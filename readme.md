@@ -1,5 +1,7 @@
 # Codesthings.com
 
+[![jamescodesthings](https://circleci.com/gh/jamescodesthings/jamescodesthings.github.io.svg?style=svg)](https://circleci.com/gh/jamescodesthings/jamescodesthings.github.io)
+
 My Personal portfolio, cv, and profile. Written in React using Vite, Tailwind CSS and a handful of awesome JS libraries.
 
 # Contributing
