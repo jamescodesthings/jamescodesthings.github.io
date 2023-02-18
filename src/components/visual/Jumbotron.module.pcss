@@ -1,17 +1,27 @@
-.jumbotron {
+.jumbotron-card {
+  @apply relative;
   @apply w-full h-screen;
-  @apply p-14;
   @apply bg-purple-400;
   @apply flex justify-center items-center;
   @apply bg-cover;
+  @apply overflow-clip;
   background: url('https://picsum.photos/1920/1080');
 }
 
+.jumbotron-content {
+  @apply p-14;
+}
+
 .jumbo-round {
+  .jumbotron-card {
+    @apply h-full;
+  }
   @apply w-full h-screen;
   @apply p-4 md:p-6 lg:p-10;
-  .jumbotron {
-    @apply rounded;
-    @apply w-full h-full;
+
+  @apply rounded-lg;
+
+  .jumbotron-card {
+    @apply rounded-lg;
   }
 }

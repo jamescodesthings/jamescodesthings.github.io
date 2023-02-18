@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { Switch } from '../components/Switch';
-import { Title } from '../components/Title';
+import { Switch } from '../components/inputs/Switch';
+import { TitleWithBackground } from '../components/typography/TitleWithBackground';
 import styles from './PageHome.module.pcss';
 import { Theme, ThemeContext } from '../context/ThemeContext';
-import { Jumbotron } from '../components/Jumbotron';
+import { Jumbotron } from '../components/visual/Jumbotron';
 
 export const PageHome = () => {
   const { state, dispatch } = useContext(ThemeContext);
@@ -23,9 +23,9 @@ export const PageHome = () => {
         Dark
       </Switch>
 
-      <Jumbotron>
+      <Jumbotron className={'jumbo-round'}>
         <main className={`${state} ${styles.main}`}>
-          <Title title="James Macmillan" subtitle="Senior Software Developer" />
+          <TitleWithBackground title={'James Macmillan'} className={'hyper to-tr'} />
         </main>
       </Jumbotron>
     </>

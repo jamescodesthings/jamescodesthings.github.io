@@ -1,0 +1,388 @@
+/* h1 */
+.title-with-background {
+  @apply text-5xl;
+  @apply px-2 py-1;
+  /* xs size */
+  @apply w-full indent-1;
+
+  /* sm+ size */
+  @apply sm:indent-0 sm:w-auto;
+}
+
+/* span */
+.background {
+  @apply relative inline-block;
+  @apply pt-2 pb-0;
+  @apply before:z-10;
+  @apply before:block before:absolute;
+  @apply before:-inset-x-1 before:-inset-y-3;
+  @apply before:-skew-y-2;
+  @apply before:w-full;
+  @apply sm:before:-inset-y-1 sm:before:-skew-y-1 sm:before:w-auto;
+  @apply before:bg-gradient-to-br;
+  @apply before:from-cyan-600 before:to-indigo-600;
+
+  .to-tr & {
+    @apply before:bg-gradient-to-tr;
+  }
+
+  .indigo-pink-amber & {
+    @apply before:from-indigo-500;
+    @apply before:via-pink-500;
+    @apply before:to-amber-500;
+  }
+
+  /* Some nice gradients sourced from https://hypercolor.dev/ */
+  .hyper & {
+    @apply before:from-pink-500 before:via-red-500 before:to-yellow-500;
+  }
+
+  .oceanic & {
+    @apply before:from-green-300 before:via-blue-500 before:to-purple-600;
+  }
+
+  .cotton-candy & {
+    @apply before:from-pink-300 before:via-purple-300 before:to-indigo-400;
+  }
+
+  .gotham & {
+    @apply before:from-gray-700 before:via-gray-900 before:to-black;
+  }
+
+  .sunset & {
+    @apply before:from-indigo-200 before:via-red-200 before:to-yellow-100;
+  }
+
+  .mojave & {
+    @apply before:from-yellow-100 before:via-yellow-300 before:to-yellow-500;
+  }
+
+  .beachside & {
+    @apply before:from-yellow-200 before:via-green-200 before:to-green-500;
+  }
+
+  .gunmetal & {
+    @apply before:from-gray-200 before:via-gray-400 before:to-gray-600;
+  }
+
+  .peachy & {
+    @apply before:from-red-200 before:via-red-300 before:to-yellow-200;
+  }
+
+  .seafoam & {
+    @apply before:from-green-200 before:via-green-300 before:to-blue-500;
+  }
+
+  .pumpkin & {
+    @apply before:from-yellow-200 before:via-yellow-400 before:to-yellow-700;
+  }
+
+  .pandora & {
+    @apply before:from-green-200 before:via-green-400 before:to-purple-700;
+  }
+
+  .valentine & {
+    @apply before:from-red-200 before:to-red-600;
+  }
+
+  .hawaii & {
+    @apply before:from-green-300 before:via-yellow-300 before:to-pink-300;
+  }
+
+  .lavender & {
+    @apply before:from-indigo-300 before:to-purple-400;
+  }
+
+  .wintergreen & {
+    @apply before:from-green-200 before:to-green-500;
+  }
+
+  .huckleberry & {
+    @apply before:from-purple-200 before:via-purple-400 before:to-purple-800;
+  }
+
+  .blue-steel & {
+    @apply before:from-gray-400 before:via-gray-600 before:to-blue-800;
+  }
+
+  .arendelle & {
+    @apply before:from-blue-100 before:via-blue-300 before:to-blue-500;
+  }
+
+  .spearmint & {
+    @apply before:from-green-200 before:via-green-400 before:to-green-500;
+  }
+
+  .minnesota & {
+    @apply before:from-purple-400 before:to-yellow-400;
+  }
+
+  .bombpop & {
+    @apply before:from-red-400 before:via-gray-300 before:to-blue-500;
+  }
+
+  .acadia & {
+    @apply before:from-red-800 before:via-yellow-600 before:to-yellow-500;
+  }
+
+  .sonora & {
+    @apply before:from-yellow-200 before:to-yellow-500;
+  }
+
+  .paradise & {
+    @apply before:from-blue-300 before:via-green-200 before:to-yellow-300;
+  }
+
+  .sierra-mist & {
+    @apply before:from-yellow-200 before:via-green-200 before:to-green-300;
+  }
+
+  .creamsicle & {
+    @apply before:from-yellow-200 before:via-yellow-300 before:to-yellow-400;
+  }
+
+  .midnight & {
+    @apply before:from-blue-700 before:via-blue-800 before:to-gray-900;
+  }
+
+  .borealis & {
+    @apply before:from-green-300 before:to-purple-400;
+  }
+
+  .strawberry & {
+    @apply before:from-yellow-200 before:via-pink-200 before:to-pink-400;
+  }
+
+  .flamingo & {
+    @apply before:from-pink-400 before:to-pink-600;
+  }
+
+  .burning-sunrise & {
+    @apply before:from-yellow-600 before:to-red-600;
+  }
+
+  .apple & {
+    @apply before:from-green-500 before:to-green-700;
+  }
+
+  .watermelon & {
+    @apply before:from-red-500 before:to-green-500;
+  }
+
+  .flare & {
+    @apply before:from-orange-600 before:to-orange-500;
+  }
+
+  .rasta & {
+    @apply before:from-lime-600 before:via-yellow-300 before:to-red-600;
+  }
+
+  .lust & {
+    @apply before:from-rose-700 before:to-pink-600;
+  }
+
+  .sublime & {
+    @apply before:from-rose-400 before:via-fuchsia-500 before:to-indigo-500;
+  }
+
+  .witch & {
+    @apply before:from-slate-900 before:via-purple-900 before:to-slate-900;
+  }
+
+  .powerpuff & {
+    @apply before:from-sky-400 before:via-rose-400 before:to-lime-400;
+  }
+
+  .solid-blue & {
+    @apply before:from-blue-500 before:to-blue-600;
+  }
+
+  .ice & {
+    @apply before:from-rose-100 before:to-teal-100;
+  }
+
+  .sky & {
+    @apply before:from-sky-400 before:to-sky-200;
+  }
+
+  .horizon & {
+    @apply before:from-orange-500 before:to-yellow-300;
+  }
+
+  .morning & {
+    @apply before:from-rose-400 before:to-orange-300;
+  }
+
+  .space & {
+    @apply before:from-gray-900 before:to-gray-600 before:bg-gradient-to-r;
+  }
+
+  .earth & {
+    @apply before:from-teal-200 before:to-lime-200;
+  }
+
+  .picture & {
+    @apply before:from-fuchsia-500 before:via-red-600 before:to-orange-400;
+  }
+
+  .messenger & {
+    @apply before:from-sky-400 before:to-blue-500;
+  }
+
+  .sea & {
+    @apply before:from-cyan-200 before:to-cyan-400;
+  }
+
+  .payment & {
+    @apply before:from-sky-400 before:to-cyan-300;
+  }
+
+  .video & {
+    @apply before:from-red-500 before:to-red-800;
+  }
+
+  .passion & {
+    @apply before:from-rose-500 before:via-red-400 before:to-red-500;
+  }
+
+  .flower & {
+    @apply before:from-violet-300 before:to-violet-400;
+  }
+
+  .cool-sunset & {
+    @apply before:from-orange-300 before:to-rose-300;
+  }
+
+  .pink-neon & {
+    @apply before:from-fuchsia-600 before:to-pink-600;
+  }
+
+  .blue-sand & {
+    @apply before:from-slate-500 before:to-yellow-100;
+  }
+
+  .emerald & {
+    @apply before:from-emerald-500 before:to-lime-600;
+  }
+
+  .relaxed-rose & {
+    @apply before:from-rose-300 before:to-rose-500;
+  }
+
+  .purple-haze & {
+    @apply before:from-purple-800 before:via-violet-900 before:to-purple-800;
+  }
+
+  .silver & {
+    @apply before:from-gray-100 before:to-gray-300;
+  }
+
+  .orange-coral & {
+    @apply before:from-orange-400 before:to-rose-400;
+  }
+
+  .blue-coral & {
+    @apply before:from-blue-400 before:to-emerald-400;
+  }
+
+  .beam-of-light & {
+    @apply before:from-gray-900 before:via-gray-100 before:to-gray-900;
+  }
+
+  .safari-sunset & {
+    @apply before:from-yellow-500 before:via-purple-500 before:to-blue-500;
+  }
+
+  .high-tide & {
+    @apply before:from-sky-500 before:via-orange-200 before:to-yellow-600;
+  }
+
+  .hunniepop & {
+    @apply before:from-fuchsia-300 before:via-green-400 before:to-rose-700;
+  }
+
+  .soft-metal & {
+    @apply before:from-indigo-200 before:via-slate-600 before:to-indigo-200;
+  }
+
+  .coral-sun & {
+    @apply before:from-yellow-200 before:via-emerald-200 before:to-yellow-200;
+  }
+
+  .power-pink & {
+    @apply before:from-rose-500 before:to-indigo-700;
+  }
+
+  .powder-blue & {
+    @apply before:from-sky-400 before:to-blue-800;
+  }
+
+  .moody-sunset & {
+    @apply before:from-rose-900 before:via-amber-800 before:to-rose-400;
+  }
+
+  .burnt-sand & {
+    @apply before:from-yellow-200 before:via-red-500 before:to-fuchsia-500;
+  }
+
+  .blue-white-split & {
+    @apply before:from-white before:via-sky-500 before:to-sky-500;
+  }
+
+  .purple-beam & {
+    @apply before:from-indigo-900 before:via-indigo-400 before:to-indigo-900;
+  }
+
+  .sand-beam & {
+    @apply before:from-orange-900 before:via-amber-100 before:to-orange-900;
+  }
+
+  .island-waves & {
+    @apply before:from-yellow-400 before:via-gray-50 before:to-teal-300;
+  }
+
+  .big-sur & {
+    @apply before:bg-gradient-to-tr before:from-violet-500 before:to-orange-300;
+  }
+
+  .oahu & {
+    @apply before:from-orange-400 before:to-sky-400;
+  }
+
+  .peach-pie & {
+    @apply before:from-red-900 before:via-violet-200 before:to-orange-500;
+  }
+
+  .salem & {
+    @apply before:from-gray-900 before:via-purple-900 before:to-violet-600;
+  }
+
+  .purple-burst & {
+    @apply before:from-purple-900 before:to-indigo-500;
+  }
+
+  .amber-sunrise & {
+    @apply before:from-amber-900 before:to-yellow-300;
+  }
+
+  .sky-sea & {
+    @apply before:from-sky-400 before:to-indigo-900;
+  }
+
+  .rocket-power & {
+    @apply before:from-amber-700 before:via-orange-300 before:to-rose-800;
+  }
+
+  .blue-flame & {
+    @apply before:from-amber-200 before:via-violet-600 before:to-sky-900;
+  }
+
+  .warm-glow & {
+    @apply before:from-gray-300 before:via-fuchsia-600 before:to-orange-600;
+  }
+}
+
+/* span */
+.title {
+  @apply relative text-white z-10 px-1 font-medium tracking-tighter;
+}

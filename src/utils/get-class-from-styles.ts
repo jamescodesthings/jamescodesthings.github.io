@@ -7,5 +7,11 @@
 export function getClassFromStyles(styleModule: CSSModuleClasses, prettyClassName: string | undefined): string {
   if (!prettyClassName || !styleModule) return '';
 
-  return styleModule[prettyClassName] || '';
+  const result = prettyClassName
+    .split(' ')
+    .map(className => styleModule[className] || '')
+    .join(' ');
+
+  console.debug('classes: %s', result);
+  return result;
 }
