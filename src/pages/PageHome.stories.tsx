@@ -13,6 +13,10 @@ export const Default = Template.bind({});
 Default.decorators = [
   (story, { globals: { darkMode } }) => {
     const currentTheme = darkMode ? Theme.Dark : Theme.Light;
-    return <ThemeContext.Provider value={{ state: currentTheme, dispatch: value => console.log('Change Theme to', value) }}>{story()}</ThemeContext.Provider>;
+    return (
+      <ThemeContext.Provider value={{ state: currentTheme, dispatch: value => console.log('Change Theme to', value) }}>
+        {story()}
+      </ThemeContext.Provider>
+    );
   },
 ];

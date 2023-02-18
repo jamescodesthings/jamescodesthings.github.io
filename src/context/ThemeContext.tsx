@@ -1,4 +1,4 @@
-import { createContext, Dispatch, DispatchWithoutAction, PropsWithChildren, ReducerStateWithoutAction, useReducer } from 'react';
+import { createContext, Dispatch, PropsWithChildren, useReducer } from 'react';
 
 type ThemeContextType = {
   state?: Theme;

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import styles from './TitleWithBackground.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 

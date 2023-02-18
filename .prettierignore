@@ -1,2 +1,4 @@
 # Prettier Ignore file
 package-lock.json
+
+dist/
