@@ -1,4 +1,4 @@
-import './App.css';
+import './App.pcss';
 import { ThemeProvider } from './context/ThemeContext';
 import { PageHome } from './pages/PageHome';
 

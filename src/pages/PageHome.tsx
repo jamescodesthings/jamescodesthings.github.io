@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Switch } from '../components/inputs/Switch';
 import { TitleWithBackground } from '../components/typography/TitleWithBackground';
 import styles from './PageHome.module.pcss';
@@ -16,6 +16,14 @@ export const PageHome = () => {
   };
 
   const isDark = state === Theme.Dark;
+
+  useEffect(() => {
+    if (isDark) {
+      document.body.className = Theme.Dark;
+    } else {
+      document.body.className = Theme.Light;
+    }
+  }, [isDark]);
 
   return (
     <>
