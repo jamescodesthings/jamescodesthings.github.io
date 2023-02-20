@@ -13,7 +13,7 @@ type JumboProps = {
 export const Jumbotron = ({ className, children }: PropsWithChildren<JumboProps>) => {
   return (
     <section className={`${styles.jumbo} ${getClassFromStyles(styles, className)}`}>
-      <div className={`${styles['jumbotron-card']}`}>
+      <div className={`${styles['jumbotron-card']} bg-placeholder-railway`}>
         <Texture name={`fabric-light`} />
         <div className={`${styles['jumbotron-content']}`}>{children}</div>
       </div>

@@ -27,8 +27,8 @@ module.exports = {
         'placeholder-2': "url('https://picsum.photos/id/450/1920/1280')",
         'placeholder-3': "url('https://picsum.photos/id/474/1920/1280')",
         'placeholder-4': "url('https://picsum.photos/id/296/1920/1280')",
+        'placeholder-railway': "url('https://picsum.photos/id/345/1920/1280')",
       },
-      //
       colors: {
         primary: '#5bb7de',
         secondary: '#e87020',
