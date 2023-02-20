@@ -58,6 +58,7 @@
     "lint-staged": "13.1.0",
     "postcss": "8.4.21",
     "postcss-import": "15.1.0",
+    "postcss-viewport-height-correction": "1.1.1",
     "prettier": "2.8.2",
     "storybook-dark-mode": "2.0.5",
     "storybook-tailwind-dark-mode": "1.0.15",
