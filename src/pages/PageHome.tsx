@@ -42,8 +42,8 @@ export const PageHome = () => {
         <main className={`${state} ${styles.main} h-full`}>
           {/*<img src={'/src/assets/favicon/favicon-dark-transparent.svg'} className={`w-24 m-4`} />*/}
           <div className={'flex flex-col justify-center items-center w-full h-full absolute top-0 left-0'}>
-            <TitleWithBackground title={'James Macmillan'} className={'hyper to-tr'} />
-            <div className="row sm:flex flex-wrap">
+            <TitleWithBackground title={'James Macmillan'} className={'sunset to-tr m-4'} />
+            <div className="row sm:flex flex-wrap w-full sm:w-auto m-4 p-4 sm:p-0">
               <SplitFlap value={'Senior'} className={'word-xs'} random={true} steps={10}></SplitFlap>
               <SplitFlap value={'Software'} className={'word-xs'} random={true} steps={10}></SplitFlap>
               <SplitFlap value={'Engineer'} className={'word-xs'} random={true} steps={10}></SplitFlap>

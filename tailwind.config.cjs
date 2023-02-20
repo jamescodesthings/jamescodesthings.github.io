@@ -22,6 +22,7 @@ module.exports = {
         1: '1',
       },
       backgroundImage: {
+        'sunset': 'linear-gradient(43deg, #9333ea 11%, #ec4899 69%, #f97316 84%, #facc15 91%)',
         'placeholder': "url('https://picsum.photos/1920/1280')",
         'placeholder-1': "url('https://picsum.photos/id/811/1920/1280')",
         'placeholder-2': "url('https://picsum.photos/id/450/1920/1280')",
@@ -29,13 +30,7 @@ module.exports = {
         'placeholder-4': "url('https://picsum.photos/id/296/1920/1280')",
         'placeholder-railway': "url('https://picsum.photos/id/345/1920/1280')",
       },
-      colors: {
-        primary: '#5bb7de',
-        secondary: '#e87020',
-        tertiary: '#be2adb',
-      },
     },
-
     variants: {
       backgroundImage: ['responsive', 'hover', 'before'],
       linearGradients: ['responsive', 'hover', 'before'],

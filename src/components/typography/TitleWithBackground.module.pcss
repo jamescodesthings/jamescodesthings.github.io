@@ -1,9 +1,11 @@
 /* h1 */
 .title-with-background {
   @apply text-5xl;
-  @apply px-2 py-1;
+  @apply px-4;
+  @apply mx-auto;
+  @apply sm:px-2 sm:py-1;
   /* xs size */
-  @apply w-full indent-1;
+  @apply indent-1;
 
   /* sm+ size */
   @apply sm:indent-0 sm:w-auto;
@@ -30,6 +32,10 @@
     @apply before:from-indigo-500;
     @apply before:via-pink-500;
     @apply before:to-amber-500;
+  }
+
+  .sunset & {
+    @apply before:bg-sunset;
   }
 
   /* Some nice gradients sourced from https://hypercolor.dev/ */
