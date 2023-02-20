@@ -37,8 +37,8 @@ export const PageHome = () => {
 
   return (
     <>
-      <div className={`container m-auto relative ${spacing.py}`}>
-        <Jumbotron className={'jumbo-round'}>
+      <div className={`container m-auto relative ${spacing.py} ${spacing.pxHalf}`}>
+        <Jumbotron className={`jumbo-round ${spacing.mb}`}>
           <main className={`${state} ${styles.main} h-full`}>
             <Switch value={isDark} onChange={changeDarkMode} className={styles.themeToolbar}>
               Dark
