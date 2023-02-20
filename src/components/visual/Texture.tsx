@@ -24,7 +24,7 @@ export type TextureName =
   | 'paper-fibers'
   | 'paper'
   | 'rice-paper-2'
-  | 'rice-paper-3 '
+  | 'rice-paper-3'
   | 'rice-paper'
   | 'sandpaper'
   | 'soft-wallpaper'
