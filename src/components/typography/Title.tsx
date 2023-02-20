@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Title.module.pcss';
-import typography from './Typography.module.pcss';
+import typography from '../../styles/typography.module.pcss';
 
 interface TitleProps {
   /**

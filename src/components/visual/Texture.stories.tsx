@@ -15,7 +15,7 @@ FabricLight.decorators = [
   story => (
     <>
       <div className="flex flex-col justify-center items-center">
-        <div className={`${styles['texture-preview']}`}>{story()}</div>
+        <div className={`${styles.texturePreview}`}>{story()}</div>
         <a
           rel={'noreferrer'}
           target={'_blank'}

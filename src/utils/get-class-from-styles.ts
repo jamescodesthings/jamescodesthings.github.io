@@ -1,3 +1,5 @@
+import { camelCase } from 'lodash';
+
 /**
  * Given the pretty name of a CSS Module class, this resolves the actual name.
  * @param styleModule The styles imported
@@ -9,7 +11,10 @@ export function getClassFromStyles(styleModule: CSSModuleClasses, prettyClassNam
 
   const result = prettyClassName
     .split(' ')
-    .map(className => styleModule[className] || className || '')
+    .map(className => {
+      const camel = camelCase(className);
+      return styleModule[camel] || className || '';
+    })
     .join(' ');
 
   console.debug('classes: %s', result);

@@ -14,7 +14,7 @@ export type TitleWithBackgroundProps = {
 };
 
 export const TitleWithBackground = ({ title, className = 'indigo-pink-amber to-tr' }: TitleWithBackgroundProps) => (
-  <h1 className={`${styles['title-with-background']} ${getClassFromStyles(styles, className)}`}>
+  <h1 className={`${styles.titleWithBackground} ${getClassFromStyles(styles, className)}`}>
     <span className={`${styles.background}`}>
       <span className={`${styles.title}`}>{title}</span>
     </span>

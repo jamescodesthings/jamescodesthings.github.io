@@ -7,11 +7,11 @@ import styles from './Breakpoint.module.pcss';
  */
 export const Breakpoint = () => (
   <div className="breakpoint-tester">
-    <span className={styles['breakpoint-xs']}>xs</span>
-    <span className={styles['breakpoint-sm']}>sm</span>
-    <span className={styles['breakpoint-md']}>md</span>
-    <span className={styles['breakpoint-lg']}>lg</span>
-    <span className={styles['breakpoint-xl']}>xl</span>
-    <span className={styles['breakpoint-2xl']}>xl</span>
+    <span className={styles.breakpointXs}>xs</span>
+    <span className={styles.breakpointSm}>sm</span>
+    <span className={styles.breakpointMd}>md</span>
+    <span className={styles.breakpointLg}>lg</span>
+    <span className={styles.breakpointXl}>xl</span>
+    <span className={styles.breakpoint2xl}>xl</span>
   </div>
 );

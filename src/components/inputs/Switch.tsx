@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import typography from '../typography/Typography.module.pcss';
+import typography from '../../styles/typography.module.pcss';
 import styles from './Switch.module.pcss';
 
 type SwitchProps = {

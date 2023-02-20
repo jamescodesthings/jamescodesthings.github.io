@@ -150,8 +150,8 @@ const FlipCard = ({ previousValue, value, random = false, className, onAnimation
   }
   return (
     <div className={`${styles.container} ${className}`}>
-      <Card className={`${styles['card-top']}`} value={value} />
-      <Card className={`${styles['card-bottom']}`} value={previousValue} />
+      <Card className={`${styles.cardTop}`} value={value} />
+      <Card className={`${styles.cardBottom}`} value={previousValue} />
       <AnimatedCard
         className={`${styles.card} ${styles.fold}`}
         style={style}
