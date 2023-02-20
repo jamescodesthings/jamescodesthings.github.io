@@ -146,7 +146,7 @@ const FlipCard = ({ previousValue, value, random = false, className, onAnimation
   const style: CSSProperties = {};
   if (random) {
     style.animationDelay = `${randBetween(0, 0.1)}s`;
-    style.animationDuration = `${randBetween(0.05, 0.35)}s`;
+    style.animationDuration = `${randBetween(0.3, 0.65)}s`;
   }
   return (
     <div className={`${styles.container} ${className}`}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './TitleWithBackground.module.pcss';
+import spacing from '../../styles/spacing.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 
 export type TitleWithBackgroundProps = {
@@ -14,7 +15,7 @@ export type TitleWithBackgroundProps = {
 };
 
 export const TitleWithBackground = ({ title, className = 'indigo-pink-amber to-tr' }: TitleWithBackgroundProps) => (
-  <h1 className={`${styles.titleWithBackground} ${getClassFromStyles(styles, className)}`}>
+  <h1 className={`${styles.titleWithBackground} ${spacing.px} ${getClassFromStyles(styles, className)}`}>
     <span className={`${styles.background}`}>
       <span className={`${styles.title}`}>{title}</span>
     </span>

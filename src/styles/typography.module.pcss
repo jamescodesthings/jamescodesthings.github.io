@@ -16,3 +16,11 @@
     @apply text-amber-600 fill-amber-600 shrink-0;
   }
 }
+
+.body {
+  @apply prose prose-stone lg:prose-lg xl:prose-xl;
+
+  :global(.dark) & {
+    @apply prose-invert;
+  }
+}
