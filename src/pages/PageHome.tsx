@@ -9,7 +9,9 @@ import { Jumbotron } from '../components/visual/Jumbotron';
 import { SplitFlap } from '../components/split-flap/SplitFlap';
 import { PaperPage } from '../components/visual/PaperPage';
 import { CoverLetterHeading } from '../components/typography/PageHeadings';
-import { CoverLetterContents } from './Contents/CoverLetterContents';
+import { CoverLetterContent } from './content/CoverLetterContent';
+import { BodyWithSidebar } from '../components/visual/BodyWithSidebar';
+import { CenteredLabel } from '../components/utils/Label';
 
 /**
  * PageHome
@@ -57,8 +59,10 @@ export const PageHome = () => {
         </Jumbotron>
 
         <PaperPage textureName={'textured-paper'} className={'rounded-lg'}>
-          <CoverLetterHeading />
-          <CoverLetterContents />
+          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+            <CoverLetterHeading />
+            <CoverLetterContent />
+          </BodyWithSidebar>
         </PaperPage>
       </div>
     </>

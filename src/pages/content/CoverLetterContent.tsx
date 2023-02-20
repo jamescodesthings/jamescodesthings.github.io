@@ -1,11 +1,11 @@
 import React from 'react';
 import { Prose } from '../../components/typography/Prose';
 
-export const CoverLetterContents = () => (
+export const CoverLetterContent = () => (
   <Prose>
     <p>
       Thank you for taking the time to look at my CV. I&apos;m James Macmillan, a Senior Full Stack Web and Mobile
-      Developer based in the midlands, UK.
+      Developer based in The Midlands, UK.
     </p>
     <p>I am currently seeking remote roles as a Senior, Principal or Lead Developer.</p>
     <p>
