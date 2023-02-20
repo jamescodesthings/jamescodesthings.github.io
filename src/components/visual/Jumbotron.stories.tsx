@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Jumbotron } from './Jumbotron';
+import { Label } from '../utils/Label';
 
 export default {
   jumbotron: 'Jumbotron',
@@ -9,11 +10,6 @@ export default {
 } as ComponentMeta<typeof Jumbotron>;
 
 const Template: ComponentStory<typeof Jumbotron> = args => <Jumbotron {...args} />;
-
-type LabelProps = {
-  title: string;
-};
-const Label = ({ title }: LabelProps) => <h1 className={`text-white bg-stone-700 p-2 px-6 rounded`}>{title}</h1>;
 
 export const Default = Template.bind({});
 Default.args = {

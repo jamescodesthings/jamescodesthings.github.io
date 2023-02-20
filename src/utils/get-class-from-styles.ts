@@ -9,7 +9,7 @@ export function getClassFromStyles(styleModule: CSSModuleClasses, prettyClassNam
 
   const result = prettyClassName
     .split(' ')
-    .map(className => styleModule[className] || '')
+    .map(className => styleModule[className] || className || '')
     .join(' ');
 
   console.debug('classes: %s', result);

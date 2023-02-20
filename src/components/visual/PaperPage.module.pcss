@@ -1,0 +1,23 @@
+.page {
+  @apply relative;
+  @apply bg-white;
+
+  @apply w-full h-auto;
+  @apply min-h-[500px] sm:min-h-[initial];
+  /* Paper aspect ratio after SM Sizing (not-mobile) */
+  @apply sm:aspect-[1/1.4142];
+
+  /* Clip Textures */
+  @apply overflow-clip;
+
+  @apply drop-shadow-lg;
+
+  /* Dark Flip */
+  :global(.dark) & {
+    @apply bg-stone-900;
+  }
+}
+
+.content {
+  @apply absolute w-full h-full left-0 top-0;
+}

@@ -5,6 +5,7 @@ import styles from './PageHome.module.pcss';
 import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext';
 import { Jumbotron } from '../components/visual/Jumbotron';
 import { SplitFlap } from '../components/split-flap/SplitFlap';
+import { PaperPage } from '../components/visual/PaperPage';
 
 /**
  * PageHome
@@ -34,23 +35,29 @@ export const PageHome = () => {
 
   return (
     <>
-      <Switch value={isDark} onChange={changeDarkMode} className={styles['theme-toolbar']}>
-        Dark
-      </Switch>
+      <div className="container m-auto relative">
+        <Switch value={isDark} onChange={changeDarkMode} className={styles['theme-toolbar']}>
+          Dark
+        </Switch>
 
-      <Jumbotron className={'jumbo-round'}>
-        <main className={`${state} ${styles.main} h-full`}>
-          {/*<img src={'/src/assets/favicon/favicon-dark-transparent.svg'} className={`w-24 m-4`} />*/}
-          <div className={'flex flex-col justify-center items-center w-full h-full absolute top-0 left-0'}>
-            <TitleWithBackground title={'James Macmillan'} className={'sunset to-tr m-4'} />
-            <div className="row sm:flex flex-wrap w-full sm:w-auto m-4 p-4 sm:p-0">
-              <SplitFlap value={'Senior'} className={'word-xs'} random={true} steps={10}></SplitFlap>
-              <SplitFlap value={'Software'} className={'word-xs'} random={true} steps={10}></SplitFlap>
-              <SplitFlap value={'Engineer'} className={'word-xs'} random={true} steps={10}></SplitFlap>
+        <Jumbotron className={'jumbo-round my-4 md:my-6 lg:my-10'}>
+          <main className={`${state} ${styles.main} h-full`}>
+            {/*<img src={'/src/assets/favicon/favicon-dark-transparent.svg'} className={`w-24 m-4`} />*/}
+            <div className={'flex flex-col justify-center items-center w-full h-full absolute top-0 left-0'}>
+              <TitleWithBackground title={'James Macmillan'} className={'sunset to-tr m-4'} />
+              <div className="row sm:flex flex-wrap w-full sm:w-auto m-4 p-4 sm:p-0">
+                <SplitFlap value={'Senior'} className={'word-xs'} random={true} steps={10}></SplitFlap>
+                <SplitFlap value={'Software'} className={'word-xs'} random={true} steps={10}></SplitFlap>
+                <SplitFlap value={'Engineer'} className={'word-xs'} random={true} steps={10}></SplitFlap>
+              </div>
             </div>
-          </div>
-        </main>
-      </Jumbotron>
+          </main>
+        </Jumbotron>
+
+        <PaperPage textureName={'textured-paper'} className={'rounded-lg'}>
+          TESTING
+        </PaperPage>
+      </div>
     </>
   );
 };
