@@ -2,16 +2,22 @@ import { useContext, useEffect } from 'react';
 import { Switch } from '../components/inputs/Switch';
 import { TitleWithBackground } from '../components/typography/TitleWithBackground';
 import styles from './PageHome.module.pcss';
-import { Theme, ThemeContext } from '../context/ThemeContext';
+import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext';
 import { Jumbotron } from '../components/visual/Jumbotron';
 import { SplitFlap } from '../components/split-flap/SplitFlap';
 
+/**
+ * PageHome
+ * @description The main/home/landing page for codesthings.com
+ * @todo pull theme stuff up if/when adding router
+ */
 export const PageHome = () => {
   const { state, dispatch } = useContext(ThemeContext);
 
   const changeDarkMode = (value: boolean) => {
     const newTheme = value ? Theme.Dark : Theme.Light;
     console.log('App Switch Changed Dark Mode: %s (%s)', value, newTheme);
+    persistChosenTheme(newTheme);
 
     if (dispatch) dispatch(newTheme);
   };
