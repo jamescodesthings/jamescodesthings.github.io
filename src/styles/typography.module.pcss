@@ -18,7 +18,8 @@
 }
 
 .body {
-  @apply prose prose-stone lg:prose-lg xl:prose-xl;
+  @apply prose prose-stone;
+  @apply prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
 
   :global(.dark) & {
     @apply prose-invert;
