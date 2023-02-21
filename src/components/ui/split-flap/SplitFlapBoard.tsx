@@ -1,16 +1,12 @@
 import { pad } from 'lodash';
 import { SplitFlap } from './SplitFlap';
+import { PropsWithClassName } from '../../../types/PropsWithClassName';
 
 type SplitFlapBoardProps = {
   /**
    * The word it should say
    */
   value: string;
-
-  /**
-   * The type to pass through
-   */
-  className: string;
 
   /**
    * If true give a random speed and delay
@@ -111,7 +107,7 @@ export const SplitFlapBoard = ({
   rows = 2,
   splitWords = false,
   center = false,
-}: SplitFlapBoardProps) => {
+}: PropsWithClassName<SplitFlapBoardProps>) => {
   if (!value) {
     throw new Error('Cannot be empty');
   }

@@ -5,6 +5,7 @@ import styles from './SplitFlap.module.pcss';
 import { getRandomWords, KnownMethods } from '../../../utils/get-random-words';
 import { startCase } from 'lodash';
 import { getClassFromStyles } from '../../../utils/get-class-from-styles';
+import { PropsWithClassName } from '../../../types/PropsWithClassName';
 
 interface SplitFlapProps {
   /**
@@ -15,12 +16,6 @@ interface SplitFlapProps {
    * The value to start from
    */
   start?: string;
-
-  /**
-   * Additional classes
-   * One of 'rainbow'
-   */
-  className?: string;
 
   /**
    * If true give a random speed and delay
@@ -72,7 +67,14 @@ function getAlphabet(value: string, start: string | undefined, steps = Infinity)
   return alphabet.slice(startIndex, end + 1);
 }
 
-export const SplitFlap = ({ value, className, start, steps, type, random = false }: SplitFlapProps) => {
+export const SplitFlap = ({
+  value,
+  className,
+  start,
+  steps,
+  type,
+  random = false,
+}: PropsWithClassName<SplitFlapProps>) => {
   const actualClassName = getClassFromStyles(styles, className);
 
   const emptyDict: string[] = [];
@@ -163,15 +165,11 @@ const FlipCard = ({ previousValue, value, random = false, className, onAnimation
   );
 };
 
-const AnimatedCard = ({ className, value, onAnimationEnd, style }: CardProps) => (
+const AnimatedCard = ({ className, value, onAnimationEnd, style }: PropsWithClassName<CardProps>) => (
   <Card className={`${styles.card} ${className}`} value={value} onAnimationEnd={onAnimationEnd} style={style} />
 );
 
 type CardProps = {
-  /**
-   * The classes to apply to the card
-   */
-  className: string;
   /**
    * The value on the card
    */
@@ -187,7 +185,7 @@ type CardProps = {
    */
   style?: CSSProperties | undefined;
 };
-const Card = ({ className, value, onAnimationEnd, style }: CardProps) => {
+const Card = ({ className, value, onAnimationEnd, style }: PropsWithClassName<CardProps>) => {
   return (
     <div className={className} onAnimationEnd={onAnimationEnd} style={style}>
       <span>{value}</span>

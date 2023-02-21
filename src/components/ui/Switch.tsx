@@ -1,11 +1,18 @@
 import { PropsWithChildren } from 'react';
 import typography from '../../styles/typography.module.pcss';
 import styles from './Switch.module.pcss';
+import { PropsWithClassName } from '../../types/PropsWithClassName';
 
 type SwitchProps = {
+  /**
+   * The switch's value, true or false
+   */
   value: boolean;
+  /**
+   * Emits when the switch's value is changed
+   * @param value The new value.
+   */
   onChange: (value: boolean) => void;
-  className?: string;
 };
 
 /**
@@ -16,7 +23,12 @@ type SwitchProps = {
  * @param className The switch's class
  * @constructor
  */
-export const Switch = ({ value, onChange, children, className }: PropsWithChildren<SwitchProps>) => {
+export const Switch = ({
+  value,
+  onChange,
+  children,
+  className,
+}: PropsWithChildren<PropsWithClassName<SwitchProps>>) => {
   return (
     <label className={`${styles.wrapper} ${className}`}>
       <div className="relative">

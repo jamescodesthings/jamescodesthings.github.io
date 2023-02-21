@@ -1,4 +1,5 @@
 import { SplitFlap } from './SplitFlap';
+import { PropsWithClassName } from '../../../types/PropsWithClassName';
 
 type SplitFlapWordProps = {
   /**
@@ -7,16 +8,11 @@ type SplitFlapWordProps = {
   value: string;
 
   /**
-   * The type to pass through
-   */
-  className: string;
-
-  /**
    * If true give a random speed and delay
    */
   random?: boolean;
 };
-export const SplitFlapWord = ({ value, className, random = false }: SplitFlapWordProps) => {
+export const SplitFlapWord = ({ value, className, random = false }: PropsWithClassName<SplitFlapWordProps>) => {
   return (
     <>
       <div className="word-container flex justify-center align-center flex-wrap">

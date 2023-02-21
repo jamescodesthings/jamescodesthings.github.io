@@ -2,15 +2,9 @@ import { PropsWithChildren } from 'react';
 import styles from './Jumbotron.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 import { Texture } from '../utils/Texture';
+import { PropsWithClassName } from '../../types/PropsWithClassName';
 
-type JumboProps = {
-  /**
-   * Any additional class names to add to the jumbotron
-   */
-  className?: string;
-};
-
-export const Jumbotron = ({ className, children }: PropsWithChildren<JumboProps>) => {
+export const Jumbotron = ({ className, children }: PropsWithChildren<PropsWithClassName>) => {
   return (
     <section className={`${styles.jumbo} ${getClassFromStyles(styles, className)}`}>
       <div className={`${styles.jumbotronCard} bg-placeholder-railway`}>

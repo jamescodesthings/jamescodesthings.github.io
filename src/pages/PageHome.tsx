@@ -14,6 +14,8 @@ import { CenteredLabel } from '../components/utils/Label';
 import { CoverLetterHeading } from '../components/headings/CoverLetterHeading';
 import { ExperienceHeading } from '../components/headings/ExperienceHeading';
 import { ExperienceContent } from '../components/content/ExperienceContent';
+import { SkillsHeading } from '../components/headings/SkillsHeading';
+import { SkillsContent } from '../components/content/SkillsContent';
 
 /**
  * PageHome
@@ -75,6 +77,12 @@ export const PageHome = () => {
           <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
             <ExperienceHeading />
             <ExperienceContent />
+          </BodyWithSidebar>
+        </PaperPage>
+        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
+          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+            <SkillsHeading />
+            <SkillsContent />
           </BodyWithSidebar>
         </PaperPage>
       </div>

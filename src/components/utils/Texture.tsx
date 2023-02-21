@@ -1,5 +1,6 @@
 import styles from './Texture.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
+import { PropsWithClassName } from '../../types/PropsWithClassName';
 
 export type TextureName =
   | 'beige-paper'
@@ -35,14 +36,9 @@ export type TextureProps = {
    * The texture's name
    */
   name: TextureName;
-
-  /**
-   * Additional classes
-   */
-  className?: string;
 };
 
-export const Texture = ({ name = 'fabric-light', className = '' }: TextureProps) => (
+export const Texture = ({ name = 'fabric-light', className = '' }: PropsWithClassName<TextureProps>) => (
   <>
     <div
       className={`${styles.texture} ${getClassFromStyles(styles, name)} ${getClassFromStyles(styles, className)}`}

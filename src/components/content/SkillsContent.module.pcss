@@ -1,0 +1,19 @@
+.skill-group {
+  @apply flex flex-row flex-wrap border-b-2 border-b-stone-300 last:border-b-0;
+}
+
+.skill {
+  @apply flex flex-col items-center w-24 my-6 shrink-0 justify-between;
+
+  &.skill-header {
+  }
+
+  img,
+  svg {
+    @apply w-6 mb-2 block;
+  }
+
+  h5 {
+    @apply text-center text-xs font-light;
+  }
+}
