@@ -9,7 +9,7 @@ type PageHeadingProps = {
   icon: ReactNode;
 };
 export const PageHeading = ({ children, icon }: PropsWithChildren<PageHeadingProps>) => (
-  <div className={`${typography.headingWithIcon} ${spacing.mall}`}>
+  <div className={`${typography.headingWithIcon} ${spacing.mall} ${spacing.mtDouble}`}>
     {icon}
     <h1 className={`${spacing.mlHalf} ${typography.default}`}>{children}</h1>
   </div>
