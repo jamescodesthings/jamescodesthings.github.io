@@ -2,8 +2,8 @@ import { useContext, useEffect } from 'react';
 import { Switch } from '../components/inputs/Switch';
 import { TitleWithBackground } from '../components/typography/TitleWithBackground';
 import styles from './PageHome.module.pcss';
-import typography from '../styles/typography.module.pcss';
 import spacing from '../styles/spacing.module.pcss';
+import utils from '../styles/utils.module.pcss';
 import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext';
 import { Jumbotron } from '../components/visual/Jumbotron';
 import { SplitFlap } from '../components/split-flap/SplitFlap';
@@ -41,7 +41,7 @@ export const PageHome = () => {
 
   return (
     <>
-      <div className={`container m-auto relative ${spacing.py} ${spacing.pxHalf}`}>
+      <div className={`${utils.contain} ${utils.screen}`}>
         <Jumbotron className={`jumbo-round ${spacing.mb}`}>
           <main className={`${state} ${styles.main} h-full`}>
             <Switch value={isDark} onChange={changeDarkMode} className={styles.themeToolbar}>
@@ -57,7 +57,8 @@ export const PageHome = () => {
             </div>
           </main>
         </Jumbotron>
-
+      </div>
+      <div className={`${utils.contain}`}>
         <PaperPage textureName={'textured-paper'} className={'rounded-lg'}>
           <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
             <CoverLetterHeading />

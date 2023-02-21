@@ -1,6 +1,6 @@
 .jumbotron-card {
   @apply relative;
-  @apply w-full h-screen;
+  @apply w-full h-full;
   @apply bg-stone-700;
   @apply flex justify-center items-center;
   @apply bg-cover;
@@ -8,17 +8,17 @@
 }
 
 .jumbotron-content {
-  @apply w-full h-full;
+  @apply w-full h-full z-1;
 }
-
-.jumbo-round {
+.jumbo {
+  @apply w-full h-full;
   @apply drop-shadow-lg;
   .jumbotron-card {
     @apply h-full;
   }
-  @apply w-full h-screen;
-  /*@apply p-4 md:p-6 lg:p-10;*/
+}
 
+.jumbo-round {
   @apply rounded-lg;
 
   .jumbotron-card {

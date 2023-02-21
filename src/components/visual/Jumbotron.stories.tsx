@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Jumbotron } from './Jumbotron';
-import { Label } from '../utils/Label';
+import { CenteredLabel } from '../utils/Label';
 
 export default {
   jumbotron: 'Jumbotron',
@@ -12,12 +12,14 @@ export default {
 const Template: ComponentStory<typeof Jumbotron> = args => <Jumbotron {...args} />;
 
 export const Default = Template.bind({});
+Default.decorators = [story => <div className={'h-screen p-4'}>{story()}</div>];
 Default.args = {
-  children: <Label title={'Jumbotron'} />,
+  children: <CenteredLabel title={'Jumbotron'} />,
 };
 
 export const Rounded = Template.bind({});
+Rounded.decorators = [...Default.decorators];
 Rounded.args = {
   className: 'jumbo-round',
-  children: <Label title={'Jumbotron Round'} />,
+  children: <CenteredLabel title={'Jumbotron Round'} />,
 };

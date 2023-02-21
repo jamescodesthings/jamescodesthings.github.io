@@ -13,6 +13,9 @@ export function getClassFromStyles(styleModule: CSSModuleClasses, prettyClassNam
     .split(' ')
     .map(className => {
       const camel = camelCase(className);
+      console.log('class:', className);
+      console.log('camel:', camel);
+      console.log('styleModule:', styleModule);
       return styleModule[camel] || className || '';
     })
     .join(' ');

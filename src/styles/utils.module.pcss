@@ -1,0 +1,9 @@
+.contain {
+  @apply container m-auto relative;
+  composes: py from 'spacing.module.pcss';
+  composes: px-half from 'spacing.module.pcss';
+}
+
+.contain.screen {
+  @apply h-screen;
+}
