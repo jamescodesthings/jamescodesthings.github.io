@@ -31,10 +31,10 @@ export const CoverLetterContent = () => {
         to deliver great products to my end users. I&apos;ve always had a love for web and mobile design. I keep myself
         up to speed with the latest in technology trends, and strive to continually learn new things.
       </p>
-      <p>
+      <span>
         This website was written with ❤️️in the Midlands. It&apos;s built using <Badge icon={<ViteIcon />}>Vite</Badge>,{' '}
         <Badge icon={<ReactIcon />}>React </Badge>, <Badge icon={<TailwindIcon />}>Tailwind</Badge> & others.
-      </p>
+      </span>
       <p>Please take a look around, and get in touch if you&apos;re currently hiring.</p>
       <hr className="print:hidden" />
       <em>James Macmillan</em>
