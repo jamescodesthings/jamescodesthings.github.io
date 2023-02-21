@@ -5,6 +5,8 @@ import { ViteIcon } from '../../components/visual/icons/ViteIcon';
 import { ReactIcon } from '../../components/visual/icons/ReactIcon';
 import { TailwindIcon } from '../../components/visual/icons/TailwindIcon';
 
+import utils from '../../styles/utils.module.pcss';
+
 export const CoverLetterContent = () => {
   return (
     <Prose>
@@ -36,7 +38,7 @@ export const CoverLetterContent = () => {
         <Badge icon={<ReactIcon />}>React </Badge>, <Badge icon={<TailwindIcon />}>Tailwind</Badge> & others.
       </span>
       <p>Please take a look around, and get in touch if you&apos;re currently hiring.</p>
-      <hr className="print:hidden" />
+      <hr className={`print:hidden ${utils.hr}`} />
       <em>James Macmillan</em>
     </Prose>
   );
