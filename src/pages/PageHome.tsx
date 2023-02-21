@@ -18,6 +18,7 @@ import { SkillsHeading } from '../components/headings/SkillsHeading';
 import { SkillsContent } from '../components/content/SkillsContent';
 import { ProjectsHeading } from '../components/headings/ProjectsHeading';
 import { ProjectsContent } from '../components/content/ProjectsContent';
+import { Avatar } from '../components/ui/Avatar';
 
 /**
  * PageHome
@@ -70,7 +71,7 @@ export const PageHome = () => {
       </div>
       <div className={`${utils.contain}`}>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
-          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+          <BodyWithSidebar sidebar={<Avatar />}>
             <CoverLetterHeading />
             <CoverLetterContent />
           </BodyWithSidebar>

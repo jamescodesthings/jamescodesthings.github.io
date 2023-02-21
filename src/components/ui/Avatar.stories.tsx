@@ -11,4 +11,5 @@ export default {
 const Template: ComponentStory<typeof Avatar> = args => <Avatar />;
 
 export const Default = Template.bind({});
+Default.decorators = [story => <div className={'w-96'}>{story()}</div>];
 Default.args = {};
