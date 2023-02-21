@@ -19,6 +19,7 @@ import { SkillsContent } from '../components/content/SkillsContent';
 import { ProjectsHeading } from '../components/headings/ProjectsHeading';
 import { ProjectsContent } from '../components/content/ProjectsContent';
 import { Avatar } from '../components/ui/Avatar';
+import { ContactInfo } from '../components/content/ContactInfo';
 
 /**
  * PageHome
@@ -71,7 +72,14 @@ export const PageHome = () => {
       </div>
       <div className={`${utils.contain}`}>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
-          <BodyWithSidebar sidebar={<Avatar />}>
+          <BodyWithSidebar
+            sidebar={
+              <>
+                <Avatar />
+                <ContactInfo />
+              </>
+            }
+          >
             <CoverLetterHeading />
             <CoverLetterContent />
           </BodyWithSidebar>
