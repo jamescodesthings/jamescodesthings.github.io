@@ -16,6 +16,8 @@ import { ExperienceHeading } from '../components/headings/ExperienceHeading';
 import { ExperienceContent } from '../components/content/ExperienceContent';
 import { SkillsHeading } from '../components/headings/SkillsHeading';
 import { SkillsContent } from '../components/content/SkillsContent';
+import { ProjectsHeading } from '../components/headings/ProjectsHeading';
+import { ProjectsContent } from '../components/content/ProjectsContent';
 
 /**
  * PageHome
@@ -79,10 +81,16 @@ export const PageHome = () => {
             <ExperienceContent />
           </BodyWithSidebar>
         </PaperPage>
+        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb} ${spacing.pall}`}>
+          <SkillsHeading />
+          <SkillsContent />
+          {/*<BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>*/}
+          {/*</BodyWithSidebar>*/}
+        </PaperPage>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
-            <SkillsHeading />
-            <SkillsContent />
+            <ProjectsHeading />
+            <ProjectsContent />
           </BodyWithSidebar>
         </PaperPage>
       </div>

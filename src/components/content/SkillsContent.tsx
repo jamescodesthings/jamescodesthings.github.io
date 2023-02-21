@@ -49,7 +49,7 @@ export const SkillsContent = () => {
         </p>
         <p>I have also mentored other developers and I&apos;m used to working with an Agile development methodology.</p>
       </Prose>
-      <article className={`${spacing.mb}`}>
+      <article className={`${spacing.mall}`}>
         {skills.map(skillGroup => (
           <div className={`${styles.skillGroup}`} key={skillGroup.slug}>
             <div className={`${styles.skill}`}>
@@ -57,7 +57,7 @@ export const SkillsContent = () => {
               <h5>{skillGroup.name}</h5>
             </div>
             {skillGroup?.skills?.map(skill => (
-              <div className={`${styles.skill} cursor-pointer`} key={skill?.slug}>
+              <div className={`${styles.skill}`} key={skill?.slug}>
                 {getIcon(skill?.icon)}
                 <h5>{skill?.name}</h5>
               </div>
