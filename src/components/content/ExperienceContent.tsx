@@ -1,20 +1,23 @@
+import { Prose } from '../typography/Prose';
+import styles from './ExperienceContent.module.pcss';
+
 export const ExperienceContent = () => (
   <>
-    <article className="prose prose-stone lg:prose-lg xl:prose-xl">
-      <div className="experience-entry">
+    <Prose>
+      <div className={`${styles.entry}`}>
         <h2>Engineius</h2>
         <p>Summary of stuff and things</p>
       </div>
 
-      <div className="experience-entry">
+      <div className={`${styles.entry}`}>
         <h2>Packt</h2>
         <p>Summary of stuff and things</p>
       </div>
 
-      <div className="experience-entry">
+      <div className={`${styles.entry}`}>
         <h2>Severn Trent</h2>
         <p>Summary of stuff and things</p>
       </div>
-    </article>
+    </Prose>
   </>
 );

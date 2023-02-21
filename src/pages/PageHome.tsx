@@ -8,11 +8,12 @@ import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext
 import { Jumbotron } from '../components/ui/Jumbotron';
 import { SplitFlap } from '../components/ui/split-flap/SplitFlap';
 import { PaperPage } from '../components/layout/PaperPage';
-import { CoverLetterContent } from './content/CoverLetterContent';
+import { CoverLetterContent } from '../components/content/CoverLetterContent';
 import { BodyWithSidebar } from '../components/layout/BodyWithSidebar';
 import { CenteredLabel } from '../components/utils/Label';
 import { CoverLetterHeading } from '../components/headings/CoverLetterHeading';
 import { ExperienceHeading } from '../components/headings/ExperienceHeading';
+import { ExperienceContent } from '../components/content/ExperienceContent';
 
 /**
  * PageHome
@@ -73,6 +74,7 @@ export const PageHome = () => {
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
             <ExperienceHeading />
+            <ExperienceContent />
           </BodyWithSidebar>
         </PaperPage>
       </div>
