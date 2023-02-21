@@ -100,7 +100,7 @@ const clientSide: SkillGroup = {
     {
       slug: 'stencil-js',
       name: 'Stencil JS',
-      icon: 'devicon-personal-stencil',
+      icon: <img src="/src/assets/icons/stencil-logo.png" alt={'stencil'} />,
       order: 5,
     },
     {
@@ -149,13 +149,13 @@ const mobile: SkillGroup = {
     {
       slug: 'capacitor',
       name: 'Capacitor',
-      icon: <img src="/src/assets/icons//capacitor-logo.png" alt={'capacitor'} />,
+      icon: <img src="/src/assets/icons/capacitor-logo.png" alt={'capacitor'} />,
       order: 2,
     },
     {
       slug: 'cordova',
       name: 'Cordova',
-      icon: <img src="/src/assets/icons//cordova_256.png" alt={'cordova'} />,
+      icon: <img src="/src/assets/icons/cordova_256.png" alt={'cordova'} />,
       order: 3,
     },
     {
