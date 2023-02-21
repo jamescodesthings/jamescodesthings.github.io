@@ -1,10 +1,10 @@
 import React, { AnimationEventHandler, CSSProperties, useState } from 'react';
-import { charsBetween } from '../../utils/chars-between';
-import { randBetween } from '../../utils/rand-between';
+import { charsBetween } from '../../../utils/chars-between';
+import { randBetween } from '../../../utils/rand-between';
 import styles from './SplitFlap.module.pcss';
-import { getRandomWords, KnownMethods } from '../../utils/get-random-words';
+import { getRandomWords, KnownMethods } from '../../../utils/get-random-words';
 import { startCase } from 'lodash';
-import { getClassFromStyles } from '../../utils/get-class-from-styles';
+import { getClassFromStyles } from '../../../utils/get-class-from-styles';
 
 interface SplitFlapProps {
   /**

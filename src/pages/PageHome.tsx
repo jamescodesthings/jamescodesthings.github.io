@@ -1,17 +1,18 @@
 import { useContext, useEffect } from 'react';
-import { Switch } from '../components/inputs/Switch';
+import { Switch } from '../components/ui/Switch';
 import { TitleWithBackground } from '../components/typography/TitleWithBackground';
 import styles from './PageHome.module.pcss';
 import spacing from '../styles/spacing.module.pcss';
 import utils from '../styles/utils.module.pcss';
 import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext';
-import { Jumbotron } from '../components/visual/Jumbotron';
-import { SplitFlap } from '../components/split-flap/SplitFlap';
-import { PaperPage } from '../components/visual/PaperPage';
-import { CoverLetterHeading } from '../components/typography/PageHeadings';
+import { Jumbotron } from '../components/ui/Jumbotron';
+import { SplitFlap } from '../components/ui/split-flap/SplitFlap';
+import { PaperPage } from '../components/layout/PaperPage';
 import { CoverLetterContent } from './content/CoverLetterContent';
-import { BodyWithSidebar } from '../components/visual/BodyWithSidebar';
+import { BodyWithSidebar } from '../components/layout/BodyWithSidebar';
 import { CenteredLabel } from '../components/utils/Label';
+import { CoverLetterHeading } from '../components/headings/CoverLetterHeading';
+import { ExperienceHeading } from '../components/headings/ExperienceHeading';
 
 /**
  * PageHome
@@ -70,7 +71,9 @@ export const PageHome = () => {
           </BodyWithSidebar>
         </PaperPage>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
-          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>NEEEEXT</BodyWithSidebar>
+          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+            <ExperienceHeading />
+          </BodyWithSidebar>
         </PaperPage>
       </div>
     </>

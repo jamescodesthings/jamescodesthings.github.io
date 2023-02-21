@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styles from './Jumbotron.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
-import { Texture } from './Texture';
+import { Texture } from '../utils/Texture';
 
 type JumboProps = {
   /**

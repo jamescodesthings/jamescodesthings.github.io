@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import styles from './PaperPage.module.pcss';
 import typography from '../../styles/typography.module.pcss';
-import { Texture, TextureName } from './Texture';
+import { Texture, TextureName } from '../utils/Texture';
 
 type PaperPageProps = {
   /**

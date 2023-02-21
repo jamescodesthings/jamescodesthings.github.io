@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Badge } from './Badge';
-import { ViteIcon } from '../visual/icons/ViteIcon';
+import { ViteIcon } from '../icons/ViteIcon';
 
 export default {
   jumbotron: 'Badge',

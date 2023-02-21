@@ -1,9 +1,9 @@
 import React from 'react';
 import { Prose } from '../../components/typography/Prose';
-import { Badge } from '../../components/inputs/Badge';
-import { ViteIcon } from '../../components/visual/icons/ViteIcon';
-import { ReactIcon } from '../../components/visual/icons/ReactIcon';
-import { TailwindIcon } from '../../components/visual/icons/TailwindIcon';
+import { Badge } from '../../components/ui/Badge';
+import { ViteIcon } from '../../components/icons/ViteIcon';
+import { ReactIcon } from '../../components/icons/ReactIcon';
+import { TailwindIcon } from '../../components/icons/TailwindIcon';
 
 import utils from '../../styles/utils.module.pcss';
 
