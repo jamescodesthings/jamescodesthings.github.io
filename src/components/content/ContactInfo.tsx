@@ -1,28 +1,25 @@
 import spacing from '../../styles/spacing.module.pcss';
 import typography from '../../styles/typography.module.pcss';
-import { ContactHeading } from '../headings/ContactHeading';
+import { SidebarHeading } from '../headings/SidebarHeading';
 import { PhoneIcon } from '../icons/PhoneIcon';
 import { EmailIcon } from '../icons/EmailIcon';
 import { AddressIcon } from '../icons/AddressIcon';
 
 export const ContactInfo = () => (
-  <section className={`print:hidden ${spacing.mall}`}>
+  <section className={`print:hidden ${spacing.mall} mr-0`}>
     <h3 className={`${typography.sidebarHeading}`}>Contact</h3>
-    <ContactHeading icon={<PhoneIcon />}>
-      <h4 className={`${typography.accent}`}>Phone</h4>
+    <SidebarHeading icon={<PhoneIcon />} title={'Phone'}>
       <a href="tel:+447736667115">+44 7736 667115</a>
-    </ContactHeading>
-    <ContactHeading icon={<EmailIcon />}>
-      <h4 className={`${typography.accent}`}>Email</h4>
+    </SidebarHeading>
+    <SidebarHeading icon={<EmailIcon />} title={'Email'}>
       <a href="mailto:james@codesthings.com">
         james
         <wbr />
         @codesthings.com
       </a>
-    </ContactHeading>
-    <ContactHeading icon={<AddressIcon />}>
-      <h4 className={`${typography.accent}`}>Address</h4>
+    </SidebarHeading>
+    <SidebarHeading icon={<AddressIcon />} title={'Address'}>
       <a href="mailto:james@codesthings.com">Midlands, UK.</a>
-    </ContactHeading>
+    </SidebarHeading>
   </section>
 );
