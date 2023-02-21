@@ -42,14 +42,18 @@ export const PageHome = () => {
   return (
     <>
       <div className={`${utils.contain} ${utils.screen}`}>
-        <Jumbotron className={`jumbo-round ${spacing.mb}`}>
+        <Jumbotron className={`jumbo-round`}>
           <main className={`${state} ${styles.main} h-full`}>
             <Switch value={isDark} onChange={changeDarkMode} className={styles.themeToolbar}>
               Dark
             </Switch>
             <div className={`${styles.jumboMainContent}`}>
-              <TitleWithBackground title={'James Macmillan'} className={`sunset to-tr`} />
-              <div className={`${styles.splitFlapWrapper} ${spacing.mall} ${spacing.pall}`}>
+              <TitleWithBackground
+                title={'James Macmillan'}
+                gradient={'sublime'}
+                className={`before:bg-gradient-to-bl`}
+              />
+              <div className={`${styles.splitFlapWrapper}`}>
                 <SplitFlap value={'Senior'} className={'word-xs'} random={true} steps={7}></SplitFlap>
                 <SplitFlap value={'Software'} className={'word-xs'} random={true} steps={7}></SplitFlap>
                 <SplitFlap value={'Engineer'} className={'word-xs'} random={true} steps={7}></SplitFlap>
