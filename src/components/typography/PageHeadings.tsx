@@ -11,7 +11,7 @@ type PageHeadingProps = {
 const PageHeading = ({ children, title }: PropsWithChildren<PageHeadingProps>) => (
   <div className={`${typography.headingWithIcon} ${spacing.mall}`}>
     {children}
-    <h1 className={`${spacing.mlHalf}`}>{title}</h1>
+    <h1 className={`${spacing.mlHalf} ${typography.default}`}>{title}</h1>
   </div>
 );
 
