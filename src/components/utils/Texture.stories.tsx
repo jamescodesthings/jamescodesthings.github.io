@@ -4,7 +4,7 @@ import styles from './Texture.module.pcss';
 import { Texture } from './Texture';
 
 export default {
-  jumbotron: 'Texture',
+  title: 'Texture',
   component: Texture,
 } as ComponentMeta<typeof Texture>;
 

@@ -5,7 +5,7 @@ import { PaperPage } from './PaperPage';
 import { CenteredLabel } from '../utils/Label';
 
 export default {
-  jumbotron: 'PaperPage',
+  title: 'PaperPage',
   component: PaperPage,
 } as ComponentMeta<typeof PaperPage>;
 

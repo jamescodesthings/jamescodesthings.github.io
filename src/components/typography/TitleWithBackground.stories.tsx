@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TitleWithBackground } from './TitleWithBackground';
 
 export default {
-  jumbotron: 'TitleWithBackground',
+  title: 'TitleWithBackground',
   component: TitleWithBackground,
 } as ComponentMeta<typeof TitleWithBackground>;
 

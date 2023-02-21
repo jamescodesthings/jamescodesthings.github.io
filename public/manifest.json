@@ -1,0 +1,15 @@
+{
+  "name": "Codesthings.com",
+  "short_name": "Codesthings",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/favicon/favicon-light-228.png",
+      "sizes": "228x228",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#D9EFFF",
+  "theme_color": "#D9EFFF"
+}
