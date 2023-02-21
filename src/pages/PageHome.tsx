@@ -21,6 +21,10 @@ import { ProjectsContent } from '../components/content/ProjectsContent';
 import { Avatar } from '../components/ui/Avatar';
 import { ContactInfo } from '../components/content/ContactInfo';
 import { Availability } from '../components/content/Availability';
+import { Seeking } from '../components/content/Seeking';
+import { SidebarProfile } from '../components/content/SidebarProfile';
+import { SidebarInterests } from '../components/content/SidebarInterests';
+import { SidebarStacks } from '../components/content/SidebarStacks';
 
 /**
  * PageHome
@@ -79,6 +83,7 @@ export const PageHome = () => {
                 <Avatar />
                 <ContactInfo />
                 <Availability />
+                <Seeking />
               </>
             }
           >
@@ -87,7 +92,7 @@ export const PageHome = () => {
           </BodyWithSidebar>
         </PaperPage>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
-          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+          <BodyWithSidebar sidebar={<SidebarProfile />}>
             <ExperienceHeading />
             <ExperienceContent />
           </BodyWithSidebar>
@@ -99,7 +104,14 @@ export const PageHome = () => {
           {/*</BodyWithSidebar>*/}
         </PaperPage>
         <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
-          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
+          <BodyWithSidebar
+            sidebar={
+              <>
+                <SidebarInterests />
+                <SidebarStacks />
+              </>
+            }
+          >
             <ProjectsHeading />
             <ProjectsContent />
           </BodyWithSidebar>
