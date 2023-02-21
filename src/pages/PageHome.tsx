@@ -20,6 +20,7 @@ import { ProjectsHeading } from '../components/headings/ProjectsHeading';
 import { ProjectsContent } from '../components/content/ProjectsContent';
 import { Avatar } from '../components/ui/Avatar';
 import { ContactInfo } from '../components/content/ContactInfo';
+import { Availability } from '../components/content/Availability';
 
 /**
  * PageHome
@@ -77,6 +78,7 @@ export const PageHome = () => {
               <>
                 <Avatar />
                 <ContactInfo />
+                <Availability />
               </>
             }
           >
