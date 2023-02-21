@@ -1,0 +1,22 @@
+.badge {
+  @apply inline-block;
+  @apply px-1;
+  @apply rounded-full;
+  @apply text-xs;
+
+  @apply sm:px-2 sm:text-sm;
+
+  .badge-inner {
+    @apply flex items-center;
+  }
+
+  .icon {
+    @apply inline-block h-3 w-3 mr-1;
+    @apply sm:h-4 sm:h-4;
+    svg {
+      @apply h-full w-full;
+    }
+  }
+  .text {
+  }
+}

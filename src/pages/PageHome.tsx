@@ -63,11 +63,14 @@ export const PageHome = () => {
         </Jumbotron>
       </div>
       <div className={`${utils.contain}`}>
-        <PaperPage textureName={'textured-paper'} className={'rounded-lg'}>
+        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>
             <CoverLetterHeading />
             <CoverLetterContent />
           </BodyWithSidebar>
+        </PaperPage>
+        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
+          <BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>NEEEEXT</BodyWithSidebar>
         </PaperPage>
       </div>
     </>
