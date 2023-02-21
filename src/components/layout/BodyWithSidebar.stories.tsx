@@ -5,7 +5,7 @@ import { BodyWithSidebar } from './BodyWithSidebar';
 import { CenteredLabel } from '../utils/Label';
 
 export default {
-  title: 'BodyWithSidebar',
+  title: 'layout/BodyWithSidebar',
   component: BodyWithSidebar,
 } as ComponentMeta<typeof BodyWithSidebar>;
 

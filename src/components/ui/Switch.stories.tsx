@@ -3,7 +3,7 @@ import { Switch } from './Switch';
 
 export default {
   component: Switch,
-  name: 'Switch',
+  title: 'ui/Switch',
 } as ComponentMeta<typeof Switch>;
 
 const Template: ComponentStory<typeof Switch> = args => <Switch {...args} />;

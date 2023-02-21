@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { SplitFlapBoard } from './SplitFlapBoard';
 
 export default {
-  name: 'SplitFlapBoard',
+  title: 'ui/SplitFlapBoard',
   component: SplitFlapBoard,
 } as ComponentMeta<typeof SplitFlapBoard>;
 

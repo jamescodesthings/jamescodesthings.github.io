@@ -5,7 +5,7 @@ import { Jumbotron } from './Jumbotron';
 import { CenteredLabel } from '../utils/Label';
 
 export default {
-  title: 'Jumbotron',
+  title: 'ui/Jumbotron',
   component: Jumbotron,
 } as ComponentMeta<typeof Jumbotron>;
 

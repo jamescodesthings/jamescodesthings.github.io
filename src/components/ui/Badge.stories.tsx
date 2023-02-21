@@ -5,7 +5,7 @@ import { Badge } from './Badge';
 import { ViteIcon } from '../icons/ViteIcon';
 
 export default {
-  title: 'Badge',
+  title: 'ui/Badge',
   component: Badge,
 } as ComponentMeta<typeof Badge>;
 

@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { SplitFlapWord } from './SplitFlapWord';
 
 export default {
-  name: 'SplitFlapWord',
+  title: 'ui/SplitFlapWord',
   component: SplitFlapWord,
 } as ComponentMeta<typeof SplitFlapWord>;
 

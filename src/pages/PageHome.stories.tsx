@@ -5,7 +5,7 @@ import { PageHome } from './PageHome';
 
 export default {
   component: PageHome,
-  name: 'Page: Home',
+  title: 'Page/Home',
 } as ComponentMeta<typeof PageHome>;
 
 const Template: ComponentStory<typeof PageHome> = () => <PageHome />;

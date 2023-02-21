@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TitleWithBackground } from './TitleWithBackground';
 
 export default {
-  title: 'TitleWithBackground',
+  title: 'typography/TitleWithBackground',
   component: TitleWithBackground,
 } as ComponentMeta<typeof TitleWithBackground>;
 

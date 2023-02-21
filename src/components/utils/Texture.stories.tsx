@@ -4,7 +4,7 @@ import styles from './Texture.module.pcss';
 import { Texture } from './Texture';
 
 export default {
-  title: 'Texture',
+  title: 'utils/Texture',
   component: Texture,
 } as ComponentMeta<typeof Texture>;
 

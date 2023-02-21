@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Breakpoint } from './Breakpoint';
 
 export default {
-  title: 'Breakpoint',
+  title: 'utils/Breakpoint',
   component: Breakpoint,
 } as ComponentMeta<typeof Breakpoint>;
 
