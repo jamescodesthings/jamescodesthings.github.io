@@ -4,13 +4,14 @@ import { ReactNode, useEffect, useState } from 'react';
 import { DevIcon } from '../ui/DevIcon';
 import styles from './SkillsContent.module.pcss';
 import spacing from '../../styles/spacing.module.pcss';
+import { DevIconName } from '../../types/DevIconName';
 
 const useColoredIcons = true;
 
-const getIcon = (icon: ReactNode | string): ReactNode => {
+const getIcon = (icon: ReactNode | DevIconName): ReactNode => {
   if (typeof icon === 'string') {
     const iconClass = `${useColoredIcons ? 'colored' : ''}`;
-    return <DevIcon icon={icon} className={`text-3xl ${iconClass} `}></DevIcon>;
+    return <DevIcon icon={icon as DevIconName} className={`text-3xl ${iconClass} `}></DevIcon>;
   } else {
     return icon;
   }
