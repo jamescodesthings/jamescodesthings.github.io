@@ -1,7 +1,6 @@
 import styles from './ExperienceContent.module.pcss';
 import { Experience, ExperienceEntry } from './data/Expereince';
 import moment from 'moment';
-import spacing from '../../styles/spacing.module.pcss';
 
 type DatesProps = {
   from: moment.Moment;
@@ -38,14 +37,14 @@ const Entry = ({ entry }: EntryProps) => (
         ))}
       </div>
       <header className={`${styles.summary}`}>
-        {entry.summary.map((p, i) => (
-          <p key={`${entry.employer}-summary-i`}>{p}</p>
-        ))}
+        <p>{entry.summary}</p>
       </header>
 
       {entry.detail?.map((p, i) => (
         <p key={`${entry.employer}-detail-i`} className={`${styles.detail}`}>
-          {p}
+          {p.map(s => (
+            <>{s} </>
+          ))}
         </p>
       ))}
     </article>
