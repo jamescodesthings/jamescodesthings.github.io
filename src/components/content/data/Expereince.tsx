@@ -48,6 +48,15 @@ export const Experience: ExperienceEntry[] = [
       <Badge key={'tech-ng'} icon={<DevIcon icon={`devicon-angularjs-plain`} />}>
         Angular
       </Badge>,
+      <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-dotnetcore-plain`} />}>
+        .net core
+      </Badge>,
+      <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-typescript-plain`} />}>
+        Typescript
+      </Badge>,
+      <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-mysql-plain`} />}>
+        MySQL
+      </Badge>,
     ],
   },
 ];

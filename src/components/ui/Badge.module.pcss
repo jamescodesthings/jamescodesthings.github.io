@@ -3,14 +3,10 @@
   @apply whitespace-nowrap;
   @apply align-middle;
   @apply inline-block;
-  @apply px-2 py-1 leading-4;
+  @apply px-4 py-1 leading-4;
   @apply rounded-full;
   @apply text-xs;
   @apply sm:text-sm;
-
-  & + .badge {
-    @apply ml-2;
-  }
 
   :global(.dark) & {
     @apply bg-light-dark;
@@ -22,7 +18,8 @@
 
   .icon {
     @apply inline-block h-3 w-3 mr-1;
-    @apply sm:h-4 sm:h-4;
+    @apply h-4 w-4 sm:mr-2;
+
     svg {
       @apply h-full w-full;
     }
