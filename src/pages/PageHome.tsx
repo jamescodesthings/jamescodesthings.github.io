@@ -10,7 +10,6 @@ import { SplitFlap } from '../components/ui/split-flap/SplitFlap';
 import { PaperPage } from '../components/layout/PaperPage';
 import { CoverLetterContent } from '../components/content/CoverLetterContent';
 import { BodyWithSidebar } from '../components/layout/BodyWithSidebar';
-import { CenteredLabel } from '../components/utils/Label';
 import { CoverLetterHeading } from '../components/headings/CoverLetterHeading';
 import { ExperienceHeading } from '../components/headings/ExperienceHeading';
 import { ExperienceContent } from '../components/content/ExperienceContent';
