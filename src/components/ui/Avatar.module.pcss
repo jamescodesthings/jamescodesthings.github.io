@@ -1,9 +1,29 @@
 .avatar {
-  @apply aspect-square  rounded-full bg-white overflow-clip;
-  @apply outline outline-offset-4 outline-[12px] outline-indigo-500;
+  @apply aspect-square rounded-full bg-white;
   @apply w-2/3;
 
   composes: mall from '../../styles/spacing.module.pcss';
   composes: mt-double from '../../styles/spacing.module.pcss';
   @apply mx-auto;
+
+  .avatar-img {
+    @apply overflow-clip rounded-full w-full h-full;
+  }
+
+  /*@apply outline outline-offset-4 outline-[12px] outline-indigo-500;*/
+  /* Same as above but greater compatibility */
+  @apply relative;
+  @apply before:absolute;
+  @apply before:rounded-full;
+  @apply before:content-[''];
+  @apply before:-top-6;
+  @apply before:-right-6;
+  @apply before:-bottom-6;
+  @apply before:-left-6;
+  @apply before:border before:border-indigo-500 before:border-[18px];
+  @apply sm:before:border-[14px];
+  @apply sm:before:-top-5;
+  @apply sm:before:-right-5;
+  @apply sm:before:-bottom-5;
+  @apply sm:before:-left-5;
 }
