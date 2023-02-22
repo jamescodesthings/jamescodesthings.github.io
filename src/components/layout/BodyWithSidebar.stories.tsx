@@ -12,7 +12,7 @@ export default {
 const Template: ComponentStory<typeof BodyWithSidebar> = args => <BodyWithSidebar {...args} />;
 
 export const Default = Template.bind({});
-Default.decorators = [story => <div className={`w-[80%] m-auto my-4 border-green-700`}>{story()}</div>];
+Default.decorators = [story => <div className={`w-[80%] m-auto my-4 border-green-700 border`}>{story()}</div>];
 Default.args = {
   sidebar: (
     <div className={`border-red-700 border h-96`}>

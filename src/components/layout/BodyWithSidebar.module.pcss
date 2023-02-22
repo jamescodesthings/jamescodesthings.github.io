@@ -7,8 +7,12 @@
 
 .sidebar {
   @apply w-full sm:w-1/3;
+  composes: pall from '../../styles/spacing.module.pcss';
+  composes: pr-half from '../../styles/spacing.module.pcss';
 }
 
 .content {
   @apply w-full sm:w-2/3;
+  composes: pall from '../../styles/spacing.module.pcss';
+  composes: pl-half from '../../styles/spacing.module.pcss';
 }

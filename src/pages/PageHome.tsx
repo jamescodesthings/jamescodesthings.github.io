@@ -76,7 +76,7 @@ export const PageHome = () => {
         </Jumbotron>
       </div>
       <div className={`${utils.contain}`}>
-        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
+        <PaperPage className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar
             sidebar={
               <>
@@ -91,19 +91,19 @@ export const PageHome = () => {
             <CoverLetterContent />
           </BodyWithSidebar>
         </PaperPage>
-        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
+        <PaperPage className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar sidebar={<SidebarProfile />}>
             <ExperienceHeading />
             <ExperienceContent />
           </BodyWithSidebar>
         </PaperPage>
-        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb} ${spacing.pall}`}>
+        <PaperPage className={`rounded-lg ${spacing.mb} ${spacing.pall}`}>
           <SkillsHeading />
           <SkillsContent />
           {/*<BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>*/}
           {/*</BodyWithSidebar>*/}
         </PaperPage>
-        <PaperPage textureName={'textured-paper'} className={`rounded-lg ${spacing.mb}`}>
+        <PaperPage className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar
             sidebar={
               <>

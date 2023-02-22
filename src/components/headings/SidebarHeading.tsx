@@ -21,8 +21,8 @@ export const SidebarHeading = ({
   title,
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
   <div
-    className={`${typography.headingWithIcon} ${typography.default} ${typography.indigo} ${spacing.mb} ${
-      spacing.mtHalf
+    className={`${typography.headingWithIcon} ${typography.default} ${typography.indigo} ${
+      spacing.myHalf
     } ${getClassFromStyles({}, className)}`}
   >
     {icon}

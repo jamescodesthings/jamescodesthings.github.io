@@ -10,6 +10,9 @@
 .my {
   @apply my-4 md:my-6 lg:my-10;
 }
+.myHalf {
+  @apply my-2 md:my-3 lg:my-10;
+}
 .mb {
   @apply mb-4 md:mb-6 lg:mb-10;
 }
@@ -51,9 +54,20 @@
 .pt {
   @apply pt-4 md:pt-6 lg:pt-10;
 }
+
+.first-pt,
+.first\:pt {
+  @apply first:pt-4 first:md:pt-6 first:lg:pt-10;
+}
 .pl {
   @apply pl-4 md:pl-6 lg:pl-10;
 }
+.pl-half {
+  @apply pl-2 md:pl-3 lg:pl-5;
+}
 .pr {
   @apply pr-4 md:pr-6 lg:pr-10;
+}
+.pr-half {
+  @apply pr-2 md:pr-3 lg:pr-5;
 }

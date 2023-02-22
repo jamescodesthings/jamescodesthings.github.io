@@ -13,12 +13,12 @@ type PaperPageProps = {
 
 export const PaperPage = ({
   children,
-  textureName,
+  textureName = 'textured-paper',
   className = '',
 }: PropsWithChildren<PropsWithClassName<PaperPageProps>>) => (
   <>
     <div className={`${styles.page} ${typography.default} ${className}`}>
-      {textureName && <Texture name={textureName} className={'opacity-70 dark:opacity-10'} />}
+      {textureName && <Texture name={textureName} />}
       <div className={`${styles.content}`}>{children}</div>
     </div>
   </>

@@ -6,6 +6,10 @@
 .texture {
   @apply absolute w-full h-full left-0 top-0;
   @apply bg-repeat;
+  @apply mix-blend-luminosity;
+  :global(.dark) & {
+    @apply mix-blend-color-dodge;
+  }
   background-size: 50%;
 }
 
@@ -43,6 +47,7 @@
 
 .fabric-light {
   background-image: url('../../assets/textures/fabric-light.png');
+  @apply opacity-50;
 }
 
 .groovepaper {
@@ -115,4 +120,9 @@
 
 .textured-paper {
   background-image: url('../../assets/textures/textured-paper.png');
+  @apply opacity-40;
+
+  :global(.dark) & {
+    @apply opacity-20;
+  }
 }
