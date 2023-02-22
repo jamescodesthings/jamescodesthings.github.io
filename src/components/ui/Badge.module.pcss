@@ -8,6 +8,10 @@
   @apply text-xs;
   @apply sm:text-sm;
 
+  & + .badge {
+    @apply ml-2;
+  }
+
   :global(.dark) & {
     @apply bg-light-dark;
   }
