@@ -43,9 +43,7 @@ export const Experience: ExperienceEntry[] = [
     ],
     tech: [
       <>
-        <Badge icon={<img src="/src/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />}>
-          Nativescript
-        </Badge>
+        <Badge icon={<img src="/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />}>Nativescript</Badge>
       </>,
     ],
   },

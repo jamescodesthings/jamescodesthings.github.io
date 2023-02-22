@@ -27,7 +27,7 @@ Img.decorators = [
   marginDecorator,
 ];
 Img.args = {
-  icon: <img src="/src/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />,
+  icon: <img src="/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />,
   children: <>Nativescript</>,
 };
 export const Devicon = Template.bind({});
