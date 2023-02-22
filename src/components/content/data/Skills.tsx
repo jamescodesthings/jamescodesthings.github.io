@@ -36,7 +36,7 @@ const serverside: SkillGroup = {
     {
       slug: 'serverless-framework',
       name: 'Serverless',
-      icon: <img src="/src/assets/icons/sls.svg" alt={'serverless'} />,
+      icon: <img src="/public/assets/icons/sls.svg" alt={'serverless'} />,
       order: 1,
     },
     {
@@ -54,7 +54,7 @@ const serverside: SkillGroup = {
     {
       slug: 'aws-lambda',
       name: 'AWS Lambda',
-      icon: <img src="/src/assets/icons/aws-lambda.svg" alt={'labmda'} />,
+      icon: <img src="/public/assets/icons/aws-lambda.svg" alt={'labmda'} />,
       order: 1,
     },
   ],
@@ -100,7 +100,7 @@ const clientSide: SkillGroup = {
     {
       slug: 'stencil-js',
       name: 'Stencil JS',
-      icon: <img src="/src/assets/icons/stencil-logo.png" alt={'stencil'} />,
+      icon: <img src="/public/assets/icons/stencil-logo.png" alt={'stencil'} />,
       order: 5,
     },
     {
@@ -149,13 +149,13 @@ const mobile: SkillGroup = {
     {
       slug: 'capacitor',
       name: 'Capacitor',
-      icon: <img src="/src/assets/icons/capacitor-logo.png" alt={'capacitor'} />,
+      icon: <img src="/public/assets/icons/capacitor-logo.png" alt={'capacitor'} />,
       order: 2,
     },
     {
       slug: 'cordova',
       name: 'Cordova',
-      icon: <img src="/src/assets/icons/cordova_256.png" alt={'cordova'} />,
+      icon: <img src="/public/assets/icons/cordova_256.png" alt={'cordova'} />,
       order: 3,
     },
     {
@@ -179,7 +179,7 @@ const mobile: SkillGroup = {
     {
       slug: 'nativescript',
       name: 'Nativescript',
-      icon: <img src="/src/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />,
+      icon: <img src="/public/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />,
       order: 666,
     },
   ],
@@ -215,7 +215,7 @@ const database: SkillGroup = {
     {
       slug: 'aws-dynamodb',
       name: 'AWS DynamoDB',
-      icon: <img src="/src/assets/icons/aws-dynamo.svg" alt={'dynamo'} />,
+      icon: <img src="/public/assets/icons/aws-dynamo.svg" alt={'dynamo'} />,
     },
     {
       slug: 'firebase',

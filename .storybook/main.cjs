@@ -18,6 +18,7 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
+  staticDirs: ['../public'],
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
       css: {
