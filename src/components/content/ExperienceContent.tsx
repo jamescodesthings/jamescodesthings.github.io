@@ -30,10 +30,10 @@ const Entry = ({ entry }: EntryProps) => (
         <Dates {...entry} />
       </div>
       <div className={`${styles.techWrapper}`}>
-        {entry.tech?.map(t => (
-          <>
-            <div className={`${styles.badgeWrapper}`}>{t}</div>
-          </>
+        {entry.tech?.map((t, i) => (
+          <div key={`${entry.employer}-tech-${i}`} className={`${styles.badgeWrapper}`}>
+            {t}
+          </div>
         ))}
       </div>
       <header className={`${styles.summary}`}>
@@ -41,9 +41,9 @@ const Entry = ({ entry }: EntryProps) => (
       </header>
 
       {entry.detail?.map((p, i) => (
-        <p key={`${entry.employer}-detail-i`} className={`${styles.detail}`}>
-          {p.map(s => (
-            <>{s} </>
+        <p key={`${entry.employer}-detail-${i}`} className={`${styles.detail}`}>
+          {p.map((s, j) => (
+            <span key={`${entry.employer}-detail-${i}-${j}`}>{s}</span>
           ))}
         </p>
       ))}
