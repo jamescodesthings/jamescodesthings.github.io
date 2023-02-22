@@ -1,2 +1,38 @@
+.employer {
+  @apply text-2xl font-bold;
+}
 .entry {
+  @apply text-type;
+  @apply italic;
+  :global(.dark) & {
+    @apply text-type-dark;
+  }
+  .summary {
+    @apply opacity-70;
+    /*@apply text-lighter;*/
+    @apply font-light;
+    @apply text-lg;
+    /*:global(.dark) & {
+      @apply text-lighter-dark;
+    }*/
+  }
+  .detail {
+  }
+}
+.dates {
+  @apply text-xl font-normal;
+  .from {
+  }
+  .separator {
+  }
+  .to {
+  }
+}
+
+.row {
+  @apply flex justify-between;
+}
+
+.tech-wrapper {
+  composes: my-half from '../../styles/spacing.module.pcss';
 }

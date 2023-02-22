@@ -1,5 +1,5 @@
 import { Prose } from '../typography/Prose';
-import { SkillGroup, skills as dataSkills, Sortable } from './Skills';
+import { SkillGroup, skills as dataSkills, Sortable } from './data/Skills';
 import { ReactNode, useEffect, useState } from 'react';
 import { DevIcon } from '../ui/DevIcon';
 import styles from './SkillsContent.module.pcss';
