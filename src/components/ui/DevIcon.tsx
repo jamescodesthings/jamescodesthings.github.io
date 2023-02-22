@@ -13,6 +13,9 @@ type DevIconProps = {
  * A Dev Icon component, spits out dev icons
  * @constructor
  */
-export const DevIcon = ({ icon = 'devicon-apple-original', className }: PropsWithClassName<DevIconProps>) => {
+export const DevIcon = ({
+  icon = 'devicon-apple-original',
+  className = 'colored',
+}: PropsWithClassName<DevIconProps>) => {
   return <i className={`${getClassFromStyles(styles, icon)} ${getClassFromStyles(styles, className)}`} />;
 };

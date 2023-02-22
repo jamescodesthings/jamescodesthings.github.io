@@ -1,9 +1,15 @@
 .badge {
+  @apply bg-light;
+  @apply whitespace-nowrap;
+  @apply align-middle;
   @apply inline-block;
-  @apply px-1;
+  @apply px-1 py-px leading-4;
   @apply rounded-full;
   @apply text-xs;
 
+  :global(.dark) & {
+    @apply bg-light-dark;
+  }
   @apply sm:px-2 sm:text-sm;
 
   .badge-inner {
@@ -16,7 +22,12 @@
     svg {
       @apply h-full w-full;
     }
+    img {
+      @apply inline-block;
+      @apply align-[revert];
+    }
   }
   .text {
+    @apply text-center;
   }
 }

@@ -1,4 +1,5 @@
 import '../src/index.css';
+import '/node_modules/devicon/devicon.min.css';
 
 const sixteenNinePortrait = input => (parseInt(input, 10) / 9) * 16 + 'px';
 const sixteenNineLandscape = input => (parseInt(input, 10) / 16) * 9 + 'px';
