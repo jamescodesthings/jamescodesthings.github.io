@@ -13,17 +13,22 @@ export const CoverLetterContent = () => {
     <Prose>
       <p>
         Hi, thanks for taking the time to check out my CV. I&apos;m <Highlight>James Macmillan</Highlight>, a Senior
-        Software Engineer based in The Midlands, UK. I&apos;ve worked on a variety of Full Stack Web Development and
-        Cross Platform Mobile Development projects.
+        Software Engineer based in The Midlands, UK. I&apos;ve worked on a variety of <Highlight>Full Stack</Highlight>{' '}
+        Web Development and Cross Platform <Highlight>Mobile</Highlight> Development projects.
       </p>
       <p>
-        I have 10+ years commercial web development experience, and 5+ years commercial cross platform mobile
-        development experience.
+        I have <Highlight>over 10 years</Highlight> commercial web development experience, and{' '}
+        <Highlight>over 5 years</Highlight> commercial cross platform mobile development experience.
       </p>
-      <p>I am currently looking for full or mostly remote roles as a Senior, Principal, or Lead Developer.</p>
       <p>
-        My ideal stack is Node.js or .net core on the back end, with React & Tailwind on the front. Having said this, I
-        have significant experience with a variety of stacks.{/*todo: add anchor link*/}
+        I am currently looking for full-time, remote roles as a Senior Developer. I have experience Mentoring, and
+        Leading other Developers.
+      </p>
+      <p>
+        My ideal stack is <Highlight>Node.js</Highlight> or <Highlight>.net core</Highlight> on the back end, with{' '}
+        <Highlight>React</Highlight> & <Highlight>Tailwind</Highlight> on the front. But, I have significant experience
+        in a variety of Front End and Server Side technologies.
+        {/*todo: add anchor link*/}
       </p>
       <p>
         I started web development at 12 years old, and have worked in the industry for my whole adult life. My core web
