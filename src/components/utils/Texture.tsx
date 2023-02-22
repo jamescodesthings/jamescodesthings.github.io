@@ -1,35 +1,7 @@
 import styles from './Texture.module.pcss';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
-
-export type TextureName =
-  | 'beige-paper'
-  | 'black-paper'
-  | 'cardboard-flat'
-  | 'cardboard'
-  | 'clean-gray-paper'
-  | 'cream-paper'
-  | 'exclusive-paper'
-  | 'fabric-dark'
-  | 'fabric-light'
-  | 'groovepaper'
-  | 'handmade-paper'
-  | 'light-paper-fibers'
-  | 'lined-paper-2'
-  | 'natural-paper'
-  | 'notebook-dark'
-  | 'notebook'
-  | 'paper-1'
-  | 'paper-2'
-  | 'paper-3'
-  | 'paper-fibers'
-  | 'paper'
-  | 'rice-paper-2'
-  | 'rice-paper-3'
-  | 'rice-paper'
-  | 'sandpaper'
-  | 'soft-wallpaper'
-  | 'textured-paper';
+import { TextureName } from '../../types/TextureName';
 
 export type TextureProps = {
   /**

@@ -1,12 +1,13 @@
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 import styles from './DevIcon.module.pcss';
+import { DevIconName } from '../../types/DevIconName';
 
 type DevIconProps = {
   /**
    * The icon name
    */
-  icon: string;
+  icon: DevIconName;
 };
 
 /**

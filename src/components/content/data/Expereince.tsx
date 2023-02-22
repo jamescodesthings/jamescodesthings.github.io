@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { ReactNode } from 'react';
 import { Badge } from '../../ui/Badge';
+import { DevIcon } from '../../ui/DevIcon';
 
 export type ExperienceEntry = {
   /**
@@ -38,13 +39,15 @@ export const Experience: ExperienceEntry[] = [
     employer: 'Engineius',
     from: moment('2020-07-01'),
     to: moment('2023-02-01'),
-    summary: [
-      'I have worked with Engineius for the last two years maintaining and updating their mobile app, among other things.',
-    ],
+    summary: ['Working with Engineius to maintain, improve, and update their Mobile and Web apps.'],
+    detail: ['I started working for Engineius in 2020, with an initial remit to stabilize their hybrid app.'],
     tech: [
-      <>
-        <Badge icon={<img src="/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />}>Nativescript</Badge>
-      </>,
+      <Badge key={'tech-ns'} icon={<img src="/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />}>
+        Nativescript
+      </Badge>,
+      <Badge key={'tech-ng'} icon={<DevIcon icon={`devicon-angularjs-plain`} />}>
+        Angular
+      </Badge>,
     ],
   },
 ];

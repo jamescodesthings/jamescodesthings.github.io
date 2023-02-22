@@ -1,7 +1,7 @@
 import styles from './ExperienceContent.module.pcss';
 import { Experience, ExperienceEntry } from './data/Expereince';
 import moment from 'moment';
-import { Prose } from '../typography/Prose';
+import spacing from '../../styles/spacing.module.pcss';
 
 type DatesProps = {
   from: moment.Moment;
@@ -30,7 +30,13 @@ const Entry = ({ entry }: EntryProps) => (
         <h1 className={`${styles.employer}`}>{entry.employer}</h1>
         <Dates {...entry} />
       </div>
-      <div className={`${styles.techWrapper}`}>{entry.tech}</div>
+      <div className={`${styles.techWrapper}`}>
+        {entry.tech?.map(t => (
+          <>
+            <span className={`${spacing.mrHalf} inline-block`}>{t}</span>
+          </>
+        ))}
+      </div>
       <header className={`${styles.summary}`}>
         {entry.summary.map((p, i) => (
           <p key={`${entry.employer}-summary-i`}>{p}</p>
