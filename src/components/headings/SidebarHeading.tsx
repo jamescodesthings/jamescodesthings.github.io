@@ -22,7 +22,7 @@ export const SidebarHeading = ({
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
   <div
     className={`${typography.headingWithIcon} ${typography.default} ${spacing.myHalf} ${getClassFromStyles(
-      {},
+      typography,
       className,
     )}`}
   >

@@ -8,5 +8,5 @@
  * Storybook: Page Background
  */
 body.sb-show-main {
-  @apply bg-stone-100 dark:bg-stone-800;
+  @apply bg-type-dark dark:bg-type;
 }

@@ -1,5 +1,9 @@
 .skill-group {
-  @apply flex flex-row flex-wrap border-b-2 border-b-stone-300 last:border-b-0;
+  @apply flex flex-row flex-wrap border-b-2 last:border-b-0;
+  @apply border-b-type;
+  :global(.dark) & {
+    @apply border-b-type-dark;
+  }
 }
 
 .skill {

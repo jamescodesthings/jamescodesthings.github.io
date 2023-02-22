@@ -57,7 +57,12 @@ export const PageHome = () => {
       <div className={`${utils.contain} ${utils.screen}`}>
         <Jumbotron className={`jumbo-round`}>
           <main className={`${state} ${styles.main} h-full`}>
-            <Switch value={isDark} onChange={changeDarkMode} className={styles.themeToolbar}>
+            <Switch
+              value={isDark}
+              onChange={changeDarkMode}
+              className={`${styles.themeToolbar}`}
+              textClass={`${styles.switchText}`}
+            >
               Dark
             </Switch>
             <div className={`${styles.jumboMainContent}`}>
