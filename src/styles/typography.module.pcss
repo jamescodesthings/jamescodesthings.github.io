@@ -6,11 +6,25 @@
   }
 }
 
-.accent {
-  @apply text-indigo-500;
+.primary {
+  @apply text-primary;
 
   :global(.dark) & {
-    @apply text-indigo-500;
+    @apply text-primary;
+  }
+}
+.accent {
+  @apply text-accent;
+
+  :global(.dark) & {
+    @apply text-accent;
+  }
+}
+.tertiary {
+  @apply text-tertiary;
+
+  :global(.dark) & {
+    @apply text-tertiary;
   }
 }
 
@@ -19,17 +33,34 @@
   @apply font-extrabold;
   @apply text-stone-200;
 
+  .title {
+    @apply text-primary;
+  }
+
   svg {
     @apply w-6 sm:w-8 md:w-10;
-    @apply text-fuchsia-500 fill-fuchsia-500 shrink-0;
+    @apply text-primary fill-primary shrink-0;
   }
 
   &.lg {
     @apply text-2xl md:text-4xl lg:text-5xl;
   }
 
-  &.indigo svg {
-    @apply text-indigo-500 fill-indigo-500;
+  &.accent {
+    svg {
+      @apply text-accent fill-accent;
+    }
+    .title {
+      @apply text-accent;
+    }
+  }
+  &.tertiary {
+    svg {
+      @apply text-tertiary fill-tertiary;
+    }
+    .title {
+      @apply text-tertiary;
+    }
   }
 }
 

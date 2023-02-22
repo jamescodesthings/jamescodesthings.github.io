@@ -20,10 +20,17 @@
   @apply before:-right-6;
   @apply before:-bottom-6;
   @apply before:-left-6;
-  @apply before:border before:border-indigo-500 before:border-[18px];
+  @apply before:border before:border-primary before:border-[18px];
   @apply sm:before:border-[14px];
   @apply sm:before:-top-5;
   @apply sm:before:-right-5;
   @apply sm:before:-bottom-5;
   @apply sm:before:-left-5;
+
+  &.accent {
+    @apply before:border-accent;
+  }
+  &.tertiary {
+    @apply before:border-tertiary;
+  }
 }
