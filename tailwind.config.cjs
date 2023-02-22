@@ -14,6 +14,11 @@ module.exports = {
       'body': ['Montserrat', ...defaultTheme.fontFamily.sans],
     },
     extend: {
+      colors: {
+        primary: colors.amber['600'],
+        accent: colors.fuchsia['500'],
+        tertiary: colors.sky['500'],
+      },
       fontSize: {
         '2xs': '.5rem',
         '10xl': '5rem',
