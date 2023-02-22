@@ -1,7 +1,8 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import { Title } from './Title';
+import { marginDecorator } from '../utils/MarginDecorator';
 
 export default {
   title: 'typography/Title',
@@ -11,12 +12,8 @@ export default {
 const Template: ComponentStory<typeof Title> = args => <Title {...args} />;
 
 export const Default = Template.bind({});
+Default.decorators = [marginDecorator];
 Default.args = {
   title: 'James Macmillan',
   subtitle: 'Senior Software Developer',
-};
-
-export const TitleOnly = Template.bind({});
-TitleOnly.args = {
-  title: 'Cover Letter',
 };

@@ -1,13 +1,11 @@
-import spacing from '../../styles/spacing.module.pcss';
-import typography from '../../styles/typography.module.pcss';
 import { SidebarHeading } from '../headings/SidebarHeading';
 import { PhoneIcon } from '../icons/PhoneIcon';
 import { EmailIcon } from '../icons/EmailIcon';
 import { AddressIcon } from '../icons/AddressIcon';
 
 export const ContactInfo = () => (
-  <section className={`print:hidden ${spacing.mall} mr-0`}>
-    <h3 className={`${typography.sidebarHeading}`}>Contact</h3>
+  <section className={`print:hidden`}>
+    {/*<h3 className={`${typography.sidebarHeading}`}>Contact</h3>*/}
     <SidebarHeading icon={<PhoneIcon />} title={'Phone'}>
       <a href="tel:+447736667115">+44 7736 667115</a>
     </SidebarHeading>
