@@ -1,26 +1,29 @@
-.employer {
-  @apply text-2xl font-bold;
-}
 .entry {
   @apply text-type;
-  @apply italic;
   :global(.dark) & {
     @apply text-type-dark;
   }
-  .summary {
-    @apply opacity-70;
-    /*@apply text-lighter;*/
-    @apply font-light;
-    @apply text-lg;
-    /*:global(.dark) & {
-      @apply text-lighter-dark;
-    }*/
-  }
-  .detail {
-  }
+}
+
+.row {
+  @apply flex justify-between items-center;
+  composes: mb-half from '../../styles/spacing.module.pcss';
+}
+.employer {
+  @apply text-2xl font-bold;
+}
+.summary {
+  @apply opacity-70;
+  @apply font-light;
+  @apply text-lg;
+  @apply italic;
+  composes: mb-half from '../../styles/spacing.module.pcss';
+}
+.detail {
+  composes: mb-half from '../../styles/spacing.module.pcss';
 }
 .dates {
-  @apply text-xl font-normal;
+  @apply text-lg font-normal;
   .from {
   }
   .separator {
@@ -29,10 +32,6 @@
   }
 }
 
-.row {
-  @apply flex justify-between;
-}
-
 .tech-wrapper {
-  composes: my-half from '../../styles/spacing.module.pcss';
+  composes: mb-half from '../../styles/spacing.module.pcss';
 }
