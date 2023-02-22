@@ -16,10 +16,8 @@ export const PaperPage = ({
   textureName = 'textured-paper',
   className = '',
 }: PropsWithChildren<PropsWithClassName<PaperPageProps>>) => (
-  <>
-    <div className={`${styles.page} ${typography.default} ${className}`}>
-      {textureName && <Texture name={textureName} />}
-      <div className={`${styles.content}`}>{children}</div>
-    </div>
-  </>
+  <div className={`${styles.page} ${typography.default} ${className}`}>
+    {textureName && <Texture name={textureName} />}
+    <div className={`${styles.content}`}>{children}</div>
+  </div>
 );

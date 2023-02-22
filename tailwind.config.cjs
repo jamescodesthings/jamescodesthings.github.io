@@ -15,9 +15,12 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: colors.amber['600'],
-        accent: colors.fuchsia['500'],
-        tertiary: colors.sky['500'],
+        'type': colors.stone['900'],
+        'type-dark': colors.stone['50'],
+        'page-dark': '#161514',
+        'primary': colors.amber['600'],
+        'accent': colors.fuchsia['500'],
+        'tertiary': colors.sky['500'],
       },
       fontSize: {
         '2xs': '.5rem',

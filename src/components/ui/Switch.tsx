@@ -13,6 +13,11 @@ type SwitchProps = {
    * @param value The new value.
    */
   onChange: (value: boolean) => void;
+
+  /**
+   * If supplied, adds to the text class
+   */
+  textClass?: string;
 };
 
 /**
@@ -28,6 +33,7 @@ export const Switch = ({
   onChange,
   children,
   className,
+  textClass,
 }: PropsWithChildren<PropsWithClassName<SwitchProps>>) => {
   return (
     <label className={`${styles.wrapper} ${className}`}>
@@ -37,7 +43,7 @@ export const Switch = ({
         <div className={`${styles.background}`} />
         <div className={`${styles.handle}`} />
       </div>
-      {children && <div className={`mx-3 ${typography.default}`}>{children}</div>}
+      {children && <div className={`mx-3 ${typography.default} ${textClass}`}>{children}</div>}
     </label>
   );
 };

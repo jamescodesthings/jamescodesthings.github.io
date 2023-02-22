@@ -7,7 +7,7 @@ import { PropsWithClassName } from '../../types/PropsWithClassName';
 export const Jumbotron = ({ className, children }: PropsWithChildren<PropsWithClassName>) => {
   return (
     <section className={`${styles.jumbo} ${getClassFromStyles(styles, className)}`}>
-      <div className={`${styles.jumbotronCard} bg-placeholder-railway`}>
+      <div className={`${styles.jumbotronCard}`}>
         <Texture name={`fabric-light`} />
         <div className={`${styles.jumbotronContent}`}>{children}</div>
       </div>
