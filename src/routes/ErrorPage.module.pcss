@@ -1,0 +1,36 @@
+.main {
+  @apply h-screen w-full;
+  @apply bg-type-dark;
+  @apply text-type;
+  @apply flex flex-col justify-center items-center;
+}
+.error-wrapper {
+}
+.title {
+  @apply text-2xl font-bold;
+  @apply mb-2;
+}
+.leader {
+  @apply opacity-70;
+  @apply font-light;
+  @apply text-lg;
+  @apply italic;
+  @apply mb-5;
+}
+.message {
+  .highlight {
+    @apply text-accent;
+  }
+  @apply mb-2;
+}
+.link-back-message {
+  .link {
+    @apply text-sky-500 hover:underline;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .main {
+    @apply bg-type;
+    @apply text-type-dark;
+  }
+}
