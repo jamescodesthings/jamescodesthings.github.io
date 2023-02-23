@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 import { Badge } from '../../ui/Badge';
 import { DevIcon } from '../../ui/DevIcon';
@@ -12,12 +12,12 @@ export type ExperienceEntry = {
   /**
    * The from date
    */
-  from: moment.Moment;
+  from: dayjs.Dayjs;
 
   /**
    * The to date
    */
-  to?: moment.Moment;
+  to?: dayjs.Dayjs;
 
   /**
    * A summary/tagline.
@@ -37,8 +37,8 @@ export type ExperienceEntry = {
 export const Experience: ExperienceEntry[] = [
   {
     employer: 'Engineius',
-    from: moment('2020-07-01'),
-    to: moment('2023-02-01'),
+    from: dayjs('2020-07-01'),
+    to: dayjs('2023-02-01'),
     summary: 'Working with Engineius to maintain, improve, and update their Mobile and Web apps.',
     detail: [
       [
@@ -68,8 +68,8 @@ export const Experience: ExperienceEntry[] = [
   },
   {
     employer: 'Packt',
-    from: moment('2017-11-01'),
-    to: moment('2020-01-01'),
+    from: dayjs('2017-11-01'),
+    to: dayjs('2020-01-01'),
     summary: 'Working with Packt on their Subscription platform, on the Web and Mobile',
     detail: [
       [
@@ -102,8 +102,8 @@ export const Experience: ExperienceEntry[] = [
   },
   {
     employer: 'Severn Trent',
-    from: moment('2012-09-01'),
-    to: moment('2017-10-01'),
+    from: dayjs('2012-09-01'),
+    to: dayjs('2017-10-01'),
     summary: 'Working with a cross functional team of Web and Mobile developers to deliver in-house apps.',
     detail: [
       [
