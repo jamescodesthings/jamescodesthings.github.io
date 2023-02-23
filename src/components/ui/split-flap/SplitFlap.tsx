@@ -3,7 +3,7 @@ import { charsBetween } from '../../../utils/chars-between';
 import { randBetween } from '../../../utils/rand-between';
 import styles from './SplitFlap.module.pcss';
 import { getRandomWords, KnownMethods } from '../../../utils/get-random-words';
-import { startCase } from 'lodash';
+import startCase from 'lodash/startCase';
 import { getClassFromStyles } from '../../../utils/get-class-from-styles';
 import { PropsWithClassName } from '../../../types/PropsWithClassName';
 

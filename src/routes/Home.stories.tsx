@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { Theme, ThemeContext } from '../context/ThemeContext';
-import { PageHome } from './PageHome';
+import { Home } from './Home';
 
 export default {
-  component: PageHome,
-  title: 'Page/Home',
-} as ComponentMeta<typeof PageHome>;
+  component: Home,
+  title: 'routes/Home',
+} as ComponentMeta<typeof Home>;
 
-const Template: ComponentStory<typeof PageHome> = () => <PageHome />;
+const Template: ComponentStory<typeof Home> = () => <Home />;
 export const Default = Template.bind({});
 Default.decorators = [
   (story, { globals: { darkMode } }) => {

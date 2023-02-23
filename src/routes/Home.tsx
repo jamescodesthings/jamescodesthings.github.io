@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { Switch } from '../components/ui/Switch';
 import { TitleWithBackground } from '../components/typography/TitleWithBackground';
-import styles from './PageHome.module.pcss';
+import styles from './Home.module.pcss';
 import spacing from '../styles/spacing.module.pcss';
 import utils from '../styles/utils.module.pcss';
 import { persistChosenTheme, Theme, ThemeContext } from '../context/ThemeContext';
@@ -26,11 +26,11 @@ import { SidebarInterests } from '../components/content/SidebarInterests';
 import { SidebarStacks } from '../components/content/SidebarStacks';
 
 /**
- * PageHome
+ * Home
  * @description The main/home/landing page for codesthings.com
  * @todo pull theme stuff up if/when adding router
  */
-export const PageHome = () => {
+export const Home = () => {
   const { state, dispatch } = useContext(ThemeContext);
 
   const changeDarkMode = (value: boolean) => {
@@ -124,3 +124,5 @@ export const PageHome = () => {
     </>
   );
 };
+
+export default Home;

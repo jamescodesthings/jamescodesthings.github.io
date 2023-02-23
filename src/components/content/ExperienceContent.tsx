@@ -1,10 +1,10 @@
 import styles from './ExperienceContent.module.pcss';
 import { Experience, ExperienceEntry } from './data/Expereince';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 type DatesProps = {
-  from: moment.Moment;
-  to?: moment.Moment;
+  from: dayjs.Dayjs;
+  to?: dayjs.Dayjs;
 };
 const Dates = ({ from, to }: DatesProps) => {
   const dateFormat = "MMM 'YY";

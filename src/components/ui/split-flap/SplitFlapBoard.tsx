@@ -1,4 +1,4 @@
-import { pad } from 'lodash';
+import pad from 'lodash/pad';
 import { SplitFlap } from './SplitFlap';
 import { PropsWithClassName } from '../../../types/PropsWithClassName';
 

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/en_GB';
 
 export type KnownMethods = 'adjective' | 'adverb' | 'conjunction' | 'interjection' | 'noun' | 'preposition' | 'verb';
 

@@ -47,8 +47,8 @@ commands:
     description: 'Deploy'
     steps:
       - run:
-          name: 'Deploy to gh-pages'
-          command: npm run deploy:gh-pages
+          name: 'Deploy to gh-routes'
+          command: npm run deploy:gh-routes
 
 jobs:
   build:
@@ -96,7 +96,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - gh-pages
+                - gh-routes
                 - /feature\/.*/
                 - /hotfix\/.*/
                 - /support\/.*/
