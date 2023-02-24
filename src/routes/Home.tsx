@@ -24,6 +24,9 @@ import { Seeking } from '../components/content/Seeking';
 import { SidebarProfile } from '../components/content/SidebarProfile';
 import { SidebarInterests } from '../components/content/SidebarInterests';
 import { SidebarStacks } from '../components/content/SidebarStacks';
+import { CenteredLabel } from '../components/utils/Label';
+import { EducationHeading } from '../components/headings/EducationHeading';
+import { EducationContent } from '../components/content/EducationContent';
 
 /**
  * Home
@@ -106,6 +109,12 @@ export const Home = () => {
           <SkillsContent />
           {/*<BodyWithSidebar sidebar={<CenteredLabel title={`todo`} />}>*/}
           {/*</BodyWithSidebar>*/}
+        </PaperPage>
+        <PaperPage className={`rounded-lg ${spacing.mb}`}>
+          <BodyWithSidebar sidebar={<CenteredLabel title={'Todo'} />}>
+            <EducationHeading />
+            <EducationContent />
+          </BodyWithSidebar>
         </PaperPage>
         <PaperPage className={`rounded-lg ${spacing.mb}`}>
           <BodyWithSidebar

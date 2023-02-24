@@ -1,4 +1,4 @@
 import { PageHeading } from './PageHeading';
-import { ProjectsIcon } from '../icons/ProjectsIcon';
+import Icon from '../../assets/svg/jamicons/pencil.svg';
 
-export const ProjectsHeading = () => <PageHeading icon={<ProjectsIcon />}>Projects</PageHeading>;
+export const ProjectsHeading = () => <PageHeading icon={<Icon />}>Projects</PageHeading>;

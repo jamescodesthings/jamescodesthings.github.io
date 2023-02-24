@@ -2,7 +2,8 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Badge } from './Badge';
-import { ViteIcon } from '../icons/ViteIcon';
+import ViteIcon from '../../assets/svg/dev/vite.svg';
+
 import { marginDecorator } from '../utils/MarginDecorator';
 
 import typography from '../../styles/typography.module.pcss';
