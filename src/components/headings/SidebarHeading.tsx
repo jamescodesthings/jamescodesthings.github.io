@@ -29,7 +29,7 @@ export const SidebarHeading = ({
     {icon}
     <div className={`${spacing.mlHalf} ${typography.default}`}>
       <h4 className={`${typography.title}`}>{title}</h4>
-      <div className={`font-normal`}>{children}</div>
+      {children && <div className={`font-normal`}>{children}</div>}
     </div>
   </div>
 );
