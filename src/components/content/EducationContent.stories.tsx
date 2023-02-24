@@ -9,7 +9,7 @@ export default {
   component: EducationContent,
 } as ComponentMeta<typeof EducationContent>;
 
-const Template: ComponentStory<typeof EducationContent> = args => <EducationContent {...args} />;
+const Template: ComponentStory<typeof EducationContent> = args => <EducationContent />;
 
 export const Default = Template.bind({});
 Default.decorators = [marginDecorator];
