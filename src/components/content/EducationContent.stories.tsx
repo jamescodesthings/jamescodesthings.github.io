@@ -5,7 +5,7 @@ import { EducationContent } from './EducationContent';
 import { marginDecorator } from '../utils/MarginDecorator';
 
 export default {
-  title: 'EducationContent',
+  title: 'content/EducationContent',
   component: EducationContent,
 } as ComponentMeta<typeof EducationContent>;
 

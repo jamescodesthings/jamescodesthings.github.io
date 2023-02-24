@@ -1,22 +1,18 @@
 import { Prose } from '../typography/Prose';
+import { SidebarHeading } from '../headings/SidebarHeading';
+import Icon from '../../assets/svg/jamicons/user-circle.svg';
+import spacing from '../../styles/spacing.module.pcss';
+import { Profile } from './data/Profile';
 
 export const SidebarProfile = () => (
-  <Prose>
-    <h3>Profile</h3>
-    <p>
-      I love technology, software development, and solving complex business problems with a team of like-minded people.
-    </p>
-    <p>
-      I am an Agile, Full Stack Developer with team leadership, mentorship, presentation, graphic design, UX/UI, and
-      application architectural experience.
-    </p>
-    <p>
-      Experienced in developing mobile and web applications across the extended Full Stack. I have worked with multiple
-      varied teams of developers with different levels of experience.
-    </p>
-    <p>
-      Passionate and articulate, with proven knowledge in all aspects of Hybrid Mobile Development, and Full Stack Web
-      app development.
-    </p>
-  </Prose>
+  <>
+    <section className={`${spacing.mtDouble}`}>
+      <SidebarHeading title={`Profile`} icon={<Icon />} className={`${spacing.mbHalf}`} />
+      <Prose>
+        {Profile.map((sentence, i) => (
+          <p key={`profile-${i}`}>{sentence}.</p>
+        ))}
+      </Prose>
+    </section>
+  </>
 );

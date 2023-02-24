@@ -6,7 +6,7 @@ type DatesProps = {
   from: dayjs.Dayjs;
   to?: dayjs.Dayjs;
 };
-const Dates = ({ from, to }: DatesProps) => {
+export const Dates = ({ from, to }: DatesProps) => {
   const dateFormat = "MMM 'YY";
   return (
     <>

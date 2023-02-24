@@ -3,9 +3,7 @@ import Icon from '../../assets/svg/jamicons/watch.svg';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 
 export const Availability = ({ className }: PropsWithClassName) => (
-  <section className={``}>
-    <SidebarHeading icon={<Icon />} title={'Availability'} className={className}>
-      <span>Immediate</span>
-    </SidebarHeading>
-  </section>
+  <SidebarHeading icon={<Icon />} title={'Availability'} className={className}>
+    <span>Immediate</span>
+  </SidebarHeading>
 );

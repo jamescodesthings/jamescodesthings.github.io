@@ -3,9 +3,10 @@ import PhoneIcon from '../../assets/svg/jamicons/phone.svg';
 import EmailIcon from '../../assets/svg/jamicons/inbox.svg';
 import AddressIcon from '../../assets/svg/jamicons/home.svg';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
+import spacing from '../../styles/spacing.module.pcss';
 
 export const ContactInfo = ({ className }: PropsWithClassName) => (
-  <section className={`print:hidden`}>
+  <section className={`print:hidden ${spacing.mtDouble}`}>
     {/*<h3 className={`${typography.sidebarHeading}`}>Contact</h3>*/}
     <SidebarHeading icon={<PhoneIcon />} title={'Phone'} className={className}>
       <a href="tel:+447736667115">+44 7736 667115</a>
