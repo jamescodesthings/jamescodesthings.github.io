@@ -21,4 +21,10 @@ const Entry = ({ entry }: EntryProps) => (
   </article>
 );
 
-export const EducationContent = () => Education.map(e => <Entry key={`education-${e.institution}`} entry={e} />);
+export const EducationContent = () => (
+  <>
+    {Education.map(e => (
+      <Entry key={`education-${e.institution}`} entry={e} />
+    ))}
+  </>
+);
