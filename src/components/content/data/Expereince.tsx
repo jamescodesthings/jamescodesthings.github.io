@@ -70,13 +70,18 @@ export const Experience: ExperienceEntry[] = [
     employer: 'Packt',
     from: dayjs('2017-11-01'),
     to: dayjs('2020-01-01'),
-    summary: 'Working with Packt on their Subscription platform, on the Web and Mobile',
+    summary: 'Working with Packt on their Subscription platform, on the Web and Mobile.',
     detail: [
       [
         'I worked with Packt for 2 years on their Subscription platform.',
-        "It's still in use and runs as a Web app and Hybrid Mobile app.",
-        'I was instrumental in delivering their mobile app.',
-        'I also worked rigorously in updating the Web Front End to modern javascript standards.',
+        'I was initially hired to wrap their application for use as a hybrid mobile app, which I then maintained and improved.',
+        'I was also instrumental in upgrading their stack to use the Serverless framework and AWS Lambdas in NodeJS.',
+        'I worked with a team of developers with varying skill sets, helping to upskill and train new members of the team.',
+      ],
+      [
+        'My development career became very focussed on Javascript stacks, writing brilliant code to solve complex solutions on a variety of platforms.',
+        'During my time with Packt I endeavoured to improve code quality with automated tools and manual refactoring.',
+        'I was successful in upgrading their ES5 front end to ES6 with the use of first class build tools such as Babel and Webpack.',
       ],
     ],
     tech: [
@@ -104,22 +109,22 @@ export const Experience: ExperienceEntry[] = [
     employer: 'Severn Trent',
     from: dayjs('2012-09-01'),
     to: dayjs('2017-10-01'),
-    summary: 'Working with a cross functional team of Web and Mobile developers to deliver in-house apps.',
+    summary: 'Working with a cross functional team of Web and Mobile developers to deliver web and mobile apps.',
     detail: [
       [
-        'I started my career at Severn Trent.',
-        'To begin with I worked third line tech support on various B2C and B2B apps.',
-        'Over my career I moved into Web development to deliver internal apps.',
-        'Then, when the company moved mobile I adapted and started to deliver Hybrid Mobile apps.',
+        'I worked with Severn Trent PLC for 5 years developing a multitude of software solutions for varying platforms with an eclectic use of the ever expanding technologies available.',
       ],
       [
-        'I worked with lots of Programming Languages, Platforms and Frameworks with Severn Trent.',
-        'Starting on a Java and Spring base to deliver Bootstrap & JQuery apps.',
-        'Moving to .Net APIs and delivering Hybrid Mobile and Web SPAs.',
+        'Later in the role my forté became been to develop brilliant Progressive Web apps and Hybrid Mobile apps in Ionic and the most suitable supporting technologies for each project.',
+        'Throughout my time with Severn Trent I developed solid, maintainable applications in the correct technology for the solution.',
+        'Starting with the Java Play Framework, moving to ASP.Net MVC and finally focusing on MEAN and variant ES6 stacks.',
       ],
       [
-        'I was also crucial in multiple design implementation projects.',
-        'On multiple occasions I implemented the initial phases of site redesigns for the Customer Web App, and other internal apps.',
+        'All the time improving my core skills in Design, Prototyping, Testing, Computer Law, Security, and programming best practice.',
+        'I jumped at the opportunity to lead my team, train our new starters, and suggest the ideal solution to complex software problems.',
+      ],
+      [
+        'I worked with the senior management teams, presenting to potential investors and producing applications allowing the business to expand successfully into new countries.',
       ],
     ],
     tech: [

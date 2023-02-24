@@ -43,7 +43,9 @@ const Entry = ({ entry }: EntryProps) => (
       {entry.detail?.map((p, i) => (
         <p key={`${entry.employer}-detail-${i}`} className={`${styles.detail}`}>
           {p.map((s, j) => (
-            <span key={`${entry.employer}-detail-${i}-${j}`}>{s}</span>
+            <>
+              <span key={`${entry.employer}-detail-${i}-${j}`}>{s}</span>{' '}
+            </>
           ))}
         </p>
       ))}
