@@ -1,7 +1,7 @@
 import { SidebarHeading } from '../headings/SidebarHeading';
-import { PhoneIcon } from '../icons/PhoneIcon';
-import { EmailIcon } from '../icons/EmailIcon';
-import { AddressIcon } from '../icons/AddressIcon';
+import PhoneIcon from '../../assets/svg/jamicons/phone.svg';
+import EmailIcon from '../../assets/svg/jamicons/inbox.svg';
+import AddressIcon from '../../assets/svg/jamicons/home.svg';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 
 export const ContactInfo = ({ className }: PropsWithClassName) => (

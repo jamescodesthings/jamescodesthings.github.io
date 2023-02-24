@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { PageHeading } from './PageHeading';
-import { CoverLetterIcon } from '../icons/CoverLettericon';
+import Icon from '../../assets/svg/jamicons/newsletter.svg';
 import spacing from '../../styles/spacing.module.pcss';
 
 export default {
@@ -15,6 +15,6 @@ const Template: ComponentStory<typeof PageHeading> = args => <PageHeading {...ar
 export const Default = Template.bind({});
 Default.decorators = [story => <div className={`${spacing.mall}`}>{story()}</div>];
 Default.args = {
-  icon: <CoverLetterIcon />,
+  icon: <Icon />,
   children: <>Cover Letter</>,
 };

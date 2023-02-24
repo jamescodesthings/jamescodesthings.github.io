@@ -1,10 +1,10 @@
 import { SidebarHeading } from '../headings/SidebarHeading';
-import { AvailabilityIcon } from '../icons/AvailabilityIcon';
+import Icon from '../../assets/svg/jamicons/watch.svg';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 
 export const Availability = ({ className }: PropsWithClassName) => (
   <section className={``}>
-    <SidebarHeading icon={<AvailabilityIcon />} title={'Availability'} className={className}>
+    <SidebarHeading icon={<Icon />} title={'Availability'} className={className}>
       <span>Immediate</span>
     </SidebarHeading>
   </section>

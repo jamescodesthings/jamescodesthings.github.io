@@ -1,12 +1,10 @@
 import React from 'react';
 import { Prose } from '../typography/Prose';
 import { Badge } from '../ui/Badge';
-import { ViteIcon } from '../icons/ViteIcon';
-import { ReactIcon } from '../icons/ReactIcon';
-import { TailwindIcon } from '../icons/TailwindIcon';
-
+import ViteIcon from '../../assets/svg/dev/vite.svg';
 import utils from '../../styles/utils.module.pcss';
 import { Highlight } from '../typography/Highlight';
+import { DevIcon } from '../ui/DevIcon';
 
 export const CoverLetterContent = () => {
   return (
@@ -42,7 +40,8 @@ export const CoverLetterContent = () => {
       </p>
       <span>
         This website was written with ❤️ in the Midlands. It&apos;s built using <Badge icon={<ViteIcon />}>Vite</Badge>,{' '}
-        <Badge icon={<ReactIcon />}>React </Badge>, <Badge icon={<TailwindIcon />}>Tailwind</Badge> & others.
+        <Badge icon={<DevIcon icon={`devicon-react-original`} />}>React </Badge>,{' '}
+        <Badge icon={<DevIcon icon={`devicon-tailwindcss-plain`} />}>Tailwind</Badge> & others.
       </span>
       <p>Please take a look around, and get in touch if you&apos;re currently hiring.</p>
       <hr className={`print:hidden ${utils.hr}`} />

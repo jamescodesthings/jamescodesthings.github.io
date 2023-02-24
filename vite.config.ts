@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { dependencies } from './package.json';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
 
 /**
  * Chunks to combine into vendor.js
@@ -23,7 +24,7 @@ const renderChunks = (dependencies: Record<string, string>) => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [svgr({ exportAsDefault: true }), react()],
   build: {
     chunkSizeWarningLimit: 610,
     sourcemap: false,
