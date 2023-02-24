@@ -48,7 +48,7 @@ commands:
     steps:
       - run:
           name: 'Deploy to gh-pages'
-          command: npm run deploy:gh-pagess
+          command: npm run deploy:gh-pages
 
 jobs:
   build:
