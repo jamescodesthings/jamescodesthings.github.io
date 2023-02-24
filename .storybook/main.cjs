@@ -1,4 +1,6 @@
 const { mergeConfig } = require('vite');
+const svgrPlugin = require('vite-plugin-svgr');
+const svgr = require('vite-plugin-svgr');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -21,6 +23,7 @@ module.exports = {
   staticDirs: ['../public'],
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
+      plugins: [svgr({ exportAsDefault: true })],
       css: {
         modules: {
           localsConvention: 'camelCaseOnly',
