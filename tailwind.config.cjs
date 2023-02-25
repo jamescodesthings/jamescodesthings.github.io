@@ -53,27 +53,27 @@ module.exports = {
       typography: theme => ({
         'sm': {
           css: {
-            fontSize: rem(12),
+            fontSize: rem(10),
           },
         },
         'base': {
           css: {
-            fontSize: rem(14),
+            fontSize: rem(12),
           },
         },
         'lg': {
           css: {
-            fontSize: rem(16),
+            fontSize: rem(14),
           },
         },
         'xl': {
           css: {
-            fontSize: rem(20),
+            fontSize: rem(16),
           },
         },
         '2xl': {
           css: {
-            fontSize: rem(22),
+            fontSize: rem(18),
           },
         },
       }),
