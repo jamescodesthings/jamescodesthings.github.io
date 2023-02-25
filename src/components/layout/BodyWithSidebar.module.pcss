@@ -1,18 +1,18 @@
 .container {
   @apply flex;
   @apply flex-col;
-  @apply sm:flex-row;
-  @apply h-full;
+  @apply sm:flex-row print:flex-row;
+  @apply print:!h-full;
 }
 
 .sidebar {
-  @apply w-full sm:w-1/3;
+  @apply w-full sm:w-1/3 print:w-1/3;
   composes: pall from '../../styles/spacing.module.pcss';
   composes: pr-half from '../../styles/spacing.module.pcss';
 }
 
 .content {
-  @apply w-full sm:w-2/3;
+  @apply w-full sm:w-2/3 print:w-2/3;
   composes: pall from '../../styles/spacing.module.pcss';
   composes: pl-half from '../../styles/spacing.module.pcss';
 }

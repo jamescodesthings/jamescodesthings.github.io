@@ -1,5 +1,19 @@
 @import '/node_modules/devicon/devicon.min.css';
 
+@page {
+  margin: 0 !important;
+  width: 21cm;
+  height: 29.7cm;
+}
+
+@media print {
+  html,
+  body,
+  .root {
+    height: 100%;
+  }
+}
+
 body {
   &.dark {
     @apply bg-type;
