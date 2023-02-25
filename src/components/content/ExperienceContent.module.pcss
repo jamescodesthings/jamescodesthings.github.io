@@ -10,6 +10,10 @@
   @apply flex justify-between items-center;
   composes: mb-half from '../../styles/spacing.module.pcss';
 }
+.row-collapse {
+  @apply flex flex-col sm:flex-row sm:justify-between items-start;
+  composes: mb-half from '../../styles/spacing.module.pcss';
+}
 .employer {
   composes: h2 from '../../styles/typography.module.pcss';
 }
