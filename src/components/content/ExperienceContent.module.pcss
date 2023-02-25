@@ -11,31 +11,24 @@
   composes: mb-half from '../../styles/spacing.module.pcss';
 }
 .employer {
-  @apply text-2xl font-bold;
+  composes: h2 from '../../styles/typography.module.pcss';
 }
 .summary {
-  @apply opacity-70;
-  @apply font-light;
-  @apply text-lg;
-  @apply italic;
   composes: mb-half from '../../styles/spacing.module.pcss';
+  composes: leader from '../../styles/typography.module.pcss';
 }
 .detail {
   composes: mb-half from '../../styles/spacing.module.pcss';
+  composes: body from '../../styles/typography.module.pcss';
 }
 .dates {
-  @apply text-lg font-normal;
-  .from {
-  }
-  .separator {
-  }
-  .to {
-  }
+  composes: h3 from '../../styles/typography.module.pcss';
 }
 
 .tech-wrapper {
-  @apply flex flex-row flex-wrap max-h-8 overflow-hidden;
   composes: mb-half from '../../styles/spacing.module.pcss';
+  @apply flex flex-row flex-wrap max-h-6 overflow-hidden;
+  @apply md:max-h-8;
 }
 
 .badge-wrapper {

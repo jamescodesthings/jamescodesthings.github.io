@@ -1,12 +1,13 @@
 .badge {
+  composes: body from '../../styles/typography.module.pcss';
   @apply bg-light;
   @apply whitespace-nowrap;
   @apply align-middle;
   @apply inline-block;
-  @apply px-4 py-1 leading-4;
   @apply rounded-full;
-  @apply text-xs;
-  @apply sm:text-sm;
+  @apply px-2 py-[2px];
+
+  @apply md:px-4 py-1;
 
   :global(.dark) & {
     @apply bg-light-dark;
