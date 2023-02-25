@@ -40,7 +40,7 @@ export const Home = () => {
 
   return (
     <>
-      <div className={`${utils.contain} ${utils.screen}`}>
+      <div className={`${utils.contain} ${utils.screen} print:hidden`}>
         <Jumbotron className={`jumbo-round`}>
           <main className={`${state} ${styles.main} h-full`}>
             <Switch
