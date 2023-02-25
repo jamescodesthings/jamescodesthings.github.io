@@ -1,6 +1,14 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
+const round = num =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '');
+const rem = px => `${round(px / 16)}rem`;
+const em = (px, base) => `${round(px / base)}em`;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -42,6 +50,33 @@ module.exports = {
         'placeholder-4': "url('https://picsum.photos/id/296/1920/1280')",
         'placeholder-railway': "url('https://picsum.photos/id/345/1920/1280')",
       },
+      typography: theme => ({
+        'sm': {
+          css: {
+            fontSize: rem(12),
+          },
+        },
+        'base': {
+          css: {
+            fontSize: rem(14),
+          },
+        },
+        'lg': {
+          css: {
+            fontSize: rem(16),
+          },
+        },
+        'xl': {
+          css: {
+            fontSize: rem(20),
+          },
+        },
+        '2xl': {
+          css: {
+            fontSize: rem(22),
+          },
+        },
+      }),
     },
     variants: {
       backgroundImage: ['responsive', 'hover', 'before'],

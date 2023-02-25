@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import typography from '../../styles/typography.module.pcss';
-import spacing from '../../styles/spacing.module.pcss';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
 

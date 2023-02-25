@@ -5,7 +5,7 @@ import utils from '../../styles/utils.module.pcss';
 import { Texture } from '../utils/Texture';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 import { TextureName } from '../../types/TextureName';
-import { PageBreak } from '../utils/PageBreak';
+import { PageBreak } from './PageBreak';
 
 type PaperPageProps = {
   /**
