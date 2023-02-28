@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Projects } from './Projects';
 
 export default {
-  title: 'content/pages/Projects',
+  title: 'content/sections/Projects',
   component: Projects,
 } as ComponentMeta<typeof Projects>;
 

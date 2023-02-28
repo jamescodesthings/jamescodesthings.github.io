@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Education } from './Education';
 
 export default {
-  title: 'content/pages/Education',
+  title: 'content/sections/Education',
   component: Education,
 } as ComponentMeta<typeof Education>;
 
