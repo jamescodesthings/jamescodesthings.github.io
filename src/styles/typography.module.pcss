@@ -28,41 +28,6 @@
   }
 }
 
-.heading-with-icon {
-  @apply flex flex-row justify-start items-center;
-
-  .title {
-    @apply text-primary;
-  }
-
-  svg,
-  i {
-    @apply w-6 sm:w-8 md:w-10;
-    @apply text-primary fill-primary shrink-0;
-  }
-
-  i {
-    @apply text-[1.5rem] sm:text-[2rem] md:text-[2.5rem];
-  }
-
-  &.accent {
-    svg {
-      @apply text-accent fill-accent;
-    }
-    .title {
-      @apply text-accent;
-    }
-  }
-  &.tertiary {
-    svg {
-      @apply text-tertiary fill-tertiary;
-    }
-    .title {
-      @apply text-tertiary;
-    }
-  }
-}
-
 .h1 {
   @apply text-2xl;
   @apply font-extrabold;
