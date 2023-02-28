@@ -1,6 +1,7 @@
 import { Link, useRouteError } from 'react-router-dom';
 
 import styles from './ErrorPage.module.pcss';
+import typography from '../styles/typography.module.pcss';
 
 /**
  * Error Page
@@ -34,7 +35,7 @@ export default function ErrorPage() {
         <p className={`${styles.message}`}>{message}</p>
         <p className={`${styles.linkBackMessage}`}>
           My guess is you want to go{' '}
-          <Link to={'/'} className={`${styles.link}`}>
+          <Link to={'/'} className={`${typography.link}`}>
             Home
           </Link>
           .

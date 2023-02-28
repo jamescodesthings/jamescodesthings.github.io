@@ -1,5 +1,4 @@
 .badge {
-  composes: body from '../../styles/typography.module.pcss';
   @apply bg-light;
   @apply whitespace-nowrap;
   @apply align-middle;
@@ -18,8 +17,9 @@
   }
 
   .icon {
-    @apply inline-block h-3 w-3 mr-1;
-    @apply h-4 w-4 sm:mr-2;
+    @apply inline-block h-[1em] w-[1em] mr-[3px];
+    @apply leading-none;
+    @apply md:mr-2;
 
     svg {
       @apply h-full w-full;
