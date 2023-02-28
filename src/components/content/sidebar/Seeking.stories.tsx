@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Seeking } from './Seeking';
-import { marginDecorator } from '../utils/MarginDecorator';
+import { marginDecorator } from '../../utils/MarginDecorator';
 
 export default {
   title: 'content/sidebar/Seeking',

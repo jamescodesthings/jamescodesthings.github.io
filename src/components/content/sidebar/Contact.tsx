@@ -1,11 +1,10 @@
-import { SidebarHeading } from '../headings/SidebarHeading';
-import PhoneIcon from '../../assets/svg/jamicons/phone.svg';
-import EmailIcon from '../../assets/svg/jamicons/inbox.svg';
-import AddressIcon from '../../assets/svg/jamicons/home.svg';
-import { PropsWithClassName } from '../../types/PropsWithClassName';
-import spacing from '../../styles/spacing.module.pcss';
+import { SidebarHeading } from '../../headings/SidebarHeading';
+import PhoneIcon from '../../../assets/svg/jamicons/phone.svg';
+import EmailIcon from '../../../assets/svg/jamicons/inbox.svg';
+import AddressIcon from '../../../assets/svg/jamicons/home.svg';
+import { PropsWithClassName } from '../../../types/PropsWithClassName';
 
-export const ContactInfo = ({ className }: PropsWithClassName) => (
+export const Contact = ({ className }: PropsWithClassName) => (
   <section className={`print:hidden`}>
     {/*<h3 className={`${typography.sidebarHeading}`}>Contact</h3>*/}
     <SidebarHeading icon={<PhoneIcon />} title={'Phone'} className={className}>

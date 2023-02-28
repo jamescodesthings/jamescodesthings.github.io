@@ -2,10 +2,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { CoverLetterContent } from './CoverLetterContent';
-import { marginDecorator } from '../utils/MarginDecorator';
+import { marginDecorator } from '../../utils/MarginDecorator';
 
 export default {
-  title: 'content/CoverLetterContent',
+  title: 'content/body/CoverLetterContent',
   component: CoverLetterContent,
 } as ComponentMeta<typeof CoverLetterContent>;
 

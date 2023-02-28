@@ -2,10 +2,10 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { EducationContent } from './EducationContent';
-import { marginDecorator } from '../utils/MarginDecorator';
+import { marginDecorator } from '../../utils/MarginDecorator';
 
 export default {
-  title: 'content/EducationContent',
+  title: 'content/body/EducationContent',
   component: EducationContent,
 } as ComponentMeta<typeof EducationContent>;
 

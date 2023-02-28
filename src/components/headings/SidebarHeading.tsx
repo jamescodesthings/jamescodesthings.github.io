@@ -8,7 +8,7 @@ type ContactHeadingProps = {
   /**
    * The Title
    */
-  title: string;
+  title?: string;
   /**
    * The icon
    */
@@ -28,7 +28,7 @@ export const SidebarHeading = ({
   >
     {icon}
     <div className={`${spacing.mlHalf} ${typography.default}`}>
-      <h4 className={`${typography.title} ${typography.h4}`}>{title}</h4>
+      {title && <h4 className={`${typography.title} ${typography.h4}`}>{title}</h4>}
       {children && <div className={`font-normal ${typography.body}`}>{children}</div>}
     </div>
   </div>
