@@ -1,8 +1,7 @@
-import typography from '../../styles/typography.module.pcss';
-import spacing from '../../styles/spacing.module.pcss';
 import { PropsWithChildren, ReactNode } from 'react';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
 import { getClassFromStyles } from '../../utils/get-class-from-styles';
+import styles from './Headings.module.pcss';
 
 type ContactHeadingProps = {
   /**
@@ -17,19 +16,13 @@ type ContactHeadingProps = {
 export const SidebarHeading = ({
   children,
   icon,
-  className,
   title,
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
-  <div
-    className={`${typography.headingWithIcon} ${typography.default} ${spacing.myHalf} ${getClassFromStyles(
-      typography,
-      className,
-    )}`}
-  >
+  <div className={`${styles.headingWithIcon} ${styles.sidebar}`}>
     {icon}
-    <div className={`${spacing.mlHalf} ${typography.default}`}>
-      {title && <h4 className={`${typography.title} ${typography.h4}`}>{title}</h4>}
-      {children && <div className={`font-normal ${typography.body}`}>{children}</div>}
+    <div className={`${styles.sidebarRightHand}`}>
+      {title && <h4 className={`${styles.sidebarTitle}`}>{title}</h4>}
+      {children && <div className={`${styles.sidebarBody}`}>{children}</div>}
     </div>
   </div>
 );

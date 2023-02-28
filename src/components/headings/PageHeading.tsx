@@ -1,5 +1,4 @@
-import typography from '../../styles/typography.module.pcss';
-import spacing from '../../styles/spacing.module.pcss';
+import styles from './Headings.module.pcss';
 import { PropsWithChildren, ReactNode } from 'react';
 
 type PageHeadingProps = {
@@ -9,8 +8,8 @@ type PageHeadingProps = {
   icon: ReactNode;
 };
 export const PageHeading = ({ children, icon }: PropsWithChildren<PageHeadingProps>) => (
-  <div className={`${typography.headingWithIcon} ${typography.h1} ${spacing.mtDouble} ${spacing.mbAlmostDouble}`}>
+  <div className={`${styles.headingWithIcon}`}>
     {icon}
-    <h1 className={`${spacing.mlHalf} ${typography.default}`}>{children}</h1>
+    <h1 className={`${styles.pageHeadingH1}`}>{children}</h1>
   </div>
 );
