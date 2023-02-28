@@ -1,10 +1,10 @@
-import { Prose } from '../typography/Prose';
-import { SkillGroup, skills as dataSkills, Sortable } from './data/Skills';
+import { Prose } from '../../typography/Prose';
+import { SkillGroup, skills as dataSkills, Sortable } from '../../../data/Skills';
 import { ReactNode, useEffect, useState } from 'react';
-import { DevIcon } from '../ui/DevIcon';
+import { DevIcon } from '../../ui/DevIcon';
 import styles from './SkillsContent.module.pcss';
-import spacing from '../../styles/spacing.module.pcss';
-import { DevIconName } from '../../types/DevIconName';
+import spacing from '../../../styles/spacing.module.pcss';
+import { DevIconName } from '../../../types/DevIconName';
 
 const useColoredIcons = true;
 

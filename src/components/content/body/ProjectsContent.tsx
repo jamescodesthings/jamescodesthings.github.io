@@ -1,5 +1,5 @@
 import React from 'react';
-import { Prose } from '../typography/Prose';
+import { Prose } from '../../typography/Prose';
 
 export const ProjectsContent = () => {
   return (

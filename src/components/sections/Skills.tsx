@@ -1,7 +1,7 @@
 import { PaperPage } from '../layout/PaperPage';
 import spacing from '../../styles/spacing.module.pcss';
 import { SkillsHeading } from '../headings/SkillsHeading';
-import { SkillsContent } from '../content/SkillsContent';
+import { SkillsContent } from '../content/body/SkillsContent';
 
 export const Skills = () => (
   <PaperPage className={`rounded-lg ${spacing.mb} ${spacing.pall}`}>

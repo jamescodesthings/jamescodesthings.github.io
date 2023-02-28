@@ -1,6 +1,6 @@
 import styles from './ExperienceContent.module.pcss';
-import spacing from '../../styles/spacing.module.pcss';
-import { Education, EducationEntry } from './data/Education';
+import spacing from '../../../styles/spacing.module.pcss';
+import { Education, EducationEntry } from '../../../data/Education';
 import { Dates } from './ExperienceContent';
 
 type EntryProps = {

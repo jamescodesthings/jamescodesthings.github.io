@@ -1,9 +1,9 @@
-import { Prose } from '../typography/Prose';
-import Icon from '../../assets/svg/icofont/camera-alt.svg';
-import { SidebarHeading } from '../headings/SidebarHeading';
-import spacing from '../../styles/spacing.module.pcss';
+import { Prose } from '../../typography/Prose';
+import Icon from '../../../assets/svg/icofont/camera-alt.svg';
+import { SidebarHeading } from '../../headings/SidebarHeading';
+import spacing from '../../../styles/spacing.module.pcss';
 
-export const SidebarInterests = () => (
+export const Interests = () => (
   <>
     <section className={`${spacing.mtDouble}`}>
       <SidebarHeading title={`Interests`} icon={<Icon />} className={`${spacing.mbHalf}`}></SidebarHeading>

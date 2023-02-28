@@ -1,5 +1,5 @@
 import styles from './ExperienceContent.module.pcss';
-import { Experience, ExperienceEntry } from './data/Expereince';
+import { Experience, ExperienceEntry } from '../../../data/Expereince';
 import dayjs from 'dayjs';
 
 type DatesProps = {

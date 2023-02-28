@@ -1,13 +1,13 @@
 import { PaperPage } from '../layout/PaperPage';
 import spacing from '../../styles/spacing.module.pcss';
 import { BodyWithSidebar } from '../layout/BodyWithSidebar';
-import { SidebarInterests } from '../content/SidebarInterests';
+import { Interests } from '../content/sidebar/Interests';
 import { EducationHeading } from '../headings/EducationHeading';
-import { EducationContent } from '../content/EducationContent';
+import { EducationContent } from '../content/body/EducationContent';
 
 export const Education = () => (
   <PaperPage className={`rounded-lg ${spacing.mb}`}>
-    <BodyWithSidebar sidebar={<SidebarInterests />}>
+    <BodyWithSidebar sidebar={<Interests />}>
       <EducationHeading />
       <EducationContent />
     </BodyWithSidebar>
