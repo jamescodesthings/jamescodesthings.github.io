@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Skills } from './Skills';
 
 export default {
-  title: 'content/pages/Skills',
+  title: 'content/sections/Skills',
   component: Skills,
 } as ComponentMeta<typeof Skills>;
 
