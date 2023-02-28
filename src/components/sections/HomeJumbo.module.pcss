@@ -1,10 +1,3 @@
-.theme-toolbar {
-  @apply absolute w-auto top-4 right-4 z-1;
-  .switch-text {
-    @apply !text-type-dark;
-  }
-}
-
 .main {
   @apply container mx-auto px-4;
 }
@@ -12,8 +5,8 @@
 .split-flap-wrapper {
   @apply sm:flex flex-wrap w-full sm:w-auto;
   @apply sm:p-0;
-  composes: mall from '../styles/spacing.module.pcss';
-  composes: pall from '../styles/spacing.module.pcss';
+  composes: mall from '../../styles/spacing.module.pcss';
+  composes: pall from '../../styles/spacing.module.pcss';
 }
 .jumbo-main-content {
   @apply flex flex-col justify-center items-center w-full h-full absolute top-0 left-0;

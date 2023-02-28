@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 import typography from '../../styles/typography.module.pcss';
 import styles from './Switch.module.pcss';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
+import { getClassFromStyles } from '../../utils/get-class-from-styles';
 
 type SwitchProps = {
   /**
@@ -26,6 +27,7 @@ type SwitchProps = {
  * @param onChange On change event
  * @param children The switch's label
  * @param className The switch's class
+ * @param textclass The switch text's class
  * @constructor
  */
 export const Switch = ({
@@ -36,7 +38,7 @@ export const Switch = ({
   textClass,
 }: PropsWithChildren<PropsWithClassName<SwitchProps>>) => {
   return (
-    <label className={`${styles.wrapper} ${className}`}>
+    <label className={`${styles.wrapper} ${getClassFromStyles(styles, className)}`}>
       <div className="relative">
         <label className="sr-only">{children || 'Switch'}</label>
         <input type="checkbox" className="sr-only peer" onChange={() => onChange(!value)} checked={value} />
