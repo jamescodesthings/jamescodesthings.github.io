@@ -1,9 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { persistChosenTheme, Theme, ThemeContext } from '../../context/ThemeContext';
 import { Switch } from './Switch';
-import styles from '../../routes/Home.module.pcss';
+import { PropsWithClassName } from '../../types/PropsWithClassName';
+import styles from './DarkModeSwitch.module.pcss';
 
-export const DarkModeSwitch = () => {
+export const DarkModeSwitch = ({ className }: PropsWithClassName) => {
   const { state, dispatch } = useContext(ThemeContext);
 
   const changeDarkMode = (value: boolean) => {
@@ -27,7 +28,7 @@ export const DarkModeSwitch = () => {
     <Switch
       value={isDark}
       onChange={value => changeDarkMode(value)}
-      className={`${styles.themeToolbar}`}
+      className={`${styles.themeToolbar} ${className}`}
       textClass={`${styles.switchText}`}
     >
       Dark
