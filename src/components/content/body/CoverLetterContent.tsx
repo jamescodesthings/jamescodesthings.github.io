@@ -1,10 +1,10 @@
 import React from 'react';
-import { Prose } from '../../typography/Prose';
 import { Badge } from '../../ui/Badge';
 import ViteIcon from '../../../assets/svg/dev/vite.svg';
 import { Highlight } from '../../typography/Highlight';
 import { DevIcon } from '../../ui/DevIcon';
 import utils from '../../../styles/utils.module.pcss';
+import { Prose } from '../../typography/Prose';
 
 export const CoverLetterContent = () => {
   return (

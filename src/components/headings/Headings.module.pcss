@@ -5,7 +5,7 @@
   svg,
   i {
     @apply w-6 sm:w-8 md:w-10;
-    @apply text-primary fill-primary shrink-0;
+    @apply text-primary fill-primary shrink-0 align-middle;
   }
 
   i {
@@ -14,9 +14,6 @@
 }
 
 .page-heading-h1 {
-  composes: h1 from '../../styles/typography.module.pcss';
-  composes: mt-double from '../../styles/spacing.module.pcss';
-  composes: mb-almost-double from '../../styles/spacing.module.pcss';
   composes: ml-half from '../../styles/spacing.module.pcss';
 }
 
@@ -34,6 +31,5 @@
 }
 
 .sidebar-body {
-  composes: body from '../../styles/typography.module.pcss';
   @apply font-normal;
 }

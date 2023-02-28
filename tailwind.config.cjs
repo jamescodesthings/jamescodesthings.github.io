@@ -9,6 +9,14 @@ const round = num =>
 const rem = px => `${round(px / 16)}rem`;
 const em = (px, base) => `${round(px / base)}em`;
 
+// Font sizes
+const xs = rem(9);
+const sm = rem(10);
+const md = rem(12);
+const lg = rem(14);
+const xl = rem(16);
+const xl2 = rem(18);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -35,7 +43,13 @@ module.exports = {
         'tertiary': colors.sky['500'],
       },
       fontSize: {
-        '2xs': '.5rem',
+        '2xs': '.6rem',
+        'xs': xs,
+        'sm': sm,
+        'base': md,
+        'lg': lg,
+        'xl': xl,
+        '2xl': xl2,
         '10xl': '5rem',
       },
       zIndex: {
@@ -51,29 +65,34 @@ module.exports = {
         'placeholder-railway': "url('https://picsum.photos/id/345/1920/1280')",
       },
       typography: theme => ({
+        'xs': {
+          css: {
+            fontSize: xs,
+          },
+        },
         'sm': {
           css: {
-            fontSize: rem(10),
+            fontSize: sm,
           },
         },
         'base': {
           css: {
-            fontSize: rem(12),
+            fontSize: md,
           },
         },
         'lg': {
           css: {
-            fontSize: rem(14),
+            fontSize: lg,
           },
         },
         'xl': {
           css: {
-            fontSize: rem(16),
+            fontSize: xl,
           },
         },
         '2xl': {
           css: {
-            fontSize: rem(18),
+            fontSize: xl2,
           },
         },
       }),

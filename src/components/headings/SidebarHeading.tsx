@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
-import { getClassFromStyles } from '../../utils/get-class-from-styles';
 import styles from './Headings.module.pcss';
+import typography from '../../styles/typography.module.pcss';
 
 type ContactHeadingProps = {
   /**
@@ -17,12 +17,13 @@ export const SidebarHeading = ({
   children,
   icon,
   title,
+  className,
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
-  <div className={`${styles.headingWithIcon} ${styles.sidebar}`}>
+  <div className={`${styles.headingWithIcon} ${styles.sidebar} ${className || ''}`}>
     {icon}
     <div className={`${styles.sidebarRightHand}`}>
-      {title && <h4 className={`${styles.sidebarTitle}`}>{title}</h4>}
-      {children && <div className={`${styles.sidebarBody}`}>{children}</div>}
+      {title && <h4 className={`${styles.sidebarTitle} ${typography.h4}`}>{title}</h4>}
+      {children && <div className={`${styles.sidebarBody} ${typography.body}`}>{children}</div>}
     </div>
   </div>
 );
