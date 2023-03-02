@@ -19,7 +19,7 @@ type PaperPageProps = {
 export const PaperPage = ({
   children,
   textureName = 'textured-paper',
-  className = '',
+  className = `rounded-lg ${spacing.mb} ${spacing.pall}`,
 }: PropsWithChildren<PropsWithClassName<PaperPageProps>>) => (
   <>
     <div className={`${utils.contain} ${spacing.pb} ${spacing.firstPt}`}>
