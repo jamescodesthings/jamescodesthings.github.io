@@ -1,6 +1,6 @@
 .entry {
   @apply text-type;
-  composes: mb from '../../../styles/spacing.module.pcss';
+
   :global(.dark) & {
     @apply text-type-dark;
   }
@@ -8,21 +8,12 @@
 
 .row {
   @apply flex justify-between items-center;
-  composes: mb-half from '../../../styles/spacing.module.pcss';
 }
 .row-collapse {
   @apply flex flex-col sm:flex-row sm:justify-between items-start;
-  composes: mb-half from '../../../styles/spacing.module.pcss';
-}
-.summary {
-  composes: mb-half from '../../../styles/spacing.module.pcss';
-}
-.detail {
-  composes: mb-half from '../../../styles/spacing.module.pcss';
 }
 
 .tech-wrapper {
-  composes: mb-half from '../../../styles/spacing.module.pcss';
   @apply flex flex-row flex-wrap max-h-7 overflow-hidden;
   @apply md:max-h-8;
 }

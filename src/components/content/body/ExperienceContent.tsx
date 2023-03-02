@@ -1,6 +1,7 @@
 import { Experience, ExperienceEntry } from '../../../data/Expereince';
 import dayjs from 'dayjs';
 import typography from '../../../styles/typography.module.pcss';
+import spacing from '../../../styles/spacing.module.pcss';
 import styles from './ExperienceContent.module.pcss';
 
 type DatesProps = {
@@ -25,24 +26,24 @@ type EntryProps = {
 };
 const Entry = ({ entry }: EntryProps) => (
   <>
-    <article className={`${styles.entry}`}>
-      <div className={`${styles.row}`}>
+    <article className={`${styles.entry} ${spacing.mb}`}>
+      <div className={`${styles.row} ${spacing.mbHalf}`}>
         <h2 className={`${typography.h2}`}>{entry.employer}</h2>
         <Dates {...entry} />
       </div>
-      <div className={`${styles.techWrapper}`}>
+      <div className={`${styles.techWrapper} ${spacing.mbHalf}`}>
         {entry.tech?.map((t, i) => (
           <div key={`${entry.employer}-tech-${i}`} className={`${styles.badgeWrapper}`}>
             {t}
           </div>
         ))}
       </div>
-      <header className={`${styles.summary} ${typography.leader} `}>
+      <header className={`${spacing.mbHalf} ${typography.leader} `}>
         <p>{entry.summary}</p>
       </header>
 
       {entry.detail?.map((p, i) => (
-        <p key={`${entry.employer}-detail-${i}`} className={`${styles.detail} ${typography.body}`}>
+        <p key={`${entry.employer}-detail-${i}`} className={`${spacing.mbHalf} ${typography.body}`}>
           {p.map((s, j) => (
             <span key={`${entry.employer}-detail-${i}-${j}`}>{s} </span>
           ))}

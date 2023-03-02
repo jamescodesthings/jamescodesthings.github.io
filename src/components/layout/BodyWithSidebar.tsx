@@ -1,5 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import styles from './BodyWithSidebar.module.pcss';
+import spacing from '../../styles/spacing.module.pcss';
 
 type BodyWithSidebarProps = {
   /**
@@ -10,7 +11,7 @@ type BodyWithSidebarProps = {
 
 export const BodyWithSidebar = ({ children, sidebar }: PropsWithChildren<BodyWithSidebarProps>) => (
   <section className={`${styles.container}`}>
-    <div className={`${styles.sidebar}`}>{sidebar}</div>
-    <div className={`${styles.content}`}>{children}</div>
+    <div className={`${styles.sidebar} ${spacing.pall} ${spacing.prHalf}`}>{sidebar}</div>
+    <div className={`${styles.content} ${spacing.pall} ${spacing.plHalf}`}>{children}</div>
   </section>
 );
