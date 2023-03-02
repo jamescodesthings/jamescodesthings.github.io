@@ -60,7 +60,7 @@ const serverside: SkillGroup = {
   ],
 };
 
-const clientSide: SkillGroup = {
+const clientside: SkillGroup = {
   slug: 'client-side',
   name: 'Client Side',
   icon: (
@@ -107,25 +107,25 @@ const clientSide: SkillGroup = {
       slug: 'angular',
       name: 'Angular',
       icon: 'devicon-angularjs-plain',
-      order: 6,
+      order: 4,
     },
     {
       slug: 'react-js',
       name: 'React',
       icon: 'devicon-react-original',
-      order: 7,
+      order: 3,
     },
     {
       slug: 'redux-js',
       name: 'Redux',
       icon: 'devicon-redux-original',
-      order: 7,
+      order: 3,
     },
     {
       slug: 'tailwind',
       name: 'Tailwind',
       icon: 'devicon-tailwindcss-plain',
-      order: 5,
+      order: 3,
     },
     {
       slug: 'sass',
@@ -292,4 +292,11 @@ const tooling: SkillGroup = {
   ],
 };
 
-export const skills: SkillGroup[] = [serverside, clientSide, mobile, database, tooling];
+export const skills: SkillGroup[] = [serverside, clientside, mobile, database, tooling];
+export const skillsList: Skill[] = [
+  ...serverside.skills,
+  ...clientside.skills,
+  ...mobile.skills,
+  ...database.skills,
+  ...tooling.skills,
+];
