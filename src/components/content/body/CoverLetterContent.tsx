@@ -33,7 +33,9 @@ export const CoverLetterContent = () => {
         javascript ecosystem. I&apos;ve worked with a variety of different team structures, processes and tech.
       </p>
       <span>
-        This website was written with ❤️ in the Midlands, Using <Badge icon={<ViteIcon />}>Vite</Badge>,{' '}
+        This <span className={`print:hidden`}>website</span>
+        <span className={`hidden print:inline`}>CV</span> was written with ❤️ in the Midlands, Using{' '}
+        <Badge icon={<ViteIcon />}>Vite</Badge>,{' '}
         <Badge icon={<DevIcon icon={`devicon-react-original`} />}>React </Badge>,{' '}
         <Badge icon={<DevIcon icon={`devicon-tailwindcss-plain`} />}>Tailwind</Badge> & others.
       </span>

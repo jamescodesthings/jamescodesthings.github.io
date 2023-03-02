@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react';
-import styles from './Badge.module.pcss';
-import typography from '../../styles/typography.module.pcss';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
+import typography from '../../styles/typography.module.pcss';
+import styles from './Badge.module.pcss';
 
 type BadgeProps = {
   /**
