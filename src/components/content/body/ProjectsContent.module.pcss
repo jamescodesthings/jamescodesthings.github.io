@@ -6,25 +6,27 @@
   @apply flex flex-row;
 }
 
-.left,
-.right {
-  @apply border border-blue-500;
-}
-
 .left {
-  @apply w-1/4;
-
   @apply flex flex-col items-center;
+  @apply w-1/6 lg:w-1/12;
 }
 
 .year {
   /*todo*/
 }
 .timeline {
-  @apply w-px bg-black flex-1;
+  @apply w-px bg-stone-700 flex-1;
+  .last & {
+    @apply bg-transparent;
+  }
+}
+.timeline-circle {
+  @apply w-1 h-1 rounded-full border border-tertiary;
+  .last & {
+    @apply hidden;
+  }
 }
 
 .right {
   @apply flex-1;
-  @apply h-32;
 }
