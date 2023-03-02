@@ -7,11 +7,16 @@ export const Stacks = () => (
     <section className={`${spacing.mtDouble}`}>
       <SidebarHeading title={`Stacks`} className={`${spacing.mbHalf}`} />
       <Prose>
-        <p>Summary of current happy-stacks.</p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad architecto blanditiis consequuntur deleniti
-          dolores eaque earum eligendi esse fuga fugit, ipsum iure laboriosam maiores necessitatibus nesciunt nostrum
-          perspiciatis reiciendis vel.
+          My Ideal working stack is Node.js on Lambdas, or in Containers. With a modern RDS & Object Store. On the front
+          end I like working in React or another component-based flux framework, with Tailwind and a decent bundler. On
+          mobile I like Ionic but I&apos;m currently transitioning to React Native.
+        </p>
+        <p>
+          In the recent past I&apos;ve worked on more traditional stacks, deploying Node & .net core APIs to AWS on
+          containers, EC2 instances as well as lambdas. I&apos;ve also worked with multiple static site and SSR
+          deployment patterns. My last few roles have used Angular heavily so I&apos;ve got tonnes of Angular
+          experience.
         </p>
       </Prose>
     </section>
