@@ -21,10 +21,12 @@ export const SidebarHeading = ({
   className,
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
   <div
-    className={`${styles.headingWithIcon} ${typography.default} ${styles.sidebar} ${spacing.mbHalf} ${className || ''}`}
+    className={`${styles.headingWithIcon} ${styles.sidebar} ${typography.default} ${styles.sidebar} ${spacing.mbHalf} ${
+      className || ''
+    }`}
   >
-    {icon && icon}
-    <div className={`${icon ? spacing.mlHalf : ''}`}>
+    {icon && <div className={`${styles.iconWrapper}`}>{icon}</div>}
+    <div className={`flex-1`}>
       {title && <h4 className={`${styles.sidebarTitle}  ${typography.h4}`}>{title}</h4>}
       {children && <div className={`${styles.sidebarBody} ${typography.body}`}>{children}</div>}
     </div>

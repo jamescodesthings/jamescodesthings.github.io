@@ -11,7 +11,7 @@ type PageHeadingProps = {
 };
 export const PageHeading = ({ children, icon }: PropsWithChildren<PageHeadingProps>) => (
   <div className={`${styles.headingWithIcon} ${typography.default} ${spacing.mtDouble} ${spacing.mbHalf}`}>
-    {icon}
-    <h1 className={`${spacing.mlHalf} ${typography.h1}`}>{children}</h1>
+    <div className={`${styles.iconWrapper}`}>{icon}</div>
+    <h1 className={`${typography.h1} flex-1`}>{children}</h1>
   </div>
 );

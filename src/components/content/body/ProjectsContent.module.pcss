@@ -15,13 +15,21 @@
   /*todo*/
 }
 .timeline {
-  @apply w-px bg-stone-700 flex-1;
+  @apply w-px bg-stone-700 flex-1 print:!bg-stone-700;
   .last & {
-    @apply bg-transparent;
+    @apply bg-transparent  print:!bg-transparent;
   }
 }
 .timeline-circle {
   @apply w-1 h-1 rounded-full border border-tertiary;
+
+  &.last {
+    @apply mb-3;
+  }
+  &.first {
+    @apply mt-3;
+  }
+
   .last & {
     @apply hidden;
   }
@@ -29,4 +37,8 @@
 
 .right {
   @apply flex-1;
+}
+
+.can-hide {
+  @apply max-lg:hidden;
 }
