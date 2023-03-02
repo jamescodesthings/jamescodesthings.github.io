@@ -11,7 +11,7 @@ type BodyWithSidebarProps = {
 
 export const BodyWithSidebar = ({ children, sidebar }: PropsWithChildren<BodyWithSidebarProps>) => (
   <section className={`${styles.container}`}>
-    <div className={`${styles.sidebar} ${spacing.pall} ${spacing.prHalf}`}>{sidebar}</div>
-    <div className={`${styles.content} ${spacing.pall} ${spacing.plHalf}`}>{children}</div>
+    <div className={`${styles.sidebar} ${spacing.py} ${spacing.prHalf}`}>{sidebar}</div>
+    <div className={`${styles.content} ${spacing.py} ${spacing.plHalf}`}>{children}</div>
   </section>
 );

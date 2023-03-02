@@ -10,7 +10,7 @@ import { Availability } from '../content/sidebar/Availability';
 import { Seeking } from '../content/sidebar/Seeking';
 
 export const CoverLetter = () => (
-  <PaperPage className={`rounded-lg ${spacing.mb}`}>
+  <PaperPage>
     <BodyWithSidebar
       sidebar={
         <>

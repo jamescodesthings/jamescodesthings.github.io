@@ -6,7 +6,7 @@ import { ExperienceContent } from '../content/body/ExperienceContent';
 import spacing from '../../styles/spacing.module.pcss';
 
 export const Experience = () => (
-  <PaperPage className={`rounded-lg ${spacing.mb}`}>
+  <PaperPage>
     <BodyWithSidebar
       sidebar={
         <>
