@@ -1,12 +1,11 @@
 import { Prose } from '../../typography/Prose';
-import Icon from '../../../assets/svg/jamicons/layers.svg';
 import { SidebarHeading } from '../../headings/SidebarHeading';
 import spacing from '../../../styles/spacing.module.pcss';
 
 export const Stacks = () => (
   <>
     <section className={`${spacing.mtDouble}`}>
-      <SidebarHeading title={`Stacks`} icon={<Icon />} className={`${spacing.mbHalf}`} />
+      <SidebarHeading title={`Stacks`} className={`${spacing.mbHalf}`} />
       <Prose>
         <p>Summary of current happy-stacks.</p>
         <p>
