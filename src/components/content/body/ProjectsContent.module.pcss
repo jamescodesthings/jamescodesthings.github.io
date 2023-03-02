@@ -8,17 +8,14 @@
 
 .left {
   @apply flex flex-col items-center;
-  @apply w-1/6 lg:w-1/12;
+  @apply w-1/6;
 }
 
-.year {
-  /*todo*/
-}
 .timeline {
   @apply w-px bg-stone-700 flex-1 print:!bg-stone-700;
-  .last & {
+  /*  .last & {
     @apply bg-transparent  print:!bg-transparent;
-  }
+  }*/
 }
 .timeline-circle {
   @apply w-1 h-1 rounded-full border border-tertiary;
@@ -30,8 +27,10 @@
     @apply mt-3;
   }
 
-  .last & {
-    @apply hidden;
+  .last &.last {
+    @apply w-4 h-4 relative;
+    @apply before:content-['…'];
+    @apply before:absolute before:-top-px before:-left-px before:h-4 before:w-4 before:text-center before:text-xs before:text-tertiary;
   }
 }
 
@@ -40,5 +39,19 @@
 }
 
 .can-hide {
-  @apply max-lg:hidden;
+  @apply hidden;
+}
+
+/* Tech Wrapper */
+.row {
+  @apply flex justify-between items-center;
+}
+
+.tech-wrapper {
+  @apply flex flex-row flex-wrap max-h-7 overflow-hidden;
+  @apply md:max-h-8;
+}
+
+.badge-wrapper {
+  @apply mr-2 mb-2;
 }
