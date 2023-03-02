@@ -11,5 +11,8 @@
 }
 
 .hr {
-  @apply border-type dark:border-type-dark;
+  @apply border-type;
+  :global(.dark) & {
+    @apply border-type-dark;
+  }
 }
