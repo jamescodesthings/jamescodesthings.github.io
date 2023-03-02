@@ -2,6 +2,7 @@
 
 @page {
   margin: 0 !important;
+  /* A4 Paper size in CM */
   width: 21cm;
   height: 29.7cm;
 }
@@ -17,8 +18,10 @@
 body {
   &.dark {
     @apply bg-type;
+    @apply print:bg-transparent;
   }
   &.light {
     @apply bg-type-dark;
+    @apply print:bg-transparent;
   }
 }

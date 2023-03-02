@@ -1,6 +1,7 @@
 .page {
   @apply relative;
   @apply bg-white;
+  @apply print:bg-transparent;
 
   @apply w-full h-auto;
   @apply min-h-[500px] sm:min-h-[initial];
@@ -18,9 +19,11 @@
   /* Dark Flip */
   :global(.dark) & {
     @apply bg-page-dark;
+    @apply print:bg-transparent;
   }
 }
 
 .content {
   @apply w-full h-full left-0 top-0 relative z-1;
+  @apply print:p-8;
 }
