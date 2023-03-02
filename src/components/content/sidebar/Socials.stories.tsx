@@ -8,7 +8,7 @@ export default {
   component: Socials,
 } as ComponentMeta<typeof Socials>;
 
-const Template: ComponentStory<typeof Socials> = args => <Socials {...args} />;
+const Template: ComponentStory<typeof Socials> = () => <Socials />;
 
 export const Default = Template.bind({});
 Default.args = {};
