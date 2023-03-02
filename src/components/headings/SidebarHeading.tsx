@@ -21,7 +21,7 @@ export const SidebarHeading = ({
   className,
 }: PropsWithChildren<PropsWithClassName<ContactHeadingProps>>) => (
   <div
-    className={`${styles.headingWithIcon} ${typography.default} ${styles.sidebar} ${spacing.myHalf} ${className || ''}`}
+    className={`${styles.headingWithIcon} ${typography.default} ${styles.sidebar} ${spacing.mbHalf} ${className || ''}`}
   >
     {icon}
     <div className={`${spacing.mlHalf}`}>

@@ -13,8 +13,8 @@ export const CoverLetter = () => (
       sidebar={
         <>
           <Avatar />
-          <Contact />
           <Socials />
+          <Contact />
         </>
       }
     >

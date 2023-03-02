@@ -1,11 +1,27 @@
-import { SidebarHeading } from '../../headings/SidebarHeading';
-import { PropsWithClassName } from '../../../types/PropsWithClassName';
-import { DevIcon } from '../../ui/DevIcon';
+import WhatsApp from '../../../assets/svg/socials/WhatsAppSkinny.svg';
+import LinkedIn from '../../../assets/svg/socials/LinkedInSkinny.svg';
+import spacing from '../../../styles/spacing.module.pcss';
+import styles from './Socials.module.pcss';
 
-export const Socials = ({ className }: PropsWithClassName) => (
-  <section className={`print:hidden`}>
-    <SidebarHeading icon={<DevIcon icon={`devicon-linkedin-plain`} />} className={className}>
-      James Macmillan
-    </SidebarHeading>
+export const Socials = () => (
+  <section className={`print:hidden ${styles.wrapper}`}>
+    <a
+      href={`https://www.linkedin.com/in/jamescodesthings/`}
+      className={`${styles.button} ${spacing.mbHalf}`}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <LinkedIn />
+    </a>
+
+    <a
+      aria-label="Chat on WhatsApp"
+      href={`https://wa.me/447736667115`}
+      className={`${styles.button} ${spacing.mbHalf}`}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <WhatsApp />
+    </a>
   </section>
 );
