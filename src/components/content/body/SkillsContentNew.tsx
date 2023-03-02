@@ -31,7 +31,7 @@ export const SkillsContent = () => {
 
   return (
     <>
-      <Prose className={'text-xs md:text-sm'}>
+      <Prose>
         <p>
           Below you will find a summary of some of the key technologies and tooling that I have experience with. If you
           would like to know if I&apos;ve used a particular technology that&apos;s not listed, please get in touch.
