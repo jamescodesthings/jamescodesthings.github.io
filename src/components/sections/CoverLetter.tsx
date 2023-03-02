@@ -6,6 +6,8 @@ import { Contact } from '../content/sidebar/Contact';
 import { CoverLetterHeading } from '../headings/CoverLetterHeading';
 import { CoverLetterContent } from '../content/body/CoverLetterContent';
 import { Socials } from '../content/sidebar/Socials';
+import { Availability } from '../content/sidebar/Availability';
+import { Seeking } from '../content/sidebar/Seeking';
 
 export const CoverLetter = () => (
   <PaperPage className={`rounded-lg ${spacing.mb}`}>
@@ -15,6 +17,8 @@ export const CoverLetter = () => (
           <Avatar />
           <Socials />
           <Contact />
+          <Availability />
+          <Seeking />
         </>
       }
     >

@@ -1,5 +1,4 @@
 import { Projects } from '../components/sections/Projects';
-import { Education } from '../components/sections/Education';
 import { Skills } from '../components/sections/Skills';
 import { Experience } from '../components/sections/Experience';
 import { CoverLetter } from '../components/sections/CoverLetter';
@@ -17,7 +16,6 @@ export const Home = () => {
       <CoverLetter />
       <Experience />
       <Skills />
-      <Education />
       <Projects />
     </>
   );

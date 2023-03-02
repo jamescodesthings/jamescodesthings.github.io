@@ -12,7 +12,7 @@ type ContactHeadingProps = {
   /**
    * The icon
    */
-  icon: ReactNode;
+  icon?: ReactNode;
 };
 export const SidebarHeading = ({
   children,
@@ -23,8 +23,8 @@ export const SidebarHeading = ({
   <div
     className={`${styles.headingWithIcon} ${typography.default} ${styles.sidebar} ${spacing.mbHalf} ${className || ''}`}
   >
-    {icon}
-    <div className={`${spacing.mlHalf}`}>
+    {icon && icon}
+    <div className={`${icon ? spacing.mlHalf : ''}`}>
       {title && <h4 className={`${styles.sidebarTitle}  ${typography.h4}`}>{title}</h4>}
       {children && <div className={`${styles.sidebarBody} ${typography.body}`}>{children}</div>}
     </div>
