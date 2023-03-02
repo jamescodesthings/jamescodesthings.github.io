@@ -1,10 +1,9 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { skillsList, Sortable } from '../../../data/Skills';
+import { skills as skillsList, Sortable } from '../../../data/Skills';
 import { Prose } from '../../typography/Prose';
 import { DevIcon } from '../../ui/DevIcon';
 import { DevIconName } from '../../../types/DevIconName';
 import { Badge } from '../../ui/Badge';
-import spacing from '../../../styles/spacing.module.pcss';
 
 const getIcon = (icon: ReactNode | DevIconName): ReactNode => {
   if (typeof icon === 'string') {
