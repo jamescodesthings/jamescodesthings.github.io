@@ -8,8 +8,12 @@
 
   @apply md:px-4 py-1;
 
+  @apply print:border print:border-stone-700;
+  @apply print:bg-transparent;
+
   :global(.dark) & {
     @apply bg-light-dark;
+    @apply print:bg-transparent;
   }
 
   .badge-inner {

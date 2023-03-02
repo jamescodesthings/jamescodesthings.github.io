@@ -1,5 +1,6 @@
 .default {
   @apply text-type;
+  @apply print:!text-type;
 
   :global(.dark) & {
     @apply text-type-dark;
@@ -24,6 +25,7 @@
   @apply lg:text-2xl;
   @apply xl:text-3xl;
   @apply 2xl:text-4xl;
+  @apply print:!text-type;
 }
 
 .h3 {
@@ -34,6 +36,7 @@
   @apply lg:text-xl;
   @apply xl:text-2xl;
   @apply 2xl:text-3xl;
+  @apply print:!text-type;
 }
 .h4 {
   @apply font-bold;
@@ -43,6 +46,7 @@
   @apply lg:text-lg;
   @apply xl:text-xl;
   @apply 2xl:text-2xl;
+  @apply print:!text-type;
 }
 
 .leader {
@@ -52,6 +56,8 @@
   @apply text-base;
   @apply sm:text-sm;
   @apply md:text-lg;
+  @apply print:!text-type;
+  @apply print:!opacity-100;
 }
 
 .prose-wrapper {
@@ -59,9 +65,11 @@
   @apply prose-base;
   @apply sm:prose-xs;
   @apply md:prose-sm lg:prose-base xl:prose-lg 2xl:prose-xl;
+  @apply print:!text-type;
 
   :global(.dark) & {
     @apply prose-invert;
+    @apply print:!text-type;
   }
 }
 
@@ -72,11 +80,13 @@
   @apply lg:text-base;
   @apply xl:text-lg;
   @apply 2xl:text-xl;
+  @apply print:!text-type;
 }
 
 .link,
 .externalLink {
   @apply text-sky-500 no-underline hover:underline;
+  @apply print:!underline;
 }
 
 .externalLink {

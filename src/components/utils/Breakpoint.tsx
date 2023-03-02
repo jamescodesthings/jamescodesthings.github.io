@@ -12,6 +12,6 @@ export const Breakpoint = () => (
     <span className={styles.breakpointMd}>md</span>
     <span className={styles.breakpointLg}>lg</span>
     <span className={styles.breakpointXl}>xl</span>
-    <span className={styles.breakpoint2xl}>xl</span>
+    <span className={styles.breakpointXxl}>2xl</span>
   </div>
 );

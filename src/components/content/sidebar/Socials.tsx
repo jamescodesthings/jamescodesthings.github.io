@@ -4,7 +4,7 @@ import spacing from '../../../styles/spacing.module.pcss';
 import styles from './Socials.module.pcss';
 
 export const Socials = () => (
-  <section className={`print:hidden ${styles.wrapper}`}>
+  <section className={`${styles.wrapper}`}>
     <a
       href={`https://www.linkedin.com/in/jamescodesthings/`}
       className={`${styles.button} ${spacing.mbHalf}`}
