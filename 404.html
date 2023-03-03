@@ -8,6 +8,7 @@
       let path;
       try {
         path = window.location.pathname.slice(1);
+        console.log('404:', path);
         localStorage.setItem('redirect-path', path);
       } catch (error) {
         console.error('Could not save redirect to', path, error);
