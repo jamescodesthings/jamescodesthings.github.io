@@ -19,6 +19,7 @@
     "format": "prettier .",
     "format:check": "npm run format -- --check",
     "format:fix": "npm run format -- --write",
+    "serve:dist": "live-server ./dist",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy:gh-pages": "gh-pages -t -d dist"
@@ -63,6 +64,7 @@
     "gh-pages": "5.0.0",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
+    "live-server": "1.2.2",
     "postcss": "8.4.21",
     "postcss-import": "15.1.0",
     "postcss-viewport-height-correction": "1.1.1",

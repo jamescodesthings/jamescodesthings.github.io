@@ -1,0 +1,27 @@
+.footer {
+  @apply bg-type-dark;
+  @apply text-type;
+
+  :global(.dark) & {
+    @apply bg-type;
+    @apply text-type-dark;
+  }
+}
+
+.logo-and-name {
+  @apply flex items-center;
+  .name {
+    @apply self-center text-2xl font-semibold whitespace-nowrap;
+  }
+}
+
+.copyright {
+  @apply block text-sm sm:text-center;
+}
+
+.footer-links {
+  @apply flex flex-wrap text-sm;
+}
+.footer-link {
+  @apply hover:underline;
+}

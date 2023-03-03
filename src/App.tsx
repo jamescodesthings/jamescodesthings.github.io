@@ -1,18 +1,27 @@
 import './App.pcss';
-import { Suspense } from 'react';
+import { Suspense, useContext, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
+import { Theme, ThemeContext, ThemeProvider } from './context/ThemeContext';
 import Root from './routes/Root';
 
 const router = createBrowserRouter(createRoutesFromElements(Root));
 
 function App() {
+  const { state } = useContext(ThemeContext);
+
+  const isDark = state === Theme.Dark;
+  useEffect(() => {
+    if (isDark) {
+      document.body.className = Theme.Dark;
+    } else {
+      document.body.className = Theme.Light;
+    }
+  }, [state]);
+
   return (
-    <ThemeProvider>
-      <Suspense fallback={<>...</>}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </ThemeProvider>
+    <Suspense fallback={<>...</>}>
+      <RouterProvider router={router} />
+    </Suspense>
   );
 }
 
