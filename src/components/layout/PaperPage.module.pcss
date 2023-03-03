@@ -16,6 +16,11 @@
 
   @apply print:m-0 print:h-[29.6cm] print:w-[21cm];
 
+  &.not-fixed {
+    @apply h-auto;
+    @apply aspect-auto;
+  }
+
   /* Dark Flip */
   :global(.dark) & {
     @apply bg-page-dark;

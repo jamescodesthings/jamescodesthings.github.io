@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { persistChosenTheme, Theme, ThemeContext } from '../../context/ThemeContext';
 import { Switch } from './Switch';
 import { PropsWithClassName } from '../../types/PropsWithClassName';
@@ -9,7 +9,6 @@ export const DarkModeSwitch = ({ className }: PropsWithClassName) => {
 
   const changeDarkMode = (value: boolean) => {
     const newTheme = value ? Theme.Dark : Theme.Light;
-    console.log('App Switch Changed Dark Mode: %s (%s)', value, newTheme);
     persistChosenTheme(newTheme);
 
     if (dispatch) dispatch(newTheme);
@@ -17,13 +16,6 @@ export const DarkModeSwitch = ({ className }: PropsWithClassName) => {
 
   const isDark = state === Theme.Dark;
 
-  useEffect(() => {
-    if (isDark) {
-      document.body.className = Theme.Dark;
-    } else {
-      document.body.className = Theme.Light;
-    }
-  }, [isDark]);
   return (
     <Switch
       value={isDark}
