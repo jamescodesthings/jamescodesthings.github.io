@@ -8,10 +8,10 @@ export const Footer = () => (
   <Container hideInPrint={true}>
     <footer className={`${styles.footer}`}>
       <div className="sm:flex sm:items-center sm:justify-between">
-        <a href="https://codesthings.com/" className={`${styles.logoAndName} ${spacing.mb} sm:!m-0`}>
+        <Link to={`/`} className={`${styles.logoAndName} ${spacing.mb} sm:!m-0`}>
           <img src="/src/assets/favicon/favicon-color.svg" className={`${spacing.mrHalf} w-8`} alt="CodesThings Logo" />
           <span className={`${styles.name}`}>CodesThings.com</span>
-        </a>
+        </Link>
         <ul className={`${styles.footerLinks} ${spacing.mb} sm:!m-0`}>
           <li>
             <Link to={'/about-cookies'} className={`${styles.footerLink} ${spacing.mrHalf}`}>
