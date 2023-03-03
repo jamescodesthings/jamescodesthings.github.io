@@ -1,6 +1,5 @@
 import { Container } from './Container';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/favicon/favicon-color.svg';
 import utils from '../../styles/utils.module.pcss';
 import spacing from '../../styles/spacing.module.pcss';
 import styles from './Footer.module.pcss';
@@ -10,10 +9,7 @@ export const Footer = () => (
     <footer className={`${styles.footer}`}>
       <div className="sm:flex sm:items-center sm:justify-between">
         <Link to={`/`} className={`${styles.logoAndName} ${spacing.mb} sm:!m-0`}>
-          <div className={`${spacing.mrHalf} w-8`}>
-            <Logo></Logo>
-          </div>
-
+          <img src="/assets/icons/favicon-color.svg" alt="Logo" className={`${spacing.mrHalf} w-8`} />
           <span className={`${styles.name}`}>CodesThings.com</span>
         </Link>
         <ul className={`${styles.footerLinks} ${spacing.mb} sm:!m-0`}>
