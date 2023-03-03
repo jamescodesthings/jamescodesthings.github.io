@@ -1,14 +1,14 @@
 import { Prose } from '../typography/Prose';
-import { Container } from '../ui/Container';
 import { PaperPage } from '../layout/PaperPage';
 import { Link } from 'react-router-dom';
 import typography from '../../styles/typography.module.pcss';
 import spacing from '../../styles/spacing.module.pcss';
+import { Footer } from '../ui/Footer';
 
 const repoLink = `https://github.com/jamescodesthings/jamescodesthings.github.io`;
 
 export const PrivacyNotice = () => (
-  <Container>
+  <>
     <PaperPage fixedToPaper={false}>
       <Link to={`/`} className={`${typography.link} ${spacing.mb} block`}>
         &lt; Go Back
@@ -40,5 +40,6 @@ export const PrivacyNotice = () => (
         </ul>
       </Prose>
     </PaperPage>
-  </Container>
+    <Footer />
+  </>
 );
