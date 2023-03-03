@@ -89,6 +89,24 @@ jobs:
       - copy_circle_conf_to_gh_pages
       - deploy_gh_pages
 
+#  print:
+#    docker:
+#      - image: circleci/node:12-browsers
+#    steps:
+#      - add_key
+#      - checkout
+#      - gitconf
+#      - attach_build_from_workspace
+#      - node/install-packages:
+#          pkg-manager: npm
+#      - run:
+#        name: Run the application
+#        command: npm run serve
+#        background: true
+#      - run:
+#          name: Run tests
+#          command: npm run test
+
 workflows:
   build_and_deploy:
     jobs:
@@ -106,3 +124,9 @@ workflows:
           filters:
             branches:
               only: main
+#      - print:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: main
