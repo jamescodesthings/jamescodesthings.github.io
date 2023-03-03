@@ -1,7 +1,7 @@
 import './App.pcss';
 import { Suspense, useContext, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
-import { Theme, ThemeContext, ThemeProvider } from './context/ThemeContext';
+import { Theme, ThemeContext } from './context/ThemeContext';
 import Root from './routes/Root';
 
 const router = createBrowserRouter(createRoutesFromElements(Root));
