@@ -2,6 +2,9 @@
   @apply relative;
   @apply bg-white;
   @apply print:bg-transparent;
+  .print-dark & {
+    @apply bg-white;
+  }
 
   @apply w-full h-auto;
   @apply min-h-[500px] sm:min-h-[initial];
@@ -25,6 +28,9 @@
   :global(.dark) & {
     @apply bg-page-dark;
     @apply print:bg-transparent;
+  }
+  :global(.dark.print-dark) & {
+    @apply bg-page-dark;
   }
 }
 
