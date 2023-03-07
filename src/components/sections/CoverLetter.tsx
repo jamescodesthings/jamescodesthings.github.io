@@ -17,11 +17,11 @@ export const CoverLetter = () => (
       sidebar={
         <>
           <Avatar />
+          <Download />
           <Socials />
           <Contact />
           <Availability />
           <Seeking />
-          <Download />
         </>
       }
     >

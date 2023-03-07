@@ -13,7 +13,6 @@ export const Experience = () => (
         <>
           <div className={`${spacing.mtDouble}`}>
             <Profile />
-            <Download />
           </div>
         </>
       }
