@@ -6,15 +6,25 @@ import Root from './routes/Root';
 
 const router = createBrowserRouter(createRoutesFromElements(Root));
 
+function setDarkMode() {
+  if (!document.body.classList.contains(Theme.Dark)) document.body.classList.add(Theme.Dark);
+  if (document.body.classList.contains(Theme.Light)) document.body.classList.remove(Theme.Light);
+}
+
+function setLightMode() {
+  if (!document.body.classList.contains(Theme.Light)) document.body.classList.add(Theme.Light);
+  if (document.body.classList.contains(Theme.Dark)) document.body.classList.remove(Theme.Dark);
+}
+
 function App() {
   const { state } = useContext(ThemeContext);
 
   const isDark = state === Theme.Dark;
   useEffect(() => {
     if (isDark) {
-      document.body.className = Theme.Dark;
+      setDarkMode();
     } else {
-      document.body.className = Theme.Light;
+      setLightMode();
     }
   }, [isDark]);
 

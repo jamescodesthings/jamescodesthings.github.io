@@ -2,11 +2,17 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
 import fs from 'fs-extra';
 
+const sleep = async (ms: number) => {
+  console.log('Waiting for %sms', ms);
+  return new Promise(resolve => setTimeout(() => resolve(true), ms));
+};
+
 export class CVToPDF {
   mappings = [
     { url: 'http://localhost:8080/?exclude_projects=true', filename: 'cv.pdf' },
-    { url: 'http://localhost:8080/?exclude_projects=true&exclude_cover=true', filename: 'cv-simple.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true&exclude_projects=true', filename: 'dark-cv.pdf' },
     { url: 'http://localhost:8080', filename: 'cv-with-projects.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true', filename: 'dark-cv-with-projects.pdf' },
   ];
 
   private browser!: Browser;
@@ -55,6 +61,21 @@ export class CVToPDF {
   private async print(url: string, filename: string) {
     console.log('Printing %s to %s', url, filename);
     await this.page.goto(url, { waitUntil: 'networkidle0' });
+
+    if (url.indexOf('print_dark') !== -1) {
+      console.log('Is Dark, doing stuff to make that good');
+      const result = await this.page.evaluate(() => {
+        const body = document.querySelector('body');
+        if (!body) {
+          return false;
+        }
+        body.className = 'print-dark dark';
+        return true;
+      });
+      if (!result) {
+        console.error('Could not add required classes to make the body dark');
+      }
+    }
 
     // Download the PDF
     const cvOutput = path.join(this.outputPath, filename);

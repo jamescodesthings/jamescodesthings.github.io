@@ -26,7 +26,7 @@ type EntryProps = {
 };
 const Entry = ({ entry }: EntryProps) => (
   <>
-    <article className={`${styles.entry} ${spacing.mb}`}>
+    <article className={`${styles.entry} ${spacing.mb} ${typography.default}`}>
       <div className={`${styles.row} ${spacing.mbHalf}`}>
         <h2 className={`${typography.h2}`}>{entry.employer}</h2>
         <Dates {...entry} />

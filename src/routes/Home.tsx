@@ -20,6 +20,7 @@ export const Home = () => {
 
   const excludeProjects = params.get('exclude_projects') === 'true';
   const excludeCover = params.get('exclude_cover') === 'true';
+  const printDark = params.get('print_dark') === 'true';
 
   useEffect(() => {
     if (redirect) {
@@ -28,6 +29,16 @@ export const Home = () => {
       navigate(redirect);
     }
   }, [redirect]);
+
+  useEffect(() => {
+    const printDarkClass = 'print-dark';
+    if (printDark && !document.body.classList.contains(printDarkClass)) {
+      document.body.classList.add(printDarkClass);
+    } else if (!printDark && document.body.classList.contains(printDarkClass)) {
+      document.body.classList.remove(printDarkClass);
+    }
+  }, [printDark]);
+
   return (
     <>
       <HomeJumbo />
