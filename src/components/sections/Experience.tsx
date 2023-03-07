@@ -4,6 +4,7 @@ import { Profile } from '../content/sidebar/Profile';
 import { ExperienceHeading } from '../headings/ExperienceHeading';
 import { ExperienceContent } from '../content/body/ExperienceContent';
 import spacing from '../../styles/spacing.module.pcss';
+import { Download } from '../content/sidebar/Download';
 
 export const Experience = () => (
   <PaperPage>
@@ -12,6 +13,7 @@ export const Experience = () => (
         <>
           <div className={`${spacing.mtDouble}`}>
             <Profile />
+            <Download />
           </div>
         </>
       }
