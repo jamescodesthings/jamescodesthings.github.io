@@ -15,7 +15,7 @@ export const Badge = ({ children, icon, className }: PropsWithChildren<PropsWith
       <div className={`${styles.badge} ${typography.body} ${className}`}>
         <div className={`${styles.badgeInner}`}>
           {icon && <span className={`${styles.icon} text-[1.2em]`}>{icon}</span>}
-          <span className={`${styles.text}  text-type-dark dark:text-type`}>{children}</span>
+          <span className={`${styles.text}  text-type-dark dark:text-type print:text-type`}>{children}</span>
         </div>
       </div>
     </>

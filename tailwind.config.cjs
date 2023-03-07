@@ -16,6 +16,8 @@ const md = rem(12);
 const lg = rem(14);
 const xl = rem(16);
 const xl2 = rem(18);
+const xl6 = rem(26);
+const xl7 = rem(28);
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -50,6 +52,8 @@ module.exports = {
         'lg': lg,
         'xl': xl,
         '2xl': xl2,
+        '6xl': xl6,
+        '7xl': xl7,
         '10xl': '5rem',
       },
       zIndex: {

@@ -4,7 +4,7 @@ import { Experience } from '../components/sections/Experience';
 import { CoverLetter } from '../components/sections/CoverLetter';
 import { HomeJumbo } from '../components/sections/HomeJumbo';
 import { Footer } from '../components/ui/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from 'usehooks-ts';
 import { useEffect } from 'react';
 
@@ -16,6 +16,10 @@ import { useEffect } from 'react';
 export const Home = () => {
   const navigate = useNavigate();
   const [redirect, setRedirect] = useLocalStorage('redirect-path', '');
+  const [params] = useSearchParams();
+
+  const excludeProjects = params.get('exclude_projects') === 'true';
+  const excludeCover = params.get('exclude_cover') === 'true';
 
   useEffect(() => {
     if (redirect) {
@@ -27,10 +31,10 @@ export const Home = () => {
   return (
     <>
       <HomeJumbo />
-      <CoverLetter />
+      {!excludeCover && <CoverLetter />}
       <Experience />
       <Skills />
-      <Projects />
+      {!excludeProjects && <Projects />}
       <Footer />
     </>
   );
