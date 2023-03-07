@@ -3,11 +3,12 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: circleci/node:lts-browsers
+      - image: cimg/node:current-browsers
     working_directory: ~/project
 
 orbs:
   node: circleci/node@5.1.0
+  browser-tools: circleci/browser-tools@1.4.1
 
 commands:
   add_key:
