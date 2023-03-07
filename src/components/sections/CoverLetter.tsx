@@ -9,6 +9,7 @@ import { Availability } from '../content/sidebar/Availability';
 import { Seeking } from '../content/sidebar/Seeking';
 import spacing from '../../styles/spacing.module.pcss';
 import typography from '../../styles/typography.module.pcss';
+import { Download } from '../content/sidebar/Download';
 
 export const CoverLetter = () => (
   <PaperPage>
@@ -20,6 +21,7 @@ export const CoverLetter = () => (
           <Contact />
           <Availability />
           <Seeking />
+          <Download />
         </>
       }
     >
