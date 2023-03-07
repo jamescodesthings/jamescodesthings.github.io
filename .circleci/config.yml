@@ -89,23 +89,23 @@ jobs:
       - copy_circle_conf_to_gh_pages
       - deploy_gh_pages
 
-#  print:
-#    docker:
-#      - image: circleci/node:12-browsers
-#    steps:
-#      - add_key
-#      - checkout
-#      - gitconf
-#      - attach_build_from_workspace
-#      - node/install-packages:
-#          pkg-manager: npm
-#      - run:
-#        name: Run the application
-#        command: npm run serve
-#        background: true
-#      - run:
-#          name: Run tests
-#          command: npm run test
+  print:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - add_key
+      - checkout
+      - gitconf
+      - attach_build_from_workspace
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+        name: Run the application
+        command: npm run serve:dist
+        background: true
+      - run:
+          name: Run tests
+          command: npm run generate:pdf
 
 workflows:
   build_and_deploy:
