@@ -3,11 +3,11 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: cimg/node:lts
+      - image: circleci/node:lts-browsers
     working_directory: ~/project
 
 orbs:
-  node: circleci/node@4.7
+  node: circleci/node@5.1.0
 
 commands:
   add_key:
@@ -30,6 +30,16 @@ commands:
       - persist_to_workspace:
           root: ~/project
           paths: dist/*
+  save_artifacts:
+    description: 'Save built artifacts'
+    steps:
+      - run:
+          name: Bundle Artifacts
+          command: |
+            tar czf ./dist.tar.gz --directory=dist .
+      - store_artifacts:
+          path: ./dist.tar.gz
+          destination: dist.tar.gz
   attach_build_from_workspace:
     description: 'Attach build directory'
     steps:
@@ -69,13 +79,25 @@ jobs:
           name: Build dist
           command: npm run build
       - save_build_to_workspace
+
+  print:
+    executor: node
+    steps:
+      - add_key
+      - checkout
+      - gitconf
+      - attach_build_from_workspace
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: Bundle Artifacts
-          command: |
-            tar czf ./dist.tar.gz --directory=dist .
-      - store_artifacts:
-          path: ./dist.tar.gz
-          destination: dist.tar.gz
+          name: Run the application
+          command: npm run serve:dist
+          background: true
+      - run:
+          name: Generate PDFs
+          command: npm run generate:pdf
+      - save_build_to_workspace
+      - save_artifacts
 
   deploy:
     executor: node
@@ -89,24 +111,6 @@ jobs:
       - copy_circle_conf_to_gh_pages
       - deploy_gh_pages
 
-#  print:
-#    docker:
-#      - image: circleci/node:12-browsers
-#    steps:
-#      - add_key
-#      - checkout
-#      - gitconf
-#      - attach_build_from_workspace
-#      - node/install-packages:
-#          pkg-manager: npm
-#      - run:
-#        name: Run the application
-#        command: npm run serve
-#        background: true
-#      - run:
-#          name: Run tests
-#          command: npm run test
-
 workflows:
   build_and_deploy:
     jobs:
@@ -118,15 +122,19 @@ workflows:
                 - /feature\/.*/
                 - /hotfix\/.*/
                 - /support\/.*/
-      - deploy:
+      - print:
           requires:
             - build
           filters:
             branches:
+              ignore:
+                - gh-pages
+                - /feature\/.*/
+                - /hotfix\/.*/
+                - /support\/.*/
+      - deploy:
+          requires:
+            - print
+          filters:
+            branches:
               only: main
-#      - print:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: main
