@@ -2,11 +2,6 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import path from 'path';
 import fs from 'fs-extra';
 
-const sleep = async (ms: number) => {
-  console.log('Waiting for %sms', ms);
-  return new Promise(resolve => setTimeout(() => resolve(true), ms));
-};
-
 export class CVToPDF {
   mappings = [
     { url: 'http://localhost:8080/?exclude_projects=true&print_contact=true', filename: 'cv.pdf' },
