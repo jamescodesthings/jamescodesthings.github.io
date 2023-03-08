@@ -9,10 +9,14 @@ const sleep = async (ms: number) => {
 
 export class CVToPDF {
   mappings = [
-    { url: 'http://localhost:8080/?exclude_projects=true', filename: 'cv.pdf' },
-    { url: 'http://localhost:8080/?print_dark=true&exclude_projects=true', filename: 'dark-cv.pdf' },
-    { url: 'http://localhost:8080', filename: 'cv-with-projects.pdf' },
-    { url: 'http://localhost:8080/?print_dark=true', filename: 'dark-cv-with-projects.pdf' },
+    { url: 'http://localhost:8080/?exclude_projects=true&print_contact=true', filename: 'cv.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true&exclude_projects=true&print_contact=true', filename: 'cv.dark.pdf' },
+    { url: 'http://localhost:8080/?print_contact=true', filename: 'cv.projects.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true&print_contact=true', filename: 'cv.dark.projects.pdf' },
+    { url: 'http://localhost:8080/?exclude_projects=true', filename: 'cv.no-contact.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true&exclude_projects=true', filename: 'cv.dark.no-contact.pdf' },
+    { url: 'http://localhost:8080/', filename: 'cv.projects.no-contact.pdf' },
+    { url: 'http://localhost:8080/?print_dark=true', filename: 'cv.dark.projects.no-contact.pdf' },
   ];
 
   private browser!: Browser;

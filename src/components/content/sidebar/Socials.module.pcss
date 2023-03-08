@@ -1,9 +1,11 @@
 .wrapper {
   @apply flex flex-col justify-start print:hidden;
+  &.print-contact {
+    @apply print:flex;
+  }
 }
 .button {
   @apply block w-full;
-  @apply print:hidden;
   svg,
   img {
     @apply w-full;
