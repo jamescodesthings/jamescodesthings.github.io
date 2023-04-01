@@ -36,6 +36,28 @@ export type ExperienceEntry = {
 
 export const Experience: ExperienceEntry[] = [
   {
+    employer: '7digital',
+    from: dayjs('2023-03-28'),
+    summary: 'A new role in an awesome company. Watch this space.',
+    tech: [
+      <Badge key={'tech-node-js'} icon={<DevIcon icon={`devicon-nodejs-plain`} />}>
+        Node.js
+      </Badge>,
+      <Badge key={'tech-gcp'} icon={<DevIcon icon={`devicon-googlecloud-plain`} />}>
+        GCP
+      </Badge>,
+      <Badge key={'tech-aws'} icon={<DevIcon icon={`devicon-amazonwebservices-original`} />}>
+        AWS
+      </Badge>,
+      <Badge key={'tech-tf'} icon={<DevIcon icon={`devicon-terraform-plain`} />}>
+        Terraform
+      </Badge>,
+      <Badge key={'tech-csharp'} icon={<DevIcon icon={`devicon-csharp-plain`} />}>
+        C#
+      </Badge>,
+    ],
+  },
+  {
     employer: 'Engineius',
     from: dayjs('2020-07-01'),
     to: dayjs('2023-02-01'),
@@ -52,7 +74,7 @@ export const Experience: ExperienceEntry[] = [
       ],
     ],
     tech: [
-      <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-typescript-plain`} />}>
+      <Badge key={'tech-typescript'} icon={<DevIcon icon={`devicon-typescript-plain`} />}>
         Typescript
       </Badge>,
       <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-dotnetcore-plain`} />}>
@@ -64,7 +86,7 @@ export const Experience: ExperienceEntry[] = [
       <Badge key={'tech-ns'} icon={<img src="/assets/icons/nativescript-logo.png" alt={'nativescript eww'} />}>
         Nativescript
       </Badge>,
-      <Badge key={'tech-net-core'} icon={<DevIcon icon={`devicon-mysql-plain`} />}>
+      <Badge key={'tech-mysql'} icon={<DevIcon icon={`devicon-mysql-plain`} />}>
         MySQL
       </Badge>,
     ],
