@@ -22,7 +22,7 @@
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "serve:dist": "live-server ./dist",
-    "generate:pdf": "ts-node-esm ./src/scripts/generate-pdf.ts",
+    "generate:pdf": "node --loader ts-node/esm ./src/scripts/generate-pdf.ts",
     "deploy:gh-pages": "gh-pages -t -d dist"
   },
   "dependencies": {
