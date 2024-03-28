@@ -10,7 +10,7 @@ export const Jumbotron = ({ className, children }: PropsWithChildren<PropsWithCl
     <Container screen={true} hideInPrint={true}>
       <section className={`${styles.jumbo} ${getClassFromStyles(styles, className)}`}>
         <div className={`${styles.jumbotronCard}`}>
-          <Texture name={`fabric-light`} />
+          {/* <Texture name={`fabric-light`} /> */}
           <div className={`${styles.jumbotronContent}`}>{children}</div>
         </div>
       </section>
