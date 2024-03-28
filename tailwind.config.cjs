@@ -68,6 +68,7 @@ module.exports = {
         'placeholder-4': "url('https://picsum.photos/id/296/1920/1280')",
         'placeholder-railway': "url('https://picsum.photos/id/345/1920/1280')",
         'placeholder-abandoned': "url('../../assets/backgrounds/1.png')",
+        'placeholder-abandoned-2': "url('../../assets/backgrounds/6.jpg')",
         'placeholder-fry': "url('../../assets/backgrounds/2.jpg')",
         'placeholder-walk': "url('../../assets/backgrounds/3.jpg')",
         'placeholder-walk-2': "url('../../assets/backgrounds/4.jpg')",
