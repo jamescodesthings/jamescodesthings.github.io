@@ -36,25 +36,30 @@ export type ExperienceEntry = {
 
 export const Experience: ExperienceEntry[] = [
   {
-    employer: '7digital',
+    employer: 'Songtradr',
     from: dayjs('2023-03-28'),
-    summary: 'A new role in an awesome company. Watch this space.',
+    summary: "Ingesting the world's music one release at a time.",
     tech: [
-      <Badge key={'tech-node-js'} icon={<DevIcon icon={`devicon-nodejs-plain`} />}>
-        Node.js
+      <Badge key={'tech-aws'} icon={<DevIcon icon={`devicon-amazonwebservices-original`} />}>
+        AWS
       </Badge>,
       <Badge key={'tech-gcp'} icon={<DevIcon icon={`devicon-googlecloud-plain`} />}>
         GCP
       </Badge>,
-      <Badge key={'tech-aws'} icon={<DevIcon icon={`devicon-amazonwebservices-original`} />}>
-        AWS
+      <Badge key={'tech-node-js'} icon={<DevIcon icon={`devicon-nodejs-plain`} />}>
+        Node.js
+      </Badge>,
+      <Badge key={'tech-dotnet'} icon={<DevIcon icon={`devicon-dotnetcore-plain`} />}>
+        .Net
       </Badge>,
       <Badge key={'tech-tf'} icon={<DevIcon icon={`devicon-terraform-plain`} />}>
         Terraform
       </Badge>,
-      <Badge key={'tech-csharp'} icon={<DevIcon icon={`devicon-csharp-plain`} />}>
-        C#
-      </Badge>,
+    ],
+
+    detail: [
+      ['I joined the Media Delivery and Ingestion team at Songtradr in March 2023 as a Senior Software Engineer.', ''],
+      [''],
     ],
   },
   {
