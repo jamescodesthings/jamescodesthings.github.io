@@ -35,6 +35,40 @@ const SeekingContent = () => (
   </>
 );
 
+const SeekingContent2 = () => (
+  <>
+    <p>
+      Hey, I&apos;m <Highlight>James</Highlight>, a Senior Software Engineer based in the Midlands, and I appreciate you
+      taking the time to review my CV.
+    </p>
+    <p>
+      I&apos;m currently seeking <Highlight>full-time remote</Highlight> opportunities as a{' '}
+      <Highlight>Senior Developer</Highlight>. With over 10 years of commercial web development experience and more than
+      5 years building cross-platform mobile applications, I bring a deep and well-rounded skill set to any team.
+    </p>
+    <p>
+      Over the past two years, have built and operated multiple production applications across both{' '}
+      <Highlight>AWS</Highlight> and <Highlight>GCP</Highlight>, gaining solid cross-cloud experience in real-world
+      environments.
+    </p>
+    <p>
+      My preferred stack includes <Highlight>Node.js</Highlight> or <Highlight>.NET Core</Highlight> on the backend,
+      paired with <Highlight>React</Highlight> and Tailwind on the frontend. That said, I&apos;ve worked extensively
+      across a broad range of frontend and server-side technologies, and I&apos;m quick to adapt where needed.
+    </p>
+    <p>
+      I started building for the web at age 12, growing my skills alongside the evolution of the web itself — from
+      desktop to mobile and beyond. Today, I specialise in full-stack development within the JavaScript ecosystem, but I
+      also bring experience in a wide range of team environments, workflows, and technical architectures.
+    </p>
+    <p>
+      I&apos;d be a strong addition to any dev team looking for a seasoned, pragmatic engineer with a passion for clean
+      code, great UX, and effective collaboration.
+    </p>
+    <p>Thanks again for your time,</p>
+  </>
+);
+
 const NotSeekingContent = () => (
   <>
     <p>
@@ -71,10 +105,10 @@ export const CoverLetterContent = () => {
   const { isSeeking } = useContext(SeekingContext);
   return (
     <Prose>
-      {isSeeking && <SeekingContent />}
+      {isSeeking && <SeekingContent2 />}
       {!isSeeking && <NotSeekingContent />}
-      <hr className={`print:invisible ${utils.hr}`} />
       <em>James Macmillan</em>
+      <hr className={`print:invisible ${utils.hr}`} />
       <div className={'mt-12'}>
         This <span className={`print:hidden`}>website</span>
         <span className={`hidden print:inline`}>CV</span> was written with ❤️ in the Midlands, Using{' '}
