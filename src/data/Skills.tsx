@@ -31,13 +31,6 @@ export type Skill = Sortable & {
 
 export const rawSkills: Skill[] = [
   {
-    slug: 'typescript',
-    name: 'Typescript',
-    icon: 'devicon-typescript-plain',
-    type: SkillType.Language,
-    layer: SkillLayer.FullStack,
-  },
-  {
     slug: 'html',
     name: 'HTML 5',
     icon: 'devicon-html5-plain',
@@ -55,6 +48,13 @@ export const rawSkills: Skill[] = [
     slug: 'javascript',
     name: 'Javascript',
     icon: 'devicon-javascript-plain',
+    type: SkillType.Language,
+    layer: SkillLayer.FullStack,
+  },
+  {
+    slug: 'typescript',
+    name: 'Typescript',
+    icon: 'devicon-typescript-plain',
     type: SkillType.Language,
     layer: SkillLayer.FullStack,
   },
