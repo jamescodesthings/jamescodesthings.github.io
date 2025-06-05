@@ -33,17 +33,19 @@ export const SkillsContent = () => {
     <>
       <Prose>
         <p>
-          Below you will find a summary of some of the key technologies and tooling that I have experience with. If you
-          would like to know if I&apos;ve used a particular technology that&apos;s not listed, please get in touch.
+          Here&apos;s a quick overview of the technologies and tools I&apos;ve worked with over the years. If
+          there&apos;s something specific you&apos;re curious about that&apos;s not listed, feel free to reach out —
+          there&apos;s a good chance I&apos;ve come across it.
         </p>
         <p>
-          Over the last decade I&apos;ve picked up a wealth of experience in web and mobile application development.
-          This has lead to lots of experience with UX/UI Design, Unit Testing, CI/CD, Software Architecture, DBMS,
-          Performance Optimisation, and more.
+          Over the last decade, I&apos;ve built up a broad range of experience in web and mobile development.
+          That&apos;s included everything from UX/UI design and performance tuning to unit testing, CI/CD pipelines,
+          software architecture, and working with various databases.
         </p>
         <p>
-          Throughout my career I have mentored and lead other developers of varying skill levels. I&apos;ve worked in a
-          variety of teams with a variety of processes, and I&apos;m most comfortable with Agile methodologies.
+          I&apos;ve also had the chance to lead and mentor developers at all levels, and I&apos;ve worked across a mix
+          of teams and processes — though I&apos;m happiest in a well-run Agile environment with good people and a clear
+          purpose.
         </p>
       </Prose>
       <article className={`flex flex-wrap `}>

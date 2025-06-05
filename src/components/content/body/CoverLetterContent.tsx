@@ -39,7 +39,7 @@ const SeekingContent2 = () => (
   <>
     <p>
       Hey, I&apos;m <Highlight>James</Highlight>, a Senior Software Engineer based in the Midlands, and I appreciate you
-      taking the time to review my CV.
+      taking the time to check out my CV.
     </p>
     <p>
       I&apos;m currently seeking <Highlight>full-time remote</Highlight> opportunities as a{' '}
