@@ -26,7 +26,7 @@ export const Footer = () => (
         </ul>
       </div>
       <hr className={`${utils.hr} ${spacing.myHalf}`} />
-      <span className={`${styles.copyright}`}>© 2023 James Macmillan. All Rights Reserved.</span>
+      <span className={`${styles.copyright}`}>© 2025 James Macmillan. All Rights Reserved.</span>
     </footer>
   </Container>
 );
