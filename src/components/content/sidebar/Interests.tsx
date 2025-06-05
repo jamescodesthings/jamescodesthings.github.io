@@ -9,13 +9,14 @@ export const Interests = () => (
       <SidebarHeading title={`Interests`} className={`${spacing.mbHalf}`}></SidebarHeading>
       <Prose>
         <p>
-          I&apos;m a keen photographer, avid reader, and Cyclist. I find my interests changing over time but the main
-          few stay the same.
+          Outside of work, I&apos;m a keen photographer and avid reader, and I&apos;ve recently been getting really into
+          3D modelling. My interests shift and grow over time, but a few creative passions have stuck with me.
         </p>
         <p>
-          When I&apos;m not working, I like to continuously learn. In the last few years I&apos;ve taken up{' '}
-          <Highlight>Game Programming</Highlight>, <Highlight>Machine Learning</Highlight>, and{' '}
-          <Highlight>Data Science</Highlight>. I find that learning new paradigms and languages keeps me sharp.
+          I enjoy learning new things to stretch my thinking and grow as a developer — over the past few years I&apos;ve
+          explored <Highlight>game programming</Highlight>, <Highlight>machine learning</Highlight>, and{' '}
+          <Highlight>parametric modelling</Highlight>. Picking up new paradigms and ways of thinking helps me stay sharp
+          and keeps my curiosity alive.
         </p>
       </Prose>
     </section>
