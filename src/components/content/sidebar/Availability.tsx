@@ -4,6 +4,6 @@ import { PropsWithClassName } from '../../../types/PropsWithClassName';
 
 export const Availability = () => (
   <SidebarHeading icon={<Icon />} title={'Availability'}>
-    <span>Immediate</span>
+    <span>1 Month</span>
   </SidebarHeading>
 );
