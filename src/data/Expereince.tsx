@@ -56,10 +56,16 @@ export const Experience: ExperienceEntry[] = [
         Terraform
       </Badge>,
     ],
-
     detail: [
-      ['I joined the Media Delivery and Ingestion team at Songtradr in March 2023 as a Senior Software Engineer.', ''],
-      [''],
+      [
+        'Joined the Media Delivery and Ingestion team, where I worked on building and maintaining large-scale, serverless applications that handled the ingestion, processing, and global distribution of music and metadata.',
+        'I contributed to re-platforming key parts of the output pipeline, including pricing logic and global availability handling, and helped implement a scalable document store to support responsive release ingestion.',
+      ],
+      [
+        'The role gave me deep exposure to fast-paced, pragmatic development using XP practices and TDD.',
+        'The team focused on using the right tool for the job, delivering robust, high-performance solutions while cutting unnecessary complexity and waste.',
+        'We made it a priority to empower business users with fast, reliable access to the data they needed, supporting both internal goals and growing client demands.',
+      ],
     ],
   },
   {
