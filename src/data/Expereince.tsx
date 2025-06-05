@@ -58,7 +58,7 @@ export const Experience: ExperienceEntry[] = [
     ],
     detail: [
       [
-        'Joined the Media Delivery and Ingestion team, where I worked on building and maintaining large-scale, serverless applications that handled the ingestion, processing, and global distribution of music and metadata.',
+        'I joined the Media Delivery and Ingestion team, where I worked on building and maintaining large-scale, serverless applications that handled the ingestion, processing, and global distribution of music and its metadata.',
         'I contributed to re-platforming key parts of the output pipeline, including pricing logic and global availability handling, and helped implement a scalable document store to support responsive release ingestion.',
       ],
       [

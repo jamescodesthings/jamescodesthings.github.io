@@ -40,7 +40,7 @@ module.exports = {
         'light-dark': colors.stone['100'],
         'lighter': colors.stone['600'],
         'lighter-dark': colors.stone['300'],
-        'primary': colors.amber['600'],
+        'primary': colors.violet['500'],
         'accent': colors.fuchsia['500'],
         'tertiary': colors.sky['500'],
       },
