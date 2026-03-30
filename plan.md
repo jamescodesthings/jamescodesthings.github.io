@@ -1,10 +1,12 @@
 # Rewrite for 2026
 
-## Replace with a simple NodeJS based public site and PDF generator in the style of https://github.com/jamescodesthings/campsnap
+Summary: Replace with a simple NodeJS based public site and PDF generator in the style of https://github.com/jamescodesthings/campsnap
 
 Overview: We want to significantly improve and simplify this website. We're going to use a more recent project that uses a simple node-js based site builder and bundler, with our original data to populate the website.
 
 **Important note for all tasks: The text content of the website should remain the same, the visual style should be similar, but the backend archtiecture should change**
+
+# Task
 
 - [ ] Research the architecture of https://github.com/jamescodesthings/campsnap and store the result of the research in `desired-architecture.md`
   - Include code examples of key files like the Makefile, docker-compose.yml and some example node scripts
