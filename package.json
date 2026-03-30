@@ -1,51 +1,15 @@
 {
-  "name": "codesthings-vite",
+  "name": "codesthings",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm run -s dev",
-    "start:host": "npm run -s dev -- --host",
-    "dev": "vite --port 8080",
-    "dev:vite": "npm run -s dev",
-    "dev:all": "concurrently \"npm:dev:*(!all)\"",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "chore:pin": "npx npm-pin-dependencies",
     "format": "prettier .",
     "format:check": "npm run format -- --check",
-    "format:fix": "npm run format -- --write",
-    "serve:dist": "live-server ./dist",
-    "generate:pdf": "node --loader ts-node/esm ./src/scripts/generate-pdf.ts",
-    "deploy:gh-pages": "gh-pages -t -d dist"
+    "format:fix": "npm run format -- --write"
   },
-  "dependencies": {
-    "@faker-js/faker": "7.6.0",
-    "devicon": "2.15.1",
-    "lodash": "4.17.21",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.8.1",
-    "usehooks-ts": "2.9.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@tailwindcss/forms": "0.5.3",
-    "@tailwindcss/typography": "0.5.8",
-    "@types/fs-extra": "11.0.1",
-    "@types/react": "18.0.26",
-    "@types/react-dom": "18.0.10",
-    "@vitejs/plugin-react": "3.0.1",
-    "concurrently": "7.6.0",
-    "dayjs": "1.11.7",
-    "fs-extra": "11.1.0",
-    "gh-pages": "5.0.0",
-    "live-server": "1.2.2",
-    "prettier": "2.8.2",
-    "puppeteer": "19.7.3",
-    "tailwindcss": "3.2.4",
-    "ts-node": "10.9.1",
-    "typescript": "4.9.4",
-    "vite": "4.0.4",
-    "vite-plugin-svgr": "2.4.0"
+    "prettier": "2.8.2"
   }
 }

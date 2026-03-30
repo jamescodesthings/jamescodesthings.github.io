@@ -31,7 +31,7 @@ Overview: We want to significantly improve and simplify this website. We're goin
   - Keep 'prettier' and the 'prettierrc'
 - [x] Remove postcss
 - [x] remove storybook
-- [ ] Remove React
+- [x] Remove React
 - [ ] Remove Vite
 - [ ] Remove all JS from the front end
 - [ ] Remove Tailwind
@@ -50,3 +50,6 @@ Overview: We want to significantly improve and simplify this website. We're goin
     - Add a gif
     - Add the text "I feel like you're just here for the campsnap filters" somewhere
     - https://www.youtube.com/shorts/VdAfa1z_aGg
+  - [ ] Rewrite the readme with the new structure
+  - [ ] Write usage docs
+  - [ ] Write a summary blog about how the site works and put it on a blog page under the site `https://codesthings/blog/[date]`
