@@ -17,11 +17,11 @@ Overview: We want to significantly improve and simplify this website. We're goin
   - Populate with build commands
   - This is our top-level task runner
   - We expect the user to use make to build and run the project
-- [ ] Add node scripts to:
+- [x] Add node scripts to:
   - run the server
   - Build the website into a single `public` directory
   - Watch the source files and rebuild the website in the `public` directory
-- [ ] Add `docker-compose.yml`
+- [x] Add `docker-compose.yml`
   - Add `gotenberg` for PDF printing like in https://github.com/jamescodesthings/campsnap-filters
   - Add `serve` for a local website like in https://github.com/jamescodesthings/campsnap-filters
   - Add a `pages` service that inherits from the server to build the gh pages like in https://github.com/jamescodesthings/campsnap-filters

@@ -1,0 +1,56 @@
+services:
+  serve:
+    image: joseluisq/static-web-server:2-alpine
+    container_name: 'serve'
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    environment:
+      - SERVER_ROOT=/var/public
+      - SERVER_HEALTH=true
+    volumes:
+      - ./generator/public:/var/public
+    healthcheck:
+      test: 'nc -z localhost 80 || exit 1'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  gotenberg:
+    image: gotenberg/gotenberg:8
+    environment:
+      API_TIMEOUT: 300s
+      LOG_LEVEL: info
+    depends_on:
+      serve:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  build:
+    image: node:22-alpine
+    working_dir: /app/generator
+    environment:
+      SERVER_URL: http://serve:80
+      GOTENBERG_URL: http://gotenberg:3000
+    depends_on:
+      serve:
+        condition: service_healthy
+      gotenberg:
+        condition: service_healthy
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && npm start"
+
+  pages:
+    image: node:22-alpine
+    working_dir: /app/generator
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && npm run pages"
