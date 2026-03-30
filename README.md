@@ -1,6 +1,8 @@
 # codesthings.com
 
-Personal portfolio/CV website for James Macmillan, hosted at [codesthings.com](https://codesthings.com).
+[![CodesThings.com](https://img.shields.io/badge/Visit-CodesThings.com-brightgreen?style=for-the-badge)](https://codesthings.com)
+
+Personal portfolio, CV, and profile for James Macmillan, hosted at [codesthings.com](https://codesthings.com).
 
 ## Architecture
 
@@ -60,3 +62,9 @@ Pushes to `main` trigger a GitHub Actions workflow that:
 1. Builds the site
 2. Generates a PDF copy via Gotenberg
 3. Deploys to the `pages` branch with CNAME for codesthings.com
+
+## Contributing
+
+It's MIT Licenced!
+
+Feel free to raise PRs, reuse the technical architecture behind the site.
