@@ -57,3 +57,4 @@ Overview: We want to significantly improve and simplify this website. We're goin
   - Should use the same style as the base/core of the site
   - Should have links back to the main site
 - [x] Add links to the homepage for the blog
+- [x] We have two readmes, delete the old one that mentions react and vite and shit. Add the happy intro from that one to the new readme.
