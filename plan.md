@@ -79,3 +79,9 @@ Overview: We want to significantly improve and simplify this website. We're goin
     - Research current design trends in 2026 and use them as a basis for further design ideas
   - [x] Include examples of relevant websites and useful resources where necessary
     - Use screenshots or descriptions of screenshots where possible to get really detailed analysis of the visual style
+  - [ ] Redesign the website using the modern design research in './example-design/research.md'
+    - Aim for a modern design as described by the research
+    - Aim for a friendly tone
+    - Aim for a professional vibe
+    - Use black, white and pop (hyperpop) style colors
+    - If a design challenge arises; research modern solutions
