@@ -561,4 +561,75 @@ img {
     border-radius: 0;
     page-break-inside: avoid;
   }
+
+  .campsnap-banner {
+    display: none;
+  }
+}
+
+/* ============================================
+   Campsnap Banner
+   ============================================ */
+
+.campsnap-banner {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  color: #ffffff;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+
+.campsnap-banner__content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.campsnap-banner__text h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-sm);
+  color: #ffffff;
+}
+
+.campsnap-banner__text p {
+  font-size: var(--text-lg);
+  opacity: 0.9;
+  margin-bottom: var(--space-md);
+}
+
+.campsnap-banner__link {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--color-accent);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-lg);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.campsnap-banner__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.campsnap-banner__gif {
+  max-width: 300px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .campsnap-banner__content {
+    flex-direction: column;
+  }
+
+  .campsnap-banner__text h2 {
+    font-size: var(--text-xl);
+  }
 }
