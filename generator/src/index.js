@@ -4,7 +4,7 @@ import showdown from 'showdown';
 import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import config from './config.js';
-import { readFile, readJson, writeFile, mkdirp, rmrf, cpDir, cp, exists, ls } from './utils.js';
+import { readFile, readJson, writeFile, mkdirp, rmrf, cpDir, exists, ls } from './utils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -48,32 +48,10 @@ async function copyAssets(outputDir) {
   // Copy JS
   await cpDir(resolve(root, 'static/js'), `${outputDir}/js`);
 
-  // Copy favicons
-  const faviconSrc = resolve(root, config.faviconDir);
-  if (await exists(faviconSrc)) {
-    await cpDir(faviconSrc, `${outputDir}/assets/favicon`);
-  }
-
-  // Copy icons
-  const iconSrc = resolve(root, config.iconDir);
-  if (await exists(iconSrc)) {
-    await cpDir(iconSrc, `${outputDir}/assets/icons`);
-  }
-
-  // Copy textures
-  const textureSrc = resolve(root, config.textureDir);
-  if (await exists(textureSrc)) {
-    await cpDir(textureSrc, `${outputDir}/assets/textures`);
-  }
-
-  // Copy manifest and 404 if they exist
-  const manifestSrc = resolve(root, '../public/manifest.json');
-  if (await exists(manifestSrc)) {
-    await cp(manifestSrc, `${outputDir}/manifest.json`);
-  }
-  const notFoundSrc = resolve(root, '../public/404.html');
-  if (await exists(notFoundSrc)) {
-    await cp(notFoundSrc, `${outputDir}/404.html`);
+  // Copy root assets directory (icons, images, gifs, logos)
+  const assetsSrc = resolve(root, config.assetsDir);
+  if (await exists(assetsSrc)) {
+    await cpDir(assetsSrc, `${outputDir}/assets`);
   }
 }
 

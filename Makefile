@@ -43,6 +43,6 @@ pages-local:
 
 # Clean build output
 clean:
-	rm -rf generator/public
+	rm -rf public
 	rm -rf pages
 .PHONY: clean
