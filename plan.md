@@ -52,8 +52,8 @@ Overview: We want to significantly improve and simplify this website. We're goin
     - https://www.youtube.com/shorts/VdAfa1z_aGg
 - [x] Rewrite the readme with the new structure
 - [x] Write usage docs
-- [ ] Write a summary blog about how the site works and put it on a blog page under the site somewhere like `https://codesthings/blog/[date]`
+- [x] Write a summary blog about how the site works and put it on a blog page under the site somewhere like `https://codesthings/blog/[date]`
   - Can use markdown for this
   - Should use the same style as the base/core of the site
   - Should have links back to the main site
-- [ ] Add links to the homepage for the blog
+- [x] Add links to the homepage for the blog
