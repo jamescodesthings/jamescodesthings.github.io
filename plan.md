@@ -67,15 +67,15 @@ Overview: We want to significantly improve and simplify this website. We're goin
     - Where you can improve the current descriptions and make them cohesive please do.
   - [x] During the file build, copy the assets used to the output directory, under a similar "assets" path.
   - [x] Update the broken assets on the homepage to reference the assets here.
-- [ ] redesign research
+- [x] redesign research
   - We want to redesign the site for 2026 and 2026 branding.
   - At the moment it lacks character and punch.
   - 2026 is all about boldness, cleanness and friendliness.
   - No more royal blue CVs, they suuuck!
   - in the `./example-design` folder and at https://codesthings.com/campsnap is an idea of an updated design of a microsite that uses these features.
-  - [ ] Describe as a design brief for this website in ./example-design/research.md
+  - [x] Describe as a design brief for this website in ./example-design/research.md
     - Use the example in example-design as a good example
     - Also use https://codesthings.com/campsnap as a good example design
     - Research current design trends in 2026 and use them as a basis for further design ideas
-  - [ ] Include examples of relevant websites and useful resources where necessary
+  - [x] Include examples of relevant websites and useful resources where necessary
     - Use screenshots or descriptions of screenshots where possible to get really detailed analysis of the visual style
