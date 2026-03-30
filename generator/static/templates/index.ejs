@@ -29,6 +29,18 @@
   <%- include('sections/experience', { sidebar, experience, profile }) %>
   <%- include('sections/skills', { sidebar, skills, education }) %>
   <%- include('sections/projects', { sidebar, projects }) %>
+  <% if (blogPosts && blogPosts.length > 0) { %>
+  <section class="paper-page">
+    <div class="blog-links">
+      <h3>Blog</h3>
+      <ul>
+        <% blogPosts.forEach(function(post) { %>
+        <li><a href="blog/<%= post.slug %>.html"><%= post.title %></a></li>
+        <% }); %>
+      </ul>
+    </div>
+  </section>
+  <% } %>
   <%- include('sections/footer') %>
 
   <script src="js/theme.js"></script>
