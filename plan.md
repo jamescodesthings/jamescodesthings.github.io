@@ -32,16 +32,16 @@ Overview: We want to significantly improve and simplify this website. We're goin
 - [x] Remove postcss
 - [x] remove storybook
 - [x] Remove React
-- [ ] Remove Vite
-- [ ] Remove all JS from the front end
-- [ ] Remove Tailwind
+- [x] Remove Vite
+- [x] Remove all JS from the front end
+- [x] Remove Tailwind
   - Replace with plain `CSS`
     - Use the CSS 3 spec
     - Use css variables for key theme elements
     - Use a theme with a switchable dark mode.
-- [ ] Replace CircleCI with Github Actions to:
-  - [ ] Build the website to the root of a `pages` branch to deploy to gh pages
-  - [ ] Build a printable PDF copy of the website
+- [x] Replace CircleCI with Github Actions to:
+  - [x] Build the website to the root of a `pages` branch to deploy to gh pages
+  - [x] Build a printable PDF copy of the website
 - [ ] Replace `.prettierignore` with a new copy that has no missing directories and only ignores output that is generated
 - [ ] Add a header that introduces the https://github.com/jamescodesthings/campsnap-filters project and links to it at https://codesthings/campsnap
   - It should use the "I feel like you're just here for the zipline" meme.
@@ -52,4 +52,8 @@ Overview: We want to significantly improve and simplify this website. We're goin
     - https://www.youtube.com/shorts/VdAfa1z_aGg
   - [ ] Rewrite the readme with the new structure
   - [ ] Write usage docs
-  - [ ] Write a summary blog about how the site works and put it on a blog page under the site `https://codesthings/blog/[date]`
+  - [ ] Write a summary blog about how the site works and put it on a blog page under the site somewhere like `https://codesthings/blog/[date]`
+    - Can use markdown for this
+    - Should use the same style as the base/core of the site
+    - Should have links back to the main site
+  - [ ] Add links to the homepage for the blog
