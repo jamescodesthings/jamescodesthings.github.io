@@ -25,8 +25,8 @@ Overview: We want to significantly improve and simplify this website. We're goin
   - Add `gotenberg` for PDF printing like in https://github.com/jamescodesthings/campsnap-filters
   - Add `serve` for a local website like in https://github.com/jamescodesthings/campsnap-filters
   - Add a `pages` service that inherits from the server to build the gh pages like in https://github.com/jamescodesthings/campsnap-filters
-- [ ] Remove `index.html`
-- [ ] Remove the pre-commit hooks
+- [x] Remove `index.html`
+- [x] Remove the pre-commit hooks
 - [ ] Remove the linter
   - Keep 'prettier' and the 'prettierrc'
 - [ ] Remove postcss
