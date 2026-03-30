@@ -42,7 +42,7 @@ Overview: We want to significantly improve and simplify this website. We're goin
 - [x] Replace CircleCI with Github Actions to:
   - [x] Build the website to the root of a `pages` branch to deploy to gh pages
   - [x] Build a printable PDF copy of the website
-- [ ] Replace `.prettierignore` with a new copy that has no missing directories and only ignores output that is generated
+- [x] Replace `.prettierignore` with a new copy that has no missing directories and only ignores output that is generated
 - [ ] Add a header that introduces the https://github.com/jamescodesthings/campsnap-filters project and links to it at https://codesthings/campsnap
   - It should use the "I feel like you're just here for the zipline" meme.
     - This should be prominent, early on in the website, in a header or jumbo somewhere.

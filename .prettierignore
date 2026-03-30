@@ -1,4 +1,7 @@
 # Prettier Ignore file
 package-lock.json
 
-dist/
+# Generated output
+generator/public/
+pages/
+node_modules/
