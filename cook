@@ -1,8 +1,12 @@
 #!/usr/bin/env zsh
 
-cook "Work on next task in plan.md. When it is complete, mark it as complete. git commit and push after every task with a useful message about what has been done and how." ralph 5 "DONE if all tasks complete, else NEXT" --yes --model sonnet
 
-# Option 2
-# cook "Work on next task in plan.md" \
-#   review "Code review" "DONE if no High issues, else ITERATE" \
-#   ralph 5 "DONE if all tasks complete, else NEXT"
+cook "Work on next task in plan.md. When it is complete, mark it as complete. git commit and push after every task with a useful message about what has been done and how." \
+  ralph 5 "DONE if all tasks complete, else NEXT" \
+  --yes
+
+
+
+# cook "Work on next task in plan.md. When it is complete, mark it as complete. git commit and push after every task with a useful message about what has been done and how." \
+#   ralph 5 "DONE if all tasks complete, else NEXT" \
+#   --yes --model sonnet
