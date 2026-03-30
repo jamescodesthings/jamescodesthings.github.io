@@ -1,0 +1,16 @@
+{
+  "name": "codesthings-generator",
+  "version": "1.0.0",
+  "description": "Static site generator for codesthings.com",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-deprecation ./src/index.js",
+    "watch": "node --no-deprecation ./src/watch.js",
+    "server": "node --no-deprecation ./src/server.js",
+    "pages": "node --no-deprecation ./src/pages.js"
+  },
+  "dependencies": {
+    "debug": "^4.4.3",
+    "ejs": "^3.1.10"
+  }
+}

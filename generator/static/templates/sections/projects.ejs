@@ -1,0 +1,59 @@
+<section class="paper-page">
+  <div class="body-with-sidebar">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Stacks</h3>
+        <% sidebar.stacks.forEach(paragraph => { %>
+          <p class="sidebar-text"><%= paragraph %></p>
+        <% }); %>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 class="section-heading">
+        <span class="heading-icon">🚀</span>
+        Projects
+      </h2>
+
+      <% projects.filter(p => !p.canHide).forEach(project => { %>
+        <div class="project-entry">
+          <div class="experience-header">
+            <h3 class="experience-employer"><%= project.employer %> — <%= project.name %></h3>
+            <span class="experience-dates"><%= formatDate(project.from) %></span>
+          </div>
+
+          <% if (project.leader) { %>
+            <p class="experience-summary"><%= project.leader %></p>
+          <% } %>
+
+          <% if (project.tech && project.tech.length > 0) { %>
+            <div class="tech-badges">
+              <% project.tech.forEach(tech => { %>
+                <span class="badge">
+                  <% if (tech.iconType === 'image') { %>
+                    <img src="assets/icons/<%= tech.icon.split('/').pop() %>" alt="<%= tech.label %>" class="badge-icon-img">
+                  <% } else { %>
+                    <i class="<%= tech.icon %> badge-icon"></i>
+                  <% } %>
+                  <%= tech.label %>
+                </span>
+              <% }); %>
+            </div>
+          <% } %>
+
+          <% if (project.summary) { %>
+            <div class="experience-detail">
+              <% project.summary.forEach(group => { %>
+                <div class="detail-group">
+                  <% group.forEach(paragraph => { %>
+                    <p><%= paragraph %></p>
+                  <% }); %>
+                </div>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+      <% }); %>
+    </main>
+  </div>
+</section>

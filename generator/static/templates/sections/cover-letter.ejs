@@ -1,0 +1,60 @@
+<section class="paper-page">
+  <div class="body-with-sidebar">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="avatar">
+          <img src="assets/favicon/favicon-color-228.png" alt="James Macmillan" class="avatar-img">
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Contact</h3>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">Phone</span>
+            <a href="tel:<%= sidebar.contact.phone %>"><%= sidebar.contact.phone %></a>
+          </li>
+          <li>
+            <span class="contact-label">Email</span>
+            <a href="mailto:<%= sidebar.contact.email %>"><%= sidebar.contact.email %></a>
+          </li>
+          <li>
+            <span class="contact-label">Location</span>
+            <span><%= sidebar.contact.address %></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Socials</h3>
+        <ul class="socials-list">
+          <li>
+            <a href="<%= sidebar.socials.linkedin %>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
+          <li>
+            <a href="<%= sidebar.socials.whatsapp.url %>" target="_blank" rel="noopener noreferrer">WhatsApp: <%= sidebar.socials.whatsapp.display %></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Availability</h3>
+        <p class="availability-badge"><%= sidebar.availability %></p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 class="section-heading">
+        <span class="heading-icon">📝</span>
+        Cover Letter
+      </h2>
+      <div class="prose">
+        <% const content = coverLetter.seeking ? coverLetter.content : coverLetter.notSeekingContent; %>
+        <% content.forEach(paragraph => { %>
+          <p><%= paragraph %></p>
+        <% }); %>
+        <p class="signature"><%= coverLetter.signature %></p>
+      </div>
+    </main>
+  </div>
+</section>
