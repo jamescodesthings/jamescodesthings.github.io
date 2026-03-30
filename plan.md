@@ -13,7 +13,7 @@ Overview: We want to significantly improve and simplify this website. We're goin
   - Include enough detail to take the key components of the architecture and apply them to a new project
 - [x] Move the JSON data files to the root `/data`
 - [x] Create a generator project in the style of https://github.com/jamescodesthings/campsnap-filters
-- [ ] Add Makefile in the style of https://github.com/jamescodesthings/campsnap-filters
+- [x] Add Makefile in the style of https://github.com/jamescodesthings/campsnap-filters
   - Populate with build commands
   - This is our top-level task runner
   - We expect the user to use make to build and run the project
