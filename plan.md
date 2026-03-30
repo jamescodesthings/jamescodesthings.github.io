@@ -29,8 +29,8 @@ Overview: We want to significantly improve and simplify this website. We're goin
 - [x] Remove the pre-commit hooks
 - [x] Remove the linter
   - Keep 'prettier' and the 'prettierrc'
-- [ ] Remove postcss
-- [ ] remove storybook
+- [x] Remove postcss
+- [x] remove storybook
 - [ ] Remove React
 - [ ] Remove Vite
 - [ ] Remove all JS from the front end
