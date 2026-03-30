@@ -11,8 +11,8 @@ Overview: We want to significantly improve and simplify this website. We're goin
 - [x] Research the architecture of https://github.com/jamescodesthings/campsnap-filters and store the result of the research in `desired-architecture.md`
   - Include code examples of key files like the Makefile, docker-compose.yml and some example node scripts
   - Include enough detail to take the key components of the architecture and apply them to a new project
-- [ ] Move the JSON data files to the root `/data`
-- [ ] Create a generator project in the style of https://github.com/jamescodesthings/campsnap-filters
+- [x] Move the JSON data files to the root `/data`
+- [x] Create a generator project in the style of https://github.com/jamescodesthings/campsnap-filters
 - [ ] Add Makefile in the style of https://github.com/jamescodesthings/campsnap-filters
   - Populate with build commands
   - This is our top-level task runner

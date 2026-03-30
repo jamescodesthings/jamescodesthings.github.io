@@ -1,0 +1,58 @@
+<section class="paper-page">
+  <div class="body-with-sidebar">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Profile</h3>
+        <% profile.forEach(paragraph => { %>
+          <p class="sidebar-text"><%= paragraph %></p>
+        <% }); %>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 class="section-heading">
+        <span class="heading-icon">💼</span>
+        Experience
+      </h2>
+
+      <% experience.forEach(job => { %>
+        <div class="experience-entry">
+          <div class="experience-header">
+            <h3 class="experience-employer"><%= job.employer %></h3>
+            <span class="experience-dates">
+              <%= formatDate(job.from) %> — <%= job.to ? formatDate(job.to) : 'Present' %>
+            </span>
+          </div>
+          <p class="experience-summary"><%= job.summary %></p>
+
+          <% if (job.tech && job.tech.length > 0) { %>
+            <div class="tech-badges">
+              <% job.tech.forEach(tech => { %>
+                <span class="badge">
+                  <% if (tech.iconType === 'image') { %>
+                    <img src="assets/icons/<%= tech.icon.split('/').pop() %>" alt="<%= tech.label %>" class="badge-icon-img">
+                  <% } else { %>
+                    <i class="<%= tech.icon %> badge-icon"></i>
+                  <% } %>
+                  <%= tech.label %>
+                </span>
+              <% }); %>
+            </div>
+          <% } %>
+
+          <% if (job.detail) { %>
+            <div class="experience-detail">
+              <% job.detail.forEach(group => { %>
+                <div class="detail-group">
+                  <% group.forEach(paragraph => { %>
+                    <p><%= paragraph %></p>
+                  <% }); %>
+                </div>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+      <% }); %>
+    </main>
+  </div>
+</section>

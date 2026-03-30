@@ -1,0 +1,27 @@
+[
+  {
+    "institution": "Coventry University",
+    "from": "2009-09-01",
+    "to": "2012-06-01",
+    "qualifications": [
+      {
+        "title": "BSc Computer Science",
+        "aside": "G400, 2.1 with Honors"
+      }
+    ]
+  },
+  {
+    "institution": "Caroline Chisholm School",
+    "from": "2002-09-01",
+    "to": "2009-06-01",
+    "qualifications": [
+      {
+        "title": "3 A Levels",
+        "aside": "Including Computing"
+      },
+      {
+        "title": "11 GCSEs"
+      }
+    ]
+  }
+]

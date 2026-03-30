@@ -1,0 +1,104 @@
+[
+  {
+    "employer": "Songtradr",
+    "from": "2023-03-28",
+    "summary": "Ingesting the world's music one release at a time.",
+    "tech": [
+      { "label": "AWS", "icon": "devicon-amazonwebservices-original" },
+      { "label": "GCP", "icon": "devicon-googlecloud-plain" },
+      { "label": "Node.js", "icon": "devicon-nodejs-plain" },
+      { "label": ".Net", "icon": "devicon-dotnetcore-plain" },
+      { "label": "Terraform", "icon": "devicon-terraform-plain" }
+    ],
+    "detail": [
+      [
+        "I joined the Media Delivery and Ingestion team, where I worked on building and maintaining large-scale, serverless applications that handled the ingestion, processing, and global distribution of music and its metadata.",
+        "I contributed to re-platforming key parts of the output pipeline, including pricing logic and global availability handling, and helped implement a scalable document store to support responsive release ingestion."
+      ],
+      [
+        "The role gave me deep exposure to fast-paced, pragmatic development using XP practices and TDD.",
+        "The team focused on using the right tool for the job, delivering robust, high-performance solutions while cutting unnecessary complexity and waste.",
+        "We made it a priority to empower business users with fast, reliable access to the data they needed, supporting both internal goals and growing client demands."
+      ]
+    ]
+  },
+  {
+    "employer": "Engineius",
+    "from": "2020-07-01",
+    "to": "2023-02-01",
+    "summary": "Overhauling, updating, and improving Mobile and Web apps.",
+    "tech": [
+      { "label": "Typescript", "icon": "devicon-typescript-plain" },
+      { "label": ".net core", "icon": "devicon-dotnetcore-plain" },
+      { "label": "Angular", "icon": "devicon-angularjs-plain" },
+      { "label": "Nativescript", "icon": "/assets/icons/nativescript-logo.png", "iconType": "image" },
+      { "label": "MySQL", "icon": "devicon-mysql-plain" }
+    ],
+    "detail": [
+      [
+        "I was tasked with overhauling the Engineius mobile app, while transitioning its development in house.",
+        "I significantly improved the performance, UX/UI, stability and maintainability of the app.",
+        "I also worked to significantly improve the architecture and performance of the company's main web app."
+      ],
+      [
+        "I delivered multiple business derived projects working closely with the end users involved.",
+        "I also lead and mentored new employees on the mobile app's development."
+      ]
+    ]
+  },
+  {
+    "employer": "Packt",
+    "from": "2017-11-01",
+    "to": "2020-01-01",
+    "summary": "Shipping the mobile app for the Subscription platform and going Serverless.",
+    "tech": [
+      { "label": "Node.js", "icon": "devicon-nodejs-plain" },
+      { "label": "AWS", "icon": "devicon-amazonwebservices-plain" },
+      { "label": "Serverless", "icon": "/assets/icons/sls.svg", "iconType": "image" },
+      { "label": "Angular", "icon": "devicon-angularjs-plain" },
+      { "label": "Cordova", "icon": "/assets/icons/cordova_256.png", "iconType": "image" },
+      { "label": "Postgres", "icon": "devicon-postgresql-plain" }
+    ],
+    "detail": [
+      [
+        "I worked with Packt for 2 years on the Subscription platform.",
+        "I was initially hired to expand the web application into a cross platform mobile app.",
+        "I was also instrumental in migrating the API to use the Serverless framework on AWS.",
+        "I worked with a team of developers with varying skill sets, helping to upskill and train new members of the team."
+      ],
+      [
+        "My development career became very focussed on Javascript stacks, writing brilliant code to solve complex solutions on a variety of platforms.",
+        "During my time with Packt I endeavoured to improve code quality across the stack, helping develop and implement the code style used in house."
+      ]
+    ]
+  },
+  {
+    "employer": "Severn Trent",
+    "from": "2012-09-01",
+    "to": "2017-10-01",
+    "summary": "Delivering web and mobile apps to drive the business forward.",
+    "tech": [
+      { "label": ".Net", "icon": "devicon-dot-net-plain" },
+      { "label": "SQL Server", "icon": "devicon-microsoftsqlserver-plain" },
+      { "label": "Cordova", "icon": "/assets/icons/cordova_256.png", "iconType": "image" },
+      { "label": "Angular", "icon": "devicon-angularjs-plain" },
+      { "label": "AWS", "icon": "devicon-amazonwebservices-plain" },
+      { "label": "Java", "icon": "devicon-java-plain" },
+      { "label": "Bootstrap", "icon": "devicon-bootstrap-plain" }
+    ],
+    "detail": [
+      [
+        "I worked with Severn Trent PLC for 5 years developing a multitude of software solutions deployed to a wide variety of platforms."
+      ],
+      [
+        "Later in the role my forté was developing brilliant PWAs and Hybrid Mobile apps for use throughout the company.",
+        "During my time with Severn Trent I developed solid, maintainable applications in the correct technology for the solution."
+      ],
+      [
+        "I worked with an ever changing tech stack to improve speed of delivery, starting with a Java & Spring backend, moving through .Net and landing on Node.js",
+        "All the time improving my core skills in Design, Prototyping, Testing, Computer Law, Security, and implementing best practice.",
+        "I jumped at the opportunity to lead my team, train our new starters, and suggest the ideal solution to complex software problems."
+      ]
+    ]
+  }
+]

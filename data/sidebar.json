@@ -1,0 +1,23 @@
+{
+  "contact": {
+    "phone": "+44 7736 667115",
+    "email": "james@codesthings.com",
+    "address": "Midlands, UK."
+  },
+  "socials": {
+    "linkedin": "https://www.linkedin.com/in/jamescodesthings/",
+    "whatsapp": {
+      "url": "https://wa.me/447736667115",
+      "display": "+44 7736 667 115"
+    }
+  },
+  "availability": "1 Month",
+  "stacks": [
+    "My favourite stack these days is Node.js running on Lambdas or containers, backed by a solid RDS and object storage setup. On the front end, I enjoy working with React (or similar component-based frameworks), styled with Tailwind and bundled up nicely. For mobile, I've been a long-time fan of Ionic but I'm open to exploring other frameworks like React Native or Flutter, depending on the project requirements.",
+    "That said, I've worked across a range of setups — from traditional stacks with Node and .NET Core APIs deployed on AWS (via containers, EC2s, and Lambdas), to static and server-side rendered sites. Recently I've enjoyed working on cloud-native applications in AWS and GCP, leveraging the power of serverless architectures and microservices to build scalable and efficient systems."
+  ],
+  "interests": [
+    "Outside of work, I'm a keen photographer and avid reader, and I've recently been getting really into 3D modelling. My interests shift and grow over time, but a few creative passions have stuck with me.",
+    "I enjoy learning new things to stretch my thinking and grow as a developer — over the past few years I've explored game programming, machine learning, and parametric modelling. Picking up new paradigms and ways of thinking helps me stay sharp and keeps my curiosity alive."
+  ]
+}

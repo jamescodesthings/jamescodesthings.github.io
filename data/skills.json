@@ -1,0 +1,188 @@
+[
+  {
+    "slug": "html",
+    "name": "HTML 5",
+    "icon": "devicon-html5-plain",
+    "type": "language",
+    "layer": "front-end"
+  },
+  {
+    "slug": "css",
+    "name": "CSS 3",
+    "icon": "devicon-css3-plain",
+    "type": "language",
+    "layer": "front-end"
+  },
+  {
+    "slug": "javascript",
+    "name": "Javascript",
+    "icon": "devicon-javascript-plain",
+    "type": "language",
+    "layer": "full-stack"
+  },
+  {
+    "slug": "node-js",
+    "name": "NodeJS",
+    "icon": "devicon-nodejs-plain",
+    "type": "platform",
+    "layer": "server-side"
+  },
+  {
+    "slug": "dotnet-core",
+    "name": ".net core",
+    "icon": "devicon-dotnetcore-plain",
+    "type": "platform",
+    "layer": "server-side"
+  },
+  {
+    "slug": "aws",
+    "name": "AWS",
+    "icon": "devicon-amazonwebservices-plain",
+    "type": "platform",
+    "layer": "server-side"
+  },
+  {
+    "slug": "gcp",
+    "name": "GCP",
+    "icon": "devicon-googlecloud-plain",
+    "type": "platform",
+    "layer": "server-side"
+  },
+  {
+    "slug": "c-sharp",
+    "name": "C#",
+    "icon": "devicon-csharp-plain",
+    "type": "language",
+    "layer": "server-side"
+  },
+  {
+    "slug": "serverless-framework",
+    "name": "Serverless",
+    "icon": "/assets/icons/sls.svg",
+    "iconType": "image",
+    "type": "framework",
+    "layer": "server-side"
+  },
+  {
+    "slug": "aws-lambda",
+    "name": "AWS Lambda",
+    "icon": "/assets/icons/aws-lambda.svg",
+    "iconType": "image",
+    "type": "platform",
+    "layer": "server-side"
+  },
+  {
+    "slug": "stencil-js",
+    "name": "Stencil JS",
+    "icon": "/assets/icons/stencil-logo.png",
+    "iconType": "image",
+    "type": "framework",
+    "layer": "front-end"
+  },
+  {
+    "slug": "capacitor",
+    "name": "Capacitor",
+    "icon": "/assets/icons/capacitor-logo.png",
+    "iconType": "image",
+    "type": "platform",
+    "layer": "mobile"
+  },
+  {
+    "slug": "ionic",
+    "name": "Ionic",
+    "icon": "devicon-ionic-original",
+    "type": "framework",
+    "layer": "front-end"
+  },
+  {
+    "slug": "ios",
+    "name": "iOS",
+    "icon": "devicon-apple-plain",
+    "type": "platform",
+    "layer": "mobile"
+  },
+  {
+    "slug": "android",
+    "name": "Android",
+    "icon": "devicon-android-plain",
+    "type": "platform",
+    "layer": "mobile"
+  },
+  {
+    "slug": "webpack",
+    "name": "Webpack",
+    "icon": "devicon-webpack-plain",
+    "type": "library",
+    "layer": "full-stack"
+  },
+  {
+    "slug": "sqlite",
+    "name": "SQLite",
+    "icon": "devicon-sqlite-plain",
+    "type": "platform",
+    "layer": "database"
+  },
+  {
+    "slug": "mssql",
+    "name": "SQL Server",
+    "icon": "devicon-microsoftsqlserver-plain",
+    "type": "platform",
+    "layer": "database"
+  },
+  {
+    "slug": "mysql",
+    "name": "MySQL",
+    "icon": "devicon-mysql-plain",
+    "type": "platform",
+    "layer": "database"
+  },
+  {
+    "slug": "adobe-photoshop",
+    "name": "Photoshop",
+    "icon": "devicon-photoshop-plain",
+    "type": "tool",
+    "layer": "front-end"
+  },
+  {
+    "slug": "sketch",
+    "name": "Sketch",
+    "icon": "devicon-sketch-line",
+    "type": "tool",
+    "layer": "front-end"
+  },
+  {
+    "slug": "git",
+    "name": "git",
+    "icon": "devicon-git-plain",
+    "type": "library",
+    "layer": "dev-ops"
+  },
+  {
+    "slug": "angular",
+    "name": "Angular",
+    "icon": "devicon-angularjs-plain",
+    "type": "framework",
+    "layer": "front-end"
+  },
+  {
+    "slug": "typescript",
+    "name": "Typescript",
+    "icon": "devicon-typescript-plain",
+    "type": "language",
+    "layer": "full-stack"
+  },
+  {
+    "slug": "react-js",
+    "name": "React",
+    "icon": "devicon-react-original",
+    "type": "framework",
+    "layer": "front-end"
+  },
+  {
+    "slug": "tailwind",
+    "name": "Tailwind",
+    "icon": "devicon-tailwindcss-plain",
+    "type": "framework",
+    "layer": "front-end"
+  }
+]

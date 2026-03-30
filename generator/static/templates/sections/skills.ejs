@@ -1,0 +1,63 @@
+<section class="paper-page">
+  <div class="body-with-sidebar">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Stacks</h3>
+        <% sidebar.stacks.forEach(paragraph => { %>
+          <p class="sidebar-text"><%= paragraph %></p>
+        <% }); %>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-heading">Interests</h3>
+        <% sidebar.interests.forEach(paragraph => { %>
+          <p class="sidebar-text"><%= paragraph %></p>
+        <% }); %>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 class="section-heading">
+        <span class="heading-icon">⚡</span>
+        Skills
+      </h2>
+
+      <div class="skills-grid">
+        <% skills.forEach(skill => { %>
+          <span class="badge">
+            <% if (skill.iconType === 'image') { %>
+              <img src="assets/icons/<%= skill.icon.split('/').pop() %>" alt="<%= skill.name %>" class="badge-icon-img">
+            <% } else { %>
+              <i class="<%= skill.icon %> badge-icon"></i>
+            <% } %>
+            <%= skill.name %>
+          </span>
+        <% }); %>
+      </div>
+
+      <h2 class="section-heading section-heading--secondary">
+        <span class="heading-icon">🎓</span>
+        Education
+      </h2>
+
+      <% education.forEach(entry => { %>
+        <div class="education-entry">
+          <div class="experience-header">
+            <h3 class="experience-employer"><%= entry.institution %></h3>
+            <span class="experience-dates">
+              <%= formatDate(entry.from) %> — <%= formatDate(entry.to) %>
+            </span>
+          </div>
+          <% entry.qualifications.forEach(qual => { %>
+            <div class="qualification">
+              <span class="qualification-title"><%= qual.title %></span>
+              <% if (qual.aside) { %>
+                <span class="qualification-aside"><%= qual.aside %></span>
+              <% } %>
+            </div>
+          <% }); %>
+        </div>
+      <% }); %>
+    </main>
+  </div>
+</section>
