@@ -1,63 +1,51 @@
-<section class="paper-page">
-  <div class="body-with-sidebar">
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <h3 class="sidebar-heading">Stacks</h3>
-        <% sidebar.stacks.forEach(paragraph => { %>
-          <p class="sidebar-text"><%= paragraph %></p>
-        <% }); %>
-      </div>
+<section class="section" data-animate>
+  <div class="section-inner">
+    <span class="section-label">03 — SKILLS</span>
+    <h2 class="section-title">What I Work With</h2>
 
-      <div class="sidebar-section">
-        <h3 class="sidebar-heading">Interests</h3>
-        <% sidebar.interests.forEach(paragraph => { %>
-          <p class="sidebar-text"><%= paragraph %></p>
-        <% }); %>
-      </div>
-    </aside>
+    <div class="skills-meta">
+      <% sidebar.stacks.forEach(paragraph => { %>
+        <p><%= paragraph %></p>
+      <% }); %>
+    </div>
 
-    <main class="main-content">
-      <h2 class="section-heading">
-        <span class="heading-icon">⚡</span>
-        Skills
-      </h2>
-
-      <div class="skills-grid">
-        <% skills.forEach(skill => { %>
-          <span class="badge">
-            <% if (skill.iconType === 'image') { %>
-              <img src="assets/icons/<%= skill.icon.split('/').pop() %>" alt="<%= skill.name %>" class="badge-icon-img">
-            <% } else { %>
-              <i class="<%= skill.icon %> badge-icon"></i>
-            <% } %>
-            <%= skill.name %>
-          </span>
-        <% }); %>
-      </div>
-
-      <h2 class="section-heading section-heading--secondary">
-        <span class="heading-icon">🎓</span>
-        Education
-      </h2>
-
-      <% education.forEach(entry => { %>
-        <div class="education-entry">
-          <div class="experience-header">
-            <h3 class="experience-employer"><%= entry.institution %></h3>
-            <span class="experience-dates">
-              <%= formatDate(entry.from) %> — <%= formatDate(entry.to) %>
-            </span>
-          </div>
-          <% entry.qualifications.forEach(qual => { %>
-            <div class="qualification">
-              <span class="qualification-title"><%= qual.title %></span>
-              <% if (qual.aside) { %>
-                <span class="qualification-aside"><%= qual.aside %></span>
-              <% } %>
-            </div>
-          <% }); %>
+    <div class="bento-grid">
+      <% skills.forEach(skill => { %>
+        <div class="bento-badge">
+          <% if (skill.iconType === 'image') { %>
+            <img src="assets/icons/<%= skill.icon.split('/').pop() %>" alt="<%= skill.name %>" class="badge-icon-img">
+          <% } else { %>
+            <i class="<%= skill.icon %> badge-icon"></i>
+          <% } %>
+          <span class="badge-label"><%= skill.name %></span>
         </div>
       <% }); %>
-    </main>
+    </div>
+
+    <div class="education-section" data-animate>
+      <span class="section-label">04 — EDUCATION</span>
+      <h2 class="section-title">Where I Studied</h2>
+
+      <div class="education-grid">
+        <% education.forEach(entry => { %>
+          <div class="education-card">
+            <div class="education-header">
+              <h3 class="education-institution"><%= entry.institution %></h3>
+              <span class="education-dates">
+                <%= formatDate(entry.from) %> — <%= formatDate(entry.to) %>
+              </span>
+            </div>
+            <% entry.qualifications.forEach(qual => { %>
+              <div class="qualification">
+                <span class="qualification-title"><%= qual.title %></span>
+                <% if (qual.aside) { %>
+                  <span class="qualification-aside"><%= qual.aside %></span>
+                <% } %>
+              </div>
+            <% }); %>
+          </div>
+        <% }); %>
+      </div>
+    </div>
   </div>
 </section>
