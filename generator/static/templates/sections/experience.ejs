@@ -1,29 +1,27 @@
-<section class="paper-page">
-  <div class="body-with-sidebar">
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <h3 class="sidebar-heading">Profile</h3>
-        <% profile.forEach(paragraph => { %>
-          <p class="sidebar-text"><%= paragraph %></p>
-        <% }); %>
-      </div>
-    </aside>
+<section class="section" data-animate>
+  <div class="section-inner">
+    <span class="section-label">02 — EXPERIENCE</span>
+    <h2 class="section-title">Where I've Worked</h2>
 
-    <main class="main-content">
-      <h2 class="section-heading">
-        <span class="heading-icon">💼</span>
-        Experience
-      </h2>
+    <div class="profile-summary">
+      <% profile.forEach(paragraph => { %>
+        <p><%= paragraph %></p>
+      <% }); %>
+    </div>
 
-      <% experience.forEach(job => { %>
-        <div class="experience-entry">
+    <div class="experience-list">
+      <% experience.forEach((job, index) => { %>
+        <article class="experience-entry" data-animate>
           <div class="experience-header">
+            <div class="experience-meta">
+              <span class="experience-number"><%= String(index + 1).padStart(2, '0') %></span>
+              <span class="experience-dates">
+                <%= formatDate(job.from) %> — <%= job.to ? formatDate(job.to) : 'Present' %>
+              </span>
+            </div>
             <h3 class="experience-employer"><%= job.employer %></h3>
-            <span class="experience-dates">
-              <%= formatDate(job.from) %> — <%= job.to ? formatDate(job.to) : 'Present' %>
-            </span>
+            <p class="experience-summary"><%= job.summary %></p>
           </div>
-          <p class="experience-summary"><%= job.summary %></p>
 
           <% if (job.tech && job.tech.length > 0) { %>
             <div class="tech-badges">
@@ -51,8 +49,8 @@
               <% }); %>
             </div>
           <% } %>
-        </div>
+        </article>
       <% }); %>
-    </main>
+    </div>
   </div>
 </section>

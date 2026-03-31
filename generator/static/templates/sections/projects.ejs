@@ -1,29 +1,19 @@
-<section class="paper-page">
-  <div class="body-with-sidebar">
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <h3 class="sidebar-heading">Stacks</h3>
-        <% sidebar.stacks.forEach(paragraph => { %>
-          <p class="sidebar-text"><%= paragraph %></p>
-        <% }); %>
-      </div>
-    </aside>
+<section class="section" data-animate>
+  <div class="section-inner">
+    <span class="section-label">05 — PROJECTS</span>
+    <h2 class="section-title">Things I've Built</h2>
 
-    <main class="main-content">
-      <h2 class="section-heading">
-        <span class="heading-icon">🚀</span>
-        Projects
-      </h2>
-
-      <% projects.filter(p => !p.canHide).forEach(project => { %>
-        <div class="project-entry">
-          <div class="experience-header">
-            <h3 class="experience-employer"><%= project.employer %> — <%= project.name %></h3>
-            <span class="experience-dates"><%= formatDate(project.from) %></span>
+    <div class="projects-grid">
+      <% projects.filter(p => !p.canHide).forEach((project, index) => { %>
+        <article class="project-card<%= index === 0 ? ' project-card--featured' : '' %>" data-animate>
+          <div class="project-header">
+            <span class="project-employer"><%= project.employer %></span>
+            <span class="project-date"><%= formatDate(project.from) %></span>
           </div>
+          <h3 class="project-name"><%= project.name %></h3>
 
           <% if (project.leader) { %>
-            <p class="experience-summary"><%= project.leader %></p>
+            <p class="project-leader"><%= project.leader %></p>
           <% } %>
 
           <% if (project.tech && project.tech.length > 0) { %>
@@ -42,7 +32,7 @@
           <% } %>
 
           <% if (project.summary) { %>
-            <div class="experience-detail">
+            <div class="project-detail">
               <% project.summary.forEach(group => { %>
                 <div class="detail-group">
                   <% group.forEach(paragraph => { %>
@@ -52,8 +42,8 @@
               <% }); %>
             </div>
           <% } %>
-        </div>
+        </article>
       <% }); %>
-    </main>
+    </div>
   </div>
 </section>
