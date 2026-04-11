@@ -8,6 +8,7 @@ import { readFile, readJson, writeFile, mkdirp, rmrf, cpDir, exists, ls } from '
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
+const srcRoot = __dirname;
 
 const debug = Debug('codesthings:build');
 debug.enabled = true;
@@ -37,19 +38,19 @@ async function renderTemplate(templatePath, data) {
   const template = await readFile(templatePath);
   return ejs.render(template, data, {
     filename: templatePath,
-    views: [resolve(root, config.templateDir)],
+    views: [resolve(srcRoot, config.templateDir)],
   });
 }
 
 async function copyAssets(outputDir) {
   // Copy CSS
-  await cpDir(resolve(root, config.cssDir), `${outputDir}/css`);
+  await cpDir(resolve(srcRoot, config.cssDir), `${outputDir}/css`);
 
   // Copy JS
-  await cpDir(resolve(root, 'static/js'), `${outputDir}/js`);
+  await cpDir(resolve(srcRoot, 'js'), `${outputDir}/js`);
 
   // Copy root assets directory (icons, images, gifs, logos)
-  const assetsSrc = resolve(root, config.assetsDir);
+  const assetsSrc = resolve(srcRoot, config.assetsDir);
   if (await exists(assetsSrc)) {
     await cpDir(assetsSrc, `${outputDir}/assets`);
   }
@@ -85,7 +86,7 @@ async function build() {
 
   // Render the main template
   debug('Rendering templates...');
-  const templatePath = resolve(root, config.templateDir, 'index.ejs');
+  const templatePath = resolve(srcRoot, config.templateDir, 'index.ejs');
   const html = await renderTemplate(templatePath, {
     ...data,
     formatDate,
@@ -119,7 +120,7 @@ async function buildBlog(outputDir) {
   if (files.length === 0) return;
 
   const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
-  const blogTemplatePath = resolve(root, config.templateDir, 'blog.ejs');
+  const blogTemplatePath = resolve(srcRoot, config.templateDir, 'blog.ejs');
   const blogTemplate = await readFile(blogTemplatePath);
 
   for (const file of files) {
@@ -136,7 +137,7 @@ async function buildBlog(outputDir) {
       { title, content },
       {
         filename: blogTemplatePath,
-        views: [resolve(root, config.templateDir)],
+        views: [resolve(srcRoot, config.templateDir)],
       },
     );
 

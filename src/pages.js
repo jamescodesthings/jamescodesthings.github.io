@@ -13,8 +13,8 @@ debug.enabled = true;
 async function buildPages() {
   debug('Building pages output...');
 
-  const outputDir = resolve(root, config.outputDir);
-  const pagesDir = resolve(root, '../pages');
+  const outputDir = resolve(__dirname, config.outputDir);
+  const pagesDir = resolve(root, 'pages');
 
   // Copy the built output to a pages directory
   await mkdirp(pagesDir);

@@ -8,9 +8,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 const watchPaths = [
-  resolve(root, config.templateDir),
-  resolve(root, config.cssDir),
-  resolve(root, 'static/js'),
+  resolve(__dirname, config.templateDir),
+  resolve(__dirname, config.cssDir),
+  resolve(__dirname, 'js'),
   resolve(root, config.dataDir),
 ];
 
