@@ -1,140 +1,209 @@
 # Tasks
 
+Execution order follows dependency groups. Parallelisable subtasks are marked with `[parallel]`.
+See `docs/superpowers/specs/2026-04-11-todo-gap-analysis-design.md` for the full analysis.
+
+**Deployment context:**
+- Canonical URL: https://codesthings.com
+- Hosted via GitHub Pages at `jamescodesthings/jamescodesthings.github.io` with custom domain
+- Sub-site: https://codesthings.com/campsnap/ (separate repo: `jamescodesthings/campsnap`, built from `jamescodesthings/campsnap-filters`)
+
+---
+
 # [x] Rework
 
 Completed a rework of the site into a static site builder/generator.
 
-# [ ] Cleanup after rework
+---
 
-The directory structure is a bit messy after the rework, so I need to clean it up and move files around.
+# [ ] Group 1: Directory Restructure
 
-The new structure should be:
+Move from the current split layout (`generator/`, `assets/`, scattered) to a clean `src/`-rooted structure.
 
+Target:
 ```
-docs/ // markdown docs, including this one, a todo list of current and previous tasks, and any other documentation that doesn't fit in the readme.md
-src/assets/ // static images, svgs, icons, fonts, etc. Formerly in public/assets and src/assets and /assets, and all over.
-src/css/ // Plain CSS theme from the old static directory,
-src/templates/ // EJS templates from the old static directory,
-src/js/ // the static/public site static JS files, served to the user.
-// The generator code should be merged into the src dir as its new root:
-src/index.js // from generator/src/
-src/pages.js // from generator/src/
-// The rest of the generator code
-data/ // Unchanged, raw json data files
-raw/ // Unchanged, raw source files for illustrator/etc.
-public/ // Should be gitignored, a "dist" directory that we mount in docker when building and serving
-// The PDF build should build back into src/assets, and be gitignored, so that we generate it and link to it in a bit of a chicken-and-egg way, but we don't have to worry about it in the repo.
+src/assets/       <- from assets/
+src/css/          <- from generator/static/css/
+src/templates/    <- from generator/static/templates/
+src/js/           <- from generator/static/js/
+src/index.js      <- from generator/src/index.js
+src/server.js     <- from generator/src/server.js
+src/watch.js      <- from generator/src/watch.js
+src/pages.js      <- from generator/src/pages.js
+src/config.js     <- from generator/src/config.js
+src/utils.js      <- from generator/src/utils.js
+data/             <- unchanged
+raw/              <- unchanged
+docs/             <- unchanged
+public/           <- gitignored build output
 ```
 
-- [ ] Move the files into the ideal structure above
-- [ ] Fix the make commands and generator scripts to use the new directory structure.
-- [ ] Fix the Github Actions workflow to use the new directory structure.
+- [ ] Move files into the new structure
+- [ ] Update `src/config.js` paths to reflect new locations
+- [ ] Update all EJS template asset references (`assets/` paths)
+- [ ] Merge `generator/package.json` dependencies into root `package.json`, remove `generator/package.json`
+- [ ] Update root `package.json` scripts to point at `src/`
+- [ ] Update `docker-compose.yml` volume mounts and working dirs
+- [ ] Update `.github/workflows/deploy.yml` paths
+- [ ] Update `Makefile` targets (remove `cd generator &&` prefixes)
+- [ ] Verify `data/` relative paths work from `src/`
+- [ ] Remove empty `generator/` directory
+- [ ] Build and verify everything works
 
-# [ ] Cleanup makefile
+---
 
-We only want to use make and docker, we shouldn't ever run the node server on the host machine.
+# [ ] Group 2: Makefile Cleanup
 
-- [ ] Create different services in the docker-compose file which inherit from build and serve, and run the different node commands in those services. Then we can just run `make build` and `make serve` and it will run the correct commands in the correct containers.
-- [ ] Remove the `build-local` command from the makefile, and any references to it in the documentation. We should only be building and serving via Docker, to keep the environment consistent
+Docker-only workflow. No host-machine node execution.
 
-# [ ] New logo
+Target make targets:
+- `make build` — Docker build with Gotenberg PDF generation
+- `make serve` — Docker static-web-server on port 8080
+- `make dev` — Docker node watch + serve (new, for local development)
+- `make clean` — Remove `public/`, `pages/`, stop containers
+- `make pages` — Docker GitHub Pages build
 
-- We have a new logo in src/assets/logo/
-  - There's a logo-dark.png for showing on dark backgrounds, which has white text and a cyan "feature" color.
-  - There's a logo.png for showing on light backgrounds, which has black text and a magenta "feature" color.
-- [ ] Document the logo design in ./docs/logo.md
-  - Include dimensions, colors, fonts, a visual design description of the logo.
-  - keep it simple and straightforward, but include enough detail that we can refer back to it when we need to use the logo
-- [ ] Use frontend-design to review the site and where the logo should feature in order to stand out but not overwhelm.
-- [ ] Document this in 'logo-usage.md' in the docs.
-- [ ] Update the site to use the new logo as advised by 'logo-usage.md'
+- [ ] Create/update Docker Compose services for the targets above
+- [ ] Remove host-based targets: `build-local`, `serve` (host), `watch` (host), `pages-local`
+- [ ] Add `make dev` target with Docker-based watch + serve
+- [ ] Ensure `make clean` also cleans up Docker containers
+- [ ] Update CLAUDE.md to reflect new make targets (remove `build-local` from review gates)
 
-# [ ] Update socials
+---
 
-- [ ] We should have a dedicated "Where to find me online" section on the site, with links to my GitHub, LinkedIn, Makerworld, and any other relevant profiles. Along with what you can find there
-  - [ ] We should also put this in the readme.md for people poking around the code
-  - [ ] Makerworld: https://makerworld.com/en/@jamescodesthing
-    - [ ] I should add some wording around designing 3d models for nerd-related hobby projects I work on, and tinywhoop (drone) parts, and computer related prints.
-  - [ ] LinkedIn profile: www.linkedin.com/in/jamescodesthings should be on the site
-    - [ ] I should add some wording around my experience and skills, and what you can find on my LinkedIn profile.
-    - [ ] Most of the time it's just where to go to keep up with my current professional openings and projects, and to see my CV/resume.
-  - [ ] Github profile: https://github.com/jamescodesthings be on the site
-    - [ ] I should add some wording around the types of projects I work on, and what you can find on my GitHub profile.
-      - Including this site's code with
-      - a call to action on going and poking around how it works.
-      - Some wording around the code style and how I like work on projects:
-        - KISS
-        - Enough tool for the job
-        - Get a product out the door, then iterate and improve it over time.
-        - I like to build things that are fun and useful, and that I can share with others.
-  - [ ] I'm currently working on a photography portfolio, in the meantime you can view my instagram:
-    - [ ] Instagram: https://www.instagram.com/jamescodesthings/
-    - [ ] I should add some wording around the types of photos I take, and what you can find on my Instagram profile.
-      - Take a look at the profile yourself to give a "vibe" and get the wording into something flashy I can talk about
-      - I mostly work on Nature, and Portraiture with some street photography.
-      - It's also where I post phototgraphy related projects like the camp snap filters.
+# [ ] Group 3: Logo + Design Review
 
-# [ ] Prominent downloadable CV section
+## [parallel] Logo Documentation
 
-- [ ] We should have a prominent section on the site for downloading my CV
-- With a link to the PDF version that we generate via Gotenberg.
-- This should be one of the main calls to action on the site,
-- and should be easily accessible from the homepage and the navigation menu.
+- [ ] Measure logo files (dimensions, file sizes, colours)
+- [ ] Document in `docs/logo.md`: dimensions, colours, fonts, visual description
+- [ ] Assess favicon — current `favicon-color.svg` doesn't match the new logo
 
-# [ ] Make sure the PDF doesn't include the web-only content
+## [parallel] Frontend Design Review
 
-- [ ] Build the PDF and ensure the display:print sections are working correctly
-  - and that the PDF doesn't include the web-only content like
-    - the contact form,
-    - or the socials section,
-    - or any of the interactive elements that don't make sense in a PDF format.
-    - It should be a self-contained CV.
+- [ ] Use `frontend-design` skill to review the live site with the vibe context:
+  - Understated, playful, slightly nerdy, professional, polished
+  - KISS, cutting edge visual web design
+  - Responsive, mobile-first, print-friendly
+- [ ] Flag and address specific issues:
+  - The 13MB `zipline.gif` — performance problem, convert to video or host externally
+  - Scroll animations (`data-animate` on every section) — justify or remove
+  - Blog section is a bare `<ul>` — needs design attention
+  - Theme toggle placement and styling
+- [ ] Remove excessive or out-of-place design features
+- [ ] Suggest places for animation/interaction that fit the theme
+- [ ] Document changes in `docs/design-updates.md`
+- [ ] Create `docs/future-design-updates.md` for parking-lot items
 
-# [ ] Cohesion
+## After both complete
 
-- [ ] Update the docs in the readme to reflect the new structure and workflow.
-  - [ ] Document local development workflow with docker-compose and make commands.
-  - [ ] Document the directory structure
-  - [ ] Document the deploy workflow with Github Actions and how to deploy to GitHub Pages.
-  - [ ] Update the local build instructions with the correct order to run things to build the PDF and see the site there.
-- [ ] Update the comments in the code to reflect the new structure and workflow.
-- [ ] Update the documentation in the ./docs to reflect the new structure and workflow.
+- [ ] Write `docs/logo-usage.md` informed by logo doc and design review
+- [ ] Update the site to use the new logo (hero, footer, favicon)
+- [ ] Implement design review changes
 
-# [ ] Cohesion with other sites
+---
 
-- [ ] Output analysis to ./docs in a 'social-updates.md' file.
-- [ ] Go get the bios and profiles that we link to on the site, and scan their content for:
-  - [ ] Cohesion with the site content and wording
-  - [ ] Any updates we should make to those profiles to bring everything into alignment
-  - [ ] Any updates in branding or styling we could make on those profiles (within what we can influence) to bring everything into alignment and cohesion with the site.
-  - [ ] Suggested updates to crosslink back to each other and the site.
-    - Aim to link back to the site to drive traffic here then let people find the cross-linked socials here, and to create a cohesive online presence that reinforces the branding and messaging of the site across all platforms.
+# [ ] Group 4: Content Sections
 
-# [ ] Frontend Design Review
+## [parallel] Socials Section — "Where to find me online"
 
-## Vibe
+- [ ] Create `data/socials.json` with structured data for each platform:
+  - GitHub: https://github.com/jamescodesthings
+    - Types of projects, this site's code, call to action to poke around
+    - Wording around: KISS, enough tool for the job, ship then iterate, fun and useful
+  - LinkedIn: https://www.linkedin.com/in/jamescodesthings
+    - Professional openings, projects, CV/resume
+  - Makerworld: https://makerworld.com/en/@jamescodesthing
+    - 3D models for nerd hobby projects, tinywhoop drone parts, computer-related prints
+  - Instagram: https://www.instagram.com/jamescodesthings/
+    - Nature, portraiture, street photography
+    - Photography projects like the camp snap filters
+    - Note: photography portfolio in progress
+- [ ] Create `src/templates/sections/socials.ejs`
+- [ ] Add section to `index.ejs`
+- [ ] Add CSS for the socials section
+- [ ] Load `socials.json` in `src/index.js` build pipeline
+- [ ] Add socials summary to `README.md`
 
-At a high level this is a website for other web developers, It showcases my skills, but importantly shows people how I work:
+## [parallel] CV Download Section
 
-- KISS,
-- understated but effective design,
-- Up to the nuts cutting edge of visual web design
-- Responsive and mobile-first
-- Print-friendly because it also doubles as my print cv.
-  - Design elements that do not fit are hidden at print don't worry about removing them completely.
-- A focus on building things that are fun and useful
-- that I can share with others and they get the vibe.
-- The vibe is a sort of understated, playful, slightly nerdy, but professional and polished vibe.
-- The design should reflect that vibe and reinforce the branding and messaging of the site.
-- The design should be cohesive and consistent across all pages and elements of the site, and should create a memorable and engaging experience for visitors
-- It should "say" this without saying it.
+- [ ] Add prominent download CTA — in hero area or just below it, plus footer link
+- [ ] Create template partial or extend hero template
+- [ ] Link to `/cv.pdf` (generated by Gotenberg in CI)
+- [ ] Add CSS for the download CTA
+- [ ] Handle local dev gracefully — link present but don't break if PDF missing
 
-## [ ] Tasks
+---
 
-- [ ] Use frontend-design to review the site and make sure the design is cohesive and consistent, and that the new logo is used effectively.
-- [ ] Remove excessive or out of place design features, like unnecessary animation.
-- [ ] Document any design changes or updates that we make as a result of the review in 'design-updates.md' in the docs.
-- [ ] Simplify areas of the design that are "too much", for example, we have some minor animation that feels out of place.
-- [ ] Suggest places for animation or interaction that stick to the theme and branding of the site.
-- [ ] Update the site with any design changes or updates that we make as a result of the review.
-- [ ] Create a list of potential future design updates or improvements that we can make to the site in the future, and document this in 'future-design-updates.md' in the docs.
+# [ ] Group 5: PDF Print Cleanup
+
+Ensure the PDF is a clean, self-contained CV.
+
+- [ ] Extend `@media print` CSS to hide:
+  - Socials section (or show as plain text URLs for print)
+  - CV download button (pointless in PDF)
+  - Blog section
+  - Campsnap banner (already hidden)
+  - Any interactive elements
+- [ ] Switch full theme to light in print (current print CSS resets body but not CSS custom properties)
+- [ ] Test PDF generation via Docker (`make build`)
+- [ ] Review page breaks for each section
+- [ ] Verify the PDF reads as a professional, self-contained CV
+
+---
+
+# [ ] Group 6: Cross-Platform Cohesion
+
+## [parallel] Profile Research (4 subagents)
+
+- [ ] Fetch and analyse GitHub profile: bio, repos, pinned items, README
+- [ ] Fetch and analyse Makerworld profile: bio, published models, descriptions
+- [ ] Fetch and analyse Instagram profile: bio, recent posts, aesthetic/vibe
+- [ ] Fetch and analyse LinkedIn profile (may be limited by auth)
+- [ ] Review campsnap sub-site (https://codesthings.com/campsnap/) for branding consistency with main site
+
+## After research completes
+
+- [ ] Collate findings into `docs/social-updates.md`:
+  - Per-platform: current state, suggested wording, branding alignment
+  - Cross-linking recommendations (all profiles link back to codesthings.com)
+  - Branding consistency (profile photos, bios, handles)
+  - Campsnap sub-site alignment
+- [ ] Implement site-side updates based on findings
+- [ ] Document suggested external profile updates (can't change those ourselves)
+
+---
+
+# [ ] Group 7: Documentation Cohesion
+
+## [parallel] Doc Updates (3 subagents)
+
+- [ ] Update `README.md`:
+  - New directory structure
+  - Local dev workflow (Docker-only, `make dev`)
+  - Deploy workflow with GitHub Actions
+  - Build instructions for PDF
+- [ ] Update `CLAUDE.md`:
+  - Commands section with new make targets
+  - Architecture paths reflecting `src/` structure
+  - Any stale references
+- [ ] Update `data/blog/2026-03-30-how-this-site-works.md`:
+  - Reflect new directory structure and build pipeline
+- [ ] Update `src/assets/readme.md` (moved from `assets/readme.md`)
+
+## After all complete
+
+- [ ] Final consistency pass across all docs
+- [ ] Review inline code comments — only add where logic isn't self-evident
+
+---
+
+# [ ] Group 8: Polish (new items from gap analysis)
+
+Small improvements found during the todo review. Can be done in any order, many parallelisable.
+
+- [ ] Add Open Graph metadata (`og:title`, `og:description`, `og:image`) to `index.ejs`
+- [ ] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
+- [ ] Generate favicon from new logo to replace non-matching `favicon-color.svg`
+- [ ] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
+- [ ] Create a custom 404 page matching the site design
