@@ -20,7 +20,7 @@ function formatDate(dateStr) {
 }
 
 async function loadData() {
-  const dataDir = resolve(root, config.dataDir);
+  const dataDir = resolve(srcRoot, config.dataDir);
   const [profile, experience, skills, education, projects, sidebar, coverLetter] = await Promise.all([
     readJson(`${dataDir}/profile.json`),
     readJson(`${dataDir}/experience.json`),
@@ -57,7 +57,7 @@ async function copyAssets(outputDir) {
 }
 
 async function getBlogPosts() {
-  const blogDir = resolve(root, config.dataDir, 'blog');
+  const blogDir = resolve(srcRoot, config.dataDir, 'blog');
   if (!(await exists(blogDir))) return [];
 
   const files = (await ls(blogDir)).filter(f => f.endsWith('.md'));
@@ -75,7 +75,7 @@ async function getBlogPosts() {
 async function build() {
   debug('Starting build...');
 
-  const outputDir = resolve(root, config.outputDir);
+  const outputDir = resolve(srcRoot, config.outputDir);
 
   // Load all data
   debug('Loading data...');
@@ -113,7 +113,7 @@ async function build() {
 }
 
 async function buildBlog(outputDir) {
-  const blogDir = resolve(root, config.dataDir, 'blog');
+  const blogDir = resolve(srcRoot, config.dataDir, 'blog');
   if (!(await exists(blogDir))) return;
 
   const files = (await ls(blogDir)).filter(f => f.endsWith('.md'));
