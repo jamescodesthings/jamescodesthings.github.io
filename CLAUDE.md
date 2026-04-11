@@ -28,30 +28,30 @@ npm run format:check   # Check prettier formatting
 npm run format:fix     # Fix formatting
 ```
 
-Generator dependencies install automatically via the Makefile targets. **Note:** The directory structure is being migrated to `src/` — see `docs/superpowers/plans/2026-04-11-full-dev-cycle.md`.
+Dependencies are managed in the root `package.json` (`npm install` from repo root).
 
 ## Architecture
 
-**Build pipeline** (`generator/src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
+**Build pipeline** (`src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
 
 Key source locations:
 
 - `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
-- `generator/src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
-- `generator/static/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
-- `generator/static/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
-- `generator/static/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
-- `assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
-- `raw/` — Source design files (`.ai`, `.psd`) tracked via Git LFS. `raw/logo.ai` is the Illustrator source for the logo.
+- `src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
+- `src/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
+- `src/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
+- `src/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
+- `src/assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
 - `src/assets/logo/` — Logo assets: `logo.svg`/`logo-dark.svg` (full logo), `icon.svg`/`icon-dark.svg` (128×128 square icon — "C" + dot). SVG + PNG in both light and dark variants.
+- `raw/` — Source design files (`.ai`, `.psd`) tracked via Git LFS. `raw/logo.ai` is the Illustrator source for the logo.
 
 **Content changes** happen in the JSON files under `data/`. Templates and styles rarely need changes unless adding new sections.
 
-**Icons** use two strategies: DevIcon CSS classes (`devicon-*`) or local image paths in `assets/icons/`. The `iconType` field in data files determines which.
+**Icons** use two strategies: DevIcon CSS classes (`devicon-*`) or local image paths in `src/assets/icons/`. The `iconType` field in data files determines which.
 
 ## Code Style
 
-- Node.js ESM (`"type": "module"` in both package.json files). Use `import`/`export`, not `require`.
+- Node.js ESM (`"type": "module"`). Use `import`/`export`, not `require`.
 - Prettier: 120 char width, 2-space indent, single quotes, trailing commas, avoid arrow parens.
 - Plain JavaScript — no TypeScript.
 - Node.js 22+ required.
@@ -94,8 +94,8 @@ Before pushing, run the gates that apply to the changes being pushed. Not every 
 
 #### Run when source code changed (JS, EJS, CSS, Makefile, Dockerfile, package.json)
 
-2. **It builds** — `make build-local` (or `make build` for Docker) completes without errors.
-3. **It runs** — `make serve` starts the dev server and the site loads at `http://localhost:8080`.
+2. **It builds** — `npm start` (or `make build` for Docker) completes without errors.
+3. **It runs** — `npm run server` starts the dev server and the site loads at `http://localhost:8080`.
 4. **Code style is good** — `npm run format:check` passes. Fix with `npm run format:fix` if needed.
 
 #### Run when visual output may have changed (templates, CSS, data JSON, assets)
