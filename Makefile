@@ -11,24 +11,24 @@ define docker-compose-run
 	(exit $$exit_status)
 endef
 
-# Build the website into generator/public (via Docker)
+# Build the website into public/ (via Docker)
 build:
 	$(call docker-compose-run,build)
 .PHONY: build
 
 # Build the website locally (no Docker)
 build-local:
-	cd generator && npm install && npm start
+	npm install && npm start
 .PHONY: build-local
 
 # Start the dev server locally
 serve:
-	cd generator && npm install && npm run server
+	npm install && npm run server
 .PHONY: serve
 
 # Watch for changes and rebuild locally
 watch:
-	cd generator && npm install && npm run watch
+	npm install && npm run watch
 .PHONY: watch
 
 # Build GitHub Pages output (via Docker)
@@ -38,7 +38,7 @@ pages:
 
 # Build GitHub Pages output locally
 pages-local:
-	cd generator && npm install && npm run pages
+	npm install && npm run pages
 .PHONY: pages-local
 
 # Clean build output
