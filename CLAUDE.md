@@ -52,6 +52,55 @@ Key source locations:
 - Plain JavaScript — no TypeScript.
 - Node.js 22+ required.
 
+## Workflow
+
+### Task Tracking
+
+Tasks are tracked in `docs/todo.md`. The `docs/` directory is also used for output of analysis, investigation, and design documentation (e.g. `docs/design-updates.md`, `docs/logo-usage.md`).
+
+### Commit and Push Cadence
+
+Commit and push after completing each meaningful step in a task — not just at the end. This keeps progress saved remotely and makes it easy to review or revert individual changes. A "step" is any self-contained change: a file restructure, a template update, a config fix, a new section added, etc.
+
+### Superpowers Skills
+
+We use the superpowers skills to manage task load:
+- Use **brainstorming** before non-trivial work to plan the approach.
+- Use **subagent-driven-development** where appropriate to parallelise independent subtasks and speed things up.
+- Use **executing-plans** to work through multi-step plans methodically.
+- Use **verification-before-completion** before marking any task done.
+
+### Pre-Push Review Gates
+
+Before pushing, run the gates that apply to the changes being pushed. Not every push needs every gate — use judgement based on what changed.
+
+#### Always run
+
+1. **No secrets or junk** — Check staged files for secrets (API keys, tokens, passwords, `.env` files, credentials), large binaries, build output, or anything that should be `.gitignore`d. If found, unstage it, add it to `.gitignore`, and re-stage. Common offenders:
+   - `.env`, `.env.*` files
+   - `node_modules/`, `public/`, `pages/`, `dist/`
+   - `*.pem`, `*.key`, credentials files
+   - Large images, PDFs, or binaries that belong in `assets/` or are generated
+   - Editor/IDE config (`.idea/`, `.vscode/`, `*.sw?`)
+
+#### Run when source code changed (JS, EJS, CSS, Makefile, Dockerfile, package.json)
+
+2. **It builds** — `make build-local` (or `make build` for Docker) completes without errors.
+3. **It runs** — `make serve` starts the dev server and the site loads at `http://localhost:8080`.
+4. **Code style is good** — `npm run format:check` passes. Fix with `npm run format:fix` if needed.
+
+#### Run when visual output may have changed (templates, CSS, data JSON, assets)
+
+5. **It looks okay** — visually check the affected pages in a browser. No broken layouts, missing assets, or regressions.
+
+#### Skip when
+
+- **Docs/markdown only** (e.g. `docs/`, `CLAUDE.md`, `README.md`) — skip build, run, and visual checks. Still check for secrets.
+- **Config only** (e.g. `.claude/`, `.gitignore`, `.github/`) — skip build, run, and visual checks unless the config directly affects the build pipeline.
+- **Data JSON only** (e.g. `data/*.json`) — skip build/code-style checks but do run and visually verify, since data changes affect rendered output.
+
+Do not push if any applicable gate fails. Fix the issue first.
+
 ## Deployment
 
 Push to `main` triggers GitHub Actions (`.github/workflows/deploy.yml`): build → generate PDF via Gotenberg → deploy to `pages` branch → GitHub Pages at codesthings.com.
