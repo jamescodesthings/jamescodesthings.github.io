@@ -14,56 +14,56 @@
 
 ### Files to move (Group 1)
 
-| From | To |
-|------|----|
-| `generator/src/index.js` | `src/index.js` |
-| `generator/src/server.js` | `src/server.js` |
-| `generator/src/watch.js` | `src/watch.js` |
-| `generator/src/pages.js` | `src/pages.js` |
-| `generator/src/config.js` | `src/config.js` |
-| `generator/src/utils.js` | `src/utils.js` |
-| `generator/static/templates/` | `src/templates/` |
-| `generator/static/css/` | `src/css/` |
-| `generator/static/js/` | `src/js/` |
-| `assets/` | `src/assets/` (merge with existing `src/assets/logo/`) |
+| From                          | To                                                     |
+| ----------------------------- | ------------------------------------------------------ |
+| `generator/src/index.js`      | `src/index.js`                                         |
+| `generator/src/server.js`     | `src/server.js`                                        |
+| `generator/src/watch.js`      | `src/watch.js`                                         |
+| `generator/src/pages.js`      | `src/pages.js`                                         |
+| `generator/src/config.js`     | `src/config.js`                                        |
+| `generator/src/utils.js`      | `src/utils.js`                                         |
+| `generator/static/templates/` | `src/templates/`                                       |
+| `generator/static/css/`       | `src/css/`                                             |
+| `generator/static/js/`        | `src/js/`                                              |
+| `assets/`                     | `src/assets/` (merge with existing `src/assets/logo/`) |
 
 ### Files to create
 
-| File | Purpose |
-|------|---------|
-| `data/socials.json` | Structured social platform data |
-| `src/templates/sections/socials.ejs` | Socials section template |
-| `docs/logo.md` | Logo documentation |
-| `docs/logo-usage.md` | Logo usage guide |
-| `docs/design-updates.md` | Design review findings |
-| `docs/future-design-updates.md` | Parking-lot design items |
-| `docs/social-updates.md` | Cross-platform cohesion findings |
+| File                                 | Purpose                          |
+| ------------------------------------ | -------------------------------- |
+| `data/socials.json`                  | Structured social platform data  |
+| `src/templates/sections/socials.ejs` | Socials section template         |
+| `docs/logo.md`                       | Logo documentation               |
+| `docs/logo-usage.md`                 | Logo usage guide                 |
+| `docs/design-updates.md`             | Design review findings           |
+| `docs/future-design-updates.md`      | Parking-lot design items         |
+| `docs/social-updates.md`             | Cross-platform cohesion findings |
 
 ### Files to modify
 
-| File | Change |
-|------|--------|
-| `src/config.js` | Update all relative paths for new `src/` root |
-| `src/index.js` | Update `root` resolution, add socials data loading |
-| `src/watch.js` | Update path resolution and build command |
-| `src/pages.js` | Update `root` and `pagesDir` paths |
-| `src/server.js` | Update `root` and `outputDir` paths |
-| `src/templates/index.ejs` | Add socials section, CV download, update favicon refs, add OG meta |
-| `src/templates/sections/hero.ejs` | Add CV download CTA |
-| `src/templates/sections/footer.ejs` | Add logo, CV link |
-| `src/css/styles.css` | Socials section styles, CV CTA styles, print CSS improvements |
-| `package.json` | Merge generator deps, update scripts |
-| `docker-compose.yml` | Update volume mounts, working dirs, add dev service |
-| `.github/workflows/deploy.yml` | Update paths for `src/` structure |
-| `Makefile` | Docker-only targets, remove host targets |
-| `CLAUDE.md` | Reflect new structure and targets |
-| `README.md` | Full rewrite for new structure |
+| File                                | Change                                                             |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| `src/config.js`                     | Update all relative paths for new `src/` root                      |
+| `src/index.js`                      | Update `root` resolution, add socials data loading                 |
+| `src/watch.js`                      | Update path resolution and build command                           |
+| `src/pages.js`                      | Update `root` and `pagesDir` paths                                 |
+| `src/server.js`                     | Update `root` and `outputDir` paths                                |
+| `src/templates/index.ejs`           | Add socials section, CV download, update favicon refs, add OG meta |
+| `src/templates/sections/hero.ejs`   | Add CV download CTA                                                |
+| `src/templates/sections/footer.ejs` | Add logo, CV link                                                  |
+| `src/css/styles.css`                | Socials section styles, CV CTA styles, print CSS improvements      |
+| `package.json`                      | Merge generator deps, update scripts                               |
+| `docker-compose.yml`                | Update volume mounts, working dirs, add dev service                |
+| `.github/workflows/deploy.yml`      | Update paths for `src/` structure                                  |
+| `Makefile`                          | Docker-only targets, remove host targets                           |
+| `CLAUDE.md`                         | Reflect new structure and targets                                  |
+| `README.md`                         | Full rewrite for new structure                                     |
 
 ### Files to delete
 
-| File | Reason |
-|------|--------|
-| `generator/package.json` | Merged into root |
+| File                            | Reason                     |
+| ------------------------------- | -------------------------- |
+| `generator/package.json`        | Merged into root           |
 | `generator/` (entire directory) | Everything moved to `src/` |
 
 ---
@@ -75,6 +75,7 @@
 Run Prettier across the entire codebase before any structural changes so restructure diffs are purely structural.
 
 **Files:**
+
 - Modify: all `.js`, `.ejs`, `.css`, `.json` files (via Prettier)
 
 - [ ] **Step 1: Run Prettier fix**
@@ -117,6 +118,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 Move all generator source files and static assets into the new `src/` structure.
 
 **Files:**
+
 - Move: `generator/src/*.js` -> `src/`
 - Move: `generator/static/templates/` -> `src/templates/`
 - Move: `generator/static/css/` -> `src/css/`
@@ -194,6 +196,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 All paths are now relative to `src/` instead of `generator/src/`.
 
 **Files:**
+
 - Modify: `src/config.js`
 
 - [ ] **Step 1: Update config.js**
@@ -213,6 +216,7 @@ export default config;
 ```
 
 Key changes:
+
 - `templateDir`: `'./static/templates'` -> `'./templates'` (templates are now at `src/templates/`)
 - `cssDir`: `'./static/css'` -> `'./css'` (css is now at `src/css/`)
 - `assetsDir`: `'../assets'` -> `'./assets'` (assets are now at `src/assets/`)
@@ -236,16 +240,19 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 The `root` variable in index.js resolves to the parent of `__dirname`. Previously `__dirname` was `generator/src/` so `root` was `generator/`. Now `__dirname` is `src/` so `root` is the repo root. This means the `copyAssets` function's hardcoded `'static/js'` path needs updating.
 
 **Files:**
+
 - Modify: `src/index.js`
 
 - [ ] **Step 1: Fix the hardcoded JS copy path in copyAssets**
 
 In `src/index.js`, the `copyAssets` function at line 49 has:
+
 ```js
 await cpDir(resolve(root, 'static/js'), `${outputDir}/js`);
 ```
 
 Change to:
+
 ```js
 await cpDir(resolve(root, 'src/js'), `${outputDir}/js`);
 ```
@@ -263,11 +270,13 @@ The issue: `root = resolve(__dirname, '..')` where `__dirname = src/`. So `root 
 Update `src/index.js`:
 
 At the top, after `const root = resolve(__dirname, '..');`, add:
+
 ```js
 const srcRoot = __dirname;
 ```
 
 Then update path resolutions:
+
 - `resolve(root, config.templateDir)` -> `resolve(srcRoot, config.templateDir)` (3 occurrences)
 - `resolve(root, config.cssDir)` -> `resolve(srcRoot, config.cssDir)` (1 occurrence in copyAssets)
 - `resolve(root, config.assetsDir)` -> `resolve(srcRoot, config.assetsDir)` (1 occurrence in copyAssets)
@@ -280,6 +289,7 @@ Then update path resolutions:
 `root` in server.js is `resolve(__dirname, '..')` = repo root. `config.outputDir` is `'../public'` — that resolves to one level above repo root. Wrong.
 
 Fix: `outputDir` should resolve relative to `__dirname` (which is `src/`):
+
 ```js
 const outputDir = resolve(__dirname, config.outputDir);
 ```
@@ -291,6 +301,7 @@ This makes `resolve('src/', '../public')` = `/repo/public/` — correct.
 Same issue. `root = resolve(__dirname, '..')` = repo root. The watch paths and build command need updating.
 
 Update watch paths:
+
 ```js
 const watchPaths = [
   resolve(__dirname, config.templateDir),
@@ -301,6 +312,7 @@ const watchPaths = [
 ```
 
 Update build command (line 28):
+
 ```js
 exec('node --no-deprecation ./src/index.js', { cwd: root }, ...);
 ```
@@ -356,6 +368,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 Merge `generator/package.json` dependencies into root `package.json` and update scripts.
 
 **Files:**
+
 - Modify: `package.json`
 - Delete: `generator/package.json` (already deleted in Task 1.1)
 
@@ -421,6 +434,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 Update volume mounts and working directories for the new `src/` structure.
 
 **Files:**
+
 - Modify: `docker-compose.yml`
 
 - [ ] **Step 1: Update docker-compose.yml**
@@ -485,6 +499,7 @@ services:
 ```
 
 Key changes:
+
 - `serve` volume: `./generator/public:/var/public` -> `./public:/var/public`
 - `build` working_dir: `/app/generator` -> `/app`
 - `pages` working_dir: `/app/generator` -> `/app`
@@ -505,6 +520,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 1.6: Update GitHub Actions deploy workflow
 
 **Files:**
+
 - Modify: `.github/workflows/deploy.yml`
 
 - [ ] **Step 1: Update deploy.yml**
@@ -527,7 +543,7 @@ jobs:
         image: joseluisq/static-web-server:2-alpine
         env:
           SERVER_ROOT: /var/public
-          SERVER_HEALTH: "true"
+          SERVER_HEALTH: 'true'
         ports:
           - 8080:80
       gotenberg:
@@ -576,6 +592,7 @@ jobs:
 ```
 
 Changes:
+
 - Removed `working-directory: generator` from all steps
 - `npm install` now installs at repo root (which has all deps)
 - PDF output path: `../pages/cv.pdf` -> `pages/cv.pdf`
@@ -595,6 +612,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 1.7: Update Makefile
 
 **Files:**
+
 - Modify: `Makefile`
 
 - [ ] **Step 1: Update Makefile**
@@ -677,6 +695,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 EJS templates reference `assets/` paths. Since the build copies `src/assets/` to `public/assets/`, the HTML references (which are relative to the served root) should still work. But verify and fix any that don't.
 
 **Files:**
+
 - Verify: `src/templates/**/*.ejs`
 
 - [ ] **Step 1: Search for asset references in templates**
@@ -720,6 +739,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 1.9: Update .prettierignore
 
 **Files:**
+
 - Modify: `.prettierignore`
 
 - [ ] **Step 1: Verify .prettierignore is correct**
@@ -778,6 +798,7 @@ git push origin claude-cleanup
 Convert to Docker-only workflow with `make dev` for local development.
 
 **Files:**
+
 - Modify: `docker-compose.yml`
 - Modify: `Makefile`
 
@@ -786,14 +807,14 @@ Convert to Docker-only workflow with `make dev` for local development.
 Add a new `dev` service after the existing services:
 
 ```yaml
-  dev:
-    image: node:22-alpine
-    working_dir: /app
-    ports:
-      - 8080:8080
-    volumes:
-      - ./:/app
-    command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
+dev:
+  image: node:22-alpine
+  working_dir: /app
+  ports:
+    - 8080:8080
+  volumes:
+    - ./:/app
+  command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
 ```
 
 This runs both the watcher and dev server inside a single container.
@@ -861,6 +882,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 2.2: Update CLAUDE.md for new targets
 
 **Files:**
+
 - Modify: `CLAUDE.md`
 
 - [ ] **Step 1: Update Commands section in CLAUDE.md**
@@ -873,30 +895,31 @@ Replace the Commands section with:
 All commands run from the repo root via Makefile (Docker required):
 
 \`\`\`bash
-make build          # Build site via Docker (includes PDF generation via Gotenberg)
-make serve          # Serve built site at http://localhost:8080 (Docker static server)
-make dev            # Local development: watch + serve at http://localhost:8080 (Docker)
-make pages          # Build GitHub Pages output via Docker
-make clean          # Remove public/, pages/, stop Docker containers
+make build # Build site via Docker (includes PDF generation via Gotenberg)
+make serve # Serve built site at http://localhost:8080 (Docker static server)
+make dev # Local development: watch + serve at http://localhost:8080 (Docker)
+make pages # Build GitHub Pages output via Docker
+make clean # Remove public/, pages/, stop Docker containers
 \`\`\`
 
 For quick local builds without Docker:
 \`\`\`bash
-npm install && npm start    # Build site -> public/
-npm run server              # Dev server at http://localhost:8080
-npm run watch               # Watch for changes and rebuild
+npm install && npm start # Build site -> public/
+npm run server # Dev server at http://localhost:8080
+npm run watch # Watch for changes and rebuild
 \`\`\`
 
 Formatting (from repo root):
 \`\`\`bash
-npm run format:check   # Check prettier formatting
-npm run format:fix     # Fix formatting
+npm run format:check # Check prettier formatting
+npm run format:fix # Fix formatting
 \`\`\`
 ```
 
 - [ ] **Step 2: Update Architecture section paths**
 
 Replace `generator/src/` references with `src/`:
+
 - `generator/src/index.js` -> `src/index.js`
 - `generator/src/` -> `src/`
 - `generator/static/templates/` -> `src/templates/`
@@ -905,6 +928,7 @@ Replace `generator/src/` references with `src/`:
 - `assets/` -> `src/assets/`
 
 Update the Key source locations list:
+
 ```markdown
 - `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
 - `src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
@@ -917,6 +941,7 @@ Update the Key source locations list:
 - [ ] **Step 3: Update review gates**
 
 In the Pre-Push Review Gates, change `make build-local` to `npm start` (or `make build`):
+
 ```markdown
 2. **It builds** — `npm start` (quick local) or `make build` (full Docker)
 3. **It runs** — `npm run server` at http://localhost:8080 (or `make serve`)
@@ -949,6 +974,7 @@ This group has two parallel tracks: **Logo Documentation** and **Frontend Design
 Document the logo assets, analyse usage, and generate favicons.
 
 **Files:**
+
 - Create: `docs/logo.md`
 - Create: `docs/logo-usage.md`
 
@@ -962,6 +988,7 @@ cat src/assets/logo/icon.svg | head -5    # Check viewBox/dimensions
 ```
 
 Also check PNG dimensions:
+
 ```bash
 file src/assets/logo/logo.png src/assets/logo/icon.png
 ```
@@ -969,6 +996,7 @@ file src/assets/logo/logo.png src/assets/logo/icon.png
 - [ ] **Step 2: Write docs/logo.md**
 
 Document both variants with:
+
 - File locations (all at `src/assets/logo/`)
 - Dimensions (full logo: likely wider aspect, icon: 128x128 square)
 - Colour values (extract from SVG fill/stroke attributes)
@@ -985,12 +1013,14 @@ Document where each variant should be used:
 # Logo Usage Guide
 
 ## Full Logo
+
 - Hero section (desktop)
 - Footer
 - Print CV header
 - Open Graph image (for social sharing)
 
 ## Icon (Square Variant, 128x128)
+
 - Favicon (all sizes)
 - Apple touch icon
 - Mobile header (small viewports where full logo is too wide)
@@ -999,10 +1029,12 @@ Document where each variant should be used:
 - Browser tab / bookmarks bar
 
 ## Theme Variants
+
 - Light background: `logo.svg` / `icon.svg` (and PNG equivalents)
 - Dark background: `logo-dark.svg` / `icon-dark.svg` (and PNG equivalents)
 
 ## File Format Preference
+
 - **Web:** Prefer SVG (scalable, smaller)
 - **Fallback:** PNG where SVG not supported (apple-touch-icon, older browsers)
 - **Favicon:** `.ico` (multi-size) + `.svg` for modern browsers
@@ -1011,6 +1043,7 @@ Document where each variant should be used:
 - [ ] **Step 4: Generate favicon set from icon variant**
 
 Generate the required favicon files. The source is 128x128 — we need:
+
 - `favicon.ico` (multi-size: 16x16, 32x32, 48x48)
 - `favicon.svg` (copy of `icon.svg` or simplified version)
 - `apple-touch-icon.png` (180x180, upscaled from 128)
@@ -1025,6 +1058,7 @@ which convert && echo "ImageMagick available" || echo "Need alternative"
 ```
 
 If ImageMagick available:
+
 ```bash
 cd src/assets/icons
 
@@ -1046,6 +1080,7 @@ cp ../logo/icon.svg favicon.svg
 ```
 
 If ImageMagick not available, use a one-off Node script with sharp:
+
 ```bash
 npm install --save-dev sharp
 node -e "
@@ -1100,6 +1135,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 Use the `frontend-design` skill to review the live site.
 
 **Files:**
+
 - Create: `docs/design-updates.md`
 - Create: `docs/future-design-updates.md`
 
@@ -1112,11 +1148,13 @@ npm start && npm run server &
 - [ ] **Step 2: Run design review**
 
 Invoke the `frontend-design` skill with the vibe context:
+
 - Understated, playful, slightly nerdy, professional, polished
 - KISS, cutting edge visual web design
 - Responsive, mobile-first, print-friendly
 
 Review at http://localhost:8080 and flag:
+
 1. The 13MB `zipline.gif` — performance problem
 2. Scroll animations (`data-animate` on every section) — justify or remove
 3. Blog section is a bare `<ul>` — needs design attention
@@ -1126,6 +1164,7 @@ Review at http://localhost:8080 and flag:
 - [ ] **Step 3: Write docs/design-updates.md**
 
 Document findings with specific changes to make:
+
 - Which animations to keep, which to remove
 - Blog section design direction
 - Theme toggle improvements
@@ -1134,6 +1173,7 @@ Document findings with specific changes to make:
 - [ ] **Step 4: Write docs/future-design-updates.md**
 
 Parking-lot items that aren't in scope for this cycle:
+
 - Major layout redesigns
 - New interactivity features
 - Items that need design mockups first
@@ -1162,6 +1202,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 After both parallel tasks complete, implement the changes.
 
 **Files:**
+
 - Modify: `src/templates/index.ejs`
 - Modify: `src/templates/sections/hero.ejs`
 - Modify: `src/templates/sections/footer.ejs`
@@ -1172,16 +1213,17 @@ After both parallel tasks complete, implement the changes.
 Replace the current favicon block in `src/templates/index.ejs` `<head>`:
 
 ```html
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/icons/favicon.ico" sizes="48x48" />
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 ```
 
 Remove the old references:
+
 ```html
-  <link rel="icon" href="assets/icons/favicon-color.svg">
-  <link rel="icon" href="assets/icons/favicon-color-228.png" sizes="228x228">
-  <link rel="apple-touch-icon" href="assets/icons/favicon-color-228.png" sizes="228x228">
+<link rel="icon" href="assets/icons/favicon-color.svg" />
+<link rel="icon" href="assets/icons/favicon-color-228.png" sizes="228x228" />
+<link rel="apple-touch-icon" href="assets/icons/favicon-color-228.png" sizes="228x228" />
 ```
 
 - [ ] **Step 2: Add logo to footer**
@@ -1191,7 +1233,7 @@ Update `src/templates/sections/footer.ejs`:
 ```html
 <footer class="site-footer">
   <div class="footer-inner">
-    <img src="assets/logo/logo-dark.svg" alt="codesthings" class="footer-logo" width="160">
+    <img src="assets/logo/logo-dark.svg" alt="codesthings" class="footer-logo" width="160" />
     <span class="footer-copy">&copy; 2026 James Macmillan</span>
   </div>
 </footer>
@@ -1242,6 +1284,7 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
 ### Task 4.1: [parallel-A] Socials section
 
 **Files:**
+
 - Create: `data/socials.json`
 - Create: `src/templates/sections/socials.ejs`
 - Modify: `src/index.js`
@@ -1295,10 +1338,23 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
       <a href="<%= social.url %>" class="social-card" target="_blank" rel="noopener noreferrer">
         <div class="social-card-header">
           <% if (social.iconType === 'devicon') { %>
-            <i class="<%= social.icon %> social-icon"></i>
+          <i class="<%= social.icon %> social-icon"></i>
           <% } %>
           <h3 class="social-card-name"><%= social.name %></h3>
-          <svg class="social-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg
+            class="social-card-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </div>
         <p class="social-card-desc"><%= social.description %></p>
       </a>
@@ -1313,19 +1369,20 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
 Add to the `loadData` function in `src/index.js`:
 
 In the imports at line 22-31, add `socials` to the Promise.all:
+
 ```js
 const [profile, experience, skills, education, projects, sidebar, coverLetter, socials] = await Promise.all([
-    readJson(`${dataDir}/profile.json`),
-    readJson(`${dataDir}/experience.json`),
-    readJson(`${dataDir}/skills.json`),
-    readJson(`${dataDir}/education.json`),
-    readJson(`${dataDir}/projects.json`),
-    readJson(`${dataDir}/sidebar.json`),
-    readJson(`${dataDir}/cover-letter.json`),
-    readJson(`${dataDir}/socials.json`),
-  ]);
+  readJson(`${dataDir}/profile.json`),
+  readJson(`${dataDir}/experience.json`),
+  readJson(`${dataDir}/skills.json`),
+  readJson(`${dataDir}/education.json`),
+  readJson(`${dataDir}/projects.json`),
+  readJson(`${dataDir}/sidebar.json`),
+  readJson(`${dataDir}/cover-letter.json`),
+  readJson(`${dataDir}/socials.json`),
+]);
 
-  return { profile, experience, skills, education, projects, sidebar, coverLetter, socials };
+return { profile, experience, skills, education, projects, sidebar, coverLetter, socials };
 ```
 
 - [ ] **Step 4: Add socials section to index.ejs**
@@ -1333,7 +1390,7 @@ const [profile, experience, skills, education, projects, sidebar, coverLetter, s
 In `src/templates/index.ejs`, add after the projects include and before the blog section:
 
 ```html
-  <%- include('sections/socials', { socials }) %>
+<%- include('sections/socials', { socials }) %>
 ```
 
 - [ ] **Step 5: Add CSS for socials section**
@@ -1428,6 +1485,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 4.2: [parallel-B] CV download section
 
 **Files:**
+
 - Modify: `src/templates/sections/hero.ejs`
 - Modify: `src/templates/sections/footer.ejs`
 - Modify: `src/css/styles.css`
@@ -1443,14 +1501,59 @@ Update `src/templates/sections/hero.ejs`:
       <h1 class="hero-title"><%= name %></h1>
       <p class="hero-role">Software Engineer</p>
       <a href="cv.pdf" class="hero-cta" download>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
         Download CV
       </a>
     </div>
     <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
       <span class="toggle-icon" id="toggleIcon">
-        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg
+          class="icon-sun"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+        <svg
+          class="icon-moon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
       </span>
     </button>
     <div class="hero-scroll-hint">
@@ -1467,7 +1570,7 @@ Update `src/templates/sections/footer.ejs` to include a CV link:
 ```html
 <footer class="site-footer">
   <div class="footer-inner">
-    <img src="assets/logo/logo-dark.svg" alt="codesthings" class="footer-logo" width="160">
+    <img src="assets/logo/logo-dark.svg" alt="codesthings" class="footer-logo" width="160" />
     <div class="footer-links">
       <a href="cv.pdf" class="footer-link" download>Download CV</a>
     </div>
@@ -1574,6 +1677,7 @@ git push origin claude-cleanup
 ### Task 5.1: Improve print CSS
 
 **Files:**
+
 - Modify: `src/css/styles.css`
 
 - [ ] **Step 1: Replace the print styles section**
@@ -1644,8 +1748,8 @@ Replace the existing `@media print` block (lines 1073-1113 of the original) with
   }
 
   /* Links show URL in print */
-  a[href^="http"]::after {
-    content: " (" attr(href) ")";
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
     font-size: var(--text-xs);
     color: var(--color-text-muted);
   }
@@ -1653,6 +1757,7 @@ Replace the existing `@media print` block (lines 1073-1113 of the original) with
 ```
 
 Key improvements:
+
 - Force light theme by resetting all CSS custom properties
 - Hide socials section, CV download button, blog section
 - Campsnap banner already hidden
@@ -1742,51 +1847,61 @@ Web fetch `https://codesthings.com/campsnap/` and review for branding consistenc
 After all research subagents complete.
 
 **Files:**
+
 - Create: `docs/social-updates.md`
 
 - [ ] **Step 1: Collate findings into docs/social-updates.md**
 
 Structure:
+
 ```markdown
 # Cross-Platform Cohesion Report
 
 ## Per-Platform Analysis
 
 ### GitHub
+
 - Current state: [findings]
 - Suggested updates: [bio wording, README, pinned repos]
 - Cross-linking: [link back to codesthings.com]
 
 ### LinkedIn
+
 - Current state: [findings]
 - Suggested updates: [bio, headline]
 - Cross-linking: [link to codesthings.com]
 
 ### Makerworld
+
 - Current state: [findings]
 - Suggested updates: [bio, descriptions]
 - Cross-linking: [link to codesthings.com]
 
 ### Instagram
+
 - Current state: [findings]
 - Suggested updates: [bio]
 - Cross-linking: [link to codesthings.com]
 
 ### Campsnap Sub-Site
+
 - Current state: [findings]
 - Branding alignment: [consistent/inconsistent]
 - Suggested updates: [if any]
 
 ## Cross-Platform Recommendations
+
 - Profile photo consistency
 - Bio wording alignment
 - Handle consistency
 - Cross-linking strategy (all profiles -> codesthings.com)
 
 ## Site-Side Updates
+
 - [Any changes to make on codesthings.com based on findings]
 
 ## External Updates (Manual)
+
 - [Changes the user needs to make on external platforms]
 ```
 
@@ -1823,6 +1938,7 @@ Three parallel documentation updates.
 ### Task 7.1: [parallel-A] Update README.md
 
 **Files:**
+
 - Modify: `README.md`
 
 - [ ] **Step 1: Read current README**
@@ -1833,7 +1949,7 @@ cat README.md
 
 - [ ] **Step 2: Rewrite README.md**
 
-```markdown
+````markdown
 # codesthings.com
 
 Personal portfolio and CV site for James Macmillan. Built as a minimal static site generator: JSON data files rendered through EJS templates into plain HTML/CSS/JS.
@@ -1851,6 +1967,7 @@ npm install
 npm start         # Build to public/
 npm run server    # Serve at http://localhost:8080
 ```
+````
 
 ## Directory Structure
 
@@ -1875,13 +1992,13 @@ docs/             Project documentation
 
 ## Make Targets
 
-| Target | Description |
-|--------|-------------|
+| Target       | Description                                              |
+| ------------ | -------------------------------------------------------- |
 | `make build` | Build via Docker (includes PDF generation via Gotenberg) |
-| `make serve` | Serve built site at http://localhost:8080 (Docker) |
-| `make dev` | Local development: watch + serve (Docker) |
-| `make pages` | Build GitHub Pages output (Docker) |
-| `make clean` | Remove build output, stop containers |
+| `make serve` | Serve built site at http://localhost:8080 (Docker)       |
+| `make dev`   | Local development: watch + serve (Docker)                |
+| `make pages` | Build GitHub Pages output (Docker)                       |
+| `make clean` | Remove build output, stop containers                     |
 
 ## Deployment
 
@@ -1893,7 +2010,8 @@ Push to `main` triggers GitHub Actions: build site, generate PDF via Gotenberg, 
 - [LinkedIn](https://linkedin.com/in/jamescodesthings)
 - [Makerworld](https://makerworld.com/en/@jamescodesthing)
 - [Instagram](https://instagram.com/jamescodesthings)
-```
+
+````
 
 - [ ] **Step 3: Commit**
 
@@ -1904,7 +2022,7 @@ New directory structure, Docker-only make targets, deployment
 workflow, socials links.
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
-```
+````
 
 ---
 
@@ -1913,11 +2031,13 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 Already partially done in Task 2.2 — verify everything is current.
 
 **Files:**
+
 - Modify: `CLAUDE.md`
 
 - [ ] **Step 1: Read current CLAUDE.md and verify accuracy**
 
 Check every path, command, and reference matches the current state:
+
 - Architecture section: all paths should reference `src/`
 - Commands section: should show Docker targets + npm fallbacks
 - Code Style section: should be current
@@ -1938,6 +2058,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 7.3: [parallel-C] Update blog post and assets readme
 
 **Files:**
+
 - Modify: `data/blog/2026-03-30-how-this-site-works.md`
 - Modify: `src/assets/readme.md`
 
@@ -1948,6 +2069,7 @@ cat data/blog/2026-03-30-how-this-site-works.md
 ```
 
 Update any references to:
+
 - `generator/src/` -> `src/`
 - `generator/static/` -> `src/`
 - `assets/` -> `src/assets/`
@@ -1977,6 +2099,7 @@ After all parallel doc updates complete.
 - [ ] **Step 1: Cross-reference all docs**
 
 Check consistency across:
+
 - `README.md`
 - `CLAUDE.md`
 - `docs/todo.md`
@@ -2007,6 +2130,7 @@ Small improvements that can be done in any order.
 ### Task 8.1: Add Open Graph metadata
 
 **Files:**
+
 - Modify: `src/templates/index.ejs`
 
 - [ ] **Step 1: Add OG meta tags to index.ejs head**
@@ -2014,13 +2138,13 @@ Small improvements that can be done in any order.
 Add after the existing `<meta name="description">` tag:
 
 ```html
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="James Macmillan — Software Engineer">
-  <meta property="og:description" content="Software engineer portfolio — James Macmillan builds things for the web.">
-  <meta property="og:url" content="https://codesthings.com/">
-  <meta property="og:image" content="https://codesthings.com/assets/logo/logo.png">
-  <meta property="og:site_name" content="codesthings.com">
-  <meta name="twitter:card" content="summary">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="James Macmillan — Software Engineer" />
+<meta property="og:description" content="Software engineer portfolio — James Macmillan builds things for the web." />
+<meta property="og:url" content="https://codesthings.com/" />
+<meta property="og:image" content="https://codesthings.com/assets/logo/logo.png" />
+<meta property="og:site_name" content="codesthings.com" />
+<meta name="twitter:card" content="summary" />
 ```
 
 - [ ] **Step 2: Add canonical URL**
@@ -2028,7 +2152,7 @@ Add after the existing `<meta name="description">` tag:
 Add to `<head>`:
 
 ```html
-  <link rel="canonical" href="https://codesthings.com/">
+<link rel="canonical" href="https://codesthings.com/" />
 ```
 
 - [ ] **Step 3: Commit**
@@ -2049,6 +2173,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 The 13MB GIF is a significant performance and repo size problem.
 
 **Files:**
+
 - Modify: `src/templates/sections/campsnap-banner.ejs`
 - Add: video file(s) to `src/assets/`
 - Delete: `src/assets/zipline.gif` (after conversion)
@@ -2065,6 +2190,7 @@ ffmpeg -i src/assets/zipline.gif -c:v libvpx-vp9 -b:v 0 -crf 30 src/assets/zipli
 ```
 
 Compare sizes:
+
 ```bash
 ls -lh src/assets/zipline.gif src/assets/zipline.mp4 src/assets/zipline.webm
 ```
@@ -2076,19 +2202,12 @@ Expected: mp4 ~1-2MB, webm ~1-2MB (vs 13MB GIF).
 Replace the `<img>` with a `<video>`:
 
 ```html
-    <div class="campsnap-media">
-      <video
-        autoplay
-        loop
-        muted
-        playsinline
-        class="campsnap-gif"
-        loading="lazy"
-      >
-        <source src="assets/zipline.webm" type="video/webm">
-        <source src="assets/zipline.mp4" type="video/mp4">
-      </video>
-    </div>
+<div class="campsnap-media">
+  <video autoplay loop muted playsinline class="campsnap-gif" loading="lazy">
+    <source src="assets/zipline.webm" type="video/webm" />
+    <source src="assets/zipline.mp4" type="video/mp4" />
+  </video>
+</div>
 ```
 
 - [ ] **Step 3: Remove the GIF**
@@ -2121,6 +2240,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 8.3: Create custom 404 page
 
 **Files:**
+
 - Create: `src/templates/404.ejs`
 - Modify: `src/index.js`
 
@@ -2129,26 +2249,29 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```html
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — codesthings.com</title>
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <section class="hero" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-    <div class="hero-inner" style="text-align: center;">
-      <h1 class="hero-title" style="font-size: var(--text-display);">404</h1>
-      <p class="hero-role" style="margin-bottom: var(--space-xl);">This page doesn't exist.</p>
-      <a href="/" class="hero-cta">Back to codesthings.com</a>
-    </div>
-  </section>
-  <script src="js/theme.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — codesthings.com</title>
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <section class="hero" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+      <div class="hero-inner" style="text-align: center;">
+        <h1 class="hero-title" style="font-size: var(--text-display);">404</h1>
+        <p class="hero-role" style="margin-bottom: var(--space-xl);">This page doesn't exist.</p>
+        <a href="/" class="hero-cta">Back to codesthings.com</a>
+      </div>
+    </section>
+    <script src="js/theme.js"></script>
+  </body>
 </html>
 ```
 
@@ -2157,13 +2280,13 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 In `src/index.js`, after writing `index.html` (around line 101), add:
 
 ```js
-  // Build 404 page
-  const notFoundTemplatePath = resolve(srcRoot, config.templateDir, '404.ejs');
-  if (await exists(notFoundTemplatePath)) {
-    const notFoundHtml = await renderTemplate(notFoundTemplatePath, {});
-    await writeFile(`${outputDir}/404.html`, notFoundHtml);
-    debug('  404 page built');
-  }
+// Build 404 page
+const notFoundTemplatePath = resolve(srcRoot, config.templateDir, '404.ejs');
+if (await exists(notFoundTemplatePath)) {
+  const notFoundHtml = await renderTemplate(notFoundTemplatePath, {});
+  await writeFile(`${outputDir}/404.html`, notFoundHtml);
+  debug('  404 page built');
+}
 ```
 
 - [ ] **Step 3: Build and verify**
