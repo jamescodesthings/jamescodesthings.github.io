@@ -54,3 +54,12 @@ services:
     volumes:
       - ./:/app
     command: sh -c "npm install && npm run pages"
+
+  dev:
+    image: node:22-alpine
+    working_dir: /app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
