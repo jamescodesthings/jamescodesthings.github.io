@@ -109,3 +109,32 @@ We only want to use make and docker, we shouldn't ever run the node server on th
   - [ ] Any updates in branding or styling we could make on those profiles (within what we can influence) to bring everything into alignment and cohesion with the site.
   - [ ] Suggested updates to crosslink back to each other and the site.
     - Aim to link back to the site to drive traffic here then let people find the cross-linked socials here, and to create a cohesive online presence that reinforces the branding and messaging of the site across all platforms.
+
+# Frontend Design Review
+
+## Vibe
+
+At a high level this is a website for other web developers, It showcases my skills, but importantly shows people how I work:
+
+- KISS,
+- understated but effective design,
+- Up to the nuts cutting edge of visual web design
+- Responsive and mobile-first
+- Print-friendly because it also doubles as my print cv.
+  - Design elements that do not fit are hidden at print don't worry about removing them completely.
+- A focus on building things that are fun and useful
+- that I can share with others and they get the vibe.
+- The vibe is a sort of understated, playful, slightly nerdy, but professional and polished vibe.
+- The design should reflect that vibe and reinforce the branding and messaging of the site.
+- The design should be cohesive and consistent across all pages and elements of the site, and should create a memorable and engaging experience for visitors
+- It should "say" this without saying it.
+
+## Tasks
+
+- [ ] Use frontend-design to review the site and make sure the design is cohesive and consistent, and that the new logo is used effectively.
+- [ ] Remove excessive or out of place design features, like unnecessary animation.
+- [ ] Document any design changes or updates that we make as a result of the review in 'design-updates.md' in the docs.
+- [ ] Simplify areas of the design that are "too much", for example, we have some minor animation that feels out of place.
+- [ ] Suggest places for animation or interaction that stick to the theme and branding of the site.
+- [ ] Update the site with any design changes or updates that we make as a result of the review.
+- [ ] Create a list of potential future design updates or improvements that we can make to the site in the future, and document this in 'future-design-updates.md' in the docs.
