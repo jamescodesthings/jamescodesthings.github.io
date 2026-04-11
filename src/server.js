@@ -6,7 +6,7 @@ import config from './config.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const outputDir = resolve(root, config.outputDir);
+const outputDir = resolve(__dirname, config.outputDir);
 const PORT = process.env.PORT || 8080;
 
 const mimeTypes = {
