@@ -40,17 +40,17 @@ docs/             <- unchanged
 public/           <- gitignored build output
 ```
 
-- [ ] Run `npm run format:fix` across the entire codebase and commit — get formatting clean before any structural changes so restructure diffs are purely structural
-- [ ] Move files into the new structure
-- [ ] Update `src/config.js` paths to reflect new locations
+- [x] Run `npm run format:fix` across the entire codebase and commit — get formatting clean before any structural changes so restructure diffs are purely structural
+- [x] Move files into the new structure
+- [x] Update `src/config.js` paths to reflect new locations
 - [ ] Update all EJS template asset references (`assets/` paths)
-- [ ] Merge `generator/package.json` dependencies into root `package.json`, remove `generator/package.json`
-- [ ] Update root `package.json` scripts to point at `src/`
+- [x] Merge `generator/package.json` dependencies into root `package.json`, remove `generator/package.json`
+- [x] Update root `package.json` scripts to point at `src/`
 - [ ] Update `docker-compose.yml` volume mounts and working dirs
 - [ ] Update `.github/workflows/deploy.yml` paths
 - [ ] Update `Makefile` targets (remove `cd generator &&` prefixes)
 - [ ] Verify `data/` relative paths work from `src/`
-- [ ] Remove empty `generator/` directory
+- [x] Remove empty `generator/` directory
 - [ ] Build and verify everything works
 
 ---
