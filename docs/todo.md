@@ -75,9 +75,18 @@ Target make targets:
 
 ## [parallel] Logo Documentation
 
+Logo source files:
+- AI source: `raw/logo.ai`
+- SVG exports: `src/assets/logo/logo.svg` (light bg), `src/assets/logo/logo-dark.svg` (dark bg)
+- PNG exports: `src/assets/logo/logo.png` (light bg), `src/assets/logo/logo-dark.png` (dark bg)
+
+Future: a shortform/icon logo (just the "C" and coloured dot from the full logo, in a square icon format) will be designed later in Illustrator. Where the full logo is too wide or needs to shrink down (favicons, mobile headers, social avatars), use a placeholder that can be swapped for the icon version later.
+
 - [ ] Measure logo files (dimensions, file sizes, colours)
-- [ ] Document in `docs/logo.md`: dimensions, colours, fonts, visual description
-- [ ] Assess favicon — current `favicon-color.svg` doesn't match the new logo
+- [ ] Document in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
+- [ ] Note the planned square/icon variant and where it would be used (favicon, mobile, social avatars)
+- [ ] Assess favicon — current `favicon-color.svg` doesn't match the new logo. Use a placeholder crop/square until the icon variant is ready
+- [ ] Prefer SVG versions for web use (scalable, smaller file size)
 
 ## [parallel] Frontend Design Review
 
