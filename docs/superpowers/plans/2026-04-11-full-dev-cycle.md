@@ -439,7 +439,7 @@ Update volume mounts and working directories for the new `src/` structure.
 
 - Modify: `docker-compose.yml`
 
-- [ ] **Step 1: Update docker-compose.yml**
+- [x] **Step 1: Update docker-compose.yml**
 
 ```yaml
 services:
@@ -507,7 +507,7 @@ Key changes:
 - `pages` working_dir: `/app/generator` -> `/app`
 - Commands use root `npm` scripts now
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docker-compose.yml && git commit -m "refactor: update docker-compose for src/ structure
@@ -525,7 +525,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 - Modify: `.github/workflows/deploy.yml`
 
-- [ ] **Step 1: Update deploy.yml**
+- [x] **Step 1: Update deploy.yml**
 
 ```yaml
 name: Build and Deploy
@@ -599,7 +599,7 @@ Changes:
 - `npm install` now installs at repo root (which has all deps)
 - PDF output path: `../pages/cv.pdf` -> `pages/cv.pdf`
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add .github/workflows/deploy.yml && git commit -m "ci: update deploy workflow for src/ structure
@@ -617,7 +617,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 - Modify: `Makefile`
 
-- [ ] **Step 1: Update Makefile**
+- [x] **Step 1: Update Makefile**
 
 ```makefile
 SHELL := bash
@@ -672,7 +672,7 @@ clean:
 
 Key change: Removed all `cd generator &&` prefixes. Scripts now run from repo root.
 
-- [ ] **Step 2: Verify build-local works**
+- [x] **Step 2: Verify build-local works**
 
 ```bash
 make build-local
@@ -680,7 +680,7 @@ make build-local
 
 Expected: `Build complete!` and `public/index.html` exists.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add Makefile && git commit -m "refactor: update Makefile for src/ structure
