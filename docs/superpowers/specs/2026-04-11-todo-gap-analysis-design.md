@@ -114,9 +114,19 @@ public/             <- gitignored, build output
 **Goal:** Document the new logo, run a design review, implement findings.
 
 ### Parallel subtask A: Logo Documentation
-1. Measure logo files (dimensions, file size)
-2. Document in `docs/logo.md`: dimensions, colours, fonts, visual description
-3. Assess whether the favicon should be regenerated from the new logo (current favicon is `favicon-color.svg` which doesn't match)
+
+Available assets:
+- AI source: `raw/logo.ai`
+- SVG exports: `src/assets/logo/logo.svg` (light bg), `src/assets/logo/logo-dark.svg` (dark bg)
+- PNG exports: `src/assets/logo/logo.png` (light bg), `src/assets/logo/logo-dark.png` (dark bg)
+
+Future planned: a shortform/icon variant (just the "C" and coloured dot, square format) — will be designed in Illustrator later. Use placeholders where the icon variant would go.
+
+1. Measure logo files (dimensions, file size, colours)
+2. Document in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
+3. Note planned square/icon variant and its intended uses (favicon, mobile header, social avatars)
+4. Assess favicon — current `favicon-color.svg` doesn't match. Use a placeholder crop/square until the icon variant is ready
+5. Prefer SVG for web use throughout
 
 ### Parallel subtask B: Frontend Design Review
 1. Use `frontend-design` skill to review the live site
@@ -135,7 +145,8 @@ public/             <- gitignored, build output
 3. Implement design review changes (remove/adjust animations, optimise assets)
 
 **Gaps found:**
-- Todo didn't mention favicon update — should match new logo
+- Todo didn't mention favicon update — should match new logo. A square/icon variant is planned for later; use a placeholder crop until then.
+- SVG versions of the logo now exist at `src/assets/logo/` — prefer these for web use over PNGs.
 - Todo didn't flag the 13MB GIF as a performance issue
 - Todo didn't mention the blog section needing design review
 - Todo didn't connect the vibe description (in Frontend Design Review) to the logo review — they need the same context
@@ -247,7 +258,7 @@ public/             <- gitignored, build output
 
 1. **Open Graph metadata** — Add `og:title`, `og:description`, `og:image` to `index.ejs`. Tiny task, big sharing/SEO win.
 2. **Optimise zipline.gif** — 13MB GIF tracked in git. Convert to mp4/webm `<video>` tag (~1-2MB) or host externally. Reduces clone time significantly.
-3. **Favicon from new logo** — Generate favicon from `logo.png` to replace the current non-matching `favicon-color.svg`.
+3. **Favicon from new logo** — Replace `favicon-color.svg` with a placeholder crop from the logo. A proper square/icon variant (just the "C" and coloured dot) is planned as a future Illustrator task — swap it in when ready.
 4. **Custom 404 page** — GitHub Pages shows a generic 404. A branded one matching the site design is a small polished touch.
 5. **Canonical URL** — Add `<link rel="canonical" href="https://codesthings.com/">` for SEO. Note: this repo deploys via GitHub Pages to `jamescodesthings.github.io` with `codesthings.com` as the custom domain.
 6. **Remove "contact form" reference** — The todo mentions hiding a contact form in PDF, but no contact form exists. Cleaned up in this spec.
