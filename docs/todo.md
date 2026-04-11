@@ -17,7 +17,7 @@ Completed a rework of the site into a static site builder/generator.
 
 ---
 
-# [ ] Group 1: Directory Restructure
+# [x] Group 1: Directory Restructure
 
 Move from the current split layout (`generator/`, `assets/`, scattered) to a clean `src/`-rooted structure.
 
@@ -43,15 +43,15 @@ public/           <- gitignored build output
 - [x] Run `npm run format:fix` across the entire codebase and commit — get formatting clean before any structural changes so restructure diffs are purely structural
 - [x] Move files into the new structure
 - [x] Update `src/config.js` paths to reflect new locations
-- [ ] Update all EJS template asset references (`assets/` paths)
+- [x] Update all EJS template asset references (`assets/` paths)
 - [x] Merge `generator/package.json` dependencies into root `package.json`, remove `generator/package.json`
 - [x] Update root `package.json` scripts to point at `src/`
 - [x] Update `docker-compose.yml` volume mounts and working dirs
 - [x] Update `.github/workflows/deploy.yml` paths
 - [x] Update `Makefile` targets (remove `cd generator &&` prefixes)
-- [ ] Verify `data/` relative paths work from `src/`
+- [x] Verify `data/` relative paths work from `src/`
 - [x] Remove empty `generator/` directory
-- [ ] Build and verify everything works
+- [x] Build and verify everything works
 
 ---
 

@@ -702,7 +702,7 @@ EJS templates reference `assets/` paths. Since the build copies `src/assets/` to
 
 - Verify: `src/templates/**/*.ejs`
 
-- [ ] **Step 1: Search for asset references in templates**
+- [x] **Step 1: Search for asset references in templates**
 
 ```bash
 grep -rn "assets/" src/templates/
@@ -710,7 +710,7 @@ grep -rn "assets/" src/templates/
 
 Check each reference resolves correctly when served from `public/`.
 
-- [ ] **Step 2: Build and check HTML output**
+- [x] **Step 2: Build and check HTML output**
 
 ```bash
 make build-local && grep -o 'assets/[^"]*' public/index.html | sort -u
@@ -718,7 +718,7 @@ make build-local && grep -o 'assets/[^"]*' public/index.html | sort -u
 
 Verify each referenced asset exists in `public/assets/`.
 
-- [ ] **Step 3: Check all referenced assets exist**
+- [x] **Step 3: Check all referenced assets exist**
 
 ```bash
 for f in $(grep -ohP 'assets/[^"]+' public/index.html | sort -u); do
@@ -728,7 +728,7 @@ done
 
 Expected: All OK, no MISSING.
 
-- [ ] **Step 4: Commit if any fixes were needed**
+- [x] **Step 4: Commit if any fixes were needed**
 
 ```bash
 git add -A && git diff --cached --stat && git commit -m "fix: update asset references in templates for src/ structure
@@ -746,11 +746,11 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 - Modify: `.prettierignore`
 
-- [ ] **Step 1: Verify .prettierignore is correct**
+- [x] **Step 1: Verify .prettierignore is correct**
 
 Current `.prettierignore` should already be fine — it ignores `public/`, `pages/`, `node_modules/`, `raw/`, `package-lock.json`. No `generator/`-specific paths.
 
-- [ ] **Step 2: Run format check**
+- [x] **Step 2: Run format check**
 
 ```bash
 npm run format:check
@@ -762,13 +762,13 @@ Expected: No formatting issues (we ran format:fix in Task 1.0).
 
 ### Task 1.10: Final verification and push
 
-- [ ] **Step 1: Full build**
+- [x] **Step 1: Full build**
 
 ```bash
 make build-local
 ```
 
-- [ ] **Step 2: Start server and verify**
+- [x] **Step 2: Start server and verify**
 
 ```bash
 node --no-deprecation src/server.js &
@@ -781,13 +781,13 @@ kill %1
 
 Expected: All return 200.
 
-- [ ] **Step 3: Format check**
+- [x] **Step 3: Format check**
 
 ```bash
 npm run format:check
 ```
 
-- [ ] **Step 4: Push Group 1**
+- [x] **Step 4: Push Group 1**
 
 ```bash
 git push origin claude-cleanup
