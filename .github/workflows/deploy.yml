@@ -32,32 +32,26 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install generator dependencies
-        working-directory: generator
+      - name: Install dependencies
         run: npm install
 
       - name: Build site
-        working-directory: generator
         run: npm start
 
       - name: Build pages output
-        working-directory: generator
         run: npm run pages
 
       - name: Generate PDF
-        working-directory: generator
         env:
           SERVER_URL: http://localhost:8080
           GOTENBERG_URL: http://localhost:3000
         run: |
-          # Copy built site to serve container volume
-          # For now, use gotenberg to print the built index.html to PDF
           curl -f --retry 10 --retry-delay 2 \
             --form url="http://serve:80/index.html" \
             --form marginTop=0 --form marginBottom=0 \
             --form marginLeft=0 --form marginRight=0 \
             --form printBackground=true \
-            -o ../pages/cv.pdf \
+            -o pages/cv.pdf \
             http://localhost:3000/forms/chromium/convert/url || echo "PDF generation skipped (gotenberg not available)"
 
       - name: Deploy to pages branch
