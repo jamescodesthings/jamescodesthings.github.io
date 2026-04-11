@@ -1,10 +1,10 @@
 # Tasks
 
-# Rework
+# [x] Rework
 
 Completed a rework of the site into a static site builder/generator.
 
-# Cleanup after rework
+# [ ] Cleanup after rework
 
 The directory structure is a bit messy after the rework, so I need to clean it up and move files around.
 
@@ -30,14 +30,14 @@ public/ // Should be gitignored, a "dist" directory that we mount in docker when
 - [ ] Fix the make commands and generator scripts to use the new directory structure.
 - [ ] Fix the Github Actions workflow to use the new directory structure.
 
-# Cleanup makefile
+# [ ] Cleanup makefile
 
 We only want to use make and docker, we shouldn't ever run the node server on the host machine.
 
 - [ ] Create different services in the docker-compose file which inherit from build and serve, and run the different node commands in those services. Then we can just run `make build` and `make serve` and it will run the correct commands in the correct containers.
 - [ ] Remove the `build-local` command from the makefile, and any references to it in the documentation. We should only be building and serving via Docker, to keep the environment consistent
 
-# New logo
+# [ ] New logo
 
 - We have a new logo in src/assets/logo/
   - There's a logo-dark.png for showing on dark backgrounds, which has white text and a cyan "feature" color.
@@ -49,7 +49,7 @@ We only want to use make and docker, we shouldn't ever run the node server on th
 - [ ] Document this in 'logo-usage.md' in the docs.
 - [ ] Update the site to use the new logo as advised by 'logo-usage.md'
 
-# Update socials
+# [ ] Update socials
 
 - [ ] We should have a dedicated "Where to find me online" section on the site, with links to my GitHub, LinkedIn, Makerworld, and any other relevant profiles. Along with what you can find there
   - [ ] We should also put this in the readme.md for people poking around the code
@@ -74,14 +74,14 @@ We only want to use make and docker, we shouldn't ever run the node server on th
       - I mostly work on Nature, and Portraiture with some street photography.
       - It's also where I post phototgraphy related projects like the camp snap filters.
 
-# Prominent downloadable CV section
+# [ ] Prominent downloadable CV section
 
 - [ ] We should have a prominent section on the site for downloading my CV
 - With a link to the PDF version that we generate via Gotenberg.
 - This should be one of the main calls to action on the site,
 - and should be easily accessible from the homepage and the navigation menu.
 
-# Make sure the PDF doesn't include the web-only content
+# [ ] Make sure the PDF doesn't include the web-only content
 
 - [ ] Build the PDF and ensure the display:print sections are working correctly
   - and that the PDF doesn't include the web-only content like
@@ -90,7 +90,7 @@ We only want to use make and docker, we shouldn't ever run the node server on th
     - or any of the interactive elements that don't make sense in a PDF format.
     - It should be a self-contained CV.
 
-# Cohesion
+# [ ] Cohesion
 
 - [ ] Update the docs in the readme to reflect the new structure and workflow.
   - [ ] Document local development workflow with docker-compose and make commands.
@@ -100,7 +100,7 @@ We only want to use make and docker, we shouldn't ever run the node server on th
 - [ ] Update the comments in the code to reflect the new structure and workflow.
 - [ ] Update the documentation in the ./docs to reflect the new structure and workflow.
 
-# Cohesion on other socials
+# [ ] Cohesion with other sites
 
 - [ ] Output analysis to ./docs in a 'social-updates.md' file.
 - [ ] Go get the bios and profiles that we link to on the site, and scan their content for:
@@ -110,7 +110,7 @@ We only want to use make and docker, we shouldn't ever run the node server on th
   - [ ] Suggested updates to crosslink back to each other and the site.
     - Aim to link back to the site to drive traffic here then let people find the cross-linked socials here, and to create a cohesive online presence that reinforces the branding and messaging of the site across all platforms.
 
-# Frontend Design Review
+# [ ] Frontend Design Review
 
 ## Vibe
 
@@ -129,7 +129,7 @@ At a high level this is a website for other web developers, It showcases my skil
 - The design should be cohesive and consistent across all pages and elements of the site, and should create a memorable and engaging experience for visitors
 - It should "say" this without saying it.
 
-## Tasks
+## [ ] Tasks
 
 - [ ] Use frontend-design to review the site and make sure the design is cohesive and consistent, and that the new logo is used effectively.
 - [ ] Remove excessive or out of place design features, like unnecessary animation.
