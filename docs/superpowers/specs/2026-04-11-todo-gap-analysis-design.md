@@ -115,18 +115,17 @@ public/             <- gitignored, build output
 
 ### Parallel subtask A: Logo Documentation
 
-Available assets:
-- AI source: `raw/logo.ai`
-- SVG exports: `src/assets/logo/logo.svg` (light bg), `src/assets/logo/logo-dark.svg` (dark bg)
-- PNG exports: `src/assets/logo/logo.png` (light bg), `src/assets/logo/logo-dark.png` (dark bg)
+Available assets (all at `src/assets/logo/`, AI source at `raw/logo.ai`):
+- Full logo: `logo.svg`, `logo-dark.svg`, `logo.png`, `logo-dark.png`
+- Icon/square (128x128, "C" + coloured dot): `icon.svg`, `icon-dark.svg`, `icon.png`, `icon-dark.png`
 
-Future planned: a shortform/icon variant (just the "C" and coloured dot, square format) — will be designed in Illustrator later. Use placeholders where the icon variant would go.
-
-1. Measure logo files (dimensions, file size, colours)
-2. Document in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
-3. Note planned square/icon variant and its intended uses (favicon, mobile header, social avatars)
-4. Assess favicon — current `favicon-color.svg` doesn't match. Use a placeholder crop/square until the icon variant is ready
-5. Prefer SVG for web use throughout
+1. Measure and document both variants in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
+2. Analyse where each variant should be used:
+   - Full logo: hero, footer, desktop header, print CV header, Open Graph image
+   - Icon: favicon, apple-touch-icon, mobile header (small viewports), social platform avatars, PWA icon
+3. Document placement decisions in `docs/logo-usage.md`
+4. Replace current favicon (`favicon-color.svg` / `favicon-color-228.png`) with the icon variant
+5. Prefer SVG for web use, PNG as fallback where SVG isn't supported
 
 ### Parallel subtask B: Frontend Design Review
 1. Use `frontend-design` skill to review the live site
@@ -145,8 +144,8 @@ Future planned: a shortform/icon variant (just the "C" and coloured dot, square 
 3. Implement design review changes (remove/adjust animations, optimise assets)
 
 **Gaps found:**
-- Todo didn't mention favicon update — should match new logo. A square/icon variant is planned for later; use a placeholder crop until then.
-- SVG versions of the logo now exist at `src/assets/logo/` — prefer these for web use over PNGs.
+- Todo didn't mention favicon update — should use the icon variant now that it exists.
+- Both full logo and icon variant available in SVG and PNG at `src/assets/logo/` — prefer SVGs for web.
 - Todo didn't flag the 13MB GIF as a performance issue
 - Todo didn't mention the blog section needing design review
 - Todo didn't connect the vibe description (in Frontend Design Review) to the logo review — they need the same context
@@ -258,7 +257,7 @@ Future planned: a shortform/icon variant (just the "C" and coloured dot, square 
 
 1. **Open Graph metadata** — Add `og:title`, `og:description`, `og:image` to `index.ejs`. Tiny task, big sharing/SEO win.
 2. **Optimise zipline.gif** — 13MB GIF tracked in git. Convert to mp4/webm `<video>` tag (~1-2MB) or host externally. Reduces clone time significantly.
-3. **Favicon from new logo** — Replace `favicon-color.svg` with a placeholder crop from the logo. A proper square/icon variant (just the "C" and coloured dot) is planned as a future Illustrator task — swap it in when ready.
+3. **Favicon from new logo** — Replace `favicon-color.svg` and `favicon-color-228.png` with the icon variant (`icon.svg` / `icon.png`). The 128x128 square icon is ready to use now.
 4. **Custom 404 page** — GitHub Pages shows a generic 404. A branded one matching the site design is a small polished touch.
 5. **Canonical URL** — Add `<link rel="canonical" href="https://codesthings.com/">` for SEO. Note: this repo deploys via GitHub Pages to `jamescodesthings.github.io` with `codesthings.com` as the custom domain.
 6. **Remove "contact form" reference** — The todo mentions hiding a contact form in PDF, but no contact form exists. Cleaned up in this spec.

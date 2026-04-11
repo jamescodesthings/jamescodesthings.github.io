@@ -75,18 +75,24 @@ Target make targets:
 
 ## [parallel] Logo Documentation
 
-Logo source files:
-- AI source: `raw/logo.ai`
-- SVG exports: `src/assets/logo/logo.svg` (light bg), `src/assets/logo/logo-dark.svg` (dark bg)
-- PNG exports: `src/assets/logo/logo.png` (light bg), `src/assets/logo/logo-dark.png` (dark bg)
+Logo assets (all at `src/assets/logo/`, AI source at `raw/logo.ai`):
 
-Future: a shortform/icon logo (just the "C" and coloured dot from the full logo, in a square icon format) will be designed later in Illustrator. Where the full logo is too wide or needs to shrink down (favicons, mobile headers, social avatars), use a placeholder that can be swapped for the icon version later.
+| Variant | Light bg | Dark bg | Size |
+|---------|----------|---------|------|
+| Full logo (SVG) | `logo.svg` | `logo-dark.svg` | ~3.7k |
+| Full logo (PNG) | `logo.png` | `logo-dark.png` | ~4.5k |
+| Icon/square (SVG) | `icon.svg` | `icon-dark.svg` | ~0.7k |
+| Icon/square (PNG) | `icon.png` | `icon-dark.png` | ~1.7k |
 
-- [ ] Measure logo files (dimensions, file sizes, colours)
-- [ ] Document in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
-- [ ] Note the planned square/icon variant and where it would be used (favicon, mobile, social avatars)
-- [ ] Assess favicon — current `favicon-color.svg` doesn't match the new logo. Use a placeholder crop/square until the icon variant is ready
-- [ ] Prefer SVG versions for web use (scalable, smaller file size)
+The icon variant is the "C" and coloured dot from the full logo, 128x128px square. Use it where the full logo is too wide or needs to shrink (favicons, mobile headers, social avatars, browser tabs).
+
+- [ ] Measure and document both variants in `docs/logo.md`: dimensions, colours, fonts, visual description, file locations
+- [ ] Analyse where each variant should be used:
+  - Full logo: hero, footer, desktop header, print CV header, Open Graph image
+  - Icon: favicon, apple-touch-icon, mobile header (small viewports), social platform avatars, PWA icon
+  - Document decisions in `docs/logo-usage.md`
+- [ ] Replace current favicon (`favicon-color.svg` / `favicon-color-228.png`) with the icon variant
+- [ ] Prefer SVG versions for web use (scalable, smaller file size). Use PNGs as fallback where SVG isn't supported (e.g. apple-touch-icon).
 
 ## [parallel] Frontend Design Review
 
@@ -213,6 +219,5 @@ Small improvements found during the todo review. Can be done in any order, many 
 
 - [ ] Add Open Graph metadata (`og:title`, `og:description`, `og:image`) to `index.ejs`
 - [ ] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
-- [ ] Generate favicon from new logo to replace non-matching `favicon-color.svg`
 - [ ] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
 - [ ] Create a custom 404 page matching the site design
