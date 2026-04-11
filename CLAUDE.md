@@ -16,7 +16,7 @@ make serve          # Dev server at http://localhost:8080
 make watch          # Watch for changes and rebuild (300ms debounce)
 make clean          # Remove public/ and pages/ directories
 
-make build          # Build via Docker Compose (includes PDF generation)
+make build          # Build via Docker Compose (includes PDF generation) — requires Docker
 make pages          # Build GitHub Pages output via Docker
 make pages-local    # Build GitHub Pages output locally
 ```
@@ -27,7 +27,7 @@ npm run format:check   # Check prettier formatting
 npm run format:fix     # Fix formatting
 ```
 
-Generator dependencies install automatically via the Makefile targets (`cd generator && npm install && ...`).
+Generator dependencies install automatically via the Makefile targets. **Note:** The directory structure is being migrated to `src/` — see `docs/superpowers/plans/2026-04-11-full-dev-cycle.md`.
 
 ## Architecture
 
@@ -40,6 +40,8 @@ Key source locations:
 - `generator/static/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
 - `generator/static/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
 - `assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
+- `raw/` — Source design files (`.ai`, `.psd`) tracked via Git LFS. `raw/logo.ai` is the Illustrator source for the logo.
+- `src/assets/logo/` — Logo assets: `logo.svg`/`logo-dark.svg` (full logo), `icon.svg`/`icon-dark.svg` (128×128 square icon — "C" + dot). SVG + PNG in both light and dark variants.
 
 **Content changes** happen in the JSON files under `data/`. Templates and styles rarely need changes unless adding new sections.
 
@@ -57,6 +59,8 @@ Key source locations:
 ### Task Tracking
 
 Tasks are tracked in `docs/todo.md`. The `docs/` directory is also used for output of analysis, investigation, and design documentation (e.g. `docs/design-updates.md`, `docs/logo-usage.md`).
+
+Implementation plans live at `docs/superpowers/plans/` and specs at `docs/superpowers/specs/`. The active plan for this dev cycle is `docs/superpowers/plans/2026-04-11-full-dev-cycle.md`.
 
 ### Commit and Push Cadence
 
