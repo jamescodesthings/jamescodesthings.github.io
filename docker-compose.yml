@@ -9,7 +9,7 @@ services:
       - SERVER_ROOT=/var/public
       - SERVER_HEALTH=true
     volumes:
-      - ./generator/public:/var/public
+      - ./public:/var/public
     healthcheck:
       test: 'nc -z localhost 80 || exit 1'
       interval: 10s
@@ -35,7 +35,7 @@ services:
 
   build:
     image: node:22-alpine
-    working_dir: /app/generator
+    working_dir: /app
     environment:
       SERVER_URL: http://serve:80
       GOTENBERG_URL: http://gotenberg:3000
@@ -50,7 +50,7 @@ services:
 
   pages:
     image: node:22-alpine
-    working_dir: /app/generator
+    working_dir: /app
     volumes:
       - ./:/app
     command: sh -c "npm install && npm run pages"
