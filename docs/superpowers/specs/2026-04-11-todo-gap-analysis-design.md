@@ -124,8 +124,15 @@ Available assets (all at `src/assets/logo/`, AI source at `raw/logo.ai`):
    - Full logo: hero, footer, desktop header, print CV header, Open Graph image
    - Icon: favicon, apple-touch-icon, mobile header (small viewports), social platform avatars, PWA icon
 3. Document placement decisions in `docs/logo-usage.md`
-4. Replace current favicon (`favicon-color.svg` / `favicon-color-228.png`) with the icon variant
-5. Prefer SVG for web use, PNG as fallback where SVG isn't supported
+4. Generate full favicon set from the icon variant:
+   - `favicon.ico` (multi-size: 16x16, 32x32, 48x48) for legacy browser tabs
+   - `favicon.svg` for modern browsers
+   - `apple-touch-icon.png` (180x180) for iOS home screen
+   - `icon-192.png` and `icon-512.png` for Android/PWA manifest
+   - Source is 128x128 — upscale for 192/512 or re-export from AI if quality matters
+5. Visually verify the icon reads well at all sizes — 16px browser tab, bookmarks bar, search result favicons, iOS/Android home screen, PWA splash. The "C" and dot must be legible at 16x16.
+6. Update `index.ejs` `<head>` with the new favicon references
+7. Prefer SVG for web use, PNG as fallback where SVG isn't supported
 
 ### Parallel subtask B: Frontend Design Review
 1. Use `frontend-design` skill to review the live site
@@ -257,7 +264,7 @@ Available assets (all at `src/assets/logo/`, AI source at `raw/logo.ai`):
 
 1. **Open Graph metadata** — Add `og:title`, `og:description`, `og:image` to `index.ejs`. Tiny task, big sharing/SEO win.
 2. **Optimise zipline.gif** — 13MB GIF tracked in git. Convert to mp4/webm `<video>` tag (~1-2MB) or host externally. Reduces clone time significantly.
-3. **Favicon from new logo** — Replace `favicon-color.svg` and `favicon-color-228.png` with the icon variant (`icon.svg` / `icon.png`). The 128x128 square icon is ready to use now.
+3. **Favicon set from new logo** — Generate a full favicon set (`.ico`, `.svg`, `apple-touch-icon.png`, PWA sizes) from the 128x128 icon variant. Visually verify legibility at all sizes including 16px browser tabs and search results.
 4. **Custom 404 page** — GitHub Pages shows a generic 404. A branded one matching the site design is a small polished touch.
 5. **Canonical URL** — Add `<link rel="canonical" href="https://codesthings.com/">` for SEO. Note: this repo deploys via GitHub Pages to `jamescodesthings.github.io` with `codesthings.com` as the custom domain.
 6. **Remove "contact form" reference** — The todo mentions hiding a contact form in PDF, but no contact form exists. Cleaned up in this spec.
