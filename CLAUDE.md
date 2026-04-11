@@ -34,16 +34,18 @@ npm run format:fix     # Fix formatting
 
 ## Architecture
 
-**Build pipeline** (`generator/src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
+**Build pipeline** (`src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
 
 Key source locations:
 
 - `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
-- `generator/src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
-- `generator/static/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
-- `generator/static/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
-- `generator/static/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
-- `assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
+- `src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
+- `src/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
+- `src/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
+- `src/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
+- `src/assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
+- `src/assets/logo/` — Logo assets: `logo.svg`/`logo-dark.svg` (full logo), `icon.svg`/`icon-dark.svg` (128×128 square icon — "C" + dot). SVG + PNG in both light and dark variants.
+- `raw/` — Source design files (`.ai`, `.psd`) tracked via Git LFS. `raw/logo.ai` is the Illustrator source for the logo.
 
 **Content changes** happen in the JSON files under `data/`. Templates and styles rarely need changes unless adding new sections.
 
