@@ -3,6 +3,8 @@
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 >
 > **After each task completes:** mark the task's steps `[x]` in this plan AND mark the corresponding item(s) in `docs/todo.md` as `[x]`. Commit both updates with the task's final commit.
+>
+> **Push rule:** Every `git commit` must be immediately followed by `git push origin claude-cleanup`. Never leave unpushed commits.
 
 **Goal:** Transform codesthings.com from the current `generator/`-rooted layout into a clean `src/`-rooted, Docker-only, fully branded portfolio site with new content sections, print-ready PDF, cross-platform cohesion, and polish.
 
