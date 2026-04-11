@@ -71,7 +71,7 @@ Target make targets:
 - [x] Remove host-based targets: `build-local`, `serve` (host), `watch` (host), `pages-local`
 - [x] Add `make dev` target with Docker-based watch + serve
 - [x] Ensure `make clean` also cleans up Docker containers
-- [ ] Update CLAUDE.md to reflect new make targets (remove `build-local` from review gates)
+- [x] Update CLAUDE.md to reflect new make targets (remove `build-local` from review gates)
 
 ---
 
