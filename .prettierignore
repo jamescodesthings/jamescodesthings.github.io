@@ -2,6 +2,11 @@
 package-lock.json
 
 # Generated output
-generator/public/
+public/
 pages/
+
+# Dependencies
 node_modules/
+
+# Raw source files
+raw/
