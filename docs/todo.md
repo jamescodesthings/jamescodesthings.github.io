@@ -55,7 +55,7 @@ public/           <- gitignored build output
 
 ---
 
-# [ ] Group 2: Makefile Cleanup
+# [x] Group 2: Makefile Cleanup
 
 Docker-only workflow. No host-machine node execution.
 
@@ -67,10 +67,10 @@ Target make targets:
 - `make clean` — Remove `public/`, `pages/`, stop containers
 - `make pages` — Docker GitHub Pages build
 
-- [ ] Create/update Docker Compose services for the targets above
-- [ ] Remove host-based targets: `build-local`, `serve` (host), `watch` (host), `pages-local`
-- [ ] Add `make dev` target with Docker-based watch + serve
-- [ ] Ensure `make clean` also cleans up Docker containers
+- [x] Create/update Docker Compose services for the targets above
+- [x] Remove host-based targets: `build-local`, `serve` (host), `watch` (host), `pages-local`
+- [x] Add `make dev` target with Docker-based watch + serve
+- [x] Ensure `make clean` also cleans up Docker containers
 - [ ] Update CLAUDE.md to reflect new make targets (remove `build-local` from review gates)
 
 ---

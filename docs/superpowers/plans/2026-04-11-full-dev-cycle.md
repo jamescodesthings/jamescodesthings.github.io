@@ -806,7 +806,7 @@ Convert to Docker-only workflow with `make dev` for local development.
 - Modify: `docker-compose.yml`
 - Modify: `Makefile`
 
-- [ ] **Step 1: Add dev service to docker-compose.yml**
+- [x] **Step 1: Add dev service to docker-compose.yml**
 
 Add a new `dev` service after the existing services:
 
@@ -823,7 +823,7 @@ dev:
 
 This runs both the watcher and dev server inside a single container.
 
-- [ ] **Step 2: Update Makefile to Docker-only targets**
+- [x] **Step 2: Update Makefile to Docker-only targets**
 
 ```makefile
 SHELL := bash
