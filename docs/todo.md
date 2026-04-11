@@ -4,6 +4,7 @@ Execution order follows dependency groups. Parallelisable subtasks are marked wi
 See `docs/superpowers/specs/2026-04-11-todo-gap-analysis-design.md` for the full analysis.
 
 **Deployment context:**
+
 - Canonical URL: https://codesthings.com
 - Hosted via GitHub Pages at `jamescodesthings/jamescodesthings.github.io` with custom domain
 - Sub-site: https://codesthings.com/campsnap/ (separate repo: `jamescodesthings/campsnap`, built from `jamescodesthings/campsnap-filters`)
@@ -21,6 +22,7 @@ Completed a rework of the site into a static site builder/generator.
 Move from the current split layout (`generator/`, `assets/`, scattered) to a clean `src/`-rooted structure.
 
 Target:
+
 ```
 src/assets/       <- from assets/
 src/css/          <- from generator/static/css/
@@ -58,6 +60,7 @@ public/           <- gitignored build output
 Docker-only workflow. No host-machine node execution.
 
 Target make targets:
+
 - `make build` — Docker build with Gotenberg PDF generation
 - `make serve` — Docker static-web-server on port 8080
 - `make dev` — Docker node watch + serve (new, for local development)
@@ -78,10 +81,10 @@ Target make targets:
 
 Logo assets (all at `src/assets/logo/`, AI source at `raw/logo.ai`):
 
-| Variant | Light bg | Dark bg | Size |
-|---------|----------|---------|------|
-| Full logo (SVG) | `logo.svg` | `logo-dark.svg` | ~3.7k |
-| Full logo (PNG) | `logo.png` | `logo-dark.png` | ~4.5k |
+| Variant           | Light bg   | Dark bg         | Size  |
+| ----------------- | ---------- | --------------- | ----- |
+| Full logo (SVG)   | `logo.svg` | `logo-dark.svg` | ~3.7k |
+| Full logo (PNG)   | `logo.png` | `logo-dark.png` | ~4.5k |
 | Icon/square (SVG) | `icon.svg` | `icon-dark.svg` | ~0.7k |
 | Icon/square (PNG) | `icon.png` | `icon-dark.png` | ~1.7k |
 

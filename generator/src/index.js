@@ -131,10 +131,14 @@ async function buildBlog(outputDir) {
     const titleMatch = markdown.match(/^#\s+(.+)$/m);
     const title = titleMatch ? titleMatch[1] : slug;
 
-    const html = ejs.render(blogTemplate, { title, content }, {
-      filename: blogTemplatePath,
-      views: [resolve(root, config.templateDir)],
-    });
+    const html = ejs.render(
+      blogTemplate,
+      { title, content },
+      {
+        filename: blogTemplatePath,
+        views: [resolve(root, config.templateDir)],
+      },
+    );
 
     await mkdirp(`${outputDir}/blog`);
     await writeFile(`${outputDir}/blog/${slug}.html`, html);

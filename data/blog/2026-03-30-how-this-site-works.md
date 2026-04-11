@@ -1,6 +1,6 @@
 # How This Site Works
 
-*Published: 30 March 2026*
+_Published: 30 March 2026_
 
 This is a quick summary of how codesthings.com is built, from data files to deployed website.
 

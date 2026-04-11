@@ -22,6 +22,7 @@ make pages-local    # Build GitHub Pages output locally
 ```
 
 Formatting (from repo root):
+
 ```bash
 npm run format:check   # Check prettier formatting
 npm run format:fix     # Fix formatting
@@ -34,6 +35,7 @@ Generator dependencies install automatically via the Makefile targets. **Note:**
 **Build pipeline** (`generator/src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
 
 Key source locations:
+
 - `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
 - `generator/src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
 - `generator/static/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
@@ -69,6 +71,7 @@ Commit and push after completing each meaningful step in a task — not just at 
 ### Superpowers Skills
 
 We use the superpowers skills to manage task load:
+
 - Use **brainstorming** before non-trivial work to plan the approach.
 - Use **subagent-driven-development** where appropriate to parallelise independent subtasks and speed things up.
 - Use **executing-plans** to work through multi-step plans methodically.
