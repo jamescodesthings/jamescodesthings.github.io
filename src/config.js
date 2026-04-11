@@ -1,8 +1,8 @@
 const config = {
   dataDir: '../data',
-  templateDir: './static/templates',
-  cssDir: './static/css',
-  assetsDir: '../assets',
+  templateDir: './templates',
+  cssDir: './css',
+  assetsDir: './assets',
   outputDir: '../public',
 };
 
