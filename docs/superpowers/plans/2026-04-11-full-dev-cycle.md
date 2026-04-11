@@ -889,7 +889,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 
 - Modify: `CLAUDE.md`
 
-- [ ] **Step 1: Update Commands section in CLAUDE.md**
+- [x] **Step 1: Update Commands section in CLAUDE.md**
 
 Replace the Commands section with:
 
@@ -920,7 +920,7 @@ npm run format:fix # Fix formatting
 \`\`\`
 ```
 
-- [ ] **Step 2: Update Architecture section paths**
+- [x] **Step 2: Update Architecture section paths**
 
 Replace `generator/src/` references with `src/`:
 
@@ -942,7 +942,7 @@ Update the Key source locations list:
 - `src/assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
 ```
 
-- [ ] **Step 3: Update review gates**
+- [x] **Step 3: Update review gates**
 
 In the Pre-Push Review Gates, change `make build-local` to `npm start` (or `make build`):
 
@@ -951,7 +951,7 @@ In the Pre-Push Review Gates, change `make build-local` to `npm start` (or `make
 3. **It runs** — `npm run server` at http://localhost:8080 (or `make serve`)
 ```
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add CLAUDE.md && git commit -m "docs: update CLAUDE.md for src/ structure and Docker-only targets
@@ -961,7 +961,7 @@ Reflect new directory layout, make targets, and review gates.
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```
 
-- [ ] **Step 5: Push Group 2**
+- [x] **Step 5: Push Group 2**
 
 ```bash
 git push origin claude-cleanup

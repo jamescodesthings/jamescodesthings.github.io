@@ -8,17 +8,21 @@ codesthings.com — a personal portfolio/CV site for James Macmillan. Built as a
 
 ## Commands
 
-All commands run from the repo root via Makefile:
+All commands run from the repo root via Makefile (Docker required for `make` targets):
 
 ```bash
-make build-local    # Build site locally → outputs to public/
-make serve          # Dev server at http://localhost:8080
-make watch          # Watch for changes and rebuild (300ms debounce)
-make clean          # Remove public/ and pages/ directories
+make build    # Build site via Docker (includes PDF generation via Gotenberg)
+make serve    # Serve built site at http://localhost:8080 (Docker static server)
+make dev      # Local development: watch + serve at http://localhost:8080 (Docker)
+make pages    # Build GitHub Pages output via Docker
+make clean    # Remove public/, pages/, stop Docker containers
+```
 
-make build          # Build via Docker Compose (includes PDF generation) — requires Docker
-make pages          # Build GitHub Pages output via Docker
-make pages-local    # Build GitHub Pages output locally
+For quick local builds without Docker:
+
+```bash
+npm install && npm start    # Build site → public/
+npm run server              # Dev server at http://localhost:8080
 ```
 
 Formatting (from repo root):
@@ -28,22 +32,18 @@ npm run format:check   # Check prettier formatting
 npm run format:fix     # Fix formatting
 ```
 
-Dependencies are managed in the root `package.json` (`npm install` from repo root).
-
 ## Architecture
 
-**Build pipeline** (`src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
+**Build pipeline** (`generator/src/index.js`): Load JSON from `data/` → render EJS templates → copy static assets → build blog posts from Markdown → write everything to `public/`.
 
 Key source locations:
 
 - `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
-- `src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
-- `src/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
-- `src/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
-- `src/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
-- `src/assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
-- `src/assets/logo/` — Logo assets: `logo.svg`/`logo-dark.svg` (full logo), `icon.svg`/`icon-dark.svg` (128×128 square icon — "C" + dot). SVG + PNG in both light and dark variants.
-- `raw/` — Source design files (`.ai`, `.psd`) tracked via Git LFS. `raw/logo.ai` is the Illustrator source for the logo.
+- `generator/src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
+- `generator/static/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
+- `generator/static/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
+- `generator/static/js/theme.js` — Dark mode toggle (localStorage) and scroll animations (IntersectionObserver)
+- `assets/` — Icons, images, logos, favicons. Copied to `public/assets/` during build
 
 **Content changes** happen in the JSON files under `data/`. Templates and styles rarely need changes unless adding new sections.
 
@@ -94,8 +94,8 @@ Before pushing, run the gates that apply to the changes being pushed. Not every 
 
 #### Run when source code changed (JS, EJS, CSS, Makefile, Dockerfile, package.json)
 
-2. **It builds** — `npm start` (or `make build` for Docker) completes without errors.
-3. **It runs** — `npm run server` starts the dev server and the site loads at `http://localhost:8080`.
+2. **It builds** — `make build` (Docker, includes PDF) or `npm start` (quick local) completes without errors.
+3. **It runs** — `make dev` (Docker) or `npm run server` (local) starts at `http://localhost:8080`.
 4. **Code style is good** — `npm run format:check` passes. Fix with `npm run format:fix` if needed.
 
 #### Run when visual output may have changed (templates, CSS, data JSON, assets)
