@@ -91,7 +91,14 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
   - Full logo: hero, footer, desktop header, print CV header, Open Graph image
   - Icon: favicon, apple-touch-icon, mobile header (small viewports), social platform avatars, PWA icon
   - Document decisions in `docs/logo-usage.md`
-- [ ] Replace current favicon (`favicon-color.svg` / `favicon-color-228.png`) with the icon variant
+- [ ] Generate full favicon set from the icon variant:
+  - `favicon.ico` (multi-size: 16x16, 32x32, 48x48) for legacy browser tabs
+  - `favicon.svg` for modern browsers
+  - `apple-touch-icon.png` (180x180) for iOS home screen
+  - `icon-192.png` and `icon-512.png` for Android/PWA manifest
+  - Generate from the 128x128 source PNGs/SVGs — upscale for 192/512 or export from AI if quality matters
+- [ ] Visually verify the icon reads well at every size — browser tabs (16px), bookmarks bar, search result favicons, iOS/Android home screen, PWA splash. The "C" and dot must be legible and distinct at 16x16.
+- [ ] Update `index.ejs` `<head>` with the new favicon references (replace current `favicon-color.svg` and `favicon-color-228.png`)
 - [ ] Prefer SVG versions for web use (scalable, smaller file size). Use PNGs as fallback where SVG isn't supported (e.g. apple-touch-icon).
 
 ## [parallel] Frontend Design Review
