@@ -38,6 +38,7 @@ docs/             <- unchanged
 public/           <- gitignored build output
 ```
 
+- [ ] Run `npm run format:fix` across the entire codebase and commit — get formatting clean before any structural changes so restructure diffs are purely structural
 - [ ] Move files into the new structure
 - [ ] Update `src/config.js` paths to reflect new locations
 - [ ] Update all EJS template asset references (`assets/` paths)
