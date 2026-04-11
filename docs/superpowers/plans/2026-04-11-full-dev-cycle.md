@@ -982,7 +982,7 @@ Document the logo assets, analyse usage, and generate favicons.
 - Create: `docs/logo.md`
 - Create: `docs/logo-usage.md`
 
-- [ ] **Step 1: Read and analyse logo SVG files**
+- [x] **Step 1: Read and analyse logo SVG files**
 
 Read the SVG files to extract dimensions, colours, and visual description:
 
@@ -997,7 +997,7 @@ Also check PNG dimensions:
 file src/assets/logo/logo.png src/assets/logo/icon.png
 ```
 
-- [ ] **Step 2: Write docs/logo.md**
+- [x] **Step 2: Write docs/logo.md**
 
 Document both variants with:
 
@@ -1009,7 +1009,7 @@ Document both variants with:
 - Light vs dark variants
 - AI source location: `raw/logo.ai`
 
-- [ ] **Step 3: Write docs/logo-usage.md**
+- [x] **Step 3: Write docs/logo-usage.md**
 
 Document where each variant should be used:
 
@@ -1044,7 +1044,7 @@ Document where each variant should be used:
 - **Favicon:** `.ico` (multi-size) + `.svg` for modern browsers
 ```
 
-- [ ] **Step 4: Generate favicon set from icon variant**
+- [x] **Step 4: Generate favicon set from icon variant**
 
 Generate the required favicon files. The source is 128x128 — we need:
 
@@ -1102,13 +1102,13 @@ console.log('Done');
 
 Then use `png2ico` or ImageMagick for the `.ico`. If neither is available, use an online tool or skip the `.ico` (modern browsers prefer SVG favicon).
 
-- [ ] **Step 5: Copy favicon.svg**
+- [x] **Step 5: Copy favicon.svg**
 
 ```bash
 cp src/assets/logo/icon.svg src/assets/icons/favicon.svg
 ```
 
-- [ ] **Step 6: Visually verify favicons at small sizes**
+- [x] **Step 6: Visually verify favicons at small sizes**
 
 Build and serve the site, then check favicon in browser tab. The "C" and dot must be legible at 16x16.
 
@@ -1121,7 +1121,7 @@ npm start && npm run server
 
 If the icon doesn't read well at 16px, consider simplifying (e.g., just the coloured dot, or just the "C") for the smallest sizes.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add docs/logo.md docs/logo-usage.md src/assets/icons/ && git commit -m "docs: logo documentation and favicon generation
