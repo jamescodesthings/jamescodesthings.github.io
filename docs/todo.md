@@ -46,9 +46,9 @@ public/           <- gitignored build output
 - [ ] Update all EJS template asset references (`assets/` paths)
 - [x] Merge `generator/package.json` dependencies into root `package.json`, remove `generator/package.json`
 - [x] Update root `package.json` scripts to point at `src/`
-- [ ] Update `docker-compose.yml` volume mounts and working dirs
-- [ ] Update `.github/workflows/deploy.yml` paths
-- [ ] Update `Makefile` targets (remove `cd generator &&` prefixes)
+- [x] Update `docker-compose.yml` volume mounts and working dirs
+- [x] Update `.github/workflows/deploy.yml` paths
+- [x] Update `Makefile` targets (remove `cd generator &&` prefixes)
 - [ ] Verify `data/` relative paths work from `src/`
 - [x] Remove empty `generator/` directory
 - [ ] Build and verify everything works
