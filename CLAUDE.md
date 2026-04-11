@@ -68,7 +68,7 @@ Implementation plans live at `docs/superpowers/plans/` and specs at `docs/superp
 
 ### Commit and Push Cadence
 
-Commit and push after completing each meaningful step in a task — not just at the end. This keeps progress saved remotely and makes it easy to review or revert individual changes. A "step" is any self-contained change: a file restructure, a template update, a config fix, a new section added, etc.
+Commit **and push** after every commit — not just at the end of a task. Every `git commit` must be followed immediately by `git push origin claude-cleanup`. This keeps progress saved remotely and makes it easy to review or revert individual changes.
 
 ### Superpowers Skills
 
