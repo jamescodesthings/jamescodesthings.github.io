@@ -4,10 +4,10 @@
 
 All assets at `src/assets/logo/`. AI source at `raw/logo.ai`.
 
-| Variant | Light bg | Dark bg |
-|---------|----------|---------|
-| Full logo (SVG) | `logo.svg` | `logo-dark.svg` |
-| Full logo (PNG) | `logo.png` | `logo-dark.png` |
+| Variant           | Light bg   | Dark bg         |
+| ----------------- | ---------- | --------------- |
+| Full logo (SVG)   | `logo.svg` | `logo-dark.svg` |
+| Full logo (PNG)   | `logo.png` | `logo-dark.png` |
 | Icon/square (SVG) | `icon.svg` | `icon-dark.svg` |
 | Icon/square (PNG) | `icon.png` | `icon-dark.png` |
 
@@ -31,16 +31,16 @@ The icon is a square crop of the wordmark that contains only the large "C" lette
 
 ### Light variant (`logo.svg`, `icon.svg`)
 
-| Role | Hex | Usage |
-|------|-----|-------|
+| Role        | Hex       | Usage                                           |
+| ----------- | --------- | ----------------------------------------------- |
 | Letterforms | `#2c2a29` | Dark near-black — the "C" and all wordmark text |
-| Accent dot | `#ff4d00` | Vivid orange-red — the ".com" dot |
+| Accent dot  | `#ff4d00` | Vivid orange-red — the ".com" dot               |
 
 ### Dark variant (`logo-dark.svg`, `icon-dark.svg`)
 
-| Role | Hex | Usage |
-|------|-----|-------|
+| Role        | Hex                                 | Usage                                              |
+| ----------- | ----------------------------------- | -------------------------------------------------- |
 | Letterforms | `#f4f5f1` (logo) / `#ffffff` (icon) | Off-white / pure white — the "C" and wordmark text |
-| Accent dot | `#00c1de` | Cyan-blue — the ".com" dot |
+| Accent dot  | `#00c1de`                           | Cyan-blue — the ".com" dot                         |
 
 The accent dot colour switches between `#ff4d00` (light mode) and `#00c1de` (dark mode), complementing the background tone.
