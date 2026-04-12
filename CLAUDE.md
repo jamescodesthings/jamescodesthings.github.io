@@ -81,6 +81,25 @@ We use the superpowers skills to manage task load:
 - Use **executing-plans** to work through multi-step plans methodically.
 - Use **verification-before-completion** before marking any task done.
 
+### Browser Testing with `browse`
+
+The `browse` skill is available globally — a persistent headless Chromium browser. Use it any time you need to visually verify the site or test interactions.
+
+**When to use it:**
+- After any build that changes templates, CSS, or assets — take a screenshot and inspect the result
+- For the "It looks okay" pre-push gate — navigate to `http://localhost:8080`, screenshot affected sections, check both dark and light themes
+- For end-to-end verification tasks — use `$B responsive` for mobile/tablet/desktop screenshots
+- For design review — inspect the live rendered page rather than guessing from source
+
+**Quick pattern:**
+```bash
+npm start && npm run server &
+$B goto http://localhost:8080
+$B screenshot /tmp/site.png
+$B viewport 375x812 && $B screenshot /tmp/site-mobile.png   # mobile check
+```
+(The `browse` setup runs automatically on first use — ~3s delay the first time.)
+
 ### Pre-Push Review Gates
 
 Before pushing, run the gates that apply to the changes being pushed. Not every push needs every gate — use judgement based on what changed.
@@ -102,7 +121,7 @@ Before pushing, run the gates that apply to the changes being pushed. Not every 
 
 #### Run when visual output may have changed (templates, CSS, data JSON, assets)
 
-5. **It looks okay** — visually check the affected pages in a browser. No broken layouts, missing assets, or regressions.
+5. **It looks okay** — visually check the affected pages in a browser. No broken layouts, missing assets, or regressions. Use the `browse` skill for this: `$B goto http://localhost:8080 && $B screenshot /tmp/check.png`, then read the screenshot. Check both dark and light themes where relevant.
 
 #### Skip when
 
