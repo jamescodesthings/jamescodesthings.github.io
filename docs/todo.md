@@ -200,7 +200,7 @@ Ensure the PDF is a clean, self-contained CV.
 
 ---
 
-# [ ] Group 7: Documentation Cohesion
+# [x] Group 7: Documentation Cohesion
 
 ## [parallel] Doc Updates (3 subagents)
 
@@ -219,8 +219,8 @@ Ensure the PDF is a clean, self-contained CV.
 
 ## After all complete
 
-- [ ] Final consistency pass across all docs
-- [ ] Review inline code comments — only add where logic isn't self-evident
+- [x] Final consistency pass across all docs
+- [x] Review inline code comments — only add where logic isn't self-evident
 
 ---
 
