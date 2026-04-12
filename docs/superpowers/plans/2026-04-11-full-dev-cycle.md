@@ -1496,7 +1496,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 - Modify: `src/templates/sections/footer.ejs`
 - Modify: `src/css/styles.css`
 
-- [ ] **Step 1: Add CV download CTA to hero**
+- [x] **Step 1: Add CV download CTA to hero**
 
 Update `src/templates/sections/hero.ejs`:
 
@@ -1569,7 +1569,7 @@ Update `src/templates/sections/hero.ejs`:
 </section>
 ```
 
-- [ ] **Step 2: Add CV link to footer**
+- [x] **Step 2: Add CV link to footer**
 
 Update `src/templates/sections/footer.ejs` to include a CV link:
 
@@ -1585,7 +1585,7 @@ Update `src/templates/sections/footer.ejs` to include a CV link:
 </footer>
 ```
 
-- [ ] **Step 3: Add CSS for hero CTA and footer links**
+- [x] **Step 3: Add CSS for hero CTA and footer links**
 
 Add to `src/css/styles.css`:
 
@@ -1648,7 +1648,7 @@ html:not(.dark) .footer-logo {
 
 Note: The `content:` swap for light theme logo may not work in all browsers. A more robust approach is to use two `<img>` tags with a CSS class toggle, or use the SVG with `currentColor`. Adjust based on what works.
 
-- [ ] **Step 4: Build and verify**
+- [x] **Step 4: Build and verify**
 
 ```bash
 npm start && npm run server &
@@ -1659,7 +1659,7 @@ npm start && npm run server &
 kill %1
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/templates/sections/hero.ejs src/templates/sections/footer.ejs src/css/styles.css && git commit -m "feat: add CV download CTA in hero and footer
