@@ -2184,7 +2184,7 @@ The 13MB GIF is a significant performance and repo size problem.
 - Add: video file(s) to `src/assets/`
 - Delete: `src/assets/zipline.gif` (after conversion)
 
-- [ ] **Step 1: Convert GIF to video**
+- [x] **Step 1: Convert GIF to video**
 
 ```bash
 # Check if ffmpeg is available
@@ -2203,7 +2203,7 @@ ls -lh src/assets/zipline.gif src/assets/zipline.mp4 src/assets/zipline.webm
 
 Expected: mp4 ~1-2MB, webm ~1-2MB (vs 13MB GIF).
 
-- [ ] **Step 2: Update campsnap-banner.ejs**
+- [x] **Step 2: Update campsnap-banner.ejs**
 
 Replace the `<img>` with a `<video>`:
 
@@ -2216,13 +2216,13 @@ Replace the `<img>` with a `<video>`:
 </div>
 ```
 
-- [ ] **Step 3: Remove the GIF**
+- [x] **Step 3: Remove the GIF**
 
 ```bash
 rm src/assets/zipline.gif
 ```
 
-- [ ] **Step 4: Build and verify**
+- [x] **Step 4: Build and verify**
 
 ```bash
 npm start && npm run server &
@@ -2230,7 +2230,7 @@ npm start && npm run server &
 kill %1
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/assets/zipline.mp4 src/assets/zipline.webm src/templates/sections/campsnap-banner.ejs && git rm src/assets/zipline.gif && git commit -m "perf: convert 13MB zipline.gif to mp4/webm video

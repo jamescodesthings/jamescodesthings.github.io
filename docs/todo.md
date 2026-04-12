@@ -230,5 +230,5 @@ Small improvements found during the todo review. Can be done in any order, many 
 
 - [x] Add Open Graph metadata (`og:title`, `og:description`, `og:image`) to `index.ejs`
 - [x] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
-- [ ] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
+- [x] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
 - [x] Create a custom 404 page matching the site design
