@@ -21,7 +21,7 @@ function formatDate(dateStr) {
 
 async function loadData() {
   const dataDir = resolve(srcRoot, config.dataDir);
-  const [profile, experience, skills, education, projects, sidebar, coverLetter] = await Promise.all([
+  const [profile, experience, skills, education, projects, sidebar, coverLetter, socials] = await Promise.all([
     readJson(`${dataDir}/profile.json`),
     readJson(`${dataDir}/experience.json`),
     readJson(`${dataDir}/skills.json`),
@@ -29,9 +29,10 @@ async function loadData() {
     readJson(`${dataDir}/projects.json`),
     readJson(`${dataDir}/sidebar.json`),
     readJson(`${dataDir}/cover-letter.json`),
+    readJson(`${dataDir}/socials.json`),
   ]);
 
-  return { profile, experience, skills, education, projects, sidebar, coverLetter };
+  return { profile, experience, skills, education, projects, sidebar, coverLetter, socials };
 }
 
 async function renderTemplate(templatePath, data) {
