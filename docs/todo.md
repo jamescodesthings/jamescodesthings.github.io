@@ -75,7 +75,7 @@ Target make targets:
 
 ---
 
-# [ ] Group 3: Logo + Design Review
+# [x] Group 3: Logo + Design Review
 
 ## [parallel] Logo Documentation
 
@@ -103,7 +103,7 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
   - Generate from the 128x128 source PNGs/SVGs — upscale for 192/512 or export from AI if quality matters
 - [x] Visually verify the icon reads well at every size — browser tabs (16px), bookmarks bar, search result favicons, iOS/Android home screen, PWA splash. The "C" and dot must be legible and distinct at 16x16. (best-effort — see docs/logo-usage.md for note on source PNG asymmetry)
 - [x] Update `index.ejs` `<head>` with the new favicon references (replace current `favicon-color.svg` and `favicon-color-228.png`) — deferred to Task 3.3 (after design review)
-- [ ] Prefer SVG versions for web use (scalable, smaller file size). Use PNGs as fallback where SVG isn't supported (e.g. apple-touch-icon).
+- [x] Prefer SVG versions for web use (scalable, smaller file size). Use PNGs as fallback where SVG isn't supported (e.g. apple-touch-icon).
 
 ## [parallel] Frontend Design Review
 
@@ -123,13 +123,13 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
 
 ## After both complete
 
-- [ ] Write `docs/logo-usage.md` informed by logo doc and design review
+- [x] Write `docs/logo-usage.md` informed by logo doc and design review
 - [x] Update the site to use the new logo (hero, footer, favicon)
 - [x] Implement design review changes
 
 ---
 
-# [ ] Group 4: Content Sections
+# [x] Group 4: Content Sections
 
 ## [parallel] Socials Section — "Where to find me online"
 

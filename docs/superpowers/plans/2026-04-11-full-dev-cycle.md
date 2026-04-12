@@ -2327,13 +2327,13 @@ git push origin claude-cleanup
 
 ### Task 9.1: End-to-end verification
 
-- [ ] **Step 1: Full local build**
+- [x] **Step 1: Full local build**
 
 ```bash
 npm start
 ```
 
-- [ ] **Step 2: Serve and verify all sections**
+- [x] **Step 2: Serve and verify all sections**
 
 ```bash
 npm run server &
@@ -2355,24 +2355,24 @@ npm run server &
 kill %1
 ```
 
-- [ ] **Step 3: Format check**
+- [x] **Step 3: Format check**
 
 ```bash
 npm run format:check
 ```
 
-- [ ] **Step 4: Check for secrets or junk**
+- [x] **Step 4: Check for secrets or junk**
 
 ```bash
 git diff origin/main...HEAD --stat
 # Review for any files that shouldn't be committed
 ```
 
-- [ ] **Step 5: Update todo.md**
+- [x] **Step 5: Update todo.md**
 
 Mark all completed groups as `[x]` in `docs/todo.md`.
 
-- [ ] **Step 6: Final commit and push**
+- [x] **Step 6: Final commit and push**
 
 ```bash
 git add docs/todo.md && git commit -m "docs: mark all todo groups as complete
