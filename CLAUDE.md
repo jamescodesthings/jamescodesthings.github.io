@@ -38,7 +38,7 @@ npm run format:fix     # Fix formatting
 
 Key source locations:
 
-- `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, cover-letter) plus `data/blog/*.md` for blog posts
+- `data/` — All site content as JSON files (profile, experience, skills, education, projects, sidebar, socials, cover-letter) plus `data/blog/*.md` for blog posts
 - `src/` — Build pipeline (`index.js`), dev server (`server.js`), file watcher (`watch.js`), GitHub Pages build (`pages.js`), path config (`config.js`), file I/O helpers (`utils.js`)
 - `src/templates/` — EJS templates. `index.ejs` is the main page, `blog.ejs` for blog posts, `sections/` for partials (hero, experience, skills, projects, cover-letter, footer, etc.)
 - `src/css/styles.css` — All styling. CSS custom properties for theming (dark/light via `.dark` class toggle)
