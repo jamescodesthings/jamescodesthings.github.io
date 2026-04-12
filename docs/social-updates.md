@@ -139,13 +139,13 @@ The Campsnap sub-site lives at a subdirectory of codesthings.com but has no visu
 
 **Branding alignment — not aligned:**
 
-| Property            | codesthings.com                              | campsnap sub-site              |
-| ------------------- | -------------------------------------------- | ------------------------------ |
-| Fonts               | Space Grotesk + Inter + JetBrains Mono       | Karla + Oswald                 |
-| Theme               | Light/dark toggle via CSS custom properties  | Always dark, hardcoded black   |
-| Navigation          | Site header with logo                        | None / no link back to main    |
-| Logo                | codesthings logo present                     | No codesthings branding        |
-| Cross-link to main  | N/A                                          | Absent                         |
+| Property           | codesthings.com                             | campsnap sub-site            |
+| ------------------ | ------------------------------------------- | ---------------------------- |
+| Fonts              | Space Grotesk + Inter + JetBrains Mono      | Karla + Oswald               |
+| Theme              | Light/dark toggle via CSS custom properties | Always dark, hardcoded black |
+| Navigation         | Site header with logo                       | None / no link back to main  |
+| Logo               | codesthings logo present                    | No codesthings branding      |
+| Cross-link to main | N/A                                         | Absent                       |
 
 **Suggested updates:**
 
@@ -177,12 +177,12 @@ There's a loose pattern across the platforms that should be tightened:
 
 ### Handle consistency
 
-| Platform  | Handle              | Consistent? |
-| --------- | ------------------- | ----------- |
-| GitHub    | jamescodesthings    | Yes         |
-| LinkedIn  | jamescodesthings    | Yes         |
-| Instagram | jamescodesthings    | Yes         |
-| Makerworld| jamescodesthing     | **NO**      |
+| Platform   | Handle           | Consistent? |
+| ---------- | ---------------- | ----------- |
+| GitHub     | jamescodesthings | Yes         |
+| LinkedIn   | jamescodesthings | Yes         |
+| Instagram  | jamescodesthings | Yes         |
+| Makerworld | jamescodesthing  | **NO**      |
 
 The Makerworld inconsistency (`jamescodesthing` vs `jamescodesthings`) cannot be fixed on the platform side. Mitigate by noting it in the Makerworld bio and ensuring the correct URL is used everywhere codesthings.com links to it (already done in `data/socials.json`).
 
@@ -216,7 +216,7 @@ The following changes require manual action on external platforms — they canno
 | GitHub     | Add codesthings.com to website/URL field                                                    | High     |
 | GitHub     | Update profile README — remove stale 2024/Lua content, add current intro + codesthings link | Medium   |
 | GitHub     | Add bio (currently NULL) — suggested wording above                                          | High     |
-| Instagram  | Add codesthings.com as bio link                                                              | High     |
+| Instagram  | Add codesthings.com as bio link                                                             | High     |
 | Makerworld | Update bio to include codesthings.com URL                                                   | Medium   |
 | LinkedIn   | Verify Personal Website label is clear; consider strengthening About text                   | Low      |
 | Campsnap   | Add footer credit/link back to codesthings.com (separate repo: `jamescodesthings/campsnap`) | Medium   |
