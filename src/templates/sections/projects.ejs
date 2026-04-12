@@ -5,7 +5,7 @@
 
     <div class="projects-grid">
       <% projects.filter(p => !p.canHide).forEach((project, index) => { %>
-        <article class="project-card<%= index === 0 ? ' project-card--featured' : '' %>" data-animate>
+        <article class="project-card<%= index === 0 ? ' project-card--featured' : '' %>">
           <div class="project-header">
             <span class="project-employer"><%= project.employer %></span>
             <span class="project-date"><%= formatDate(project.from) %></span>
