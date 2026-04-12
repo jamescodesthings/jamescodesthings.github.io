@@ -864,12 +864,22 @@ html:not(.dark) .bento-badge:hover {
   align-items: center;
 }
 
-.footer-brand {
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  font-weight: 500;
-  color: var(--color-text);
-  letter-spacing: 0.05em;
+.footer-logo {
+  height: 28px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.footer-logo--dark {
+  display: none;
+}
+
+.dark .footer-logo--light {
+  display: none;
+}
+
+.dark .footer-logo--dark {
+  display: block;
 }
 
 .footer-copy {
