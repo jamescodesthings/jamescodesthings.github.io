@@ -224,7 +224,7 @@ Ensure the PDF is a clean, self-contained CV.
 
 ---
 
-# [ ] Group 8: Polish (new items from gap analysis)
+# [x] Group 8: Polish (new items from gap analysis)
 
 Small improvements found during the todo review. Can be done in any order, many parallelisable.
 
