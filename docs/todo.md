@@ -209,7 +209,7 @@ Ensure the PDF is a clean, self-contained CV.
   - Local dev workflow (Docker-only, `make dev`)
   - Deploy workflow with GitHub Actions
   - Build instructions for PDF
-- [ ] Update `CLAUDE.md`:
+- [x] Update `CLAUDE.md`:
   - Commands section with new make targets
   - Architecture paths reflecting `src/` structure
   - Any stale references
