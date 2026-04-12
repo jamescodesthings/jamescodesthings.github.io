@@ -8,13 +8,9 @@ Static assets used by the website. During the build, these are copied to the out
 
 A headshot of James Macmillan at 1024x1024px, suitable for cropping to a circle. Used on the homepage as the profile photo.
 
-### logo.png
+### logo.png / logo-dark.png
 
-The "codesthings." wordmark in landscape orientation, with dark grey text and a pink/red period, on a white/transparent background. For use on light backgrounds.
-
-### logo-dark.png
-
-The "codesthings." wordmark in landscape orientation, rendered in white text with a light grey period, on a dark/transparent background. For use on dark backgrounds.
+The "codesthings." wordmark in landscape orientation. `logo.png` has dark grey text with an orange-red accent dot (for light backgrounds); `logo-dark.png` has white text with a cyan-blue accent dot (for dark backgrounds). SVG and PNG variants of all logo files also live in `logo/` — prefer `logo/logo.svg` and `logo/logo-dark.svg` for web use. See `docs/logo.md` and `docs/logo-usage.md` for full details.
 
 ### zipline.gif
 
@@ -24,13 +20,21 @@ A 640x480 animated GIF depicting the "I feel like you're just here for the zipli
 
 Technology and tool icons used to illustrate skills and experience on the site. All are either SVG or PNG format.
 
-### icons/favicon-color.svg
+### icons/favicon.svg
 
-The site favicon in SVG format — a stylised "C" shape in a hexagonal frame, filled with a gradient from purple through pink to orange and yellow. Used as the browser tab icon and site identity mark.
+The site favicon in SVG format — the icon variant of the logo ("C" + accent dot). Used as the browser tab icon in modern browsers.
 
-### icons/favicon-color-228.png
+### icons/favicon.ico
 
-A 228x228px PNG raster version of the favicon, for use where SVG is not supported (e.g. Apple touch icons).
+Multi-size ICO (16×16, 32×32, 48×48) for legacy browser tab support.
+
+### icons/apple-touch-icon.png
+
+180×180px PNG for iOS home screen / Apple touch icon.
+
+### icons/icon-192.png / icon-512.png
+
+192×192 and 512×512 PNG icons for Android/PWA manifest and splash screens.
 
 ### icons/aws-dynamo.svg
 
