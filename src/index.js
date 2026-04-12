@@ -104,6 +104,14 @@ async function build() {
   // Write index.html
   await writeFile(`${outputDir}/index.html`, html);
 
+  // Build 404 page
+  const notFoundTemplatePath = resolve(srcRoot, config.templateDir, '404.ejs');
+  if (await exists(notFoundTemplatePath)) {
+    const notFoundHtml = await renderTemplate(notFoundTemplatePath, {});
+    await writeFile(`${outputDir}/404.html`, notFoundHtml);
+    debug('  404 page built');
+  }
+
   // Copy static assets
   debug('Copying assets...');
   await copyAssets(outputDir);
