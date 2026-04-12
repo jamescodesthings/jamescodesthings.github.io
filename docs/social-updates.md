@@ -91,7 +91,7 @@ Every other platform uses `jamescodesthings` (with a trailing 's'). Makerworld u
 
 **Cross-linking:**
 
-Add codesthings.com to the Makerworld profile bio or website field if the platform supports one. Even a bare URL in the bio text is better than nothing.
+The suggested bio wording above already includes `codesthings.com`. If Makerworld exposes a separate website field, add the URL there too — prefer the dedicated field over inline bio text, but keep it in both if possible.
 
 **Handle note:**
 
