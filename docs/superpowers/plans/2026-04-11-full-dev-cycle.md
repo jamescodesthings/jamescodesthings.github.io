@@ -2250,7 +2250,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 - Create: `src/templates/404.ejs`
 - Modify: `src/index.js`
 
-- [ ] **Step 1: Create src/templates/404.ejs**
+- [x] **Step 1: Create src/templates/404.ejs**
 
 ```html
 <!DOCTYPE html>
@@ -2281,7 +2281,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 </html>
 ```
 
-- [ ] **Step 2: Add 404 page to build pipeline**
+- [x] **Step 2: Add 404 page to build pipeline**
 
 In `src/index.js`, after writing `index.html` (around line 101), add:
 
@@ -2295,7 +2295,7 @@ if (await exists(notFoundTemplatePath)) {
 }
 ```
 
-- [ ] **Step 3: Build and verify**
+- [x] **Step 3: Build and verify**
 
 ```bash
 npm start
@@ -2304,7 +2304,7 @@ ls -la public/404.html
 
 Expected: `404.html` exists in `public/`.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/templates/404.ejs src/index.js && git commit -m "feat: add custom 404 page matching site design
