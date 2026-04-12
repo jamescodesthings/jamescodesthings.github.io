@@ -182,15 +182,15 @@ Ensure the PDF is a clean, self-contained CV.
 
 ## [parallel] Profile Research (4 subagents)
 
-- [ ] Fetch and analyse GitHub profile: bio, repos, pinned items, README
-- [ ] Fetch and analyse Makerworld profile: bio, published models, descriptions
-- [ ] Fetch and analyse Instagram profile: bio, recent posts, aesthetic/vibe
-- [ ] Fetch and analyse LinkedIn profile (may be limited by auth)
-- [ ] Review campsnap sub-site (https://codesthings.com/campsnap/) for branding consistency with main site
+- [x] Fetch and analyse GitHub profile: bio, repos, pinned items, README
+- [x] Fetch and analyse Makerworld profile: bio, published models, descriptions
+- [x] Fetch and analyse Instagram profile: bio, recent posts, aesthetic/vibe
+- [x] Fetch and analyse LinkedIn profile (may be limited by auth)
+- [x] Review campsnap sub-site (https://codesthings.com/campsnap/) for branding consistency with main site
 
 ## After research completes
 
-- [ ] Collate findings into `docs/social-updates.md`:
+- [x] Collate findings into `docs/social-updates.md`:
   - Per-platform: current state, suggested wording, branding alignment
   - Cross-linking recommendations (all profiles link back to codesthings.com)
   - Branding consistency (profile photos, bios, handles)

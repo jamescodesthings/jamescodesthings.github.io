@@ -1812,7 +1812,7 @@ Dispatch subagents to fetch and analyse each profile. These are research-only ta
 
 **Subagent A: GitHub profile**
 
-- [ ] **Step 1: Fetch GitHub profile**
+- [x] **Step 1: Fetch GitHub profile**
 
 ```bash
 # Via gh CLI or web fetch
@@ -1824,25 +1824,25 @@ Analyse: bio, pinned repos, README, activity patterns.
 
 **Subagent B: Makerworld profile**
 
-- [ ] **Step 1: Fetch Makerworld profile**
+- [x] **Step 1: Fetch Makerworld profile**
 
 Web fetch `https://makerworld.com/en/@jamescodesthing` and analyse bio, published models, descriptions.
 
 **Subagent C: Instagram profile**
 
-- [ ] **Step 1: Fetch Instagram profile**
+- [x] **Step 1: Fetch Instagram profile**
 
 Web fetch `https://www.instagram.com/jamescodesthings/` — may be limited by auth. Analyse what's publicly visible: bio, aesthetic, posting patterns.
 
 **Subagent D: LinkedIn profile**
 
-- [ ] **Step 1: Fetch LinkedIn profile**
+- [x] **Step 1: Fetch LinkedIn profile**
 
 Web fetch `https://www.linkedin.com/in/jamescodesthings` — likely limited by auth walls. Document what's publicly visible.
 
 **Subagent E: Campsnap sub-site**
 
-- [ ] **Step 1: Fetch campsnap sub-site**
+- [x] **Step 1: Fetch campsnap sub-site**
 
 Web fetch `https://codesthings.com/campsnap/` and review for branding consistency with main site.
 
@@ -1856,7 +1856,7 @@ After all research subagents complete.
 
 - Create: `docs/social-updates.md`
 
-- [ ] **Step 1: Collate findings into docs/social-updates.md**
+- [x] **Step 1: Collate findings into docs/social-updates.md**
 
 Structure:
 
@@ -1911,7 +1911,7 @@ Structure:
 - [Changes the user needs to make on external platforms]
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docs/social-updates.md && git commit -m "docs: cross-platform cohesion research and recommendations
