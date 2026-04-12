@@ -1212,7 +1212,7 @@ After both parallel tasks complete, implement the changes.
 - Modify: `src/templates/sections/footer.ejs`
 - Modify: `src/css/styles.css`
 
-- [ ] **Step 1: Update favicon references in index.ejs**
+- [x] **Step 1: Update favicon references in index.ejs**
 
 Replace the current favicon block in `src/templates/index.ejs` `<head>`:
 
@@ -1230,7 +1230,7 @@ Remove the old references:
 <link rel="apple-touch-icon" href="assets/icons/favicon-color-228.png" sizes="228x228" />
 ```
 
-- [ ] **Step 2: Add logo to footer**
+- [x] **Step 2: Add logo to footer**
 
 Update `src/templates/sections/footer.ejs`:
 
@@ -1245,7 +1245,7 @@ Update `src/templates/sections/footer.ejs`:
 
 Note: Footer is on dark background by default. Use `logo-dark.svg` for dark bg. Add CSS to swap for light theme.
 
-- [ ] **Step 3: Implement design review changes**
+- [x] **Step 3: Implement design review changes**
 
 Based on the design review findings in `docs/design-updates.md`, apply CSS and template changes. Exact changes depend on review findings but likely include:
 
@@ -1253,7 +1253,7 @@ Based on the design review findings in `docs/design-updates.md`, apply CSS and t
 - Animation adjustments
 - Theme toggle refinements
 
-- [ ] **Step 4: Build and visually verify**
+- [x] **Step 4: Build and visually verify**
 
 ```bash
 npm start && npm run server &
@@ -1262,7 +1262,7 @@ npm start && npm run server &
 kill %1
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat: implement logo placement and design review changes
@@ -1273,7 +1273,7 @@ apply design review recommendations.
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ```
 
-- [ ] **Step 6: Push Group 3**
+- [x] **Step 6: Push Group 3**
 
 ```bash
 git push origin claude-cleanup
