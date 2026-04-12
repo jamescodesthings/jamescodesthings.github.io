@@ -228,7 +228,7 @@ Ensure the PDF is a clean, self-contained CV.
 
 Small improvements found during the todo review. Can be done in any order, many parallelisable.
 
-- [ ] Add Open Graph metadata (`og:title`, `og:description`, `og:image`) to `index.ejs`
-- [ ] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
+- [x] Add Open Graph metadata (`og:title`, `og:description`, `og:image`) to `index.ejs`
+- [x] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
 - [ ] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
 - [ ] Create a custom 404 page matching the site design
