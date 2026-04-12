@@ -161,20 +161,20 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
 
 ---
 
-# [ ] Group 5: PDF Print Cleanup
+# [x] Group 5: PDF Print Cleanup
 
 Ensure the PDF is a clean, self-contained CV.
 
-- [ ] Extend `@media print` CSS to hide:
+- [x] Extend `@media print` CSS to hide:
   - Socials section (or show as plain text URLs for print)
   - CV download button (pointless in PDF)
   - Blog section
   - Campsnap banner (already hidden)
   - Any interactive elements
-- [ ] Switch full theme to light in print (current print CSS resets body but not CSS custom properties)
-- [ ] Test PDF generation via Docker (`make build`)
-- [ ] Review page breaks for each section
-- [ ] Verify the PDF reads as a professional, self-contained CV
+- [x] Switch full theme to light in print (current print CSS resets body but not CSS custom properties)
+- [x] Test PDF generation via Docker (`make build`)
+- [x] Review page breaks for each section
+- [x] Verify the PDF reads as a professional, self-contained CV
 
 ---
 
