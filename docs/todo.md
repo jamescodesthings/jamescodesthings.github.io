@@ -213,9 +213,9 @@ Ensure the PDF is a clean, self-contained CV.
   - Commands section with new make targets
   - Architecture paths reflecting `src/` structure
   - Any stale references
-- [ ] Update `data/blog/2026-03-30-how-this-site-works.md`:
+- [x] Update `data/blog/2026-03-30-how-this-site-works.md`:
   - Reflect new directory structure and build pipeline
-- [ ] Update `src/assets/readme.md` (moved from `assets/readme.md`)
+- [x] Update `src/assets/readme.md` (moved from `assets/readme.md`)
 
 ## After all complete
 

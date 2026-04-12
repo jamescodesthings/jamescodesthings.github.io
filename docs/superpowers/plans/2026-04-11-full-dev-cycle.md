@@ -2068,7 +2068,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 - Modify: `data/blog/2026-03-30-how-this-site-works.md`
 - Modify: `src/assets/readme.md`
 
-- [ ] **Step 1: Read and update blog post**
+- [x] **Step 1: Read and update blog post**
 
 ```bash
 cat data/blog/2026-03-30-how-this-site-works.md
@@ -2082,11 +2082,11 @@ Update any references to:
 - Old make targets -> new make targets
 - Any other stale references
 
-- [ ] **Step 2: Update src/assets/readme.md**
+- [x] **Step 2: Update src/assets/readme.md**
 
 Update any path references in the assets readme.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add data/blog/2026-03-30-how-this-site-works.md src/assets/readme.md && git commit -m "docs: update blog post and assets readme for new structure
