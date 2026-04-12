@@ -178,7 +178,7 @@ Ensure the PDF is a clean, self-contained CV.
 
 ---
 
-# [ ] Group 6: Cross-Platform Cohesion
+# [x] Group 6: Cross-Platform Cohesion
 
 ## [parallel] Profile Research (4 subagents)
 
@@ -195,8 +195,8 @@ Ensure the PDF is a clean, self-contained CV.
   - Cross-linking recommendations (all profiles link back to codesthings.com)
   - Branding consistency (profile photos, bios, handles)
   - Campsnap sub-site alignment
-- [ ] Implement site-side updates based on findings
-- [ ] Document suggested external profile updates (can't change those ourselves)
+- [x] Implement site-side updates based on findings
+- [x] Document suggested external profile updates (can't change those ourselves)
 
 ---
 
