@@ -67,7 +67,9 @@ async function getBlogPosts() {
     const markdown = await readFile(resolve(blogDir, file));
     const titleMatch = markdown.match(/^#\s+(.+)$/m);
     const title = titleMatch ? titleMatch[1] : slug;
-    posts.push({ slug, title });
+    const dateMatch = slug.match(/^(\d{4}-\d{2}-\d{2})/);
+    const date = dateMatch ? dateMatch[1] : '';
+    posts.push({ slug, title, date });
   }
   return posts;
 }

@@ -34,13 +34,17 @@
   <% if (blogPosts && blogPosts.length > 0) { %>
   <section class="section" data-animate>
     <div class="section-inner">
-      <span class="section-label">BLOG</span>
+      <span class="section-label">06 — BLOG</span>
       <h2 class="section-title">Writing</h2>
-      <ul class="blog-list">
+      <div class="blog-cards">
         <% blogPosts.forEach(function(post) { %>
-        <li><a href="blog/<%= post.slug %>.html"><%= post.title %></a></li>
+        <a href="blog/<%= post.slug %>.html" class="blog-card">
+          <span class="blog-card-title"><%= post.title %></span>
+          <% if (post.date) { %><span class="blog-card-date"><%= formatDate(post.date) %></span><% } %>
+          <svg class="blog-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
         <% }); %>
-      </ul>
+      </div>
     </div>
   </section>
   <% } %>
