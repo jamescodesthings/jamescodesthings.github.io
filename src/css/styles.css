@@ -391,6 +391,7 @@ html:not(.dark) .icon-moon {
 }
 
 .availability-dot {
+  /* Semantic status colour: green = available. Not a CSS variable by design. */
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -926,6 +927,7 @@ html:not(.dark) .bento-badge:hover {
 .blog-post h1 {
   font-family: var(--font-heading);
   font-size: var(--text-h1);
+  font-weight: 600;
   color: var(--color-heading);
   margin-bottom: var(--space-md);
 }
@@ -933,6 +935,7 @@ html:not(.dark) .bento-badge:hover {
 .blog-post h2 {
   font-family: var(--font-heading);
   font-size: var(--text-h2);
+  font-weight: 600;
   color: var(--color-heading);
   margin-top: var(--space-2xl);
   margin-bottom: var(--space-md);
