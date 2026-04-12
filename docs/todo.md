@@ -133,7 +133,7 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
 
 ## [parallel] Socials Section — "Where to find me online"
 
-- [ ] Create `data/socials.json` with structured data for each platform:
+- [x] Create `data/socials.json` with structured data for each platform:
   - GitHub: https://github.com/jamescodesthings
     - Types of projects, this site's code, call to action to poke around
     - Wording around: KISS, enough tool for the job, ship then iterate, fun and useful
@@ -145,10 +145,10 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
     - Nature, portraiture, street photography
     - Photography projects like the camp snap filters
     - Note: photography portfolio in progress
-- [ ] Create `src/templates/sections/socials.ejs`
-- [ ] Add section to `index.ejs`
-- [ ] Add CSS for the socials section
-- [ ] Load `socials.json` in `src/index.js` build pipeline
+- [x] Create `src/templates/sections/socials.ejs`
+- [x] Add section to `index.ejs`
+- [x] Add CSS for the socials section
+- [x] Load `socials.json` in `src/index.js` build pipeline
 - [ ] Add socials summary to `README.md`
 
 ## [parallel] CV Download Section
