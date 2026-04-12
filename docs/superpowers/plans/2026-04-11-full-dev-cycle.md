@@ -1143,13 +1143,13 @@ Use the `frontend-design` skill to review the live site.
 - Create: `docs/design-updates.md`
 - Create: `docs/future-design-updates.md`
 
-- [ ] **Step 1: Build and serve the site**
+- [x] **Step 1: Build and serve the site**
 
 ```bash
 npm start && npm run server &
 ```
 
-- [ ] **Step 2: Run design review**
+- [x] **Step 2: Run design review**
 
 Invoke the `frontend-design` skill with the vibe context:
 
@@ -1165,7 +1165,7 @@ Review at http://localhost:8080 and flag:
 4. Theme toggle placement and styling
 5. Overall layout, typography, spacing, colour consistency
 
-- [ ] **Step 3: Write docs/design-updates.md**
+- [x] **Step 3: Write docs/design-updates.md**
 
 Document findings with specific changes to make:
 
@@ -1174,7 +1174,7 @@ Document findings with specific changes to make:
 - Theme toggle improvements
 - Any other issues found
 
-- [ ] **Step 4: Write docs/future-design-updates.md**
+- [x] **Step 4: Write docs/future-design-updates.md**
 
 Parking-lot items that aren't in scope for this cycle:
 
@@ -1182,13 +1182,13 @@ Parking-lot items that aren't in scope for this cycle:
 - New interactivity features
 - Items that need design mockups first
 
-- [ ] **Step 5: Kill dev server**
+- [x] **Step 5: Kill dev server**
 
 ```bash
 kill %1
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add docs/design-updates.md docs/future-design-updates.md && git commit -m "docs: frontend design review findings
