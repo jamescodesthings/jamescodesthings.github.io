@@ -18,6 +18,7 @@ All site content lives in JSON files under `data/`:
 - `education.json` - Qualifications
 - `projects.json` - Portfolio projects
 - `sidebar.json` - Contact info, social links, tech stacks
+- `socials.json` - Social platform links and descriptions
 - `cover-letter.json` - Cover letter variants
 
 To update the site content, you just edit the JSON.
