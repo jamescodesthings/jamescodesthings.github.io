@@ -771,6 +771,33 @@ html:not(.dark) .bento-badge:hover {
 }
 
 /* ============================================
+   Hero CTA
+   ============================================ */
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-heading);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.hero-cta:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+/* ============================================
    Campsnap Banner
    ============================================ */
 
@@ -890,6 +917,24 @@ html:not(.dark) .bento-badge:hover {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   letter-spacing: 0.03em;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.footer-link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--color-text);
 }
 
 /* ============================================
