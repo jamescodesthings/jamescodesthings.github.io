@@ -216,20 +216,22 @@ The font combination is strong: Space Grotesk (headings) provides geometric char
    ```
    This is already present (`&display=swap`). No change needed -- confirmed correct.
 
-2. **Trim unused font weights.** The site loads Inter at 300/400/500/600/700 but only uses 400 (body) and 600 (signature `.signature`). Reduce to:
+2. **Trim unused font weights.** The site loads Inter at 300/400/500/600/700 but only uses 400 (body), 500 (`.experience-summary`, `.project-leader`, `.badge-label`), and 600 (`.signature`). Reduce to:
    ```
-   family=Inter:wght@400;600
+   family=Inter:wght@400;500;600
    ```
-   This cuts the font payload by ~60% for Inter.
+   This cuts the font payload by ~40% for Inter (dropping 300 and 700).
 
 3. Similarly for Space Grotesk, the CSS uses 600 and 700. Remove 400 and 500:
    ```
    family=Space+Grotesk:wght@600;700
    ```
 
-   Updated full URL:
+   **Before trimming Space Grotesk to 600;700**, add explicit `font-weight: 600` to `.blog-post h1` and `.blog-post h2` in `src/css/styles.css`. Those rules currently use `font-family: var(--font-heading)` without an explicit `font-weight`, so they render in weight 400 by default. Dropping weight 400 from Space Grotesk would visibly change those blog headings. Alternatively, keep weight 400 in the Space Grotesk URL to avoid touching the CSS.
+
+   Updated full URL (after fixing blog heading weights):
    ```
-   https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap
+   https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap
    ```
 
 ---
