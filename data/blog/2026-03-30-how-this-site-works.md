@@ -24,18 +24,18 @@ To update the site content, you just edit the JSON.
 
 ### Generator
 
-The `generator/` directory contains a Node.js (pure ESM) static site builder:
+The `src/` directory contains a Node.js (pure ESM) static site builder:
 
 1. **Load** - Reads all JSON data files
 2. **Render** - Passes data through EJS templates to produce HTML
 3. **Copy** - Moves static assets (CSS, favicons, icons) to the output directory
-4. **Output** - Everything lands in `generator/public/`
+4. **Output** - Everything lands in `public/`
 
 There is no React, no Vite, no bundler. Just Node.js reading files and writing files.
 
 ### Templates
 
-EJS templates in `generator/static/templates/` define the page structure. Each section (hero, experience, skills, projects, etc.) is its own partial template. The main `index.ejs` composes them together.
+EJS templates in `src/templates/` define the page structure. Each section (hero, experience, skills, projects, etc.) is its own partial template. The main `index.ejs` composes them together.
 
 ### Styling
 
@@ -43,7 +43,7 @@ Plain CSS with CSS custom properties (variables) for theming. Dark and light mod
 
 ### Infrastructure
 
-- **Makefile** - All developer-facing commands. `make build`, `make serve`, `make watch`.
+- **Makefile** - All developer-facing commands. `make build`, `make serve`, `make dev`.
 - **Docker Compose** - Services for containerized builds: a static file server, Gotenberg (Chromium headless for PDF generation), and the Node.js build container.
 - **GitHub Actions** - On push to `main`: build the site, generate a PDF, deploy to the `pages` branch.
 
