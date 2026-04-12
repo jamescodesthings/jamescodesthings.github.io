@@ -1,0 +1,33 @@
+<section class="section socials-section" data-animate>
+  <div class="section-inner">
+    <span class="section-label">CONNECT</span>
+    <h2 class="section-title">Where to find me</h2>
+    <div class="socials-grid">
+      <% socials.forEach(function(social) { %>
+      <a href="<%= social.url %>" class="social-card" target="_blank" rel="noopener noreferrer">
+        <div class="social-card-header">
+          <% if (social.iconType === 'devicon') { %>
+          <i class="<%= social.icon %> social-icon"></i>
+          <% } %>
+          <h3 class="social-card-name"><%= social.name %></h3>
+          <svg
+            class="social-card-arrow"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </div>
+        <p class="social-card-desc"><%= social.description %></p>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+</section>

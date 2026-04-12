@@ -1131,6 +1131,69 @@ html:not(.dark) .bento-badge:hover {
 }
 
 /* ============================================
+   Socials Section
+   ============================================ */
+
+.socials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.social-card {
+  display: block;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.social-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.social-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  color: var(--color-accent);
+}
+
+.social-card-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  color: var(--color-heading);
+  flex: 1;
+}
+
+.social-card-arrow {
+  color: var(--color-text-muted);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.social-card:hover .social-card-arrow {
+  color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.social-card-desc {
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
    Print Styles
    ============================================ */
 

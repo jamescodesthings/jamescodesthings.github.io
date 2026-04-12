@@ -86,18 +86,21 @@ We use the superpowers skills to manage task load:
 The `browse` skill is available globally — a persistent headless Chromium browser. Use it any time you need to visually verify the site or test interactions.
 
 **When to use it:**
+
 - After any build that changes templates, CSS, or assets — take a screenshot and inspect the result
 - For the "It looks okay" pre-push gate — navigate to `http://localhost:8080`, screenshot affected sections, check both dark and light themes
 - For end-to-end verification tasks — use `$B responsive` for mobile/tablet/desktop screenshots
 - For design review — inspect the live rendered page rather than guessing from source
 
 **Quick pattern:**
+
 ```bash
 npm start && npm run server &
 $B goto http://localhost:8080
 $B screenshot /tmp/site.png
 $B viewport 375x812 && $B screenshot /tmp/site-mobile.png   # mobile check
 ```
+
 (The `browse` setup runs automatically on first use — ~3s delay the first time.)
 
 ### Pre-Push Review Gates
