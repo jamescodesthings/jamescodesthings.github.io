@@ -152,6 +152,10 @@ html:not(.dark) .hero::before {
   background: radial-gradient(ellipse at 50% 0%, rgba(217, 119, 6, 0.04) 0%, transparent 60%);
 }
 
+.hero--center {
+  justify-content: center;
+}
+
 .hero-inner {
   width: 100%;
   max-width: var(--max-width);
