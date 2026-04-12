@@ -1169,6 +1169,21 @@ html:not(.dark) .bento-badge:hover {
   color: var(--color-accent);
 }
 
+.social-icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
 .social-card-name {
   font-family: var(--font-heading);
   font-size: var(--text-h2);

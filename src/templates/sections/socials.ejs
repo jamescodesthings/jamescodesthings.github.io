@@ -1,13 +1,15 @@
 <section class="section socials-section" data-animate>
   <div class="section-inner">
-    <span class="section-label">CONNECT</span>
+    <span class="section-label">06 — CONNECT</span>
     <h2 class="section-title">Where to find me</h2>
     <div class="socials-grid">
       <% socials.forEach(function(social) { %>
-      <a href="<%= social.url %>" class="social-card" target="_blank" rel="noopener noreferrer">
+      <a href="<%= social.url %>" class="social-card" target="_blank" rel="noopener noreferrer" aria-label="<%= social.name %>, opens in new tab">
         <div class="social-card-header">
           <% if (social.iconType === 'devicon') { %>
           <i class="<%= social.icon %> social-icon"></i>
+          <% } else { %>
+          <span class="social-icon-text"><%= social.name.charAt(0) %></span>
           <% } %>
           <h3 class="social-card-name"><%= social.name %></h3>
           <svg
