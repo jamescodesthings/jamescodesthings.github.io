@@ -38,13 +38,13 @@ Use where the full logo would be too wide or needs to shrink:
 
 All assets at `src/assets/logo/`. Generated favicons at `src/assets/icons/`.
 
-| File | Size | Purpose |
-|------|------|---------|
-| `src/assets/icons/favicon.svg` | SVG | Modern browser tab icon |
-| `src/assets/icons/favicon.ico` | 16/32/48px multi-size | Legacy browser tab icon |
-| `src/assets/icons/apple-touch-icon.png` | 180×180 | iOS home screen |
-| `src/assets/icons/icon-192.png` | 192×192 | Android / PWA manifest |
-| `src/assets/icons/icon-512.png` | 512×512 | Android / PWA splash |
+| File                                    | Size                  | Purpose                 |
+| --------------------------------------- | --------------------- | ----------------------- |
+| `src/assets/icons/favicon.svg`          | SVG                   | Modern browser tab icon |
+| `src/assets/icons/favicon.ico`          | 16/32/48px multi-size | Legacy browser tab icon |
+| `src/assets/icons/apple-touch-icon.png` | 180×180               | iOS home screen         |
+| `src/assets/icons/icon-192.png`         | 192×192               | Android / PWA manifest  |
+| `src/assets/icons/icon-512.png`         | 512×512               | Android / PWA splash    |
 
 ## Note on source PNG dimensions
 

@@ -20,8 +20,8 @@ The GIF is 13MB and accounts for 87% of the total page weight (15MB). Even with 
 2. Update `src/templates/sections/campsnap-banner.ejs`: replace the `<img>` tag with:
    ```html
    <video class="campsnap-gif" autoplay loop muted playsinline>
-     <source src="assets/zipline.webm" type="video/webm">
-     <source src="assets/zipline.mp4" type="video/mp4">
+     <source src="assets/zipline.webm" type="video/webm" />
+     <source src="assets/zipline.mp4" type="video/mp4" />
    </video>
    ```
 3. Remove `src/assets/zipline.gif` from the repo (it's tracked in git history; 13MB is large for git objects but acceptable for history).
@@ -58,6 +58,7 @@ The avatar is displayed at 120x120 CSS pixels (240x240 at 2x retina). The source
 **What to change:**
 
 1. **Remove `data-animate` from individual child elements** inside already-animated sections. Currently these elements have `data-animate`:
+
    - Each `<section class="section">` (correct -- keep these)
    - `campsnap-banner` (correct -- keep)
    - Each `.experience-entry` inside the experience section (remove -- the parent section already animates)
@@ -71,6 +72,7 @@ The avatar is displayed at 120x120 CSS pixels (240x240 at 2x retina). The source
 3. **Keep the duration at 0.6s** -- this is appropriate.
 
 **Files to change:**
+
 - `src/templates/sections/experience.ejs` line 14: remove `data-animate` from `.experience-entry`
 - `src/templates/sections/projects.ejs` line 8: remove `data-animate` from `.project-card`
 - `src/templates/sections/skills.ejs` line 25: remove `data-animate` from `.education-section`
@@ -87,6 +89,7 @@ The current implementation is a bare `<ul>` with plain anchor links. This looks 
 **What to implement:**
 
 1. Update `src/templates/index.ejs` blog section markup:
+
    ```html
    <section class="section" data-animate>
      <div class="section-inner">
@@ -97,7 +100,20 @@ The current implementation is a bare `<ul>` with plain anchor links. This looks 
          <a href="blog/<%= post.slug %>.html" class="blog-card">
            <span class="blog-card-title"><%= post.title %></span>
            <span class="blog-card-date"><%= post.date %></span>
-           <svg class="blog-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+           <svg
+             class="blog-card-arrow"
+             width="16"
+             height="16"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+           >
+             <line x1="5" y1="12" x2="19" y2="12" />
+             <polyline points="12 5 19 12 12 19" />
+           </svg>
          </a>
          <% }); %>
        </div>
@@ -106,6 +122,7 @@ The current implementation is a bare `<ul>` with plain anchor links. This looks 
    ```
 
 2. Add CSS to `src/css/styles.css` (replace current `.blog-list` styles):
+
    ```css
    .blog-cards {
      display: flex;
@@ -176,6 +193,7 @@ The placement is conventional and discoverable. Absolute positioning within the 
 1. **Add `position: fixed` instead of `position: absolute`** so the toggle remains accessible as the user scrolls past the hero. Currently it disappears once you scroll past the hero section. On a long CV page, users need the toggle available throughout.
 
    Update `.theme-toggle` in CSS:
+
    ```css
    .theme-toggle {
      position: fixed;
@@ -189,6 +207,7 @@ The placement is conventional and discoverable. Absolute positioning within the 
    Remove the toggle from inside `.hero-inner` in `hero.ejs` and place it as a direct child of `<body>` in `index.ejs` (so it's not clipped by `.hero`'s `overflow: hidden`).
 
 2. **Add a subtle backdrop blur** for readability over varied content backgrounds:
+
    ```css
    .theme-toggle {
      backdrop-filter: blur(8px);
@@ -211,18 +230,23 @@ The font combination is strong: Space Grotesk (headings) provides geometric char
 **What to change:**
 
 1. **Add `font-display: swap`** to the Google Fonts URL to prevent FOIT (flash of invisible text):
+
    ```
    https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap
    ```
+
    This is already present (`&display=swap`). No change needed -- confirmed correct.
 
 2. **Trim unused font weights.** The site loads Inter at 300/400/500/600/700 but only uses 400 (body), 500 (`.experience-summary`, `.project-leader`, `.badge-label`), and 600 (`.signature`). Reduce to:
+
    ```
    family=Inter:wght@400;500;600
    ```
+
    This cuts the font payload by ~40% for Inter (dropping 300 and 700).
 
 3. Similarly for Space Grotesk, the CSS uses 600 and 700. Remove 400 and 500:
+
    ```
    family=Space+Grotesk:wght@600;700
    ```
@@ -230,6 +254,7 @@ The font combination is strong: Space Grotesk (headings) provides geometric char
    **Before trimming Space Grotesk to 600;700**, add explicit `font-weight: 600` to `.blog-post h1` and `.blog-post h2` in `src/css/styles.css`. Those rules currently use `font-family: var(--font-heading)` without an explicit `font-weight`, so they render in weight 400 by default. Dropping weight 400 from Space Grotesk would visibly change those blog headings. Alternatively, keep weight 400 in the Space Grotesk URL to avoid touching the CSS.
 
    Updated full URL (after fixing blog heading weights):
+
    ```
    https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap
    ```
