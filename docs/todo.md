@@ -149,7 +149,7 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
 - [x] Add section to `index.ejs`
 - [x] Add CSS for the socials section
 - [x] Load `socials.json` in `src/index.js` build pipeline
-- [ ] Add socials summary to `README.md`
+- [x] Add socials summary to `README.md`
 
 ## [parallel] CV Download Section
 
@@ -204,7 +204,7 @@ Ensure the PDF is a clean, self-contained CV.
 
 ## [parallel] Doc Updates (3 subagents)
 
-- [ ] Update `README.md`:
+- [x] Update `README.md`:
   - New directory structure
   - Local dev workflow (Docker-only, `make dev`)
   - Deploy workflow with GitHub Actions
