@@ -107,19 +107,19 @@ The icon variant is the "C" and coloured dot from the full logo, 128x128px squar
 
 ## [parallel] Frontend Design Review
 
-- [ ] Use `frontend-design` skill to review the live site with the vibe context:
+- [x] Use `frontend-design` skill to review the live site with the vibe context:
   - Understated, playful, slightly nerdy, professional, polished
   - KISS, cutting edge visual web design
   - Responsive, mobile-first, print-friendly
-- [ ] Flag and address specific issues:
+- [x] Flag and address specific issues:
   - The 13MB `zipline.gif` — performance problem, convert to video or host externally
   - Scroll animations (`data-animate` on every section) — justify or remove
   - Blog section is a bare `<ul>` — needs design attention
   - Theme toggle placement and styling
-- [ ] Remove excessive or out-of-place design features
-- [ ] Suggest places for animation/interaction that fit the theme
-- [ ] Document changes in `docs/design-updates.md`
-- [ ] Create `docs/future-design-updates.md` for parking-lot items
+- [x] Remove excessive or out-of-place design features
+- [x] Suggest places for animation/interaction that fit the theme
+- [x] Document changes in `docs/design-updates.md`
+- [x] Create `docs/future-design-updates.md` for parking-lot items
 
 ## After both complete
 
