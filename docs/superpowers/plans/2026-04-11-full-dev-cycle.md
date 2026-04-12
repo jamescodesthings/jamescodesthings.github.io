@@ -2139,7 +2139,7 @@ Small improvements that can be done in any order.
 
 - Modify: `src/templates/index.ejs`
 
-- [ ] **Step 1: Add OG meta tags to index.ejs head**
+- [x] **Step 1: Add OG meta tags to index.ejs head**
 
 Add after the existing `<meta name="description">` tag:
 
@@ -2153,7 +2153,7 @@ Add after the existing `<meta name="description">` tag:
 <meta name="twitter:card" content="summary" />
 ```
 
-- [ ] **Step 2: Add canonical URL**
+- [x] **Step 2: Add canonical URL**
 
 Add to `<head>`:
 
