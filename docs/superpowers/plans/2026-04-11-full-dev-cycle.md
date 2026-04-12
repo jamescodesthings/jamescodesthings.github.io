@@ -1947,13 +1947,13 @@ Three parallel documentation updates.
 
 - Modify: `README.md`
 
-- [ ] **Step 1: Read current README**
+- [x] **Step 1: Read current README**
 
 ```bash
 cat README.md
 ```
 
-- [ ] **Step 2: Rewrite README.md**
+- [x] **Step 2: Rewrite README.md**
 
 ````markdown
 # codesthings.com
@@ -2019,7 +2019,7 @@ Push to `main` triggers GitHub Actions: build site, generate PDF via Gotenberg, 
 
 ````
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add README.md && git commit -m "docs: rewrite README for new structure and workflow
@@ -2040,7 +2040,7 @@ Already partially done in Task 2.2 — verify everything is current.
 
 - Modify: `CLAUDE.md`
 
-- [ ] **Step 1: Read current CLAUDE.md and verify accuracy**
+- [x] **Step 1: Read current CLAUDE.md and verify accuracy**
 
 Check every path, command, and reference matches the current state:
 
@@ -2049,9 +2049,9 @@ Check every path, command, and reference matches the current state:
 - Code Style section: should be current
 - Deployment section: should be current
 
-- [ ] **Step 2: Fix any stale references**
+- [x] **Step 2: Fix any stale references**
 
-- [ ] **Step 3: Commit if changes needed**
+- [x] **Step 3: Commit if changes needed**
 
 ```bash
 git add CLAUDE.md && git commit -m "docs: final CLAUDE.md accuracy pass
