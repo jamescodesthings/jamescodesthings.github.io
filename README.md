@@ -1,70 +1,59 @@
 # codesthings.com
 
-[![CodesThings.com](https://img.shields.io/badge/Visit-CodesThings.com-brightgreen?style=for-the-badge)](https://codesthings.com)
+Personal portfolio and CV site for James Macmillan. Built as a minimal static site generator: JSON data files rendered through EJS templates into plain HTML/CSS/JS.
 
-Personal portfolio, CV, and profile for James Macmillan, hosted at [codesthings.com](https://codesthings.com).
+**Live site:** [codesthings.com](https://codesthings.com)
 
-## Architecture
-
-A Node.js static site generator orchestrated via Docker Compose with a Makefile as the task runner.
-
-- **`data/`** - JSON data files (profile, experience, skills, education, projects, etc.)
-- **`generator/`** - ESM Node.js site generator
-  - `src/index.js` - Main build pipeline: loads JSON, renders EJS templates, copies assets to `public/`
-  - `src/server.js` - Dev server on port 8080
-  - `src/watch.js` - File watcher that rebuilds on changes
-  - `src/pages.js` - GitHub Pages build (adds CNAME/.nojekyll)
-  - `static/templates/` - EJS templates
-  - `static/css/` - Plain CSS with variables and dark/light theme
-- **`Makefile`** - Top-level task runner
-- **`docker-compose.yml`** - Services: static server, gotenberg (PDF), build, pages
-
-## Usage
-
-### Prerequisites
-
-- Node.js 22+
-- Docker & Docker Compose (for PDF generation and containerized builds)
-
-### Local Development
+## Quick Start
 
 ```bash
-# Build the site
-make build-local
+# Docker (recommended)
+make dev          # Watch + serve at http://localhost:8080
 
-# Start dev server at http://localhost:8080
-make serve
-
-# Watch for changes and rebuild
-make watch
+# Without Docker
+npm install
+npm start         # Build to public/
+npm run server    # Serve at http://localhost:8080
 ```
 
-### Docker Build
+## Directory Structure
 
-```bash
-# Build via Docker (includes PDF generation)
-make build
-
-# Build GitHub Pages output
-make pages
+```
+src/              Build pipeline and source files
+  index.js        Main build script
+  server.js       Dev server
+  watch.js        File watcher
+  pages.js        GitHub Pages build
+  config.js       Path configuration
+  utils.js        File I/O helpers
+  templates/      EJS templates (index.ejs, blog.ejs, sections/)
+  css/            Stylesheets
+  js/             Client-side JS (theme toggle, animations)
+  assets/         Icons, images, logos, favicons
+data/             Site content as JSON + blog posts as Markdown
+raw/              Source design files (Illustrator, tracked via LFS)
+public/           Build output (gitignored)
+pages/            GitHub Pages output (gitignored)
+docs/             Project documentation
 ```
 
-### Clean
+## Make Targets
 
-```bash
-make clean
-```
+| Target       | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| `make build` | Build via Docker (includes PDF generation via Gotenberg) |
+| `make serve` | Serve built site at http://localhost:8080 (Docker)       |
+| `make dev`   | Local development: watch + serve (Docker)                |
+| `make pages` | Build GitHub Pages output (Docker)                       |
+| `make clean` | Remove build output, stop containers                     |
 
 ## Deployment
 
-Pushes to `main` trigger a GitHub Actions workflow that:
+Push to `main` triggers GitHub Actions: build site, generate PDF via Gotenberg, deploy to `pages` branch, published at [codesthings.com](https://codesthings.com) via GitHub Pages.
 
-1. Builds the site
-2. Generates a PDF copy via Gotenberg
-3. Deploys to the `pages` branch with CNAME for codesthings.com
+## Socials
 
-## Contributing
-
-It's MIT Licenced!
-
-Feel free to raise PRs, reuse the technical architecture behind the site.
+- [GitHub](https://github.com/jamescodesthings)
+- [LinkedIn](https://linkedin.com/in/jamescodesthings)
+- [Makerworld](https://makerworld.com/en/@jamescodesthing)
+- [Instagram](https://instagram.com/jamescodesthings)
