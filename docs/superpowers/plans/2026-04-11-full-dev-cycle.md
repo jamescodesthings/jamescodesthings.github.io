@@ -1297,7 +1297,7 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
 - Modify: `src/templates/index.ejs`
 - Modify: `src/css/styles.css`
 
-- [ ] **Step 1: Create data/socials.json**
+- [x] **Step 1: Create data/socials.json**
 
 ```json
 [
@@ -1332,7 +1332,7 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
 ]
 ```
 
-- [ ] **Step 2: Create src/templates/sections/socials.ejs**
+- [x] **Step 2: Create src/templates/sections/socials.ejs**
 
 ```html
 <section class="section socials-section" data-animate>
@@ -1370,7 +1370,7 @@ Two parallel tracks: **Socials Section** and **CV Download Section**.
 </section>
 ```
 
-- [ ] **Step 3: Load socials.json in src/index.js**
+- [x] **Step 3: Load socials.json in src/index.js**
 
 Add to the `loadData` function in `src/index.js`:
 
@@ -1391,7 +1391,7 @@ const [profile, experience, skills, education, projects, sidebar, coverLetter, s
 return { profile, experience, skills, education, projects, sidebar, coverLetter, socials };
 ```
 
-- [ ] **Step 4: Add socials section to index.ejs**
+- [x] **Step 4: Add socials section to index.ejs**
 
 In `src/templates/index.ejs`, add after the projects include and before the blog section:
 
@@ -1399,7 +1399,7 @@ In `src/templates/index.ejs`, add after the projects include and before the blog
 <%- include('sections/socials', { socials }) %>
 ```
 
-- [ ] **Step 5: Add CSS for socials section**
+- [x] **Step 5: Add CSS for socials section**
 
 Add to `src/css/styles.css` before the Print Styles section:
 
@@ -1468,7 +1468,7 @@ Add to `src/css/styles.css` before the Print Styles section:
 }
 ```
 
-- [ ] **Step 6: Build and verify**
+- [x] **Step 6: Build and verify**
 
 ```bash
 npm start && npm run server &
@@ -1476,7 +1476,7 @@ npm start && npm run server &
 kill %1
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add data/socials.json src/templates/sections/socials.ejs src/index.js src/templates/index.ejs src/css/styles.css && git commit -m "feat: add socials section with GitHub, LinkedIn, Makerworld, Instagram
