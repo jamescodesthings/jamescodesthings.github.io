@@ -232,3 +232,15 @@ Small improvements found during the todo review. Can be done in any order, many 
 - [x] Add `<link rel="canonical" href="https://codesthings.com/">` for SEO
 - [x] Optimise `zipline.gif` (13MB in git) — convert to mp4/webm video or host externally
 - [x] Create a custom 404 page matching the site design
+
+---
+
+# [x] Group 9: UX Polish
+
+Visual polish and UX improvements. See `docs/superpowers/plans/2026-04-12-ux-polish.md`.
+
+- [x] Reorder page sections — blog first, CV last (hero → blog → campsnap → socials → about → experience → skills → projects)
+- [x] Renumber section labels (01 BLOG, 02 CONNECT, 03 ABOUT, 04 EXPERIENCE, 05 SKILLS, 06 PROJECTS)
+- [x] Fix footer logo sizing — remove constraining height, use `max-width: 160px; height: auto`
+- [x] Add amber background to favicon SVG and regenerate raster icons
+- [x] Add Campsnap FAB — fixed bottom-right amber pill button with video popover (zipline video, caption, link to filters)
