@@ -882,6 +882,121 @@ html:not(.dark) .bento-badge:hover {
 }
 
 /* ============================================
+   Campsnap FAB
+   ============================================ */
+
+.campsnap-fab {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+.campsnap-fab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 56px;
+  padding: var(--space-sm) 0;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #0a0a0f;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.campsnap-fab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.campsnap-fab-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: #0a0a0f;
+}
+
+.campsnap-fab-popover {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 280px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.campsnap-fab-popover.is-open {
+  display: flex;
+}
+
+.campsnap-fab-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-text);
+  z-index: 1;
+  transition: background 0.15s ease;
+}
+
+.campsnap-fab-close:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.campsnap-fab-video {
+  width: 100%;
+  display: block;
+}
+
+.campsnap-fab-caption {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  padding: 0 var(--space-md);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.campsnap-fab-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.15s ease;
+}
+
+.campsnap-fab-link:hover {
+  color: var(--color-heading);
+}
+
+/* ============================================
    Footer
    ============================================ */
 
@@ -1295,6 +1410,7 @@ html:not(.dark) .bento-badge:hover {
   .hero-cta,
   .site-footer,
   .campsnap-banner,
+  .campsnap-fab,
   .socials-section {
     display: none !important;
   }
