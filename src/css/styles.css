@@ -899,8 +899,8 @@ html:not(.dark) .bento-badge:hover {
 }
 
 .footer-logo {
-  height: 28px;
-  width: auto;
+  max-width: 160px;
+  height: auto;
   opacity: 0.85;
 }
 
