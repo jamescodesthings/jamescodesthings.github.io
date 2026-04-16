@@ -41,6 +41,7 @@ Node.js ESM. Prettier: 120ch, 2-space, single quotes, trailing commas, no arrow 
 **Skills:** brainstorm before non-trivial work. subagent-driven-development for parallel tasks. verification-before-completion before marking done.
 
 **Browse (visual checks):**
+
 ```bash
 B="$HOME/.claude/skills/gstack/browse/dist/browse"
 npm start && npm run server &

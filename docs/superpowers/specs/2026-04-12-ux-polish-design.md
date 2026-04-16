@@ -8,17 +8,17 @@ Reorder the page so CV content comes last (after blog, campsnap, socials). Add a
 
 New sequence in `src/templates/index.ejs`:
 
-| Position | Section | Label |
-|----------|---------|-------|
-| 1 | hero | — |
-| 2 | blog | 01 — BLOG |
-| 3 | campsnap-banner | (none — playful interstitial) |
-| 4 | socials | 02 — CONNECT |
-| 5 | cover-letter | 03 — ABOUT |
-| 6 | experience | 04 — EXPERIENCE |
-| 7 | skills | 05 — SKILLS & EDUCATION |
-| 8 | projects | 06 — PROJECTS |
-| 9 | footer | — |
+| Position | Section         | Label                         |
+| -------- | --------------- | ----------------------------- |
+| 1        | hero            | —                             |
+| 2        | blog            | 01 — BLOG                     |
+| 3        | campsnap-banner | (none — playful interstitial) |
+| 4        | socials         | 02 — CONNECT                  |
+| 5        | cover-letter    | 03 — ABOUT                    |
+| 6        | experience      | 04 — EXPERIENCE               |
+| 7        | skills          | 05 — SKILLS & EDUCATION       |
+| 8        | projects        | 06 — PROJECTS                 |
+| 9        | footer          | —                             |
 
 Section labels inside `sections/cover-letter.ejs`, `sections/experience.ejs`, `sections/skills.ejs`, `sections/projects.ejs`, and the inline blog block in `index.ejs` are renumbered accordingly.
 
@@ -42,6 +42,7 @@ Opens above the FAB when clicked. Contains:
 4. X close button (top-right of popover)
 
 Behaviour:
+
 - Clicking outside the popover closes it
 - Pressing Escape closes it
 - The dedicated campsnap section (position 3) remains in the page — the FAB is a persistent shortcut
@@ -72,6 +73,7 @@ Regenerate `src/assets/icons/favicon.svg` with:
 - The existing "C" + dot mark in dark (`#0a0a0f`) on top
 
 Regenerate derived files from the new SVG:
+
 - `favicon.ico` (16×16, 32×32, 48×48 multi-size)
 - `apple-touch-icon.png` (180×180)
 - `icon-192.png` and `icon-512.png`
@@ -80,19 +82,19 @@ The `favicon.svg` reference in `index.ejs` and `404.ejs` is already correct — 
 
 ## Files Touched
 
-| File | Change |
-|------|--------|
-| `src/templates/index.ejs` | Reorder sections, add FAB include + `fab.js` script tag |
-| `src/templates/sections/campsnap-fab.ejs` | New — FAB button + popover markup |
-| `src/js/fab.js` | New — FAB open/close logic |
-| `src/css/styles.css` | FAB/popover styles, footer logo width, section label renumbering |
-| `src/templates/sections/cover-letter.ejs` | Label → 03 — ABOUT |
-| `src/templates/sections/experience.ejs` | Label → 04 — EXPERIENCE |
-| `src/templates/sections/skills.ejs` | Label → 05 — SKILLS & EDUCATION |
-| `src/templates/sections/projects.ejs` | Label → 06 — PROJECTS |
-| `src/templates/sections/footer.ejs` | Logo width attribute → 160 |
-| `src/assets/icons/favicon.svg` | Amber background added |
-| `src/assets/icons/favicon.ico` | Regenerated |
-| `src/assets/icons/apple-touch-icon.png` | Regenerated |
-| `src/assets/icons/icon-192.png` | Regenerated |
-| `src/assets/icons/icon-512.png` | Regenerated |
+| File                                      | Change                                                           |
+| ----------------------------------------- | ---------------------------------------------------------------- |
+| `src/templates/index.ejs`                 | Reorder sections, add FAB include + `fab.js` script tag          |
+| `src/templates/sections/campsnap-fab.ejs` | New — FAB button + popover markup                                |
+| `src/js/fab.js`                           | New — FAB open/close logic                                       |
+| `src/css/styles.css`                      | FAB/popover styles, footer logo width, section label renumbering |
+| `src/templates/sections/cover-letter.ejs` | Label → 03 — ABOUT                                               |
+| `src/templates/sections/experience.ejs`   | Label → 04 — EXPERIENCE                                          |
+| `src/templates/sections/skills.ejs`       | Label → 05 — SKILLS & EDUCATION                                  |
+| `src/templates/sections/projects.ejs`     | Label → 06 — PROJECTS                                            |
+| `src/templates/sections/footer.ejs`       | Logo width attribute → 160                                       |
+| `src/assets/icons/favicon.svg`            | Amber background added                                           |
+| `src/assets/icons/favicon.ico`            | Regenerated                                                      |
+| `src/assets/icons/apple-touch-icon.png`   | Regenerated                                                      |
+| `src/assets/icons/icon-192.png`           | Regenerated                                                      |
+| `src/assets/icons/icon-512.png`           | Regenerated                                                      |
