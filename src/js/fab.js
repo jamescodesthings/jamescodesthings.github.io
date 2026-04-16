@@ -16,6 +16,7 @@
     popover.classList.remove('is-open');
     btn.setAttribute('aria-expanded', 'false');
     popover.setAttribute('aria-hidden', 'true');
+    btn.focus();
   }
 
   btn.addEventListener('click', function (e) {
