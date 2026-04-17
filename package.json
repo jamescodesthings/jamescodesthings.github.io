@@ -4,10 +4,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node --no-deprecation ./src/index.js",
+    "build": "node --no-deprecation ./src/index.js",
     "watch": "node --no-deprecation ./src/watch.js",
     "server": "node --no-deprecation ./src/server.js",
     "pages": "node --no-deprecation ./src/pages.js",
+    "pdf": "node --no-deprecation ./src/pdf.js",
     "format": "prettier .",
     "format:check": "npm run format -- --check",
     "format:fix": "npm run format -- --write"

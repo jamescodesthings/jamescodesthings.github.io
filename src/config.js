@@ -10,7 +10,6 @@ const config = {
   watchPath: './src/watch.js',
   indexPath: './src/index.js',
   utilsPath: './src/utils.js',
-  pagesPath: './src/pages.js',
 };
 
 export default config;
