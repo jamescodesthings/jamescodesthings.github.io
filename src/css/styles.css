@@ -726,10 +726,6 @@ html:not(.dark) .bento-badge:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.project-card--featured {
-  grid-column: 1 / -1;
-}
-
 .project-header {
   display: flex;
   justify-content: space-between;
