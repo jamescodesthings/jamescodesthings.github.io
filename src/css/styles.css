@@ -1392,7 +1392,12 @@ html:not(.dark) .bento-badge:hover {
 
 @media print {
   :root {
+    --text-display: 2rem;
+    --text-h1: 1rem;
+    --text-h2: 0.9rem;
     --text-body: 0.75rem;
+    --text-small: 0.6rem;
+    --text-xs: 0.5rem;
   }
 
   .hero {
@@ -1422,6 +1427,11 @@ html:not(.dark) .bento-badge:hover {
   .section {
     margin-top: var(--space-xl);
     padding-top:0;
+    padding-bottom: 0;
+  }
+
+  .section-title {
+    margin-bottom: var(--space-sm);
   }
 
   /* Hide interactive and non-CV elements */
@@ -1470,7 +1480,7 @@ html:not(.dark) .bento-badge:hover {
   }
 
   .education-grid {
-    grid-template-columns: 1fr;
+    display: block;
   }
 
   .education-card {
@@ -1478,10 +1488,27 @@ html:not(.dark) .bento-badge:hover {
     padding: 0;
   }
 
+  .experience-list {
+    display: block;
+  }
+
   .experience-entry {
     border: none;
     padding: 0;
+    margin-bottom: var(--space-md);
   }
 
+  .experience-header {
+    margin-bottom: 0;
+  }
+
+  .tech-badges {
+    margin-top: .4rem;
+    margin-bottom: .4rem;
+  }
+
+  .bento-grid {
+    margin-bottom: 0;
+  }
 
 }
