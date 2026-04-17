@@ -70,7 +70,7 @@ html:not(.dark) {
   /* Heading */
   font-family: 'Oswald';
   src: url('../assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -171,12 +171,12 @@ img {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 0%, rgb(255, 162, 1, 0.15) 0%, transparent 50%);
   pointer-events: none;
 }
 
 html:not(.dark) .hero::before {
-  background: radial-gradient(ellipse at 50% 0%, rgba(217, 119, 6, 0.04) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 140, 0, 0.1) 0%, transparent 50%);
 }
 
 .hero--center {
@@ -198,20 +198,16 @@ html:not(.dark) .hero::before {
 .hero-title {
   font-family: var(--font-heading);
   font-size: var(--text-display);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--color-heading);
-  text-transform: uppercase;
 }
 
 .hero-role {
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
+  font-family: var(--font-mono-display);
+  font-size: var(--text-medium);
   font-weight: 400;
   color: var(--color-accent);
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   margin-top: var(--space-lg);
 }
 
@@ -270,26 +266,6 @@ html:not(.dark) .icon-moon {
   bottom: var(--space-2xl);
   left: 50%;
   transform: translateX(-50%);
-}
-
-.scroll-line {
-  display: block;
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scaleY(0.6);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
 }
 
 /* ============================================
@@ -1398,6 +1374,10 @@ html:not(.dark) .bento-badge:hover {
   font-size: var(--text-small);
   color: var(--color-text-secondary);
   line-height: 1.6;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 /* ============================================

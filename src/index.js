@@ -17,8 +17,7 @@ import {
 } from './utils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const srcRoot = __dirname;
-const root = resolve(srcRoot, '..');
+const root = resolve(__dirname, '..');
 
 const debug = Debug('codesthings:index');
 debug.enabled = true;
@@ -51,7 +50,7 @@ async function cleanAndCreateOutputDir(outputDir) {
 
 async function renderIndex(data, blogPosts, outputDir) {
   debug('Rendering index.html');
-  const indexTemplatePath = resolve(srcRoot, config.templateDir, 'index.ejs');
+  const indexTemplatePath = resolve(root, config.templateDir, 'index.ejs');
   const html = await renderTemplate(indexTemplatePath, {
     ...data,
     formatDate,
@@ -62,7 +61,7 @@ async function renderIndex(data, blogPosts, outputDir) {
 }
 
 async function loadData() {
-  console.log('Loading data');
+  debug('Loading data');
   const dataDir = resolve(root, config.dataDir);
   const [profile, experience, skills, education, projects, sidebar, coverLetter, socials] = await Promise.all([
     readJson(`${dataDir}/profile.json`),
@@ -79,15 +78,15 @@ async function loadData() {
 }
 
 async function copyAssets(outputDir) {
-  debug('Copying assets');
-  await cpDir(resolve(srcRoot, config.cssDir), `${outputDir}/${config.cssDir}`);
-  await cpDir(resolve(srcRoot, config.jsDir), `${outputDir}/${config.jsDir}`);
-  await cpDir(resolve(srcRoot, config.assetsDir), `${outputDir}/${config.assetsDir}`);
+  debug(`Copying assets to: ${outputDir}`);
+  await cpDir(resolve(root, config.cssDir), `${outputDir}/css`);
+  await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
+  await cpDir(resolve(root, config.assetsDir), `${outputDir}/assets`);
 }
 
 async function getBlogPosts() {
   debug('Getting blog data');
-  const blogDir = resolve(srcRoot, config.dataDir, 'blog');
+  const blogDir = resolve(root, config.dataDir, 'blog');
   if (!(await exists(blogDir))) {
     debug('No blogs found');
     return [];
@@ -108,7 +107,7 @@ async function getBlogPosts() {
 }
 
 async function render404(outputDir) {
-  const notFoundTemplatePath = resolve(srcRoot, config.templateDir, '404.ejs');
+  const notFoundTemplatePath = resolve(root, config.templateDir, '404.ejs');
   if (await exists(notFoundTemplatePath)) {
     debug(`Rendering ${outputDir}/404.html`);
     const notFoundHtml = await renderTemplate(notFoundTemplatePath, {});

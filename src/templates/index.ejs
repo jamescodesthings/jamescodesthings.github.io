@@ -1,67 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Language" content="en">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>James Macmillan — CodesThings.com</title>
-  <meta name="description" content="Software engineer portfolio — James Macmillan builds things for the web.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>James Macmillan — CodesThings.com</title>
+    <meta name="description" content="Software engineer portfolio — James Macmillan builds things for the web." />
 
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="James Macmillan — Software Engineer" />
-  <meta property="og:description" content="Software engineer portfolio — James Macmillan builds things for the web." />
-  <meta property="og:url" content="https://codesthings.com/" />
-  <meta property="og:image" content="https://codesthings.com/assets/logo/logo.png" />
-  <meta property="og:site_name" content="codesthings.com" />
-  <meta name="twitter:card" content="summary" />
-  <link rel="canonical" href="https://codesthings.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="James Macmillan — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer portfolio — James Macmillan builds things for the web."
+    />
+    <meta property="og:url" content="https://codesthings.com/" />
+    <meta property="og:image" content="https://codesthings.com/assets/logo/logo.png" />
+    <meta property="og:site_name" content="codesthings.com" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://codesthings.com/" />
 
-  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
-    <span class="toggle-icon" id="toggleIcon">
-      <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </span>
-  </button>
-  <%- include('sections/hero', { name: 'James Macmillan' }) %>
-  <% if (blogPosts && blogPosts.length > 0) { %>
-  <section class="section" data-animate>
-    <div class="section-inner">
-      <span class="section-label">01 — BLOG</span>
-      <h2 class="section-title">Writing</h2>
-      <div class="blog-cards">
-        <% blogPosts.forEach(function(post) { %>
-        <a href="blog/<%= post.slug %>.html" class="blog-card">
-          <span class="blog-card-title"><%= post.title %></span>
-          <% if (post.date) { %><span class="blog-card-date"><%= formatDate(post.date) %></span><% } %>
-          <svg class="blog-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <% }); %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">
+        <svg
+          class="icon-sun"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+        <svg
+          class="icon-moon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </span>
+    </button>
+    <%- include('sections/hero', { name: 'James Macmillan' }) %> <%- include('sections/campsnap-banner') %> <% if
+    (blogPosts && blogPosts.length > 0) { %>
+    <section class="section" data-animate>
+      <div class="section-inner">
+        <span class="section-label">01 — BLOG</span>
+        <h2 class="section-title">Writing</h2>
+        <div class="blog-cards">
+          <% blogPosts.forEach(function(post) { %>
+          <a href="blog/<%= post.slug %>.html" class="blog-card">
+            <span class="blog-card-title"><%= post.title %></span>
+            <% if (post.date) { %><span class="blog-card-date"><%= formatDate(post.date) %></span><% } %>
+            <svg
+              class="blog-card-arrow"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <% }); %>
+        </div>
       </div>
-    </div>
-  </section>
-  <% } %>
-  <%- include('sections/campsnap-banner') %>
-  <%- include('sections/socials', { socials }) %>
-  <%- include('sections/cover-letter', { sidebar, coverLetter, profile }) %>
-  <%- include('sections/experience', { sidebar, experience, profile }) %>
-  <%- include('sections/skills', { sidebar, skills, education }) %>
-  <%- include('sections/projects', { sidebar, projects }) %>
-  <%- include('sections/campsnap-fab') %>
-  <%- include('sections/footer') %>
+    </section>
+    <% } %> <%- include('sections/socials', { socials }) %> <%- include('sections/cover-letter', { sidebar, coverLetter,
+    profile }) %> <%- include('sections/experience', { sidebar, experience, profile }) %> <%- include('sections/skills',
+    { sidebar, skills, education }) %> <%- include('sections/projects', { sidebar, projects }) %> <%-
+    include('sections/campsnap-fab') %> <%- include('sections/footer') %>
 
-  <script src="js/theme.js"></script>
-  <script src="js/fab.js"></script>
-</body>
+    <script src="js/theme.js"></script>
+    <script src="js/fab.js"></script>
+  </body>
 </html>

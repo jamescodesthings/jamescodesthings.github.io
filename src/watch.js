@@ -1,19 +1,18 @@
+import Debug from 'debug';
 import { watch } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { exec } from 'child_process';
 import config from './config.js';
 
+const debug = Debug('codesthings:watch');
+debug.enabled = true;
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
-const watchPaths = [
-  resolve(__dirname, config.templateDir),
-  resolve(__dirname, config.cssDir),
-  resolve(__dirname, 'js'),
-  resolve(__dirname, config.dataDir),
-  resolve(__dirname, config.assetsDir),
-];
+const values = Object.values(config);
+const watchPaths = values.filter(dir => !dir.includes('public')).map(dir => resolve(root, dir));
 
 let building = false;
 let queued = false;
@@ -24,15 +23,17 @@ function runBuild() {
     return;
   }
   building = true;
-  console.log('[watch] Building...');
+  debug('Building');
 
   exec('node --no-deprecation ./src/index.js', { cwd: root }, (err, stdout, stderr) => {
     if (err) {
-      console.error('[watch] Build failed:', stderr || err.message);
+      console.error('Build failed:', stderr || err.message);
     } else {
-      console.log('[watch] Build complete');
-      if (stdout) console.log(stdout);
+      debug('Build complete');
+      if (stdout) debug(stdout);
     }
+    if (stderr) debug(stderr);
+    if (stdout) debug(stdout);
     building = false;
     if (queued) {
       queued = false;
@@ -52,10 +53,10 @@ for (const watchPath of watchPaths) {
       clearTimeout(debounce);
       debounce = setTimeout(runBuild, 300);
     });
-    console.log(`[watch] Watching ${watchPath}`);
+    debug(`Watching ${watchPath}`);
   } catch (err) {
-    console.warn(`[watch] Cannot watch ${watchPath}: ${err.message}`);
+    console.warn(`Cannot watch ${watchPath}: ${err.message}`);
   }
 }
 
-console.log('[watch] Ready. Watching for changes...');
+debug('Ready. Watching for changes');
