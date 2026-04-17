@@ -21,12 +21,12 @@ const pagesAssetsDir = resolve(root, 'pages', 'assets');
 
 export async function urlToPdf(path, outputPath) {
   const absHtmlPath = `${SERVER_URL}${path}`;
-  debug(`\tConverting ${absHtmlPath} to ${outputPath}`);
+  debug(`Converting ${absHtmlPath} to ${outputPath}`);
 
   try {
     const gotenbergResponse = await fetch(`${GOTENBERG_URL}/health`, { method: 'GET' });
     if (gotenbergResponse.ok) {
-      debug(`\t\tGotenberg is available at ${GOTENBERG_URL}`);
+      debug(`Gotenberg is available at ${GOTENBERG_URL}`);
     } else {
       throw new Error(`Gotenberg is not available at ${GOTENBERG_URL}`);
     }
@@ -37,10 +37,11 @@ export async function urlToPdf(path, outputPath) {
   try {
     const testServerResponse = await fetch(absHtmlPath, { method: 'GET' });
     if (testServerResponse.ok) {
-      debug(`\t\tTest file is available at ${absHtmlPath}`);
+      debug(`Response Status: ${testServerResponse.status} ${testServerResponse.statusText}`);
+      debug(`Test file is available at ${absHtmlPath}`);
       const body = await testServerResponse.text();
-      debug(`\t\tTest file content length: ${body.length}`);
-      debug(`\t\tTest file content contents:\n${body}`);
+      debug(`Test file content length: ${body.length}`);
+      debug(`Test file content contents:\n${body}`);
     } else {
       throw new Error(`Test file is not available at ${absHtmlPath}: ${testServerResponse.statusText}`);
     }
@@ -56,16 +57,16 @@ export async function urlToPdf(path, outputPath) {
     formData.append('marginLeft', '0');
     formData.append('marginRight', '0');
     formData.append('printBackground', 'true');
-    debug(`\t\tConverting to PDF`);
+    debug(`Converting to PDF`);
     const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/url`, {
       method: 'POST',
       body: formData,
     });
 
     if (!response.ok) {
-      debug(`\t\tError converting to PDF: (${response.status}) ${response.statusText}`);
+      debug(`Error converting to PDF: (${response.status}) ${response.statusText}`);
       const body = await response.text();
-      debug(`\t\tResponse body: ${body}`);
+      debug(`Response body: ${body}`);
       throw new Error(`${response.statusText}`);
     }
 
