@@ -38,6 +38,9 @@ export async function urlToPdf(path, outputPath) {
     const testServerResponse = await fetch(absHtmlPath, { method: 'GET' });
     if (testServerResponse.ok) {
       debug(`\t\tTest file is available at ${absHtmlPath}`);
+      const body = await testServerResponse.text();
+      debug(`\t\tTest file content length: ${body.length}`);
+      debug(`\t\tTest file content contents:\n${body}`);
     } else {
       throw new Error(`Test file is not available at ${absHtmlPath}: ${testServerResponse.statusText}`);
     }
@@ -60,7 +63,10 @@ export async function urlToPdf(path, outputPath) {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to convert HTML to PDF: ${response.statusText}`);
+      debug(`\t\tError converting to PDF: (${response.status}) ${response.statusText}`);
+      const body = await response.text();
+      debug(`\t\tResponse body: ${body}`);
+      throw new Error(`${response.statusText}`);
     }
 
     const pdfBuffer = await response.arrayBuffer();
@@ -75,12 +81,13 @@ await urlToPdf('/', publicPdfPath);
 const pagesPdfPath = resolve(pagesAssetsDir, 'cv.pdf');
 await copyFile(publicPdfPath, pagesPdfPath);
 
-const publidDarkPdfPath = resolve(publicAssetsDir, 'cv-dark.pdf');
-await urlToPdf('/?dark=true', publidDarkPdfPath);
+const publicDarkPdfPath = resolve(publicAssetsDir, 'cv-dark.pdf');
+await urlToPdf('/?dark=true', publicDarkPdfPath);
 const pagesDarkPdfPath = resolve(pagesAssetsDir, 'cv-dark.pdf');
-await copyFile(publidDarkPdfPath, pagesDarkPdfPath);
+await copyFile(publicDarkPdfPath, pagesDarkPdfPath);
+
 debug(`PDF saved to:`);
 debug(` - ${publicPdfPath}`);
 debug(` - ${pagesPdfPath}`);
-debug(` - ${publidDarkPdfPath}`);
+debug(` - ${publicDarkPdfPath}`);
 debug(` - ${pagesDarkPdfPath}`);
