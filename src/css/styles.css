@@ -353,6 +353,16 @@ html:not(.dark) .icon-moon {
   margin-bottom: var(--space-md);
 }
 
+.label.display, .section-label.display {
+  font-family: var(--font-mono-display);
+  text-transform: none;
+}
+
+.label.lg, .section-label.lg {
+  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+}
+
 .contact-list {
   list-style: none;
   margin-bottom: var(--space-lg);
@@ -1381,28 +1391,6 @@ html:not(.dark) .bento-badge:hover {
    ============================================ */
 
 @media print {
-  /* Force light theme — override all CSS custom properties */
-  :root {
-    --color-bg: #ffffff;
-    --color-surface: #ffffff;
-    --color-surface-raised: #f5f3ee;
-    --color-text: #1a1a2e;
-    --color-text-secondary: #4a4a5a;
-    --color-text-muted: #6b7280;
-    --color-heading: #1a1a2e;
-    --color-accent: #d97706;
-    --color-border: #e5e2da;
-    --color-link: #d97706;
-    --color-badge-bg: transparent;
-    --color-badge-text: #4a4a5a;
-    --color-badge-border: #d1cdc4;
-  }
-
-  body {
-    background: white;
-    color: black;
-  }
-
   .hero {
     min-height: auto;
     padding: var(--space-lg);
@@ -1415,7 +1403,9 @@ html:not(.dark) .bento-badge:hover {
   .site-footer,
   .campsnap-banner,
   .campsnap-fab,
-  .socials-section {
+  .socials-section,
+  .print-hide,
+  .hero::before {
     display: none !important;
   }
 
@@ -1440,12 +1430,5 @@ html:not(.dark) .bento-badge:hover {
   .bento-badge {
     box-shadow: none;
     border: 1px solid #ddd;
-  }
-
-  /* Show full URLs for external links */
-  a[href^='http']::after {
-    content: ' (' attr(href) ')';
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
   }
 }

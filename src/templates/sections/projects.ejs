@@ -1,48 +1,43 @@
 <section class="section" data-animate>
   <div class="section-inner">
-    <span class="section-label">06 — PROJECTS</span>
+    <span class="section-label"><span class="print-hide">06 - </span>PROJECTS</span>
     <h2 class="section-title">Things I've Built</h2>
 
     <div class="projects-grid">
       <% projects.filter(p => !p.canHide).forEach((project, index) => { %>
-        <article class="project-card<%= index === 0 ? ' project-card--featured' : '' %>">
-          <div class="project-header">
-            <span class="project-employer"><%= project.employer %></span>
-            <span class="project-date"><%= formatDate(project.from) %></span>
+      <article class="project-card<%= index === 0 ? ' project-card--featured' : '' %>">
+        <div class="project-header">
+          <span class="project-employer"><%= project.employer %></span>
+          <span class="project-date"><%= formatDate(project.from) %></span>
+        </div>
+        <h3 class="project-name"><%= project.name %></h3>
+
+        <% if (project.leader) { %>
+        <p class="project-leader"><%= project.leader %></p>
+        <% } %> <% if (project.tech && project.tech.length > 0) { %>
+        <div class="tech-badges">
+          <% project.tech.forEach(tech => { %>
+          <span class="badge">
+            <% if (tech.iconType === 'image') { %>
+            <img src="assets/icons/<%= tech.icon.split('/').pop() %>" alt="<%= tech.label %>" class="badge-icon-img" />
+            <% } else { %>
+            <i class="<%= tech.icon %> badge-icon"></i>
+            <% } %> <%= tech.label %>
+          </span>
+          <% }); %>
+        </div>
+        <% } %> <% if (project.summary) { %>
+        <div class="project-detail">
+          <% project.summary.forEach(group => { %>
+          <div class="detail-group">
+            <% group.forEach(paragraph => { %>
+            <p><%= paragraph %></p>
+            <% }); %>
           </div>
-          <h3 class="project-name"><%= project.name %></h3>
-
-          <% if (project.leader) { %>
-            <p class="project-leader"><%= project.leader %></p>
-          <% } %>
-
-          <% if (project.tech && project.tech.length > 0) { %>
-            <div class="tech-badges">
-              <% project.tech.forEach(tech => { %>
-                <span class="badge">
-                  <% if (tech.iconType === 'image') { %>
-                    <img src="assets/icons/<%= tech.icon.split('/').pop() %>" alt="<%= tech.label %>" class="badge-icon-img">
-                  <% } else { %>
-                    <i class="<%= tech.icon %> badge-icon"></i>
-                  <% } %>
-                  <%= tech.label %>
-                </span>
-              <% }); %>
-            </div>
-          <% } %>
-
-          <% if (project.summary) { %>
-            <div class="project-detail">
-              <% project.summary.forEach(group => { %>
-                <div class="detail-group">
-                  <% group.forEach(paragraph => { %>
-                    <p><%= paragraph %></p>
-                  <% }); %>
-                </div>
-              <% }); %>
-            </div>
-          <% } %>
-        </article>
+          <% }); %>
+        </div>
+        <% } %>
+      </article>
       <% }); %>
     </div>
   </div>

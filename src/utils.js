@@ -7,7 +7,7 @@ import showdown from 'showdown';
 import config from './config.js';
 
 const debug = Debug('codesthings:utils');
-debug.enabled = true;
+debug.enabled = false;
 
 const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
 
