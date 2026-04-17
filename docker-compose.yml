@@ -51,6 +51,9 @@ services:
 
   gotenberg:
     image: gotenberg/gotenberg:8
+    command:
+      - gotenberg
+      - --chromium-deny-list=
     environment:
       API_TIMEOUT: 300s
       LOG_LEVEL: info
