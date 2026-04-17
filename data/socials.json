@@ -4,27 +4,27 @@
     "url": "https://github.com/jamescodesthings",
     "icon": "devicon-github-original",
     "iconType": "devicon",
-    "description": "KISS, enough tool for the job, ship then iterate, fun and useful. Poke around the repos — this site's code is there too."
+    "description": "If you want to get an idea of my development style and experience, this is the place to go."
   },
   {
     "name": "LinkedIn",
     "url": "https://www.linkedin.com/in/jamescodesthings",
     "icon": "devicon-linkedin-plain",
     "iconType": "devicon",
-    "description": "Professional profile, project history, and CV. Open to interesting opportunities."
+    "description": "Reach out to me here for professional enquiries."
   },
   {
     "name": "Makerworld",
     "url": "https://makerworld.com/en/@jamescodesthing",
     "icon": null,
     "iconType": "text",
-    "description": "3D models for nerd hobby projects — tinywhoop drone parts, computer-related prints, and whatever else I'm tinkering with."
+    "description": "3D models for nerd hobby projects: tinywhoop drone parts, computer-related prints, and whatever else I'm tinkering with."
   },
   {
     "name": "Instagram",
     "url": "https://www.instagram.com/jamescodesthings/",
     "icon": null,
     "iconType": "text",
-    "description": "Nature, portraiture, and street photography. Photography projects like the camp snap filters. Portfolio in progress."
+    "description": "Nature, portraiture, and street photography. Photography projects like the camp snap filters."
   }
 ]
