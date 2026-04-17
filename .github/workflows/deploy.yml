@@ -1,5 +1,8 @@
 name: Build and Deploy
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -7,6 +10,21 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    services:
+      serve:
+        image: joseluisq/static-web-server:2-alpine
+        env:
+          SERVER_ROOT: /var/public
+          SERVER_PORT: 8080
+          SERVER_HEALTH: "true"
+        ports:
+          - 8080:8080
+      gotenberg:
+        image: gotenberg/gotenberg:8
+        env:
+          API_TIMEOUT: 300s
+        ports:
+          - 3000:3000
     steps:
       - uses: actions/checkout@v4
       - name: Build site
@@ -14,7 +32,7 @@ jobs:
       - name: Build pages output
         run: make pages
       - name: Build PDF
-        run: make pdf
+        run: make pdf-ci
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
