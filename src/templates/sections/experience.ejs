@@ -11,7 +11,7 @@
 
     <div class="experience-list">
       <% experience.forEach((job, index) => { %>
-      <article class="experience-entry <%= index > 1 ? 'print-hide' : '' %>">
+      <article class="experience-entry">
         <div class="experience-header">
           <div class="experience-meta">
             <span class="experience-number"><%= String(index + 1).padStart(2, '0') %></span>
@@ -36,7 +36,7 @@
           <% }); %>
         </div>
         <% } %> <% if (job.detail) { %>
-        <div class="experience-detail">
+        <div class="experience-detail <%= index > 0 ? 'print-hide' : '' %>">
           <% job.detail.forEach(group => { %>
           <div class="detail-group">
             <% group.forEach(paragraph => { %>
