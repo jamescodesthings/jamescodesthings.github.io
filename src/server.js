@@ -3,10 +3,14 @@ import { readFile, stat } from 'fs/promises';
 import { resolve, extname, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import config from './config.js';
+import Debug from 'debug';
+
+const debug = Debug('codesthings:server');
+debug.enabled = true;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
-const outputDir = resolve(__dirname, config.outputDir);
+const outputDir = resolve(root, config.outputDir);
 const PORT = process.env.PORT || 8080;
 
 const mimeTypes = {
@@ -28,10 +32,10 @@ const mimeTypes = {
 };
 
 const server = createServer(async (req, res) => {
+  debug(`Received request for ${req.url}`);
   let filePath = req.url === '/' ? '/index.html' : req.url;
   filePath = resolve(outputDir, `.${filePath}`);
 
-  // Prevent directory traversal
   if (!filePath.startsWith(outputDir)) {
     res.writeHead(403);
     res.end('Forbidden');
@@ -52,9 +56,11 @@ const server = createServer(async (req, res) => {
     res.end(content);
   } catch (err) {
     if (err.code === 'ENOENT') {
+      debug(`File not found: ${filePath}`);
       res.writeHead(404);
       res.end('Not Found');
     } else {
+      debug(`Error serving ${filePath}: ${err.message}`);
       res.writeHead(500);
       res.end('Internal Server Error');
     }

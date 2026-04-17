@@ -1562,9 +1562,6 @@ Update `src/templates/sections/hero.ejs`:
         </svg>
       </span>
     </button>
-    <div class="hero-scroll-hint">
-      <span class="scroll-line"></span>
-    </div>
   </div>
 </section>
 ```

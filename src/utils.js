@@ -12,8 +12,7 @@ debug.enabled = true;
 const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const srcRoot = __dirname;
-const root = resolve(srcRoot, '..');
+const root = resolve(__dirname, '..');
 
 export async function readFile(path) {
   try {
@@ -93,7 +92,7 @@ export async function renderTemplate(templatePath, data) {
   const template = await readFile(templatePath);
   return ejs.render(template, data, {
     filename: templatePath,
-    views: [resolve(srcRoot, config.templateDir)],
+    views: [resolve(root, config.templateDir)],
   });
 }
 
@@ -104,14 +103,14 @@ export async function renderBlogPost(file) {
   const titleMatch = markdown.match(/^#\s+(.+)$/m);
   const title = titleMatch ? titleMatch[1] : slug;
   const content = converter.makeHtml(markdown);
-  const blogTemplatePath = resolve(srcRoot, config.templateDir, 'blog.ejs');
+  const blogTemplatePath = resolve(root, config.templateDir, 'blog.ejs');
   const blogTemplate = await readFile(blogTemplatePath);
   const html = ejs.render(
     blogTemplate,
     { title, content },
     {
       filename: blogTemplatePath,
-      views: [resolve(srcRoot, config.templateDir)],
+      views: [resolve(root, config.templateDir)],
     },
   );
 
