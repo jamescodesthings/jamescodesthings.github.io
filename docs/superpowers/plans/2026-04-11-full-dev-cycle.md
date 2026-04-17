@@ -1506,7 +1506,7 @@ Update `src/templates/sections/hero.ejs`:
     <div class="hero-content">
       <h1 class="hero-title"><%= name %></h1>
       <p class="hero-role">Software Engineer</p>
-      <a href="cv.pdf" class="hero-cta" download>
+      <a href="cv.pdf" class="hero-cta hidden" download>
         <svg
           width="16"
           height="16"
