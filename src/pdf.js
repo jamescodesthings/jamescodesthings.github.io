@@ -1,7 +1,7 @@
 import Debug from 'debug';
-import { resolve, dirname, basename } from 'path';
+import { resolve, dirname, join, relative, extname } from 'path';
 import { fileURLToPath } from 'url';
-import { copyFile, writeFile } from 'fs/promises';
+import { copyFile, writeFile, readFile, readdir } from 'fs/promises';
 import config from './config.js';
 
 const debug = Debug('codesthings:pdf');
@@ -12,83 +12,106 @@ const root = resolve(__dirname, '..');
 
 debug('Building PDF');
 
-const { SERVER_URL, GOTENBERG_URL } = process.env;
-debug(`Server Url: ${SERVER_URL}`);
+const { GOTENBERG_URL } = process.env;
 debug(`Gotenberg Url: ${GOTENBERG_URL}`);
 
-const publicAssetsDir = resolve(root, config.outputDir, 'assets');
+const publicDir = resolve(root, config.outputDir);
+const publicAssetsDir = resolve(publicDir, 'assets');
 const pagesAssetsDir = resolve(root, 'pages', 'assets');
 
-export async function urlToPdf(path, outputPath) {
-  const absHtmlPath = `${SERVER_URL}${path}`;
-  debug(`Converting ${absHtmlPath} to ${outputPath}`);
+const MIME_TYPES = {
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.js': 'application/javascript',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.otf': 'font/otf',
+};
 
-  try {
-    const gotenbergResponse = await fetch(`${GOTENBERG_URL}/health`, { method: 'GET' });
-    if (gotenbergResponse.ok) {
-      debug(`Gotenberg is available at ${GOTENBERG_URL}`);
-    } else {
-      throw new Error(`Gotenberg is not available at ${GOTENBERG_URL}`);
-    }
-  } catch (err) {
-    throw new Error(`Error connecting to Gotenberg at ${GOTENBERG_URL}: ${err}`);
-  }
-
-  try {
-    const testServerResponse = await fetch(absHtmlPath, { method: 'GET' });
-    if (testServerResponse.ok) {
-      debug(`Response Status: ${testServerResponse.status} ${testServerResponse.statusText}`);
-      debug(`Test file is available at ${absHtmlPath}`);
-      const body = await testServerResponse.text();
-      debug(`Test file content length: ${body.length}`);
-      debug(`Test file content preview:\n${body.substring(0, 500)}\n...`);
-    } else {
-      throw new Error(`Test file is not available at ${absHtmlPath}: ${testServerResponse.statusText}`);
-    }
-  } catch (err) {
-    throw new Error(`Error connecting to test file at ${absHtmlPath}: ${err}`);
-  }
-
-  try {
-    const formData = new FormData();
-    formData.append('url', absHtmlPath);
-    formData.append('marginTop', '0');
-    formData.append('marginBottom', '0');
-    formData.append('marginLeft', '0');
-    formData.append('marginRight', '0');
-    formData.append('printBackground', 'true');
-    debug(`Converting to PDF`);
-    const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/url`, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!response.ok) {
-      debug(`Error converting to PDF: (${response.status}) ${response.statusText}`);
-      const body = await response.text();
-      debug(`Response body: ${body}`);
-      throw new Error(`${response.statusText}`);
-    }
-
-    const pdfBuffer = await response.arrayBuffer();
-    await writeFile(outputPath, Buffer.from(pdfBuffer));
-  } catch (err) {
-    throw new Error(`Error converting HTML to PDF: ${err}`);
-  }
+function getMimeType(filePath) {
+  return MIME_TYPES[extname(filePath).toLowerCase()] ?? 'application/octet-stream';
 }
 
-const publicPdfPath = resolve(publicAssetsDir, 'cv.pdf');
-await urlToPdf('/', publicPdfPath);
-const pagesPdfPath = resolve(pagesAssetsDir, 'cv.pdf');
-await copyFile(publicPdfPath, pagesPdfPath);
+async function getAllFiles(dir, base = dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await getAllFiles(full, base)));
+    } else {
+      files.push(relative(base, full));
+    }
+  }
+  return files;
+}
 
-const publicDarkPdfPath = resolve(publicAssetsDir, 'cv-dark.pdf');
-await urlToPdf('/?dark=true', publicDarkPdfPath);
-const pagesDarkPdfPath = resolve(pagesAssetsDir, 'cv-dark.pdf');
-await copyFile(publicDarkPdfPath, pagesDarkPdfPath);
+export async function htmlToPdf(outputPath, dark = false) {
+  debug(`Generating ${dark ? 'dark' : 'light'} PDF → ${outputPath}`);
 
-debug(`PDF saved to:`);
-debug(` - ${publicPdfPath}`);
-debug(` - ${pagesPdfPath}`);
-debug(` - ${publicDarkPdfPath}`);
-debug(` - ${pagesDarkPdfPath}`);
+  const healthRes = await fetch(`${GOTENBERG_URL}/health`);
+  if (!healthRes.ok) throw new Error(`Gotenberg unavailable at ${GOTENBERG_URL}`);
+  debug('Gotenberg healthy');
+
+  let html = await readFile(resolve(publicDir, 'index.html'), 'utf-8');
+
+  if (dark) {
+    if (/<html[^>]*class="/.test(html)) {
+      html = html.replace(/(<html[^>]*class=")/, '$1dark ');
+    } else {
+      html = html.replace(/<html\b/, '<html class="dark"');
+    }
+  }
+
+  const formData = new FormData();
+  formData.append('marginTop', '0');
+  formData.append('marginBottom', '0');
+  formData.append('marginLeft', '0');
+  formData.append('marginRight', '0');
+  formData.append('printBackground', 'true');
+  formData.append('files', new Blob([html], { type: 'text/html' }), 'index.html');
+
+  const allFiles = await getAllFiles(publicDir);
+  for (const relPath of allFiles) {
+    if (relPath === 'index.html') continue;
+    const content = await readFile(join(publicDir, relPath));
+    formData.append('files', new Blob([content], { type: getMimeType(relPath) }), relPath);
+  }
+
+  debug(`Uploading ${allFiles.length} files to Gotenberg`);
+
+  const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    debug(`Gotenberg error: ${response.status} ${response.statusText}: ${body}`);
+    throw new Error(`PDF conversion failed: ${response.statusText}`);
+  }
+
+  const pdfBuffer = await response.arrayBuffer();
+  await writeFile(outputPath, Buffer.from(pdfBuffer));
+  debug(`PDF written to ${outputPath}`);
+}
+
+await htmlToPdf(resolve(publicAssetsDir, 'cv.pdf'), false);
+await copyFile(resolve(publicAssetsDir, 'cv.pdf'), resolve(pagesAssetsDir, 'cv.pdf'));
+
+await htmlToPdf(resolve(publicAssetsDir, 'cv-dark.pdf'), true);
+await copyFile(resolve(publicAssetsDir, 'cv-dark.pdf'), resolve(pagesAssetsDir, 'cv-dark.pdf'));
+
+debug('PDFs saved:');
+debug(` - ${resolve(publicAssetsDir, 'cv.pdf')}`);
+debug(` - ${resolve(pagesAssetsDir, 'cv.pdf')}`);
+debug(` - ${resolve(publicAssetsDir, 'cv-dark.pdf')}`);
+debug(` - ${resolve(pagesAssetsDir, 'cv-dark.pdf')}`);

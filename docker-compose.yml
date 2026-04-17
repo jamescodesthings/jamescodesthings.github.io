@@ -54,10 +54,6 @@ services:
     environment:
       API_TIMEOUT: 300s
       LOG_LEVEL: info
-      CHROMIUM_DENY_LIST: ""
-    depends_on:
-      serve:
-        condition: service_healthy
     restart: unless-stopped
     network_mode: host
     healthcheck:
@@ -71,11 +67,8 @@ services:
       service: base
     network_mode: host
     environment:
-      SERVER_URL: http://localhost:8080
       GOTENBERG_URL: http://localhost:3000
     depends_on:
-      serve:
-        condition: service_healthy
       gotenberg:
         condition: service_healthy
     command: sh -c "npm install && npm run pdf"
