@@ -52,4 +52,10 @@
       el.classList.add('is-visible');
     });
   }
+
+  // Check query param for dark
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('dark') === 'true') {
+    setTheme(true);
+  }
 })();

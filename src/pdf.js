@@ -74,6 +74,13 @@ const publicPdfPath = resolve(publicAssetsDir, 'cv.pdf');
 await urlToPdf('/', publicPdfPath);
 const pagesPdfPath = resolve(pagesAssetsDir, 'cv.pdf');
 await copyFile(publicPdfPath, pagesPdfPath);
+
+const publidDarkPdfPath = resolve(publicAssetsDir, 'cv-dark.pdf');
+await urlToPdf('/?dark=true', publidDarkPdfPath);
+const pagesDarkPdfPath = resolve(pagesAssetsDir, 'cv-dark.pdf');
+await copyFile(publidDarkPdfPath, pagesDarkPdfPath);
 debug(`PDF saved to:`);
 debug(` - ${publicPdfPath}`);
 debug(` - ${pagesPdfPath}`);
+debug(` - ${publidDarkPdfPath}`);
+debug(` - ${pagesDarkPdfPath}`);
