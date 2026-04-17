@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>James Macmillan — CodesThings.com</title>
-    <meta name="description" content="Software engineer portfolio — James Macmillan builds things for the web." />
+    <title>James Macmillan - CodesThings.com</title>
+    <meta name="description" content="Software engineer portfolio - James Macmillan builds things for the web." />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="James Macmillan — Software Engineer" />
+    <meta property="og:title" content="James Macmillan - Software Engineer" />
     <meta
       property="og:description"
-      content="Software engineer portfolio — James Macmillan builds things for the web."
+      content="Software engineer portfolio - James Macmillan builds things for the web."
     />
     <meta property="og:url" content="https://codesthings.com/" />
     <meta property="og:image" content="https://codesthings.com/assets/logo/logo.png" />
@@ -76,7 +76,7 @@
     (blogPosts && blogPosts.length > 0) { %>
     <section class="section" data-animate>
       <div class="section-inner">
-        <span class="section-label">01 — BLOG</span>
+        <span class="section-label">01 - BLOG</span>
         <h2 class="section-title">Writing</h2>
         <div class="blog-cards">
           <% blogPosts.forEach(function(post) { %>
@@ -107,8 +107,10 @@
     <div class="page-break"></div>
     <%- include('sections/experience', { sidebar, experience, profile }) %>
     <div class="page-break"></div>
-    <%- include('sections/skills', { sidebar, skills, education }) %> <%- include('sections/projects', { sidebar,
-    projects }) %> <%- include('sections/campsnap-fab') %> <%- include('sections/footer') %>
+    <%- include('sections/skills', { sidebar, skills, education }) %>
+    <div class="page-break"></div>
+    <%- include('sections/projects', { sidebar, projects }) %> <%- include('sections/campsnap-fab') %> <%-
+    include('sections/footer') %>
 
     <script src="js/theme.js"></script>
     <script src="js/fab.js"></script>

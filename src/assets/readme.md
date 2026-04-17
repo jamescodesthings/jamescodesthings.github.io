@@ -10,7 +10,7 @@ A headshot of James Macmillan at 1024x1024px, suitable for cropping to a circle.
 
 ### logo.png / logo-dark.png
 
-The "codesthings." wordmark in landscape orientation. `logo.png` has dark grey text with an orange-red accent dot (for light backgrounds); `logo-dark.png` has white text with a cyan-blue accent dot (for dark backgrounds). SVG and PNG variants of all logo files also live in `logo/` — prefer `logo/logo.svg` and `logo/logo-dark.svg` for web use. See `docs/logo.md` and `docs/logo-usage.md` for full details.
+The "codesthings." wordmark in landscape orientation. `logo.png` has dark grey text with an orange-red accent dot (for light backgrounds); `logo-dark.png` has white text with a cyan-blue accent dot (for dark backgrounds). SVG and PNG variants of all logo files also live in `logo/` - prefer `logo/logo.svg` and `logo/logo-dark.svg` for web use. See `docs/logo.md` and `docs/logo-usage.md` for full details.
 
 ### zipline.gif
 
@@ -22,7 +22,7 @@ Technology and tool icons used to illustrate skills and experience on the site. 
 
 ### icons/favicon.svg
 
-The site favicon in SVG format — the icon variant of the logo ("C" + accent dot). Used as the browser tab icon in modern browsers.
+The site favicon in SVG format - the icon variant of the logo ("C" + accent dot). Used as the browser tab icon in modern browsers.
 
 ### icons/favicon.ico
 

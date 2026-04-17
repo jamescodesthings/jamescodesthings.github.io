@@ -16,7 +16,7 @@
           <div class="experience-meta">
             <span class="experience-number"><%= String(index + 1).padStart(2, '0') %></span>
             <span class="experience-dates">
-              <%= formatDate(job.from) %> — <%= job.to ? formatDate(job.to) : 'Present' %>
+              <%= formatDate(job.from) %> - <%= job.to ? formatDate(job.to) : 'Present' %>
             </span>
           </div>
           <h3 class="experience-employer"><%= job.employer %></h3>
