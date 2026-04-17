@@ -103,9 +103,12 @@
       </div>
     </section>
     <% } %> <%- include('sections/socials', { socials }) %> <%- include('sections/cover-letter', { sidebar, coverLetter,
-    profile }) %> <%- include('sections/experience', { sidebar, experience, profile }) %> <%- include('sections/skills',
-    { sidebar, skills, education }) %> <%- include('sections/projects', { sidebar, projects }) %> <%-
-    include('sections/campsnap-fab') %> <%- include('sections/footer') %>
+    profile }) %>
+    <div class="page-break"></div>
+    <%- include('sections/experience', { sidebar, experience, profile }) %>
+    <div class="page-break"></div>
+    <%- include('sections/skills', { sidebar, skills, education }) %> <%- include('sections/projects', { sidebar,
+    projects }) %> <%- include('sections/campsnap-fab') %> <%- include('sections/footer') %>
 
     <script src="js/theme.js"></script>
     <script src="js/fab.js"></script>
