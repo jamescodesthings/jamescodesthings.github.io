@@ -31,8 +31,7 @@ services:
 
   serve:
     image: joseluisq/static-web-server:2-alpine
-    ports:
-      - 8080:8080
+    network_mode: host
     restart: unless-stopped
     environment:
       - SERVER_ROOT=/var/public
@@ -58,8 +57,7 @@ services:
       serve:
         condition: service_healthy
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    network_mode: host
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:3000/health" ]
       interval: 10s
@@ -69,9 +67,10 @@ services:
   pdf:
     extends:
       service: base
+    network_mode: host
     environment:
-      SERVER_URL: http://serve:8080
-      GOTENBERG_URL: http://gotenberg:3000
+      SERVER_URL: http://localhost:8080
+      GOTENBERG_URL: http://localhost:3000
     depends_on:
       serve:
         condition: service_healthy
