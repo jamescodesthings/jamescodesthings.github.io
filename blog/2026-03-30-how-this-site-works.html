@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How This Site Works - CodesThings.com</title>
+
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <nav class="blog-nav">
+    <a href="/">&larr; Back to codesthings.com</a>
+  </nav>
+
+  <main class="blog-post">
+    <article class="paper-page">
+      <h1 id="howthissiteworks">How This Site Works</h1>
+<p><em>Published: 30 March 2026</em></p>
+<p>This is a quick summary of how codesthings.com is built, from data files to deployed website.</p>
+<h2 id="thearchitecture">The Architecture</h2>
+<p>The site follows a <strong>data-in, pipeline, artifacts-out</strong> pattern inspired by the <a href="https://github.com/jamescodesthings/campsnap-filters">campsnap-filters</a> project.</p>
+<h3 id="datalayer">Data Layer</h3>
+<p>All site content lives in JSON files under <code>data/</code>:</p>
+<ul>
+<li><code>profile.json</code> - Name, title, summary</li>
+<li><code>experience.json</code> - Work history</li>
+<li><code>skills.json</code> - Technical skills grouped by category</li>
+<li><code>education.json</code> - Qualifications</li>
+<li><code>projects.json</code> - Portfolio projects</li>
+<li><code>sidebar.json</code> - Contact info, social links, tech stacks</li>
+<li><code>socials.json</code> - Social platform links and descriptions</li>
+<li><code>cover-letter.json</code> - Cover letter variants</li>
+</ul>
+<p>To update the site content, you just edit the JSON.</p>
+<h3 id="generator">Generator</h3>
+<p>The <code>src/</code> directory contains a Node.js (pure ESM) static site builder:</p>
+<ol>
+<li><strong>Load</strong> - Reads all JSON data files</li>
+<li><strong>Render</strong> - Passes data through EJS templates to produce HTML</li>
+<li><strong>Copy</strong> - Moves static assets (CSS, favicons, icons) to the output directory</li>
+<li><strong>Output</strong> - Everything lands in <code>public/</code></li>
+</ol>
+<p>There is no React, no Vite, no bundler. Just Node.js reading files and writing files.</p>
+<h3 id="templates">Templates</h3>
+<p>EJS templates in <code>src/templates/</code> define the page structure. Each section (hero, experience, skills, projects, etc.) is its own partial template. The main <code>index.ejs</code> composes them together.</p>
+<h3 id="styling">Styling</h3>
+<p>Plain CSS with CSS custom properties (variables) for theming. Dark and light modes are supported via a <code>.dark</code> class on the body, toggled by a small client-side script. No Tailwind, no PostCSS, no preprocessor.</p>
+<h3 id="infrastructure">Infrastructure</h3>
+<ul>
+<li><strong>Makefile</strong> - All developer-facing commands. <code>make build</code>, <code>make serve</code>, <code>make dev</code>.</li>
+<li><strong>Docker Compose</strong> - Services for containerized builds: a static file server, Gotenberg (Chromium headless for PDF generation), and the Node.js build container.</li>
+<li><strong>GitHub Actions</strong> - On push to <code>main</code>: build the site, generate a PDF, deploy to the <code>pages</code> branch.</li>
+</ul>
+<h2 id="whythisapproach">Why This Approach?</h2>
+<p>The previous version used React, Vite, TypeScript, Tailwind, PostCSS, Storybook, and CircleCI. That was a lot of tooling for what is fundamentally a single-page CV website.</p>
+<p>The new version has:</p>
+<ul>
+<li><strong>No build step for the browser</strong> - The output is plain HTML, CSS, and zero JavaScript (except a tiny dark mode toggle)</li>
+<li><strong>No framework</strong> - EJS templates are simple and readable</li>
+<li><strong>No CSS framework</strong> - CSS variables do everything Tailwind did, with less abstraction</li>
+<li><strong>Portable PDF generation</strong> - Gotenberg prints the page to PDF via Chromium, no local browser required</li>
+</ul>
+<p>The entire generator is about 200 lines of JavaScript. The data is in JSON. The templates are in EJS. The styles are in CSS. That is the whole thing.</p>
+<hr />
+<p><a href="/">Back to codesthings.com</a></p>
+    </article>
+  </main>
+
+  <script src="../js/theme.js"></script>
+</body>
+</html>
