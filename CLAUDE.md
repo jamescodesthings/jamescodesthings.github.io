@@ -22,6 +22,8 @@ make clean
 - `src/css/styles.css` — all styles, CSS custom props for theming (`.dark` class)
 - `src/js/theme.js` — dark mode + scroll animations
 - `src/assets/` — icons, logos, favicons
+- `src/assets/` — icons, logos, favicons
+- `src/assets/fonts/` — local font files
 - `src/assets/logo/` — `logo.svg`/`logo-dark.svg` (full), `icon.svg`/`icon-dark.svg` (128×128)
 
 Icons: `devicon-*` CSS classes or local paths. `iconType` field controls which.

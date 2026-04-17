@@ -29,7 +29,7 @@ src/              Build pipeline and source files
   templates/      EJS templates (index.ejs, blog.ejs, sections/)
   css/            Stylesheets
   js/             Client-side JS (theme toggle, animations)
-  assets/         Icons, images, logos, favicons
+  assets/         Icons, images, logos, favicons, fonts
 data/             Site content as JSON + blog posts as Markdown
 raw/              Source design files (Illustrator, tracked via LFS)
 public/           Build output (gitignored)

@@ -12,6 +12,7 @@ const watchPaths = [
   resolve(__dirname, config.cssDir),
   resolve(__dirname, 'js'),
   resolve(__dirname, config.dataDir),
+  resolve(__dirname, config.assetsDir),
 ];
 
 let building = false;
