@@ -1391,6 +1391,10 @@ html:not(.dark) .bento-badge:hover {
    ============================================ */
 
 @media print {
+  :root {
+    --text-body: 0.75rem;
+  }
+
   .hero {
     min-height: auto;
     padding: 0;
@@ -1452,6 +1456,27 @@ html:not(.dark) .bento-badge:hover {
   .education-card,
   .bento-badge {
     box-shadow: none;
-    border: 1px solid #ddd;
+    border: none;
+    background: none;
   }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    margin: 0;
+    padding: 0;
+  }
+
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education-card {
+    margin: 0;
+    padding: 0;
+  }
+
+
 }
