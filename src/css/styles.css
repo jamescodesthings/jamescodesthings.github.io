@@ -1425,6 +1425,10 @@ html:not(.dark) .bento-badge:hover {
     page-break-inside: avoid;
   }
 
+  .page-break {
+    page-break-after: always;
+  }
+
   .project-card,
   .education-card,
   .bento-badge {
