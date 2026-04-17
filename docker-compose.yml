@@ -31,12 +31,12 @@ services:
 
   serve:
     image: joseluisq/static-web-server:2-alpine
-    container_name: "serve"
     ports:
-      - 8080:80
+      - 8080:8080
     restart: unless-stopped
     environment:
       - SERVER_ROOT=/var/public
+      - SERVER_PORT=8080
       - SERVER_HEALTH=true
     depends_on:
       build:
@@ -44,7 +44,7 @@ services:
     volumes:
       - ./public:/var/public
     healthcheck:
-      test: "nc -z localhost 80 || exit 1"
+      test: "nc -z localhost 8080 || exit 1"
       interval: 10s
       timeout: 5s
       retries: 5
@@ -70,7 +70,7 @@ services:
     extends:
       service: base
     environment:
-      SERVER_URL: http://serve:80
+      SERVER_URL: http://serve:8080
       GOTENBERG_URL: http://gotenberg:3000
     depends_on:
       serve:
