@@ -138,6 +138,10 @@ img {
   height: auto;
 }
 
+.hidden {
+  display:none;
+}
+
 /* ============================================
    Scroll-Triggered Animations
    ============================================ */

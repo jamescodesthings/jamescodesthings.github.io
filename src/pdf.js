@@ -1,7 +1,7 @@
 import Debug from 'debug';
-import { resolve, dirname, join, relative, extname } from 'path';
+import { resolve, dirname, extname } from 'path';
 import { fileURLToPath } from 'url';
-import { copyFile, writeFile, readFile, readdir } from 'fs/promises';
+import { copyFile, writeFile, readFile } from 'fs/promises';
 import config from './config.js';
 
 const debug = Debug('codesthings:pdf');
@@ -20,16 +20,12 @@ const publicAssetsDir = resolve(publicDir, 'assets');
 const pagesAssetsDir = resolve(root, 'pages', 'assets');
 
 const MIME_TYPES = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.gif': 'image/gif',
   '.webp': 'image/webp',
-  '.ico': 'image/x-icon',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
@@ -40,18 +36,63 @@ function getMimeType(filePath) {
   return MIME_TYPES[extname(filePath).toLowerCase()] ?? 'application/octet-stream';
 }
 
-async function getAllFiles(dir, base = dir) {
-  const entries = await readdir(dir, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries) {
-    const full = join(dir, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...(await getAllFiles(full, base)));
-    } else {
-      files.push(relative(base, full));
+async function toDataUri(absPath) {
+  const buf = await readFile(absPath);
+  return `data:${getMimeType(absPath)};base64,${buf.toString('base64')}`;
+}
+
+async function inlineCssUrls(css, cssAbsPath) {
+  const cssDir = dirname(cssAbsPath);
+  const urlRegex = /url\((['"]?)([^)'"]+)\1\)/g;
+  const matches = [...css.matchAll(urlRegex)];
+  let result = css;
+  for (const match of matches) {
+    const urlStr = match[2];
+    if (urlStr.startsWith('http') || urlStr.startsWith('data:') || urlStr.startsWith('//')) continue;
+    const absPath = resolve(cssDir, urlStr);
+    try {
+      const dataUri = await toDataUri(absPath);
+      result = result.replace(match[0], `url('${dataUri}')`);
+    } catch {
+      debug(`Warning: could not inline asset ${absPath}`);
     }
   }
-  return files;
+  return result;
+}
+
+async function inlineAssets(html) {
+  let result = html;
+
+  // Inline local stylesheets
+  const linkRegex = /<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"[^>]*\/?>/g;
+  for (const match of [...html.matchAll(linkRegex)]) {
+    const href = match[1];
+    if (href.startsWith('http') || href.startsWith('//')) continue;
+    const absPath = resolve(publicDir, href);
+    try {
+      let css = await readFile(absPath, 'utf-8');
+      css = await inlineCssUrls(css, absPath);
+      result = result.replace(match[0], `<style>${css}</style>`);
+    } catch {
+      debug(`Warning: could not inline stylesheet ${href}`);
+    }
+  }
+
+  // Inline local scripts
+  const scriptRegex = /<script[^>]+src="([^"]+)"[^>]*><\/script>/g;
+  for (const match of [...html.matchAll(scriptRegex)]) {
+    const src = match[1];
+    if (src.startsWith('http') || src.startsWith('//')) continue;
+    const absPath = resolve(publicDir, src);
+    try {
+      const js = await readFile(absPath, 'utf-8');
+      result = result.replace(match[0], `<script>${js}</script>`);
+    } catch {
+      debug(`Warning: could not inline script ${src}`);
+    }
+  }
+
+  return result;
 }
 
 export async function htmlToPdf(outputPath, dark = false) {
@@ -62,6 +103,7 @@ export async function htmlToPdf(outputPath, dark = false) {
   debug('Gotenberg healthy');
 
   let html = await readFile(resolve(publicDir, 'index.html'), 'utf-8');
+  html = await inlineAssets(html);
 
   if (dark) {
     if (/<html[^>]*class="/.test(html)) {
@@ -79,14 +121,7 @@ export async function htmlToPdf(outputPath, dark = false) {
   formData.append('printBackground', 'true');
   formData.append('files', new Blob([html], { type: 'text/html' }), 'index.html');
 
-  const allFiles = await getAllFiles(publicDir);
-  for (const relPath of allFiles) {
-    if (relPath === 'index.html') continue;
-    const content = await readFile(join(publicDir, relPath));
-    formData.append('files', new Blob([content], { type: getMimeType(relPath) }), relPath);
-  }
-
-  debug(`Uploading ${allFiles.length} files to Gotenberg`);
+  debug('Uploading self-contained HTML to Gotenberg');
 
   const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
     method: 'POST',
