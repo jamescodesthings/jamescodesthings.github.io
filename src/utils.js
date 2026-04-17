@@ -1,5 +1,19 @@
+import Debug from 'debug';
+import { resolve, basename, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { readFile as fsReadFile, readdir, writeFile as fsWriteFile, mkdir, rm, copyFile, stat } from 'fs/promises';
-import { dirname } from 'path';
+import ejs from 'ejs';
+import showdown from 'showdown';
+import config from './config.js';
+
+const debug = Debug('codesthings:utils');
+debug.enabled = true;
+
+const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const srcRoot = __dirname;
+const root = resolve(srcRoot, '..');
 
 export async function readFile(path) {
   try {
@@ -51,16 +65,56 @@ export async function cp(src, dest) {
 }
 
 export async function cpDir(srcDir, destDir) {
-  if (!(await exists(srcDir))) return;
+  if (!(await exists(srcDir))) throw new Error(`Source directory not found at ${srcDir}`);
+
   const entries = await readdir(srcDir, { withFileTypes: true });
   await mkdirp(destDir);
   for (const entry of entries) {
     const srcPath = `${srcDir}/${entry.name}`;
     const destPath = `${destDir}/${entry.name}`;
     if (entry.isDirectory()) {
+      debug(`cp ${destPath}`);
       await cpDir(srcPath, destPath);
     } else {
+      debug(`cp ${destPath}`);
       await copyFile(srcPath, destPath);
     }
   }
+}
+
+export function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+}
+
+export async function renderTemplate(templatePath, data) {
+  debug(` - Rendering ${templatePath}`);
+  const template = await readFile(templatePath);
+  return ejs.render(template, data, {
+    filename: templatePath,
+    views: [resolve(srcRoot, config.templateDir)],
+  });
+}
+
+export async function renderBlogPost(file) {
+  const slug = basename(file, '.md');
+  const blogDir = resolve(root, config.blogDir);
+  const markdown = await readFile(resolve(blogDir, file));
+  const titleMatch = markdown.match(/^#\s+(.+)$/m);
+  const title = titleMatch ? titleMatch[1] : slug;
+  const content = converter.makeHtml(markdown);
+  const blogTemplatePath = resolve(srcRoot, config.templateDir, 'blog.ejs');
+  const blogTemplate = await readFile(blogTemplatePath);
+  const html = ejs.render(
+    blogTemplate,
+    { title, content },
+    {
+      filename: blogTemplatePath,
+      views: [resolve(srcRoot, config.templateDir)],
+    },
+  );
+
+  debug(` - Blog: ${title} (${slug})`);
+  await writeFile(`${config.outputDir}/blog/${slug}.html`, html);
 }

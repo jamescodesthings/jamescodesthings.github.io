@@ -1,7 +1,7 @@
 services:
   serve:
     image: joseluisq/static-web-server:2-alpine
-    container_name: 'serve'
+    container_name: "serve"
     ports:
       - 8080:80
     restart: unless-stopped
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./public:/var/public
     healthcheck:
-      test: 'nc -z localhost 80 || exit 1'
+      test: "nc -z localhost 80 || exit 1"
       interval: 10s
       timeout: 5s
       retries: 5
@@ -28,13 +28,13 @@ services:
     ports:
       - 3000:3000
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:3000/health']
+      test: [ "CMD", "curl", "-f", "http://localhost:3000/health" ]
       interval: 10s
       timeout: 5s
       retries: 10
 
   build:
-    image: node:22-alpine
+    image: node:24-alpine
     working_dir: /app
     environment:
       SERVER_URL: http://serve:80
@@ -49,17 +49,16 @@ services:
     command: sh -c "npm install && npm start"
 
   pages:
-    image: node:22-alpine
+    image: node:24-alpine
     working_dir: /app
     volumes:
       - ./:/app
     command: sh -c "npm install && npm run pages"
 
   dev:
-    image: node:22-alpine
-    working_dir: /app
+    extends:
+      service: pages
     ports:
       - 8080:8080
-    volumes:
-      - ./:/app
-    command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
+    command: sh -c "npm install && node --no-deprecation src/watch.js & node
+      --no-deprecation src/server.js & wait"

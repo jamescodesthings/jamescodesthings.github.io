@@ -1,9 +1,11 @@
 const config = {
-  dataDir: '../data',
+  dataDir: './data',
+  blogDir: './data/blog',
   templateDir: './templates',
   cssDir: './css',
+  jsDir: './js',
   assetsDir: './assets',
-  outputDir: '../public',
+  outputDir: './public',
 };
 
 export default config;
