@@ -41,7 +41,7 @@ export async function urlToPdf(path, outputPath) {
       debug(`Test file is available at ${absHtmlPath}`);
       const body = await testServerResponse.text();
       debug(`Test file content length: ${body.length}`);
-      debug(`Test file content contents:\n${body}`);
+      debug(`Test file content preview:\n${body.substring(0, 500)}\n...`);
     } else {
       throw new Error(`Test file is not available at ${absHtmlPath}: ${testServerResponse.statusText}`);
     }
