@@ -19,10 +19,6 @@ build:
 	$(call docker-compose-run,build)
 .PHONY: build
 
-pdf-ci:
-	$(call docker-compose-run,pdf-ci)
-.PHONY: pdf-ci
-
 pdf:
 	$(call docker-compose-run,pdf)
 .PHONY: pdf
