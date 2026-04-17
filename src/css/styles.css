@@ -1393,7 +1393,31 @@ html:not(.dark) .bento-badge:hover {
 @media print {
   .hero {
     min-height: auto;
-    padding: var(--space-lg);
+    padding: 0;
+  }
+
+  .hero-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-xl);
+  }
+
+  .contact-card {
+    border: none;
+    background:none;
+    padding: 0;
+  }
+
+  .about-sidebar {
+    position: static;
+  }
+  .about-grid {
+    grid-template-columns: auto 1fr;
+  }
+
+  .section {
+    margin-top:0;
+    padding-top:0;
   }
 
   /* Hide interactive and non-CV elements */
@@ -1418,11 +1442,6 @@ html:not(.dark) .bento-badge:hover {
   [data-animate] {
     opacity: 1;
     transform: none;
-  }
-
-  .section {
-    padding: var(--space-lg) 0;
-    page-break-inside: avoid;
   }
 
   .page-break {
