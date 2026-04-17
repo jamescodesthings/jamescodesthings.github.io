@@ -1478,5 +1478,10 @@ html:not(.dark) .bento-badge:hover {
     padding: 0;
   }
 
+  .experience-entry {
+    border: none;
+    padding: 0;
+  }
+
 
 }
