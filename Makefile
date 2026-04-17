@@ -11,13 +11,17 @@ define docker-compose-run
 	(exit $$exit_status)
 endef
 
+dev:
+	$(call docker-compose-run,dev)
+.PHONY: dev
+
 build:
 	$(call docker-compose-run,build)
 .PHONY: build
 
-dev:
-	$(call docker-compose-run,dev)
-.PHONY: dev
+pdf:
+	$(call docker-compose-run,pdf)
+.PHONY: pdf
 
 pages:
 	$(call docker-compose-run,pages)

@@ -2,7 +2,7 @@ name: Build and Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 permissions:
   contents: write
@@ -10,50 +10,15 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    services:
-      serve:
-        image: joseluisq/static-web-server:2-alpine
-        env:
-          SERVER_ROOT: /var/public
-          SERVER_HEALTH: 'true'
-        ports:
-          - 8080:80
-      gotenberg:
-        image: gotenberg/gotenberg:8
-        env:
-          API_TIMEOUT: 300s
-        ports:
-          - 3000:3000
 
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Build site
-        run: npm start
-
+        run: make build
       - name: Build pages output
-        run: npm run pages
-
-      - name: Generate PDF
-        env:
-          SERVER_URL: http://localhost:8080
-          GOTENBERG_URL: http://localhost:3000
-        run: |
-          curl -f --retry 10 --retry-delay 2 \
-            --form url="http://serve:80/index.html" \
-            --form marginTop=0 --form marginBottom=0 \
-            --form marginLeft=0 --form marginRight=0 \
-            --form printBackground=true \
-            -o pages/cv.pdf \
-            http://localhost:3000/forms/chromium/convert/url || echo "PDF generation skipped (gotenberg not available)"
-
+        run: make pages
+      - name: Build PDF
+        run: make pdf
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
