@@ -912,7 +912,7 @@ html:not(.dark) .bento-badge:hover {
   align-items: center;
   gap: 4px;
   width: 56px;
-  padding: var(--space-sm) 0;
+  padding: var(--space-md);
   background: var(--color-accent);
   border: none;
   border-radius: 16px;
@@ -925,15 +925,6 @@ html:not(.dark) .bento-badge:hover {
 .campsnap-fab-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.campsnap-fab-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: lowercase;
-  color: #0a0a0f;
 }
 
 .campsnap-fab-popover {
