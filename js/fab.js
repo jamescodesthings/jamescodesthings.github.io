@@ -16,7 +16,7 @@
     popover.classList.remove('is-open');
     btn.setAttribute('aria-expanded', 'false');
     popover.setAttribute('aria-hidden', 'true');
-    btn.focus();
+    localStorage.setItem('campsnapFabDismissed', 'true');
   }
 
   btn.addEventListener('click', function (e) {
@@ -38,6 +38,18 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       closePopover();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      const dismissed = localStorage.getItem('campsnapFabDismissed');
+      if (dismissed !== 'true') {
+        openPopover();
+      }
+    } catch (e) {
+      // If localStorage is unavailable don't show the popover
+      console.error('Error accessing localStorage:', e);
     }
   });
 })();
