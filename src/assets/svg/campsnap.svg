@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Campsnap"
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f59e0b;
+      }
+
+      .dark .cls-1 {
+        fill: #f59e0b;
+      }
+    </style>
+  </defs>
+  <rect x="0" y="96.78" width="512" height="318.44" rx="12" ry="12"/>
+  <rect class="cls-1" x="26.99" y="125.98" width="458.02" height="108.48"/>
+  <circle cx="262.1" cy="268.31" r="108.48"/>
+  <circle class="cls-1" cx="262.1" cy="268.31" r="84.37"/>
+  <circle cx="262.1" cy="268.31" r="60.27"/>
+  <rect x="378.88" y="145.23" width="87.41" height="69.98" rx="6" ry="6"/>
+  <circle class="cls-1" cx="232.23" cy="249.58" r="11.68"/>
+  <circle class="cls-1" cx="249.93" cy="234.46" r="6.03"/>
+  <circle class="cls-1" cx="394.6" cy="167.27" r="7.15"/>
+  <circle class="cls-1" cx="405.45" cy="158.01" r="3.69"/>
+</svg>
