@@ -5,12 +5,10 @@ codesthings.com — personal portfolio/CV. Static site generator: JSON → EJS �
 ## Commands
 
 ```bash
-npm start              # build → public/
-npm run server         # dev server → http://localhost:8080
-npm run format:check   # prettier check
-npm run format:fix     # prettier fix
-make build             # Docker + Gotenberg PDF
+make build             # Docker build
+make serve             # Docker serve only
 make dev               # Docker watch + serve
+make pdf               # Generate PDF via Gotenberg
 make clean
 ```
 

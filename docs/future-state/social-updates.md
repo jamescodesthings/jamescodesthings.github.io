@@ -20,7 +20,7 @@ Research date: 2026-04-12. Covers: GitHub, LinkedIn, Makerworld, Instagram, and 
 
 **Suggested bio wording:**
 
-> Developer based in the Midlands, UK. KISS, ship then iterate. Nerd hobby projects welcome. See codesthings.com.
+> Developer based in the Midlands, UK. Nerd hobby projects welcome. See codesthings.com.
 
 Keep it short. The profile README can carry more personality — but right now it needs a refresh first.
 
