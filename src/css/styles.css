@@ -858,6 +858,7 @@ html:not(.dark) .bento-badge:hover {
 }
 
 .campsnap-link {
+  margin-top: var(--space-sm);
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
@@ -992,7 +993,7 @@ html:not(.dark) .bento-badge:hover {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md) var(--space-md);
+  padding: 0 var(--space-md) var(--space-md) var(--space-md);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
