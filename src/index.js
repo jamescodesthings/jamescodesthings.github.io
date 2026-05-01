@@ -101,7 +101,7 @@ async function getBlogPosts() {
     const title = titleMatch ? titleMatch[1] : slug;
     const dateMatch = slug.match(/^(\d{4}-\d{2}-\d{2})/);
     const date = dateMatch ? dateMatch[1] : '';
-    posts.push({ slug, title, date });
+    posts.unshift({ slug, title, date });
   }
   return posts;
 }
