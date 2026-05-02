@@ -7,7 +7,9 @@ import showdown from 'showdown';
 import config from './config.js';
 
 const debug = Debug('codesthings:utils');
-debug.enabled = false;
+debug.enabled = true;
+const trace = Debug('codesthings:utils:trace');
+trace.enabled = false;
 
 const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
 
@@ -72,10 +74,10 @@ export async function cpDir(srcDir, destDir) {
     const srcPath = `${srcDir}/${entry.name}`;
     const destPath = `${destDir}/${entry.name}`;
     if (entry.isDirectory()) {
-      debug(`cp ${destPath}`);
+      trace(`cp ${destPath}`);
       await cpDir(srcPath, destPath);
     } else {
-      debug(`cp ${destPath}`);
+      trace(`cp ${destPath}`);
       await copyFile(srcPath, destPath);
     }
   }
