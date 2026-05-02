@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZeroCalc - CodesThings.com</title>
+
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
+  <span class="toggle-icon" id="toggleIcon">
+    <svg
+      class="icon-sun"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+    <svg
+      class="icon-moon"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  </span>
+</button>
+
+    <nav class="blog-nav">
+      <a href="/">&larr; Back to codesthings.com</a>
+    </nav>
+
+    <main class="blog-post">
+      <article class="paper-page"><h1 id="zerocalc">ZeroCalc</h1>
+<p><em>Published: 01 May 2026</em></p>
+<p>How to go from delivery to a ZeroCalc 2W in 2026: My happy standalone little Pico8 dev machine.</p>
+<h2 id="whattoexpect">What to expect</h2>
+<p>Here's a quick demo of Pico8 running on my Zerocalc 2W.</p>
+<iframe class="yt" src="https://www.youtube-nocookie.com/embed/A72Jcj_3LAM?si=t_zLvrG_AkeEjOAf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p><em>Ignore the 3d printer sounds, I'm printing a handle for the thing.</em></p>
+<h2 id="whywritethis">Why write this?</h2>
+<p>There's a bunch of awesome people over at <a href="https://forum.clockworkpi.com/">forum.clockworkpi.com</a> who have worked out how to make this work. But, the forum post is a bit difficult to navigate, and find out what you absolutely need, vs. what's just cool tinkering.</p>
+<p><strong>For my purposes;</strong> the PicoCalc hits a great form factor and price point for a standalone <a href="https://www.lexaloffle.com/pico-8.php">Pico8</a> dev machine. I love the <a href="https://www.lexaloffle.com/pico-8.php">Pico8 platform</a> and regularly tinker with small game ideas.</p>
+<p>I've previously used a <a href="https://www.clockworkpi.com/uconsole">uconsole</a> with a RPI CM5 for this purposes; but it's overkill.</p>
+<p>The Pi Pico that the PicoCalc uses by default lacks power to run Pico8 well, like I'd like it to.</p>
+<p>My aim was to get the PicoCalc to run on a Zero 2W with <code>pico8</code> and <code>git</code>. So that I can tinker with ideas, and hand them off to a repo and pick up elsewhere.</p>
+<p>I don't need <code>external USB</code>/<code>gpio</code>/<code>etc</code>.</p>
+<p>Just <code>pico8</code>, <code>a display</code>, <code>a keyboard</code>, <code>audio</code>, and <code>internet</code>.</p>
+<p><em>If your needs are different, don't worry!</em> I've left links to all the resources and hints about where to look for different setups throughout this guide. The Zero2W is fairly capable compute with a lot of versatility, you could use it for all sorts.</p>
+<h1 id="whatyouneed">What you need</h1>
+<ol>
+<li><a href="https://www.clockworkpi.com/picocalc">A PicoCalc kit</a> - I got mine from AliExpress.</li>
+<li><a href="https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/">A Raspberry Pi Zero 2WH</a> - The WH stands for Wifi + Headers (presoldered headers). You can also just get a 2W and solder the headers yourself.</li>
+<li><a href="https://www.amazon.co.uk/dp/B0B7NTY2S6?ref=ppx_yo2ov_dt_b_fed_asin_title">A reasonably speedy SD card with a bit of space (32gb+)</a> - I use Sandisk Ultras because I trust them, I wanted about 128GB so this is what I went with.</li>
+<li><a href="https://www.pcbway.com/project/shareproject/Picocalc_Zero_Mod_for_Raspberry_Pi_Zero_2W_1c0c1a06.html">The adapter board</a> - I purchased from PCBWay, they sold me 5 for approx $1us each. Shipped to the UK in 3-4 days for a reasonable cost ($20us).</li>
+<li><a href="https://www.amazon.co.uk/dp/B0DXKP8Y8S?ref=ppx_yo2ov_dt_b_fed_asin_title">2x20 pin headers with 2.54mm pitch</a> - I bought mine from amazon in a set, I only used 2 of the 20pin headers. My Pi Zero came with headers presoldered. If you get the Pi zero without headers you'll need some more for that too.</li>
+<li><a href="https://www.nubattery.co.uk/panasonic-ncr18650b-18650-battery">2x 18650 batteries from a good source</a> - I bought mine (flat top) from NuBattery in the UK. There's <a href="https://forum.clockworkpi.com/t/picocalc-18650-battery-advice/16209/6">forum posts on battery options</a> if you're stuck.</li>
+<li>A trusty soldering iron and some solder.</li>
+</ol>
+<h2 id="optionalsolderinghelpers">Optional: soldering helpers</h2>
+<p>I also used 2 female 8 pin headers (2.54mm pitch) to help with soldering. Mine came from <a href="https://www.amazon.co.uk/dp/B095Y8L12Z?ref=ppx_yo2ov_dt_b_fed_asin_title">this kit</a> some time ago.</p>
+<p><em>tldr;</em> if you plug the male headers into the female and sit the adapter board on top it's super easy to solder them straight.</p>
+<p><a href="/assets/blog-images/solder-setup.png"><img src="/assets/blog-images/solder-setup.png" alt="Like this" /></a></p>
+<h2 id="optionalcase">Optional: Case</h2>
+<p>There are other optional features like external usb, and a custom case. Most of the details of those can be found
+on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Michael's Printables project</a>.</p>
+<h1 id="flashingthesdcard">Flashing the SD Card</h1>
+<p>Source: <a href="https://github.com/nibheis/picocalc_trixie#step-1-install-raspberry-pi-os-lite-64-bit-debian-trixie-using-the-raspberry-pi-imager">github.com/nibheis/picocalc_trixie: Step 1</a></p>
+<ol>
+<li>Download and install <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a></li>
+<li>Plug in your SD card</li>
+<li>Open Raspberry Pi Imager</li>
+</ol>
+<p>In Imager:</p>
+<pre><code>1. On the select device page choose "Raspberry Pi Zero 2 W" and hit next
+2. On the Choose OS page, choose "Raspberry Pi OS (other)" and hit next
+3. On the next page, choose "Raspberry Pi OS Lite (64 Bit)" (A port of Debian Trixie) and hit next
+4. On the storage page, select your SD card and hit next
+5. On the Customization page, set your hostname. I used "zerocalc" for mine, but you can choose whatever you like.
+6. On the Localisation page, set your locale. But! Set your keyboard layout to "us".
+  - If you get this wrong, like I did, it can be fixed later.
+  - You'll know you got it wrong if you hit left shift + " but get an @.
+7. On the User page, set your username, and password.
+8. On the wifi page, set up your wifi credentials; so we can ssh for the rest of the install.
+9. On the remote access page, enable SSH and set your authentication method as you wish.
+10. Hit "Write" and wait for it to finish.
+11. Unplug the SD card and plug it into your Pi Zero 2W.
+</code></pre>
+<h2 id="3buildingthehardware">3 Building the hardware</h2>
+<p>Others have covered this topic better than I could. You can watch Michael's video for a great walkthrough, and the summary below is the steps I took.</p>
+<h3 id="video">Video</h3>
+<p>Michael posted a great build video that <a href="https://www.youtube.com/watch?v=wgE0R1M0_ZE">goes over the soldering</a>, and physical build.</p>
+<h3 id="textsummary">Text Summary</h3>
+<pre><code>1. Solder the 20pin headers to the adapter board
+  - on the back, or the "other side" of the text that says "Header on the other side"
+2. Solder the Pi to the adapter board as well
+  - The headers stick through the same way
+3. Plug in your micro sd to the Pi Zero 2w (Flash instructions below)
+4. Plug the adapter board into your PicoCalc
+5. Add batteries
+6. Screw everything together
+</code></pre>
+<p><a href="assets/blog-images/after-soldering.png"><img src="/assets/blog-images/after-soldering.png" alt="It should look like this" /></a></p>
+<p><em>Note: in this image my SD card isn't plugged in, it should be plugged into the Pi Zero 2W.</em></p>
+<h2 id="softwaresetup">Software setup</h2>
+<p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
+<h3 id="poweron">Power on.</h3>
+<p>Once you have flashed the SD card and completed the hardware build. Power it on. You'll find it may reboot a couple times the first time you hit it; don't worry, it'll eventually come up stable. I think it's doing SD expansiona nd initial set up at that time.</p>
+<h3 id="findyourpionthenetwork">Find your Pi on the network</h3>
+<p>The easiest wat to find your zerocalc on the network is to use <code>ping</code> with the hostname you set in the imager. For example, if you set your hostname to <code>zerocalc</code> you can ping it with:</p>
+<pre><code>ping zerocalc.local
+# or
+ping zerocalc
+</code></pre>
+<h3 id="sshintothepi">SSH into the Pi</h3>
+<p>Use the same hostname or ip to ssh in:</p>
+<pre><code>ssh zerocalc
+# You can prepend your username to set the correct user to log in to as well.
+ssh james@zerocalc
+</code></pre>
+<h3 id="updateinstalledsoftware">Update installed software</h3>
+<p>Out the gate you want to run apt update.</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre>
+<h3 id="installgit">Install git</h3>
+<pre><code>sudo apt install git -y
+</code></pre>
+<h3 id="clonethepicocalc_trixierepo">Clone the picocalc_trixie repo</h3>
+<pre><code>git clone https://github.com/nibheis/picocalc_trixie.git
+</code></pre>
+<p>It should be cloned into <code>~/picocalc_trixie</code>(<code>/home/your-username/picocalc_trixie</code>)</p>
+<h3 id="inthepicocalc_trixiedirectorycopythedisplayfirmware">In the picocalc_trixie directory, copy the display firmware</h3>
+<pre><code>cd picocalc_trixie
+sudo cp display/picomipi.bin /lib/firmware/
+</code></pre>
+<h2 id="displaysetup">Display setup</h2>
+<h3 id="activatethespiinterfaceforthedisplay">Activate the SPI Interface for the display</h3>
+<pre><code>sudo nano /boot/firmware/config.txt
+</code></pre>
+<p>Add the following lines to the end of the file:</p>
+<pre><code># Enable SPI for the display
+dtparam=spi=on
+
+# Driver configuration for the display
+dtoverlay=mipi-dbi-spi,spi0-0,speed=70000000
+dtparam=compatible=picomipi\0panel-mipi-dbi-spi
+dtparam=width=320,height=320,width-mm=43,height-mm=43
+dtparam=reset-gpio=25,dc-gpio=24
+dtparam=backlight-gpio=18
+dtparam=clock-frequency=50
+</code></pre>
+<h3 id="configuretheframebufferconfigurationinthekernelcommandline">configure the framebuffer configuration in the kernel command line</h3>
+<pre><code>sudo nano /boot/firmware/cmdline.txt
+</code></pre>
+<p>Add the following to the end of the line:</p>
+<pre><code>fbcon=map:1 fbcon=font:MINI4x6
+</code></pre>
+<h3 id="reboot">Reboot</h3>
+<pre><code>sudo reboot
+</code></pre>
+<p>When you reboot this time, your display should work, but your keyboard won't be set up yet.</p>
+<h2 id="setupthekeyboard">Set up the keyboard</h2>
+<h3 id="navigatetothekeyboardfirmwaredirectory">Navigate to the keyboard firmware directory</h3>
+<ol>
+<li>SSH back into the Pi</li>
+<li><code>cd</code> to the <code>picocalc_trixie</code> directory</li>
+<li><code>cd</code> into the <code>keyboard</code> directory</li>
+</ol>
+<h4 id="ifyouneedthemouseeditthefirmware">If you need the mouse, edit the firmware</h4>
+<p>If you need the mouse emulation that comes with pico calc:
+<code>press shift to turn the arrow keys into the mouse, and the square brackets into lmb and rmb</code></p>
+<p>You need to update the <code>picocalc_kbd.c</code> file to uncomment the disabled mouse emulation.</p>
+<pre><code>sudo nano picocalc_kbd/picocalc_kbd.c
+</code></pre>
+<ul>
+<li>Remove the <code>//|</code> in front of the lines commented out.</li>
+<li>They are the only lines commented out with this pattern <code>//|</code> so it should be easy to find.</li>
+<li><a href="https://github.com/nibheis/picocalc_trixie/blob/dccf9c22fa913b1abc67eb5e682ed41a95d40792/keyboard/picocalc_kbd/picocalc_kbd.c">At the time of writing it's lines 223-311</a></li>
+<li>Delete the <code>//|</code> from the start of each line in that block, and save the file.</li>
+</ul>
+<h3 id="buildandinstallthekeyboardfirmware">Build and install the keyboard firmware</h3>
+<pre><code># In the picocalc_trixie/keyboard directory
+chmod +x setup_keyboard.sh
+sudo ./setup_keyboard.sh
+</code></pre>
+<h3 id="confirmthekeyboardsetupworked">Confirm the keyboard setup worked</h3>
+<pre><code>sudo cat /boot/firmware/config.txt
+</code></pre>
+<p>The start of the file should now have the following lines:</p>
+<pre><code>dtparam=i2c_arm=on
+dtoverlay=picocalc_kbd
+</code></pre>
+<h2 id="configureaudio">Configure Audio</h2>
+<pre><code>sudo nano /boot/firmware/config.txt
+</code></pre>
+<p>Add the following lines to the end of the file:</p>
+<pre><code>dtparam=audio=on
+dtoverlay=audremap,pins_12_13
+</code></pre>
+<p>Note, you may already see the <code>dtparam=audio=on</code> line in your config.txt, if so just add the <code>dtoverlay=audremap,pins_12_13</code> line.</p>
+<h3 id="reboot-1">Reboot</h3>
+<pre><code>sudo reboot
+</code></pre>
+<p>Once you've rebooted you should have most things working! The rest is optional but might be handy.</p>
+<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">optional: Configure your terminal font for a better display experience</h2>
+<p>Source: <a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">a comment by Lachlan_Beveridge</a></p>
+<pre><code>sudo dpkg-reconfigure console-setup
+</code></pre>
+<p>When you run this command, you'll be prompted with a series of questions. Here's how to answer them for the best experience on the PicoCalc display:</p>
+<pre><code>encoding: UTF-8
+character set: Guess optimal
+font: Terminus
+size: 6×12
+</code></pre>
+<h2 id="optionalfixkeyboardlayout">optional: fix keyboard layout</h2>
+<p>if, like me you flashed with the wrong keyboard layout, you can fix it with:</p>
+<pre><code>sudo nano /etc/default/keyboard
+</code></pre>
+<ol>
+<li>Find the line that starts with <code>XKBLAYOUT=</code></li>
+<li>Change the value to <code>us</code> (or your desired layout)</li>
+<li>Save the file and exit</li>
+<li>Reboot the Pi</li>
+</ol>
+<h2 id="optional">Optional:</h2>
+<h2 id="resources">Resources</h2>
+<p>Here's the main resources I used when working this out.</p>
+<ul>
+<li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc">The forum post</a></li>
+<li><a href="https://www.youtube.com/watch?v=wgE0R1M0_ZE">The hardware build video (from michael_mayer)</a></li>
+<li><a href="https://www.pcbway.com/project/shareproject/Picocalc_Zero_Mod_for_Raspberry_Pi_Zero_2W_1c0c1a06.html">The adapter board PCBWay project</a></li>
+<li><a href="https://github.com/nibheis/picocalc_trixie/">The Trixie 64bit install instructions</a></li>
+<li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">A comment in the forum post about making the default font easier to work with</a></li>
+</ul>
+<pre><code>
+</code></pre></article>
+    </main>
+
+    <script src="../js/theme.js"></script>
+  </body>
+</html>
