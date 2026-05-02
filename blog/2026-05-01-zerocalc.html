@@ -54,8 +54,9 @@
     </nav>
 
     <main class="blog-post">
-      <article class="paper-page"><h1 id="zerocalc">ZeroCalc</h1>
-<p><em>Published: 01 May 2026</em></p>
+      <article class="paper-page"><p><a href="../assets/blog-images/cover-wide.png"><img src="../assets/blog-images/cover-wide.png" alt="Cover" /></a></p>
+<h1 id="zerocalc">ZeroCalc</h1>
+<p><span class="published">01 May 2026</span></p>
 <p>How to go from delivery to a ZeroCalc 2W in 2026: My happy standalone little Pico8 dev machine.</p>
 <h2 id="whattoexpect">What to expect</h2>
 <p>Here's a quick demo of Pico8 running on my Zerocalc 2W.</p>
@@ -109,11 +110,11 @@ on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Mic
 10. Hit "Write" and wait for it to finish.
 11. Unplug the SD card and plug it into your Pi Zero 2W.
 </code></pre>
-<h2 id="3buildingthehardware">3 Building the hardware</h2>
+<h1 id="3buildingthehardware">3 Building the hardware</h1>
 <p>Others have covered this topic better than I could. You can watch Michael's video for a great walkthrough, and the summary below is the steps I took.</p>
-<h3 id="video">Video</h3>
+<h2 id="video">Video</h2>
 <p>Michael posted a great build video that <a href="https://www.youtube.com/watch?v=wgE0R1M0_ZE">goes over the soldering</a>, and physical build.</p>
-<h3 id="textsummary">Text Summary</h3>
+<h2 id="textsummary">Text Summary</h2>
 <pre><code>1. Solder the 20pin headers to the adapter board
   - on the back, or the "other side" of the text that says "Header on the other side"
 2. Solder the Pi to the adapter board as well
@@ -125,38 +126,38 @@ on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Mic
 </code></pre>
 <p><a href="assets/blog-images/after-soldering.png"><img src="/assets/blog-images/after-soldering.png" alt="It should look like this" /></a></p>
 <p><em>Note: in this image my SD card isn't plugged in, it should be plugged into the Pi Zero 2W.</em></p>
-<h2 id="softwaresetup">Software setup</h2>
+<h1 id="softwaresetup">Software setup</h1>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
-<h3 id="poweron">Power on.</h3>
+<h2 id="poweron">Power on.</h2>
 <p>Once you have flashed the SD card and completed the hardware build. Power it on. You'll find it may reboot a couple times the first time you hit it; don't worry, it'll eventually come up stable. I think it's doing SD expansiona nd initial set up at that time.</p>
-<h3 id="findyourpionthenetwork">Find your Pi on the network</h3>
+<h2 id="findyourpionthenetwork">Find your Pi on the network</h2>
 <p>The easiest wat to find your zerocalc on the network is to use <code>ping</code> with the hostname you set in the imager. For example, if you set your hostname to <code>zerocalc</code> you can ping it with:</p>
 <pre><code>ping zerocalc.local
 # or
 ping zerocalc
 </code></pre>
-<h3 id="sshintothepi">SSH into the Pi</h3>
+<h2 id="sshintothepi">SSH into the Pi</h2>
 <p>Use the same hostname or ip to ssh in:</p>
 <pre><code>ssh zerocalc
 # You can prepend your username to set the correct user to log in to as well.
 ssh james@zerocalc
 </code></pre>
-<h3 id="updateinstalledsoftware">Update installed software</h3>
+<h2 id="updateinstalledsoftware">Update installed software</h2>
 <p>Out the gate you want to run apt update.</p>
 <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y
 </code></pre>
-<h3 id="installgit">Install git</h3>
+<h2 id="installgit">Install git</h2>
 <pre><code>sudo apt install git -y
 </code></pre>
-<h3 id="clonethepicocalc_trixierepo">Clone the picocalc_trixie repo</h3>
+<h2 id="clonethepicocalc_trixierepo">Clone the picocalc_trixie repo</h2>
 <pre><code>git clone https://github.com/nibheis/picocalc_trixie.git
 </code></pre>
 <p>It should be cloned into <code>~/picocalc_trixie</code>(<code>/home/your-username/picocalc_trixie</code>)</p>
-<h3 id="inthepicocalc_trixiedirectorycopythedisplayfirmware">In the picocalc_trixie directory, copy the display firmware</h3>
+<h2 id="inthepicocalc_trixiedirectorycopythedisplayfirmware">In the picocalc_trixie directory, copy the display firmware</h2>
 <pre><code>cd picocalc_trixie
 sudo cp display/picomipi.bin /lib/firmware/
 </code></pre>
-<h2 id="displaysetup">Display setup</h2>
+<h2 id="setupthedisplay">Set up the display</h2>
 <h3 id="activatethespiinterfaceforthedisplay">Activate the SPI Interface for the display</h3>
 <pre><code>sudo nano /boot/firmware/config.txt
 </code></pre>
@@ -172,7 +173,7 @@ dtparam=reset-gpio=25,dc-gpio=24
 dtparam=backlight-gpio=18
 dtparam=clock-frequency=50
 </code></pre>
-<h3 id="configuretheframebufferconfigurationinthekernelcommandline">configure the framebuffer configuration in the kernel command line</h3>
+<h3 id="configuretheframebufferconfigurationinthekernelcommandline">Configure the framebuffer configuration in the kernel command line</h3>
 <pre><code>sudo nano /boot/firmware/cmdline.txt
 </code></pre>
 <p>Add the following to the end of the line:</p>
@@ -189,7 +190,7 @@ dtparam=clock-frequency=50
 <li><code>cd</code> to the <code>picocalc_trixie</code> directory</li>
 <li><code>cd</code> into the <code>keyboard</code> directory</li>
 </ol>
-<h4 id="ifyouneedthemouseeditthefirmware">If you need the mouse, edit the firmware</h4>
+<h3 id="ifyouneedthemouseeditthefirmware">If you need the mouse, edit the firmware</h3>
 <p>If you need the mouse emulation that comes with pico calc:
 <code>press shift to turn the arrow keys into the mouse, and the square brackets into lmb and rmb</code></p>
 <p>You need to update the <code>picocalc_kbd.c</code> file to uncomment the disabled mouse emulation.</p>
@@ -213,7 +214,7 @@ sudo ./setup_keyboard.sh
 <pre><code>dtparam=i2c_arm=on
 dtoverlay=picocalc_kbd
 </code></pre>
-<h2 id="configureaudio">Configure Audio</h2>
+<h2 id="setupaudio">Set up Audio</h2>
 <pre><code>sudo nano /boot/firmware/config.txt
 </code></pre>
 <p>Add the following lines to the end of the file:</p>
@@ -225,7 +226,7 @@ dtoverlay=audremap,pins_12_13
 <pre><code>sudo reboot
 </code></pre>
 <p>Once you've rebooted you should have most things working! The rest is optional but might be handy.</p>
-<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">optional: Configure your terminal font for a better display experience</h2>
+<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">(Optional) Configure your terminal font for a better display experience</h2>
 <p>Source: <a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">a comment by Lachlan_Beveridge</a></p>
 <pre><code>sudo dpkg-reconfigure console-setup
 </code></pre>
@@ -235,8 +236,8 @@ character set: Guess optimal
 font: Terminus
 size: 6×12
 </code></pre>
-<h2 id="optionalfixkeyboardlayout">optional: fix keyboard layout</h2>
-<p>if, like me you flashed with the wrong keyboard layout, you can fix it with:</p>
+<h2 id="optionalfixkeyboardlayout">(Optional) Fix keyboard layout</h2>
+<p>If, like me, you flashed with the wrong keyboard layout, you can fix it with:</p>
 <pre><code>sudo nano /etc/default/keyboard
 </code></pre>
 <ol>
@@ -245,8 +246,35 @@ size: 6×12
 <li>Save the file and exit</li>
 <li>Reboot the Pi</li>
 </ol>
-<h2 id="optional">Optional:</h2>
-<h2 id="resources">Resources</h2>
+<h2 id="optionalcopyusefulscriptstoyourpath">Optional: Copy useful scripts to your path</h2>
+<p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
+<p>The <code>picocalc_trixie</code> repo has some useful scripts for running Pico8 and other utilities. You can copy them to a directory in your <code>PATH</code> for easier access.</p>
+<pre><code class="sh language-sh"># Go to the picocalc_trixie directory
+cd ~/picocalc_trixie
+# Copy the scripts to /usr/local/bin
+sudo cp -r user_bin/* /usr/local/bin/
+# one is called "shudown" which will lead to an infinite loop. rename it.
+mv /usr/local/bin/shutdown /usr/local/bin/shutdown-pi
+
+# alternatively, modify the script and have it point to /usr/sbin/shutdown
+sudo nano /usr/local/bin/shutdown
+# Change 'shutdown' to '/usr/sbin/shutdown' and save the file.
+</code></pre>
+<h2 id="optionalpoweroffshutdownscript">Optional: Power off shutdown script</h2>
+<p>I haven't had this consistently work but I'd like you to know it exists: https://github.com/nibheis/picocalc_trixie#step-7-make-the-pi-turn-off-the-main-board-when-powering-off</p>
+<p>tldr; this service should trigger the pi to send a power off signal to the mainboard when the Pi shuts down.</p>
+<p>For me, it hasn't been; but that's not a huge issue. Once it's shut down you hold the power button for a few seconds and the green light on the ZeroCalc will turn off.</p>
+<p>If I get this fixed I'll add an update here.</p>
+<h1 id="shamelessplughandlestandgripforthezerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</h1>
+<div class="image-carousel">
+<a href="../assets/blog-images/cover-tall.png"><img src="../assets/blog-images/cover-tall.png" alt="Front"></a>
+<a href="../assets/blog-images/side-on.png"><img src="../assets/blog-images/side-on.png" alt="Side"></a>
+<a href="../assets/blog-images/rear-view.png"><img src="../assets/blog-images/rear-view.png" alt="Rear"></a>
+</div>
+<p>If you like the grip in the cover image, you can find it on at Makerworld: <a href="https://makerworld.com/en/models/2748402-picocalc-grip-stand-handle">PicoCalc Grip Stand Handle</a>.</p>
+<p>If you like it, check out the other things I make!</p>
+<p>Heads up; there's a version you can print without the <code>pico-8</code> logo on the front. It's plate 2 in the print profile, and the <code>.step</code> files are included in the 3D model files if you want to modify it yourself.</p>
+<h1 id="resources">Resources</h1>
 <p>Here's the main resources I used when working this out.</p>
 <ul>
 <li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc">The forum post</a></li>
@@ -255,8 +283,10 @@ size: 6×12
 <li><a href="https://github.com/nibheis/picocalc_trixie/">The Trixie 64bit install instructions</a></li>
 <li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">A comment in the forum post about making the default font easier to work with</a></li>
 </ul>
-<pre><code>
-</code></pre></article>
+<h1 id="fin">Fin</h1>
+<p>That's it for this one! I hope it's useful to anyone looking to do something similar. If you have any questions, or suggestions for improvements, feel free to reach out.</p>
+<p>Many thanks to everyone mentioned in the resources, and anyone else who's worked on this in the forums. It's a great community and I'm grateful for all the work that's gone into making this possible.</p>
+<p>If anyone involved in the project wants to add anything, or correct any mistakes, just let me know!</p></article>
     </main>
 
     <script src="../js/theme.js"></script>
