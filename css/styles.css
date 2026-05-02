@@ -1137,6 +1137,7 @@ html:not(.dark) .bento-badge:hover {
 .blog-post {
   max-width: 800px;
   margin: var(--space-2xl) auto;
+  margin-bottom: 75vh;
   padding: 0 var(--space-lg);
 }
 
@@ -1243,14 +1244,8 @@ html:not(.dark) .bento-badge:hover {
 }
 
 .blog-post img {
-  border-radius: var(--border-radius-lg);
-  border: 1px solid black;
   max-width: 100%;
   width: 100%;
-}
-
-.blog-post img:hover, .dark .blog-post img:hover {
-  border-color: var(--color-accent);
 }
 
 .blog-post iframe.yt {
@@ -1264,10 +1259,6 @@ html:not(.dark) .bento-badge:hover {
   font-family: var(--font-mono-display);
   font-size: 0.75em;
   color: var(--color-text-muted);
-}
-
-.dark .blog-post img {
-  border-color: white;
 }
 
 .blog-post {counter-reset: section; counter-increment: section -1;}
@@ -1308,6 +1299,33 @@ html:not(.dark) .bento-badge:hover {
   counter-increment: detail;
   content: counter(section) counter(sub-section, lower-alpha) counter(composite, lower-roman) counter(detail, lower-roman);
 }
+
+p:has(.published) {
+  margin-top: calc(var(--space-lg) * -1);
+}
+.blog-post .published {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--color-text-muted);
+}
+
+.blog-post .image-carousel {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-md);
+}
+
+.blog-post .image-carousel a {
+
+}
+
+.blog-post .image-carousel a img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
 
 /* ============================================
    Responsive
