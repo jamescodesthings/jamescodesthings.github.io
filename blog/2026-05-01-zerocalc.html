@@ -56,7 +56,7 @@
     <main class="blog-post">
       <article class="paper-page"><p><a href="../assets/blog-images/cover-wide.png"><img src="../assets/blog-images/cover-wide.png" alt="Cover" /></a></p>
 <h1 id="zerocalc">ZeroCalc</h1>
-<p><span class="published">01 May 2026</span></p>
+<p><span class="published">Published 01 May 2026</span></p>
 <p>How to go from delivery to a ZeroCalc 2W in 2026: My happy standalone little Pico8 dev machine.</p>
 <h2 id="whattoexpect">What to expect</h2>
 <p>Here's a quick demo of Pico8 running on my Zerocalc 2W.</p>
@@ -96,34 +96,32 @@ on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Mic
 <li>Open Raspberry Pi Imager</li>
 </ol>
 <p>In Imager:</p>
-<pre><code>1. On the select device page choose "Raspberry Pi Zero 2 W" and hit next
-2. On the Choose OS page, choose "Raspberry Pi OS (other)" and hit next
-3. On the next page, choose "Raspberry Pi OS Lite (64 Bit)" (A port of Debian Trixie) and hit next
-4. On the storage page, select your SD card and hit next
-5. On the Customization page, set your hostname. I used "zerocalc" for mine, but you can choose whatever you like.
-6. On the Localisation page, set your locale. But! Set your keyboard layout to "us".
-  - If you get this wrong, like I did, it can be fixed later.
-  - You'll know you got it wrong if you hit left shift + " but get an @.
-7. On the User page, set your username, and password.
-8. On the wifi page, set up your wifi credentials; so we can ssh for the rest of the install.
-9. On the remote access page, enable SSH and set your authentication method as you wish.
-10. Hit "Write" and wait for it to finish.
-11. Unplug the SD card and plug it into your Pi Zero 2W.
-</code></pre>
+<ol>
+<li>On the select device page choose "Raspberry Pi Zero 2 W" and hit next</li>
+<li>On the Choose OS page, choose "Raspberry Pi OS (other)" and hit next</li>
+<li>On the next page, choose "Raspberry Pi OS Lite (64 Bit)" (A port of Debian Trixie) and hit next</li>
+<li>On the storage page, select your SD card and hit next</li>
+<li>On the Customization page, set your hostname. I used "zerocalc" for mine, but you can choose whatever you like.</li>
+<li>On the Localisation page, set your locale. But! Set your keyboard layout to "us".</li>
+<li>On the User page, set your username, and password.</li>
+<li>On the wifi page, set up your wifi credentials; so we can ssh for the rest of the install.</li>
+<li>On the remote access page, enable SSH and set your authentication method as you wish.</li>
+<li>Hit "Write" and wait for it to finish.</li>
+<li>Unplug the SD card and plug it into your Pi Zero 2W.</li>
+</ol>
 <h1 id="3buildingthehardware">3 Building the hardware</h1>
 <p>Others have covered this topic better than I could. You can watch Michael's video for a great walkthrough, and the summary below is the steps I took.</p>
 <h2 id="video">Video</h2>
 <p>Michael posted a great build video that <a href="https://www.youtube.com/watch?v=wgE0R1M0_ZE">goes over the soldering</a>, and physical build.</p>
 <h2 id="textsummary">Text Summary</h2>
-<pre><code>1. Solder the 20pin headers to the adapter board
-  - on the back, or the "other side" of the text that says "Header on the other side"
-2. Solder the Pi to the adapter board as well
-  - The headers stick through the same way
-3. Plug in your micro sd to the Pi Zero 2w (Flash instructions below)
-4. Plug the adapter board into your PicoCalc
-5. Add batteries
-6. Screw everything together
-</code></pre>
+<ol>
+<li>Solder the 20pin headers to the adapter board</li>
+<li>Solder the Pi to the adapter board as well</li>
+<li>Plug in your micro sd to the Pi Zero 2w (Flash instructions below)</li>
+<li>Plug the adapter board into your PicoCalc</li>
+<li>Add batteries</li>
+<li>Screw everything together</li>
+</ol>
 <p><a href="assets/blog-images/after-soldering.png"><img src="/assets/blog-images/after-soldering.png" alt="It should look like this" /></a></p>
 <p><em>Note: in this image my SD card isn't plugged in, it should be plugged into the Pi Zero 2W.</em></p>
 <h1 id="softwaresetup">Software setup</h1>
@@ -226,7 +224,7 @@ dtoverlay=audremap,pins_12_13
 <pre><code>sudo reboot
 </code></pre>
 <p>Once you've rebooted you should have most things working! The rest is optional but might be handy.</p>
-<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">(Optional) Configure your terminal font for a better display experience</h2>
+<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">Optional: Configure your terminal font for a better display experience</h2>
 <p>Source: <a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">a comment by Lachlan_Beveridge</a></p>
 <pre><code>sudo dpkg-reconfigure console-setup
 </code></pre>
@@ -236,7 +234,7 @@ character set: Guess optimal
 font: Terminus
 size: 6×12
 </code></pre>
-<h2 id="optionalfixkeyboardlayout">(Optional) Fix keyboard layout</h2>
+<h2 id="optionalfixkeyboardlayout">Optional: Fix keyboard layout</h2>
 <p>If, like me, you flashed with the wrong keyboard layout, you can fix it with:</p>
 <pre><code>sudo nano /etc/default/keyboard
 </code></pre>
