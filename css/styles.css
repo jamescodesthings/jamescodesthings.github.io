@@ -3,6 +3,14 @@
   --color-bg: #0a0a0f;
   --color-surface: #141419;
   --color-surface-raised: #1e1e26;
+  --color-blog-h1: #ffffff;
+  --color-blog-h2: #cbcbcb;
+  --color-blog-h3: #b8b8b8;
+  --color-blog-h4: #a1a1a1;
+  --color-numbered-heading-h1: #ffffff;
+  --color-numbered-heading-h2: #f1f1f1;
+  --color-numbered-heading-h3: #eaeaea;
+  --color-numbered-heading-h4: #e1e1e1;
   --color-text: #f0ece4;
   --color-text-secondary: #9ca3af;
   --color-text-muted: #6b7280;
@@ -23,11 +31,17 @@
 
   /* Type scale */
   --text-display: clamp(2.5rem, 5vw, 4.5rem);
-  --text-h1: clamp(1.75rem, 3vw, 2.5rem);
-  --text-h2: 1.25rem;
-  --text-body: 1rem;
-  --text-small: 0.875rem;
-  --text-xs: 0.75rem;
+  --text-h1: clamp(1.2rem, 3vw, 3em);
+  --text-h2: clamp(1rem, 3vw, 2.5rem);
+  --text-h3: clamp(0.8rem, 3vw, 2rem);
+  --text-h4: clamp(0.75rem, 3vw, 1.8rem);
+  --text-body: clamp(0.75rem, 3vw, 1.125rem);
+  --text-small: clamp(0.7rem, 3vw, 1rem);
+  --text-xs: clamp(0.65rem, 3vw, 0.875rem);
+  --text-numbered-headings-h1: clamp(0.5rem, 2vw, 0.8rem);;
+  --text-numbered-headings-h2: clamp(0.45rem, 2vw, 0.7rem);;
+  --text-numbered-headings-h3: clamp(0.4rem, 2vw, 0.6rem);;
+  --text-numbered-headings-h4: clamp(0.4rem, 2vw, 0.6rem);;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -51,6 +65,14 @@ html:not(.dark) {
   --color-bg: #faf8f4;
   --color-surface: #ffffff;
   --color-surface-raised: #f5f3ee;
+  --color-blog-h1: #000000;
+  --color-blog-h2: #242424;
+  --color-blog-h3: #3c3c3c;
+  --color-blog-h4: #444444;
+  --color-numbered-heading-h1: #111111;
+  --color-numbered-heading-h2: #1a1a1a;
+  --color-numbered-heading-h3: #222222;
+  --color-numbered-heading-h4: #2e2e2e;
   --color-text: #1a1a2e;
   --color-text-secondary: #4a4a5a;
   --color-text-muted: #6b7280;
@@ -1135,21 +1157,31 @@ html:not(.dark) .bento-badge:hover {
 }
 
 .blog-post {
-  max-width: 800px;
+  max-width: 768px;
   margin: var(--space-2xl) auto;
   margin-bottom: 75vh;
-  padding: 0 var(--space-lg);
+  padding: 0 var(--space-xl);
 }
 
 .blog-post article {
-  padding: var(--space-2xl);
+  padding: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .blog-post {
+    max-width: 1024px;
+  }
+
+  .blog-post article {
+    padding: var(--space-lg);
+  }
 }
 
 .blog-post h1 {
   font-family: var(--font-heading);
   font-size: var(--text-h1);
   font-weight: 600;
-  color: var(--color-heading);
+  color: var(--color-blog-h1);
   margin-bottom: var(--space-md);
 }
 
@@ -1157,30 +1189,31 @@ html:not(.dark) .bento-badge:hover {
   font-family: var(--font-heading);
   font-size: var(--text-h2);
   font-weight: 600;
-  color: var(--color-heading);
+  color: var(--color-blog-h2);
   margin-top: var(--space-md);
   margin-bottom: var(--space-md);
 }
 
 .blog-post h3 {
   font-family: var(--font-heading);
-  font-size: var(--text-body);
+  font-size: var(--text-h3);
   font-weight: 600;
-  color: var(--color-heading);
+  color: var(--color-blog-h3);
   margin-top: var(--space-md);
   margin-bottom: var(--space-sm);
 }
 
 .blog-post h4 {
   font-family: var(--font-heading);
-  font-size: var(--text-body);
+  font-size: var(--text-h4);
   font-weight: 600;
-  color: var(--color-heading);
+  color: var(--color-blog-h4);
   margin-top: var(--space-md);
   margin-bottom: var(--space-sm);
 }
 
 .blog-post p {
+  font-size: var(--text-body);
   margin-bottom: var(--space-md);
   line-height: 1.8;
   color: var(--color-text);
@@ -1190,6 +1223,7 @@ html:not(.dark) .bento-badge:hover {
 .blog-post ol {
   margin-bottom: var(--space-md);
   padding-left: var(--space-xl);
+  font-size: var(--text-body);
 }
 
 .blog-post li {
@@ -1199,20 +1233,20 @@ html:not(.dark) .bento-badge:hover {
 
 .blog-post code {
   font-family: var(--font-mono);
+  font-size: var(--text-body);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   padding: 0.15em 0.4em;
   border-radius: 4px;
-  font-size: var(--text-small);
 }
 
 .blog-post pre {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   padding: var(--space-md);
-  border-radius: var(--border-radius);
   overflow-x: auto;
   margin-bottom: var(--space-md);
+  font-size: var(--text-body);
 }
 
 .blog-post pre code {
@@ -1276,13 +1310,27 @@ html:not(.dark) .bento-badge:hover {
   position: absolute;
   transform:translateX(-100%);
   padding-right: var(--space-sm);
-  bottom: 0;
   text-align: right;
   font-family: var(--font-mono-display);
   font-size: 0.75em;
-  color: var(--color-text-muted);
+  bottom: 0.15em;
 }
 
+/* Style */
+.blog-post h1:before {
+  color: var(--color-numbered-heading-h1);
+}
+.blog-post h2:before {
+  color: var(--color-numbered-heading-h2);
+}
+.blog-post h3:before {
+  color: var(--color-numbered-heading-h3);
+}
+.blog-post h4:before {
+  color: var(--color-numbered-heading-h4);
+}
+
+/* Counters */
 .blog-post h1:before{
   counter-increment: section;
   content: counter(section);
