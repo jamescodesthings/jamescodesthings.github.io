@@ -7,10 +7,10 @@
   --color-blog-h2: #cbcbcb;
   --color-blog-h3: #b8b8b8;
   --color-blog-h4: #a1a1a1;
-  --color-numbered-heading-h1: #ffffff;
-  --color-numbered-heading-h2: #f1f1f1;
-  --color-numbered-heading-h3: #eaeaea;
-  --color-numbered-heading-h4: #e1e1e1;
+  --color-numbered-heading-h1: rgba(255,255,255,.55);
+  --color-numbered-heading-h2: rgba(255,255,255,.5);
+  --color-numbered-heading-h3: rgba(255,255,255,.45);
+  --color-numbered-heading-h4: rgba(255,255,255,.4);
   --color-text: #f0ece4;
   --color-text-secondary: #9ca3af;
   --color-text-muted: #6b7280;
@@ -38,10 +38,6 @@
   --text-body: clamp(0.75rem, 3vw, 1.125rem);
   --text-small: clamp(0.7rem, 3vw, 1rem);
   --text-xs: clamp(0.65rem, 3vw, 0.875rem);
-  --text-numbered-headings-h1: clamp(0.5rem, 2vw, 0.8rem);;
-  --text-numbered-headings-h2: clamp(0.45rem, 2vw, 0.7rem);;
-  --text-numbered-headings-h3: clamp(0.4rem, 2vw, 0.6rem);;
-  --text-numbered-headings-h4: clamp(0.4rem, 2vw, 0.6rem);;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -69,10 +65,10 @@ html:not(.dark) {
   --color-blog-h2: #242424;
   --color-blog-h3: #3c3c3c;
   --color-blog-h4: #444444;
-  --color-numbered-heading-h1: #111111;
-  --color-numbered-heading-h2: #1a1a1a;
-  --color-numbered-heading-h3: #222222;
-  --color-numbered-heading-h4: #2e2e2e;
+  --color-numbered-heading-h1: rgba(0,0,0,.55);
+  --color-numbered-heading-h2: rgba(0,0,0,.5);
+  --color-numbered-heading-h3: rgba(0,0,0,.45);
+  --color-numbered-heading-h4: rgba(0,0,0,.4);
   --color-text: #1a1a2e;
   --color-text-secondary: #4a4a5a;
   --color-text-muted: #6b7280;
@@ -1312,8 +1308,8 @@ html:not(.dark) .bento-badge:hover {
   padding-right: var(--space-sm);
   text-align: right;
   font-family: var(--font-mono-display);
-  font-size: 0.75em;
-  bottom: 0.15em;
+  font-size: 0.55em;
+  bottom: 0.35em;
 }
 
 /* Style */
