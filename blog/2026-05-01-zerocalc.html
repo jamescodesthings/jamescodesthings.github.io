@@ -234,7 +234,7 @@ character set: Guess optimal
 font: Terminus
 size: 6×12
 </code></pre>
-<h2 id="optionalfixkeyboardlayout">Optional: Fix keyboard layout</h2>
+<h1 id="optionalfixkeyboardlayout">Optional: Fix keyboard layout</h1>
 <p>If, like me, you flashed with the wrong keyboard layout, you can fix it with:</p>
 <pre><code>sudo nano /etc/default/keyboard
 </code></pre>
@@ -244,7 +244,7 @@ size: 6×12
 <li>Save the file and exit</li>
 <li>Reboot the Pi</li>
 </ol>
-<h2 id="optionalcopyusefulscriptstoyourpath">Optional: Copy useful scripts to your path</h2>
+<h1 id="optionalcopyusefulscriptstoyourpath">Optional: Copy useful scripts to your path</h1>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
 <p>The <code>picocalc_trixie</code> repo has some useful scripts for running Pico8 and other utilities. You can copy them to a directory in your <code>PATH</code> for easier access.</p>
 <pre><code class="sh language-sh"># Go to the picocalc_trixie directory
@@ -258,7 +258,7 @@ mv /usr/local/bin/shutdown /usr/local/bin/shutdown-pi
 sudo nano /usr/local/bin/shutdown
 # Change 'shutdown' to '/usr/sbin/shutdown' and save the file.
 </code></pre>
-<h2 id="optionalpoweroffshutdownscript">Optional: Power off shutdown script</h2>
+<h1 id="optionalpoweroffshutdownscript">Optional: Power off shutdown script</h1>
 <p>I haven't had this consistently work but I'd like you to know it exists: https://github.com/nibheis/picocalc_trixie#step-7-make-the-pi-turn-off-the-main-board-when-powering-off</p>
 <p>tldr; this service should trigger the pi to send a power off signal to the mainboard when the Pi shuts down.</p>
 <p>For me, it hasn't been; but that's not a huge issue. Once it's shut down you hold the power button for a few seconds and the green light on the ZeroCalc will turn off.</p>
