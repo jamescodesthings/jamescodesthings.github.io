@@ -88,6 +88,16 @@
 <h2 id="optionalcase">Optional: Case</h2>
 <p>There are other optional features like external usb, and a custom case. Most of the details of those can be found
 on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Michael's Printables project</a>.</p>
+<h1 id="shamelessplughandlestandgripforthezerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</h1>
+<div class="image-carousel">
+<a href="../assets/blog-images/v2/front.png"><img src="../assets/blog-images/v2/front.png" alt="Front"></a>
+<a href="../assets/blog-images/v2/side.png"><img src="../assets/blog-images/v2/side.png" alt="Side"></a>
+<a href="../assets/blog-images/v2/back.png"><img src="../assets/blog-images/v2/back.png" alt="Rear"></a>
+</div>
+<p>If you like the grip in the cover image, you can find it on at Makerworld: <a href="https://makerworld.com/en/models/2759394-picocalc-grip-stand-handle-comfy-edition">PicoCalc Grip Stand Handle</a>.</p>
+<p>If you like it, check out the other things I make!</p>
+<p>Heads up; there's a version you can print without the <code>pico-8</code> logo on the front. It's plate 2 in the print profile, and the <code>.step</code> files are included in the 3D model files if you want to modify it yourself.</p>
+<p>Pictured and link is version 2 of the handle, that I made more comfy!</p>
 <h1 id="flashingthesdcard">Flashing the SD Card</h1>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie#step-1-install-raspberry-pi-os-lite-64-bit-debian-trixie-using-the-raspberry-pi-imager">github.com/nibheis/picocalc_trixie: Step 1</a></p>
 <ol>
@@ -259,19 +269,45 @@ sudo nano /usr/local/bin/shutdown
 # Change 'shutdown' to '/usr/sbin/shutdown' and save the file.
 </code></pre>
 <h1 id="optionalpoweroffshutdownscript">Optional: Power off shutdown script</h1>
-<p>I haven't had this consistently work but I'd like you to know it exists: https://github.com/nibheis/picocalc_trixie#step-7-make-the-pi-turn-off-the-main-board-when-powering-off</p>
-<p>tldr; this service should trigger the pi to send a power off signal to the mainboard when the Pi shuts down.</p>
-<p>For me, it hasn't been; but that's not a huge issue. Once it's shut down you hold the power button for a few seconds and the green light on the ZeroCalc will turn off.</p>
-<p>If I get this fixed I'll add an update here.</p>
-<h1 id="shamelessplughandlestandgripforthezerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</h1>
-<div class="image-carousel">
-<a href="../assets/blog-images/cover-tall.png"><img src="../assets/blog-images/cover-tall.png" alt="Front"></a>
-<a href="../assets/blog-images/side-on.png"><img src="../assets/blog-images/side-on.png" alt="Side"></a>
-<a href="../assets/blog-images/rear-view.png"><img src="../assets/blog-images/rear-view.png" alt="Rear"></a>
-</div>
-<p>If you like the grip in the cover image, you can find it on at Makerworld: <a href="https://makerworld.com/en/models/2748402-picocalc-grip-stand-handle">PicoCalc Grip Stand Handle</a>.</p>
-<p>If you like it, check out the other things I make!</p>
-<p>Heads up; there's a version you can print without the <code>pico-8</code> logo on the front. It's plate 2 in the print profile, and the <code>.step</code> files are included in the 3D model files if you want to modify it yourself.</p>
+<h2 id="fixproblemswiththeoriginalcommands">Fix problems with the original commands</h2>
+<ol>
+<li>Enable i2c in <code>raspi-config</code></li>
+</ol>
+<pre><code># Run raspi-config
+sudo raspi-config
+# Navigate to "Interface Options"
+# Select "I2C" and enable it
+# Finish and reboot
+</code></pre>
+<ol>
+<li>Install <code>i2c-tools</code></li>
+</ol>
+<pre><code>sudo apt install i2c-tools -y
+</code></pre>
+<p>Follow the original guide here: <a href="https://github.com/nibheis/picocalc_trixie#step-7-make-the-pi-turn-off-the-main-board-when-powering-off">Picocalc Trixie Guide</a></p>
+<h2 id="ezmode">EZ Mode</h2>
+<ol>
+<li>Enable i2c in <code>raspi-config</code></li>
+</ol>
+<pre><code># Run raspi-config
+sudo raspi-config
+# Navigate to "Interface Options"
+# Select "I2C" and enable it
+# Finish and reboot
+</code></pre>
+<ol start="2">
+<li>Clone my fork of the repo with a full install script</li>
+</ol>
+<pre><code>git clone git@github.com:jamescodesthings/picocalc_trixie.git
+</code></pre>
+<ol start="3">
+<li>Run the install script for the shutdown utility</li>
+</ol>
+<pre><code class="sh language-sh">cd picocalc_trixie
+cd poweroff
+./install
+</code></pre>
+<p><em>note: if you run it from one of the parent directories the path to the service and script file won't be right.</em></p>
 <h1 id="resources">Resources</h1>
 <p>Here's the main resources I used when working this out.</p>
 <ul>
