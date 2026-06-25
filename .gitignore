@@ -1,6 +1,7 @@
 # Claude Code
-.claude/settings.*.json
-.claude/skills/
+.claude/
+CLAUDE.md
+docs/
 
 # Git hooks
 .husky/
