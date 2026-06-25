@@ -7,10 +7,10 @@
   --color-blog-h2: #cbcbcb;
   --color-blog-h3: #b8b8b8;
   --color-blog-h4: #a1a1a1;
-  --color-numbered-heading-h1: rgba(255,255,255,.55);
-  --color-numbered-heading-h2: rgba(255,255,255,.5);
-  --color-numbered-heading-h3: rgba(255,255,255,.45);
-  --color-numbered-heading-h4: rgba(255,255,255,.4);
+  --color-numbered-heading-h1: rgba(255, 255, 255, 0.55);
+  --color-numbered-heading-h2: rgba(255, 255, 255, 0.5);
+  --color-numbered-heading-h3: rgba(255, 255, 255, 0.45);
+  --color-numbered-heading-h4: rgba(255, 255, 255, 0.4);
   --color-text: #f0ece4;
   --color-text-secondary: #9ca3af;
   --color-text-muted: #6b7280;
@@ -65,10 +65,10 @@ html:not(.dark) {
   --color-blog-h2: #242424;
   --color-blog-h3: #3c3c3c;
   --color-blog-h4: #444444;
-  --color-numbered-heading-h1: rgba(0,0,0,.55);
-  --color-numbered-heading-h2: rgba(0,0,0,.5);
-  --color-numbered-heading-h3: rgba(0,0,0,.45);
-  --color-numbered-heading-h4: rgba(0,0,0,.4);
+  --color-numbered-heading-h1: rgba(0, 0, 0, 0.55);
+  --color-numbered-heading-h2: rgba(0, 0, 0, 0.5);
+  --color-numbered-heading-h3: rgba(0, 0, 0, 0.45);
+  --color-numbered-heading-h4: rgba(0, 0, 0, 0.4);
   --color-text: #1a1a2e;
   --color-text-secondary: #4a4a5a;
   --color-text-muted: #6b7280;
@@ -91,7 +91,6 @@ html:not(.dark) {
   font-weight: 600;
   font-style: normal;
 }
-
 
 @font-face {
   /* Body */
@@ -138,7 +137,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 a {
@@ -163,7 +164,9 @@ img {
 [data-animate] {
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 [data-animate].is-visible {
@@ -244,7 +247,10 @@ html:not(.dark) .hero::before {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
   color: var(--color-text);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -358,7 +364,9 @@ html:not(.dark) .icon-moon {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
   padding: var(--space-lg);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .label {
@@ -371,12 +379,14 @@ html:not(.dark) .icon-moon {
   margin-bottom: var(--space-md);
 }
 
-.label.display, .section-label.display {
+.label.display,
+.section-label.display {
   font-family: var(--font-mono-display);
   text-transform: none;
 }
 
-.label.lg, .section-label.lg {
+.label.lg,
+.section-label.lg {
   font-size: var(--text-sm);
   letter-spacing: 0.12em;
 }
@@ -564,7 +574,9 @@ html:not(.dark) .icon-moon {
   font-weight: 400;
   white-space: nowrap;
   letter-spacing: 0.02em;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .badge:hover {
@@ -633,7 +645,10 @@ html:not(.dark) .icon-moon {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .bento-badge:hover {
@@ -745,7 +760,10 @@ html:not(.dark) .bento-badge:hover {
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-lg);
   padding: var(--space-xl);
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .project-card:hover {
@@ -820,7 +838,9 @@ html:not(.dark) .bento-badge:hover {
   color: var(--color-bg);
   background: var(--color-accent);
   border-radius: var(--border-radius);
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .hero-cta:hover {
@@ -888,7 +908,10 @@ html:not(.dark) .bento-badge:hover {
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--border-radius);
   letter-spacing: 0.02em;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .campsnap-link:hover {
@@ -933,7 +956,9 @@ html:not(.dark) .bento-badge:hover {
   border-radius: 16px;
   cursor: pointer;
   color: #0a0a0f;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -942,7 +967,7 @@ html:not(.dark) .bento-badge:hover {
 }
 
 .campsnap-fab-btn:hover {
-  opacity: .8;
+  opacity: 0.8;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -1099,7 +1124,9 @@ html:not(.dark) .bento-badge:hover {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
   text-decoration: none;
 }
 
@@ -1126,7 +1153,9 @@ html:not(.dark) .bento-badge:hover {
 .blog-card-arrow {
   color: var(--color-text-muted);
   flex-shrink: 0;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .blog-card:hover .blog-card-arrow {
@@ -1285,26 +1314,43 @@ html:not(.dark) .bento-badge:hover {
   aspect-ratio: 16 / 9;
 }
 
-.blog-post h1 small, .blog-post h2 small, .blog-post h3 small, .blog-post h4 small, .blog-post h5 small, .blog-post h6 small {
+.blog-post h1 small,
+.blog-post h2 small,
+.blog-post h3 small,
+.blog-post h4 small,
+.blog-post h5 small,
+.blog-post h6 small {
   font-family: var(--font-mono-display);
   font-size: 0.75em;
   color: var(--color-text-muted);
 }
 
-.blog-post {counter-reset: section; counter-increment: section -1;}
-.blog-post h1{counter-reset: sub-section}
-.blog-post h2{counter-reset: composite}
-.blog-post h3{counter-reset: detail}
+.blog-post {
+  counter-reset: section;
+  counter-increment: section -1;
+}
+.blog-post h1 {
+  counter-reset: sub-section;
+}
+.blog-post h2 {
+  counter-reset: composite;
+}
+.blog-post h3 {
+  counter-reset: detail;
+}
 
-.blog-post h1, .blog-post h2, .blog-post h3, .blog-post h4{
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4 {
   position: relative;
 }
 .blog-post h1:before,
 .blog-post h2:before,
 .blog-post h3:before,
-.blog-post h4:before{
+.blog-post h4:before {
   position: absolute;
-  transform:translateX(-100%);
+  transform: translateX(-100%);
   padding-right: var(--space-sm);
   text-align: right;
   font-family: var(--font-mono-display);
@@ -1327,21 +1373,22 @@ html:not(.dark) .bento-badge:hover {
 }
 
 /* Counters */
-.blog-post h1:before{
+.blog-post h1:before {
   counter-increment: section;
   content: counter(section);
 }
-.blog-post h2:before{
+.blog-post h2:before {
   counter-increment: sub-section;
   content: counter(section) counter(sub-section, lower-alpha);
 }
-.blog-post h3:before{
+.blog-post h3:before {
   counter-increment: composite;
   content: counter(section) counter(sub-section, lower-alpha) counter(composite, lower-roman);
 }
-.blog-post h4:before{
+.blog-post h4:before {
   counter-increment: detail;
-  content: counter(section) counter(sub-section, lower-alpha) counter(composite, lower-roman) counter(detail, lower-roman);
+  content: counter(section) counter(sub-section, lower-alpha) counter(composite, lower-roman)
+    counter(detail, lower-roman);
 }
 
 p:has(.published) {
@@ -1361,7 +1408,6 @@ p:has(.published) {
 }
 
 .blog-post .image-carousel a {
-
 }
 
 .blog-post .image-carousel a img {
@@ -1369,7 +1415,6 @@ p:has(.published) {
   height: 100%;
   transition: transform 0.2s ease;
 }
-
 
 /* ============================================
    Responsive
@@ -1458,7 +1503,9 @@ p:has(.published) {
   border-radius: var(--border-radius-lg);
   text-decoration: none;
   color: var(--color-text);
-  transition: border-color 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
 }
 
 .social-card:hover {
@@ -1503,7 +1550,9 @@ p:has(.published) {
 
 .social-card-arrow {
   color: var(--color-text-muted);
-  transition: color 0.2s, transform 0.2s;
+  transition:
+    color 0.2s,
+    transform 0.2s;
 }
 
 .social-card:hover .social-card-arrow {
@@ -1548,7 +1597,7 @@ p:has(.published) {
 
   .contact-card {
     border: none;
-    background:none;
+    background: none;
     padding: 0;
   }
 
@@ -1561,7 +1610,7 @@ p:has(.published) {
 
   .section {
     margin-top: var(--space-xl);
-    padding-top:0;
+    padding-top: 0;
     padding-bottom: 0;
   }
 
@@ -1638,12 +1687,11 @@ p:has(.published) {
   }
 
   .tech-badges {
-    margin-top: .4rem;
-    margin-bottom: .4rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
   }
 
   .bento-grid {
     margin-bottom: 0;
   }
-
 }
