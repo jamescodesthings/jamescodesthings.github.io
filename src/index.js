@@ -38,6 +38,8 @@ async function build() {
 
   await renderIndex({ socials, blogPosts }, outputDir);
   await render404(outputDir);
+  await renderStaticPage('privacy-notice.ejs', 'privacy-notice.html', outputDir);
+  await renderStaticPage('about-cookies.ejs', 'about-cookies.html', outputDir);
   await renderBlogPosts(blogPosts, outputDir);
 
   const buildEnd = Date.now();
@@ -60,6 +62,13 @@ async function render404(outputDir) {
   } else {
     throw new Error('404 template not found');
   }
+}
+
+async function renderStaticPage(template, output, outputDir) {
+  const templatePath = resolve(root, config.templateDir, template);
+  debug(`Rendering ${outputDir}/${output}`);
+  const html = await renderTemplate(templatePath, {});
+  await writeFile(`${outputDir}/${output}`, html);
 }
 
 async function getBlogPosts() {
