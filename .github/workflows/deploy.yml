@@ -9,16 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Build site
         run: make build
-      - name: Build pages output
-        run: make pages
-      - name: Build PDF
-        run: make pdf
+
       - name: Deploy to pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./pages
+          publish_dir: ./public
           publish_branch: pages
           cname: codesthings.com
