@@ -38,7 +38,7 @@ async function build() {
 
   await renderIndex({ socials, blogPosts }, outputDir);
   await render404(outputDir);
-  await renderBlogPosts(outputDir);
+  await renderBlogPosts(blogPosts, outputDir);
 
   const buildEnd = Date.now();
   debug(`Build Complete (${((buildEnd - buildStart) / 1000).toFixed(2)}s)\n`);
@@ -80,16 +80,12 @@ async function getBlogPosts() {
   return posts;
 }
 
-async function renderBlogPosts(outputDir) {
-  const blogDir = resolve(root, config.blogDir);
-  if (!(await exists(blogDir))) throw new Error('Blog directory not found');
-
-  const files = (await ls(blogDir)).filter(f => f.endsWith('.md'));
-  if (files.length === 0) throw new Error('No blog posts found');
+async function renderBlogPosts(blogPosts, outputDir) {
+  if (blogPosts.length === 0) throw new Error('No blog posts found');
 
   await mkdirp(`${outputDir}/blog`);
-  for (const file of files) {
-    await renderBlogPost(file);
+  for (const post of blogPosts) {
+    await renderBlogPost(`${post.slug}.md`);
   }
 }
 
