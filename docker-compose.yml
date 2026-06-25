@@ -18,16 +18,7 @@ services:
       service: base
     ports:
       - 8080:8080
-    command: sh -c "npm install && node --no-deprecation src/watch.js & node
-      --no-deprecation src/server.js & wait"
-
-  pages:
-    extends:
-      service: base
-    depends_on:
-      build:
-        condition: service_completed_successfully
-    command: sh -c "npm install && npm run pages"
+    command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
 
   serve:
     image: joseluisq/static-web-server:2-alpine
@@ -48,27 +39,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  gotenberg:
-    image: gotenberg/gotenberg:8
-    environment:
-      API_TIMEOUT: 300s
-      LOG_LEVEL: info
-    restart: unless-stopped
-    network_mode: host
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3000/health" ]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
-  pdf:
-    extends:
-      service: base
-    network_mode: host
-    environment:
-      GOTENBERG_URL: http://localhost:3000
-    depends_on:
-      gotenberg:
-        condition: service_healthy
-    command: sh -c "npm install && npm run pdf"

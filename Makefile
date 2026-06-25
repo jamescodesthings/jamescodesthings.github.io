@@ -19,16 +19,7 @@ build:
 	$(call docker-compose-run,build)
 .PHONY: build
 
-pdf:
-	$(call docker-compose-run,pdf)
-.PHONY: pdf
-
-pages:
-	$(call docker-compose-run,pages)
-.PHONY: pages
-
 clean:
 	docker compose down --remove-orphans 2>/dev/null || true
 	rm -rf public
-	rm -rf pages
 .PHONY: clean
