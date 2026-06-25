@@ -35,6 +35,7 @@
   <body>
     <%- include('sections/dark-mode-switch') %>
     <%- include('sections/hero', { name: 'James Macmillan' }) %>
+    <%- include('sections/campsnap-banner') %>
     <% if (blogPosts && blogPosts.length > 0) { %>
     <section class="section" data-animate>
       <div class="section-inner">
@@ -66,7 +67,9 @@
     </section>
     <% } %>
     <%- include('sections/socials', { socials }) %>
+    <%- include('sections/campsnap-fab') %>
     <%- include('sections/footer') %>
     <script src="js/theme.js"></script>
+    <script src="js/fab.js"></script>
   </body>
 </html>
