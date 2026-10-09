@@ -49,6 +49,12 @@ The stylesheet is plain CSS in ordered files: tokens, base, layout, components, 
 
 The pure parts have unit tests that run with `node --test`: front matter, validation, the build stamp, the image pipeline, the Markdown renderer, reading time and the theme and floating-button scripts. `npm test` runs them all.
 
+## The CV is a separate site
+
+My CV lives in its own repository, built the same way: JSON in `data/` (experience, skills, education, projects and the cover letter), EJS templates, and a small Node build. It has two runtime dependencies, `ejs` and `debug`. It builds an HTML page and also a set of PDFs, which it makes by sending the page to a [Gotenberg](https://gotenberg.dev/) container that turns HTML into PDF. This site links to it at `/cv/`, and both repositories publish to the same domain.
+
+I split them because the CV changes for different reasons. It gets edited when I change jobs or apply for one, and this site gets edited when I write or make something.
+
 ## Deploying
 
 A push to `main` runs `.github/workflows/deploy.yml`. It runs `make build`, which runs the same Node build inside a `node:24-alpine` container, and publishes the `public/` folder to the `pages` branch. GitHub Pages serves that branch at codesthings.com. There is no server to look after.
