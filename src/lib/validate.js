@@ -46,7 +46,10 @@ export function validateProject(obj, file) {
       if (!isText(link[key])) fail(file, `"links[${i}].${key}" must be a non-empty string`);
     }
     if (!isLinkUrl(link.url))
-      fail(file, `"links[${i}].url" must be an http or https URL, got ${JSON.stringify(link.url)}`);
+      fail(
+        file,
+        `"links[${i}].url" must be an http(s) URL or a root-absolute path like /blog/x.html, got ${JSON.stringify(link.url)}`,
+      );
   });
   if (typeof obj.featured !== 'boolean') fail(file, '"featured" must be a boolean');
   if (typeof obj.order !== 'number' || Number.isNaN(obj.order)) fail(file, '"order" must be a number');
