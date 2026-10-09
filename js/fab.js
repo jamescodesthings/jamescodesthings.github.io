@@ -1,55 +1,63 @@
-(function () {
-  var fab = document.getElementById('campsnapFab');
-  var btn = document.getElementById('campsnapFabBtn');
-  var popover = document.getElementById('campsnapPopover');
-  var closeBtn = document.getElementById('campsnapClose');
+import { playVideo, pauseVideo } from './video.js';
 
-  if (!fab || !btn || !popover || !closeBtn) return;
+const KEY = 'campsnapFabDismissed';
+const MIN_AUTO_OPEN_WIDTH = 480;
 
-  function openPopover() {
-    popover.classList.add('is-open');
+function wasShown(win) {
+  try {
+    return win.localStorage.getItem(KEY) === 'true';
+  } catch (e) {
+    return false;
+  }
+}
+
+function markShown(win) {
+  try {
+    win.localStorage.setItem(KEY, 'true');
+  } catch (e) {}
+}
+
+// The CampSnap button. It auto-opens once per visitor (never under 480px wide), closes only through its
+// close button, Escape or its own button, moves focus in on open and back on close.
+export function initFab(win = window) {
+  const doc = win.document;
+  const fab = doc.getElementById('campsnapFab');
+  const btn = doc.getElementById('campsnapFabBtn');
+  const popover = doc.getElementById('campsnapPopover');
+  const closeBtn = doc.getElementById('campsnapClose');
+  if (!fab || !btn || !popover || !closeBtn) return null;
+  const video = popover.querySelector('video');
+
+  const isOpen = () => !popover.hidden;
+
+  function open() {
+    if (isOpen()) return;
+    popover.hidden = false;
     btn.setAttribute('aria-expanded', 'true');
-    popover.removeAttribute('aria-hidden');
+    closeBtn.focus({ preventScroll: true });
+    if (video) playVideo(video, win);
   }
 
-  function closePopover() {
-    popover.classList.remove('is-open');
+  function close() {
+    if (!isOpen()) return;
+    popover.hidden = true;
     btn.setAttribute('aria-expanded', 'false');
-    popover.setAttribute('aria-hidden', 'true');
-    localStorage.setItem('campsnapFabDismissed', 'true');
+    if (video) pauseVideo(video);
+    btn.focus({ preventScroll: true });
+    markShown(win);
   }
 
-  btn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    popover.classList.contains('is-open') ? closePopover() : openPopover();
+  btn.addEventListener('click', () => (isOpen() ? close() : open()));
+  closeBtn.addEventListener('click', close);
+  doc.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !event.defaultPrevented && isOpen()) close();
   });
 
-  closeBtn.addEventListener('click', function (e) {
-    e.stopPropagation();
-    closePopover();
-  });
-
-  document.addEventListener('click', function (e) {
-    if (!fab.contains(e.target)) {
-      closePopover();
-    }
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closePopover();
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      const dismissed = localStorage.getItem('campsnapFabDismissed');
-      if (dismissed !== 'true') {
-        openPopover();
-      }
-    } catch (e) {
-      // If localStorage is unavailable don't show the popover
-      console.error('Error accessing localStorage:', e);
-    }
-  });
-})();
+  // Auto-open once. The flag is written on open, so a reload does not repeat it. If storage throws the
+  // flag cannot persist, so it falls back to once per page load.
+  if (win.innerWidth >= MIN_AUTO_OPEN_WIDTH && !wasShown(win)) {
+    open();
+    markShown(win);
+  }
+  return { open, close, isOpen };
+}
