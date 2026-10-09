@@ -143,3 +143,11 @@ test('a missing image throws with the post slug and the path', async () => {
     err => err.message.includes('2026-01-01-demo') && err.message.includes('nope.png'),
   );
 });
+
+test('the copy button keeps a static label and the live region sits beside it', () => {
+  const { html } = r.render('```sh\nls\n```\n');
+  const button = html.match(/<button[\s\S]*?<\/button>/)[0];
+  assert.match(button, /aria-label="Copy code"/);
+  assert.doesNotMatch(button, /role="status"/);
+  assert.match(html, /<\/button><span class="code-block__status visually-hidden" role="status"><\/span>/);
+});

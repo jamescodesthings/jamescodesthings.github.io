@@ -1,5 +1,5 @@
 ---
-summary: The whole site is about 600 lines of Node and a folder of JSON. Here's how it works, and why there's no framework.
+summary: The whole site is about 1300 lines of Node and a folder of JSON. Here's how it works, and why there's no framework.
 tags: node, static site, meta
 ---
 
@@ -9,7 +9,7 @@ This is how codesthings.com is built, from data files to deployed website. It is
 
 ## The shape of it
 
-The pattern is **data in, pipeline, files out**, borrowed from my [campsnap-filters](https://github.com/jamescodesthings/campsnap-filters) project. Nothing runs on a server and nothing is rendered in the browser. The pages are finished HTML before anyone asks for them.
+The pattern is **data in, pipeline, files out**, borrowed from my [campsnap-filters](https://github.com/jamescodesthings/campsnap-filters) project. Nothing runs on a server and no page content is rendered in the browser. The pages are finished HTML before anyone asks for them.
 
 ### Data
 
@@ -43,7 +43,7 @@ Every image a post, project or photo refers to goes through [sharp](https://shar
 
 ### Styling and scripts
 
-The stylesheet is plain CSS in ordered files: design tokens, a base layer, layout, components and pages. The build joins and minifies them into one file. Dark is the default and light is a switch on `<html>`, set by a tiny inline script before first paint. The JavaScript is plain ES modules with no framework and no bundler, and the post-only scripts (the contents list, the copy buttons and the video facade) only load on posts.
+The stylesheet is plain CSS in ordered files: tokens, base, layout, components, pages and print. The build joins and minifies them into one file. Dark is the default and light is a switch on `<html>`, set by a tiny inline script before first paint. The JavaScript is plain ES modules with no framework and no bundler, and the post-only scripts (the contents list, the copy buttons and the video facade) only load on posts.
 
 ### Tests
 
