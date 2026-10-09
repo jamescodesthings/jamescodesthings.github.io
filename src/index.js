@@ -5,6 +5,7 @@ import config from './config.js';
 import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, formatLongDate } from './utils.js';
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
+import { atomFeed, sitemap, robots, pagePathFor } from './lib/feeds.js';
 import { getBuildStamp } from './lib/buildstamp.js';
 import {
   processImage,
@@ -28,8 +29,12 @@ const debug = Debug('codesthings:index');
 debug.enabled = true;
 
 // The single page-render entry point: `template` is relative to the template dir, `outPath` to the output dir.
+// Every page written, so the sitemap is derived from the build rather than listed by hand.
+const renderedPaths = new Set();
+
 export async function renderPage(template, data, outPath) {
   debug(`Rendering ${outPath}`);
+  renderedPaths.add(outPath);
   const html = await renderTemplate(resolve(root, config.templateDir, template), data);
   await writeFile(resolve(outputDir, outPath), html);
 }
@@ -153,6 +158,13 @@ export async function buildPages(data) {
   }
 }
 
+export async function buildFeeds(data) {
+  const paths = [...renderedPaths].map(pagePathFor).filter(Boolean).sort();
+  await writeFile(resolve(outputDir, 'feed.xml'), atomFeed(data.posts, data.site));
+  await writeFile(resolve(outputDir, 'sitemap.xml'), sitemap(paths, data.site));
+  await writeFile(resolve(outputDir, 'robots.txt'), robots(data.site));
+}
+
 async function build() {
   const buildStart = Date.now();
   debug(`Build started at ${new Date(buildStart).toLocaleTimeString()}`);
@@ -160,6 +172,7 @@ async function build() {
   const data = await loadSiteData(root);
   await buildAssets();
   await buildPages(data);
+  await buildFeeds(data);
 
   const buildEnd = Date.now();
   debug(`Build Complete (${((buildEnd - buildStart) / 1000).toFixed(2)}s)\n`);
