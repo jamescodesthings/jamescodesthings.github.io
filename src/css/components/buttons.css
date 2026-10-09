@@ -1,0 +1,80 @@
+/* Buttons and text links shared by the hero and sections. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  padding: 0 var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn--primary {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+}
+
+.btn--primary:hover {
+  color: var(--color-on-accent);
+  background: var(--color-accent-strong);
+}
+
+.btn--secondary {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.btn--secondary:hover {
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+}
+
+/* Copy email: swap the icon and label while "Copied" shows. */
+.btn__icon--done,
+.btn.is-copied .btn__icon--idle {
+  display: none;
+}
+
+.btn.is-copied .btn__icon--done {
+  display: inline-flex;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: var(--color-accent);
+}
+
+.video-toggle {
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.video-toggle:hover {
+  background: var(--color-surface-raised);
+}

@@ -1,24 +1,41 @@
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <h1 class="hero-title uppercase"><%= name %></h1>
-      <p class="hero-role">SoFtWaRe EnGiNeEr</p>
-      <nav class="hero-links" aria-label="Links">
-        <ul class="hero-links-list">
-          <% links.forEach(function(link) { %>
-          <li>
-            <a
-              href="<%= link.url %>"
-              class="<%= link.primary ? 'hero-cta' : 'hero-link' %>"
-              <% if (!link.primary) { %>target="_blank" rel="noopener noreferrer"<% } %>
-            >
-              <%- include('icon', { name: link.icon, size: link.primary ? 18 : 20 }) %>
-              <span><%= link.label %></span>
-            </a>
-          </li>
-          <% }); %>
-        </ul>
-      </nav>
-    </div>
+<%
+  // locals: site (data/site.json), links (data/links.json).
+  const cv = links.find(l => l.primary);
+  const social = links.filter(l => !l.primary);
+-%>
+<section id="top" class="home-hero" aria-labelledby="hero-title" data-rail-icon="home" data-rail-title="Top">
+  <svg class="home-hero__dots" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="hero-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.25" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#hero-dots)" />
+  </svg>
+  <div class="home-hero__inner container">
+    <% if (site.status) { %>
+    <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span><%= site.status %></p>
+    <% } %>
+    <h1 class="home-hero__name" id="hero-title">James Macmillan</h1>
+    <p class="home-hero__tagline"><span class="home-hero__prompt" aria-hidden="true">&gt;</span> software engineer · maker · photographer<span class="home-hero__cursor" aria-hidden="true"></span></p>
+    <p class="home-hero__bio"><%= site.bio %></p>
+    <ul class="home-hero__links">
+      <% if (cv) { %>
+      <li><a class="btn btn--primary" href="<%= cv.url %>"><%- include('icon', { name: cv.icon, size: 18 }) %><span><%= cv.label %></span></a></li>
+      <% } %>
+      <li>
+        <a class="btn btn--secondary" href="mailto:<%= site.email %>" data-copy-email="<%= site.email %>">
+          <span class="btn__icon btn__icon--idle"><%- include('icon', { name: 'email', size: 18 }) %></span>
+          <span class="btn__icon btn__icon--done"><%- include('icon', { name: 'check', size: 18 }) %></span>
+          <span data-copy-label>Email</span>
+        </a>
+        <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+      </li>
+      <% social.forEach(function (link) { %>
+      <li>
+        <a class="text-link" href="<%= link.url %>" target="_blank" rel="noopener noreferrer"><%- include('icon', { name: link.icon, size: 18 }) %><span><%= link.label %></span><span class="visually-hidden"> (opens in a new tab)</span></a>
+      </li>
+      <% }); %>
+    </ul>
   </div>
 </section>

@@ -1,5 +1,5 @@
 /*
- * Legacy rules for the parts of the site not yet rebuilt (homepage body sections, blog content, FAB).
+ * Legacy rules for the parts of the site not yet rebuilt (blog content, the 404 hero, legal pages).
  * Tokens, fonts, reset, header, footer and the theme toggle live in the new files. These aliases map
  * the old variable names onto the new tokens until those sections are rewritten.
  */
@@ -49,10 +49,6 @@
   position: relative;
 }
 
-.hero-content {
-  text-align: left;
-}
-
 .hero-title {
   font-family: var(--font-heading);
   font-size: var(--text-display);
@@ -70,13 +66,6 @@
 }
 
 /* Scroll hint */
-.hero-scroll-hint {
-  position: absolute;
-  bottom: var(--space-2xl);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 /* ============================================
    Section Layout
    ============================================ */
@@ -527,359 +516,8 @@
 }
 
 /* ============================================
-   Projects Grid
-   ============================================ */
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
-}
-
-.project-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-lg);
-  padding: var(--space-xl);
-  transition:
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
-}
-
-.project-employer {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.project-date {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-}
-
-.project-name {
-  font-family: var(--font-heading);
-  font-size: var(--text-h2);
-  font-weight: 700;
-  color: var(--color-heading);
-  margin-bottom: var(--space-sm);
-}
-
-.project-leader {
-  font-size: var(--text-body);
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  margin-bottom: var(--space-md);
-  line-height: 1.5;
-}
-
-.project-detail {
-  margin-top: var(--space-md);
-}
-
-.project-detail .detail-group p {
-  font-size: var(--text-small);
-  line-height: 1.75;
-  color: var(--color-text-secondary);
-}
-
-/* ============================================
-   Hero CTA
-   ============================================ */
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-  padding: var(--space-sm) var(--space-xl);
-  font-family: var(--font-heading);
-  font-size: var(--text-small);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--color-bg);
-  background: var(--color-accent);
-  border-radius: var(--border-radius);
-  transition:
-    background 0.2s,
-    transform 0.2s;
-}
-
-.hero-cta:hover {
-  background: var(--color-accent-hover);
-  transform: translateY(-1px);
-}
-
-/* ============================================
-   Campsnap Banner
-   ============================================ */
-
-.campsnap-banner {
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-3xl) 0;
-}
-
-.campsnap-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-xl);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3xl);
-}
-
-.campsnap-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--space-sm);
-}
-
-.campsnap-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-h1);
-  font-weight: 700;
-  color: var(--color-heading);
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-sm);
-  line-height: 1.2;
-}
-
-.campsnap-desc {
-  font-size: var(--text-body);
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
-}
-
-.campsnap-link {
-  margin-top: var(--space-sm);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  font-weight: 500;
-  color: var(--color-bg);
-  background: var(--color-accent);
-  padding: var(--space-sm) var(--space-lg);
-  border-radius: var(--border-radius);
-  letter-spacing: 0.02em;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.campsnap-link:hover {
-  background: var(--color-accent-hover);
-  color: var(--color-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
-}
-
-.campsnap-media {
-  flex-shrink: 0;
-}
-
-.campsnap-gif {
-  max-width: 280px;
-  width: 100%;
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border);
-}
-
-/* ============================================
-   Campsnap FAB
-   ============================================ */
-
-.campsnap-fab {
-  position: fixed;
-  bottom: var(--space-xl);
-  right: var(--space-xl);
-  z-index: 90;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-sm);
-}
-
-.campsnap-fab-btn {
-  opacity: 1;
-  display: flex;
-  padding: var(--space-md);
-  background: var(--color-accent);
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  color: var(--color-on-accent);
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.campsnap-fab-btn:hover {
-  opacity: 0.8;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.campsnap-fab-popover {
-  display: none;
-  flex-direction: column;
-  gap: var(--space-md);
-  width: 280px;
-  max-width: calc(100vw - 2 * var(--space-xl));
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  position: relative;
-}
-
-.campsnap-fab-popover.is-open {
-  display: flex;
-}
-
-.campsnap-fab-close {
-  position: absolute;
-  top: var(--space-sm);
-  right: var(--space-sm);
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  color: var(--color-text);
-  z-index: 1;
-  transition: background 0.15s ease;
-}
-
-.campsnap-fab-close:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.campsnap-fab-video {
-  width: 100%;
-  display: block;
-}
-
-.campsnap-fab-caption {
-  font-size: var(--text-sm);
-  color: var(--color-text);
-  padding: 0 var(--space-md);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.campsnap-fab-link {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 0 var(--space-md) var(--space-md) var(--space-md);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--color-accent);
-  text-decoration: none;
-  letter-spacing: 0.03em;
-  transition: color 0.15s ease;
-}
-
-.campsnap-fab-link:hover {
-  color: var(--color-heading);
-}
-
-/* ============================================
    Blog
    ============================================ */
-
-.blog-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xl);
-}
-
-.blog-list-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  text-decoration: none;
-  color: var(--color-heading);
-}
-
-.blog-list-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-h2);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.blog-list-link:hover .blog-list-title,
-.blog-list-link:focus-visible .blog-list-title {
-  color: var(--color-accent);
-}
-
-.blog-list-arrow {
-  flex-shrink: 0;
-  color: var(--color-text-muted);
-  transition:
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.blog-list-link:hover .blog-list-arrow,
-.blog-list-link:focus-visible .blog-list-arrow {
-  color: var(--color-accent);
-  transform: translateX(4px);
-}
-
-.blog-list-summary {
-  margin-top: var(--space-sm);
-  font-size: var(--text-body);
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-  max-width: 60ch;
-}
-
-.blog-list-date {
-  display: block;
-  margin-top: var(--space-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  letter-spacing: 0.03em;
-}
 
 .blog-nav {
   background: var(--color-surface);
@@ -1160,16 +798,6 @@ p:has(.published) {
     position: static;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .campsnap-inner {
-    flex-direction: column;
-    padding: 0 var(--space-lg);
-    text-align: center;
-  }
-
   .education-grid {
     grid-template-columns: 1fr;
   }
@@ -1194,47 +822,6 @@ p:has(.published) {
     text-align: center;
     gap: var(--space-xs);
   }
-}
-
-/* ============================================
-   Hero Links
-   ============================================ */
-
-.hero-links-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm) var(--space-lg);
-  margin-top: var(--space-xl);
-}
-
-.hero-links-list .hero-cta {
-  margin-top: 0;
-}
-
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  font-family: var(--font-heading);
-  font-size: var(--text-small);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--color-text-secondary);
-  transition: color 0.2s;
-}
-
-.hero-link:hover,
-.hero-link:focus-visible {
-  color: var(--color-accent);
-}
-
-.uppercase {
-  text-transform: uppercase;
 }
 
 /* ============================================
@@ -1314,10 +901,6 @@ p:has(.published) {
     background: none;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
   .project-card {
     margin: 0;
     padding: 0;
@@ -1354,4 +937,24 @@ p:has(.published) {
   .bento-grid {
     margin-bottom: 0;
   }
+}
+
+/* Kept for the 404 page until it is rebuilt. */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.hero-cta:hover {
+  color: var(--color-on-accent);
+  background: var(--color-accent-strong);
 }

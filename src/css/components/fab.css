@@ -1,0 +1,100 @@
+/* CampSnap floating button. Other fixed UI (the section rail pill) stacks above it using these two values. */
+
+:root {
+  --fab-size: 3.5rem;
+  --fab-offset: 1.25rem;
+}
+
+.campsnap-fab {
+  position: fixed;
+  right: var(--fab-offset);
+  bottom: var(--fab-offset);
+  z-index: 90;
+}
+
+.campsnap-fab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fab-size);
+  height: var(--fab-size);
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.campsnap-fab-btn:hover {
+  background: var(--color-surface);
+}
+
+.campsnap-fab-accent {
+  fill: var(--color-accent);
+}
+
+.campsnap-fab-popover {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--fab-size) + var(--space-sm));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: min(20rem, calc(100vw - 2 * var(--fab-offset)));
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.campsnap-fab-popover[hidden] {
+  display: none;
+}
+
+.campsnap-fab-close {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: calc(-1 * var(--space-sm)) calc(-1 * var(--space-sm)) 0;
+  color: var(--color-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.campsnap-fab-close:hover {
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+}
+
+.campsnap-fab-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-surface-raised);
+  border-radius: var(--radius);
+}
+
+.campsnap-fab-popover .video-toggle {
+  align-self: flex-start;
+}
+
+.campsnap-fab-caption {
+  font-size: var(--text-small);
+}
+
+.campsnap-fab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration: none;
+}

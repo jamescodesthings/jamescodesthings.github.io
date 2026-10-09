@@ -1,29 +1,15 @@
-<section class="campsnap-banner" data-animate>
-  <div class="campsnap-inner">
-    <div class="campsnap-text">
-      <h2 class="campsnap-title">I feel like you're just here for the campsnap filters</h2>
-      <a href="https://codesthings.com/campsnap" class="campsnap-link">
-        codesthings.com/campsnap
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="5" y1="12" x2="19" y2="12" />
-          <polyline points="12 5 19 12 12 19" />
-        </svg>
-      </a>
-    </div>
-    <div class="campsnap-media">
-      <video autoplay loop muted playsinline class="campsnap-gif">
-        <source src="/assets/zipline.webm" type="video/webm" />
-        <source src="/assets/zipline.mp4" type="video/mp4" />
-      </video>
-    </div>
+<%
+  // The CampSnap spotlight inside Photos. Video: preload none, autoplay only when motion is allowed (video.js).
+-%>
+<div class="spotlight" data-video-scope>
+  <div class="spotlight__text">
+    <h3 class="spotlight__title">I feel like you're just here for the campsnap filters</h3>
+    <a class="text-link" href="/campsnap"><span>codesthings.com/campsnap</span><%- include('icon', { name: 'arrow', size: 18 }) %></a>
   </div>
-</section>
+  <div class="spotlight__media">
+    <video class="spotlight__video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline" data-autoplay>
+      <source src="/assets/zipline.mp4" type="video/mp4" />
+    </video>
+    <button type="button" class="video-toggle" data-video-toggle aria-pressed="false">Pause video</button>
+  </div>
+</div>
