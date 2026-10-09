@@ -183,3 +183,14 @@ test('a wrapping link to a different asset is validated and shipped', async () =
     /^Error: p: image not found/,
   );
 });
+
+test('alt text with entities is escaped once, not twice', async () => {
+  const { createRenderer } = await import('../src/lib/markdown.js');
+  const r = await createRenderer();
+  const d = { outDir: resolve(tmp, 'out-alt'), cacheDir: resolve(tmp, 'cache-alt') };
+  await mkdir(resolve(tmp, 'a'), { recursive: true });
+  await png(resolve(tmp, 'a/x.png'), 400, 300);
+  const out = await r.renderPost('![Tom & "Jerry"](../assets/a/x.png)', { slug: 'p', assetsRoot: tmp, ...d });
+  assert.match(out.html, /alt="Tom &amp; &quot;Jerry&quot;"/);
+  assert.doesNotMatch(out.html, /&amp;amp;|&amp;quot;/);
+});

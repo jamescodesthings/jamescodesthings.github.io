@@ -81,3 +81,10 @@ test('pagePathFor maps written files to public paths and skips 404', () => {
   assert.equal(pagePathFor('privacy-notice.html'), '/privacy-notice');
   assert.equal(pagePathFor('404.html'), null);
 });
+
+test('postSummary falls back to the decoded first paragraph, and prefers the summary', async () => {
+  const { postSummary } = await import('../src/lib/feeds.js');
+  assert.equal(postSummary({ summary: 'Given', html: '<p>x</p>' }), 'Given');
+  assert.equal(postSummary({ summary: '', html: '<p>Fish &amp; <em>chips</em></p><p>two</p>' }), 'Fish & chips');
+  assert.equal(postSummary({ summary: '', html: '' }), '');
+});

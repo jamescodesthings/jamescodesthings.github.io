@@ -29,6 +29,26 @@ function isLinkUrl(url) {
   }
 }
 
+// data/uses.json: { groups: [{ name, items: [{ name, note?, url? }] }] }. Item urls follow the project link rule.
+export function validateUses(obj, file) {
+  requireKeys(obj, ['groups'], file);
+  if (!Array.isArray(obj.groups)) fail(file, '"groups" must be an array');
+  obj.groups.forEach((group, g) => {
+    if (!isObject(group) || !isText(group.name)) fail(file, `"groups[${g}].name" must be a non-empty string`);
+    if (!Array.isArray(group.items)) fail(file, `"groups[${g}].items" must be an array`);
+    group.items.forEach((item, i) => {
+      const at = `groups[${g}].items[${i}]`;
+      if (!isObject(item) || !isText(item.name)) fail(file, `"${at}.name" must be a non-empty string`);
+      if (item.url != null && !isLinkUrl(item.url))
+        fail(
+          file,
+          `"${at}.url" must be an http(s) URL or a root-absolute path like /blog/x.html, got ${JSON.stringify(item.url)}`,
+        );
+    });
+  });
+  return obj;
+}
+
 export function validateProject(obj, file) {
   requireKeys(obj, ['title', 'lane', 'summary', 'stack', 'links', 'featured', 'order'], file);
   if (!isText(obj.title)) fail(file, '"title" must be a non-empty string');

@@ -1,5 +1,5 @@
-/* Section rail (homepage). Without JS it is a plain list of anchors, shown from 1024px. With JS (data-js on
-   <html>) it also fades after idle. Under 1024px it collapses to a pill above the CampSnap button. */
+/* Section rail (homepage). Without JS it is a plain list of anchors, shown from 1240px. With JS (data-js on
+   <html>) it also fades after idle. Under 1240px it collapses to a pill above the CampSnap button. */
 
 .rail {
   position: fixed;
@@ -93,8 +93,9 @@
   display: none;
 }
 
-/* Phones and tablets: a pill above the CampSnap button (--fab-size and --fab-offset come from fab.css). */
-@media (max-width: 1023.98px) {
+/* The vertical rail needs 70px beside the 1100px container; below 1240px it would cover content, so it
+   collapses to a pill instead. Phones and tablets: a pill above the CampSnap button (--fab-size and --fab-offset come from fab.css). */
+@media (max-width: 1239.98px) {
   :root:not([data-js]) .rail {
     display: none;
   }
@@ -164,7 +165,7 @@
 }
 
 /* Desktop: a vertical rail on the right edge, centred, with tick marks between stops. */
-@media (min-width: 1024px) {
+@media (min-width: 1240px) {
   .rail {
     top: 50%;
     right: var(--space-xs);

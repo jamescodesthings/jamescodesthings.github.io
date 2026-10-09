@@ -12,7 +12,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 
 const values = Object.values(config);
-const watchPaths = values.filter(dir => !dir.includes('public')).map(dir => resolve(root, dir));
+// src/lib/ holds the build modules (feeds, images, markdown...) and is not a config entry.
+const watchPaths = [
+  ...values.filter(dir => !dir.includes('public')).map(dir => resolve(root, dir)),
+  resolve(root, 'src/lib'),
+];
 
 let building = false;
 let queued = false;

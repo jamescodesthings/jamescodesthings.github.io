@@ -1,53 +1,30 @@
 # Assets
 
-Static assets used by the website. During the build, these are copied to the output directory under `/assets`.
+Static assets for the website. The build copies only the files the site references into `public/assets/` (an allowlist in `buildAssets` in `src/index.js`), so adding a file here does not publish it until it is listed there.
 
-## Images
-
-### profile.png
-
-A headshot of James Macmillan at 1024x1024px, suitable for cropping to a circle. Used on the homepage as the profile photo.
+## Shipped as they are
 
 ### favicon.svg / favicon.ico / apple-touch-icon.png / og-logo.png
 
-The "ct" monogram. `favicon.svg` is the standalone icon with fixed colours and a dark-mode media rule. The ICO (16 and 32px), the 180px touch icon and the 1200x630 share-card logo are rendered from the monogram on a `#0f1216` tile by `scripts/make-icons.sh`. The inline logo used in the header and footer is `src/templates/sections/logo.ejs`.
+The "ct" monogram. `favicon.svg` is the standalone icon with fixed colours and a dark-mode media rule. The ICO (16 and 32px), the 180px touch icon and the 1200x630 fallback share-card logo are rendered from the monogram on a `#0f1216` tile by `scripts/make-icons.sh`. The inline logo used in the header and footer is `src/templates/sections/logo.ejs`.
 
-### zipline.gif
+### zipline.mp4 / zipline-poster.jpg
 
-A 640x480 animated GIF depicting the "I feel like you're just here for the zipline" meme. Used as a humorous callout on the homepage to direct visitors to the CampSnap filters project at https://codesthings.com/campsnap.
+The "I feel like you're just here for the zipline" clip and its poster frame. Used by the CampSnap banner on the homepage and the floating CampSnap prompt, with `preload="none"` so nothing downloads until it plays.
 
-## Icons
+### fonts/
 
-Technology and tool icons used to illustrate skills and experience on the site. All are either SVG or PNG format.
+Self-hosted Latin variable woff2 files for Bricolage Grotesque, Figtree and Geist Mono, Silkscreen for the hidden game, and their OFL licences. `fonts/SOURCES.md` records where each came from. `fonts/og/` holds the build-time `.woff` files used to draw share cards; it is never served.
 
-### icons/aws-dynamo.svg
+## Processed by the image pipeline
 
-The official AWS DynamoDB architecture icon (80x80px). Blue-purple gradient background with a white DynamoDB icon. Used to illustrate DynamoDB experience.
+`blog-images/` holds the images that blog posts reference. Anything under `src/assets/` that a post, project or photo references is resized to AVIF and WebP by `src/lib/images.js` and written to `public/assets/img/`. These folders are not copied as they are.
 
-### icons/aws-lambda.svg
+## Kept in the repo but not shipped
 
-The official AWS Lambda architecture icon. Used to illustrate serverless/Lambda experience.
+Nothing references these, so they are not copied to `public/`:
 
-### icons/sls.svg
-
-The Serverless Framework logo. Used to illustrate experience with the Serverless Framework.
-
-### icons/capacitor-logo.png
-
-The Ionic Capacitor logo. Used to illustrate experience with Capacitor for cross-platform mobile apps.
-
-### icons/cordova_256.png
-
-The Apache Cordova logo at 256px. Used to illustrate experience with Cordova for hybrid mobile apps.
-
-### icons/nativescript-logo.png
-
-The NativeScript logo. Used to illustrate experience with NativeScript for native mobile development.
-
-### icons/stencil-logo.png
-
-The Stencil.js logo. Used to illustrate experience with Stencil for building web components.
-
-### icons/vite.svg
-
-The Vite build tool logo. Used to illustrate experience with Vite.
+- `profile.png`: a 1024x1024 headshot, no longer used on any page.
+- `icons/`: old technology logos (DynamoDB, Lambda, Serverless, Capacitor, Cordova, NativeScript, Stencil, Vite) from the previous design.
+- `svg/campsnap.svg`: an old CampSnap graphic.
+- `zipline.webm`: an unused alternative encoding of the clip.

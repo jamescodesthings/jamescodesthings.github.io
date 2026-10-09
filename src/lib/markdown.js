@@ -6,6 +6,7 @@ import ejs from 'ejs';
 import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import { createHighlighter, createCssVariablesTheme } from 'shiki';
+import { findTitleLine } from './text.js';
 import { collectImageRefs, processHtmlImages } from './images.js';
 
 const ICON_FILE = new URL('../templates/sections/icon.ejs', import.meta.url);
@@ -50,19 +51,8 @@ export function slugify(text) {
 // Removes the first `# ` heading outside a code fence (the template renders the post title as the h1).
 export function stripTitle(markdown) {
   const lines = markdown.split('\n');
-  let fence = null;
-  for (let i = 0; i < lines.length; i++) {
-    const m = lines[i].match(/^\s{0,3}(```+|~~~+)/);
-    if (m) {
-      if (!fence) fence = m[1][0];
-      else if (m[1][0] === fence) fence = null;
-      continue;
-    }
-    if (!fence && /^#[ \t]+\S/.test(lines[i])) {
-      lines.splice(i, lines[i + 1] !== undefined && lines[i + 1].trim() === '' ? 2 : 1);
-      break;
-    }
-  }
+  const i = findTitleLine(lines);
+  if (i !== -1) lines.splice(i, lines[i + 1] !== undefined && lines[i + 1].trim() === '' ? 2 : 1);
   return lines.join('\n');
 }
 

@@ -2,6 +2,7 @@
 // Colours come from the CSS tokens at game start. The Silkscreen face is loaded here, through the FontFace API.
 import { storage } from './storage.js';
 import { motionAllowed } from './motion.js';
+import { isBackdropClick } from './dialog.js';
 
 const W = 240;
 const H = 300;
@@ -415,11 +416,7 @@ function init(win) {
     closeGame();
   });
   dialog.addEventListener('click', event => {
-    // The dialog element also covers its padding ring, so only a click outside its box counts as the backdrop.
-    const r = dialog.getBoundingClientRect();
-    const outside =
-      event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom;
-    if (event.target === dialog && outside) closeGame();
+    if (isBackdropClick(event, dialog)) closeGame();
   });
   dialog.querySelector('[data-game-close]').addEventListener('click', closeGame);
 

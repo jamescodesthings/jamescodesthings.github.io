@@ -1,5 +1,7 @@
 // Atom feed, sitemap and robots.txt. All take the site object ({url, tagline, ...}); posts come from loadData.
 
+import { decodeEntities } from './text.js';
+
 const FALLBACK_URL = 'https://codesthings.com';
 const SUMMARY_MAX = 200;
 
@@ -12,17 +14,6 @@ export function escapeXml(s) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
-}
-
-function decodeEntities(s) {
-  return s
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&amp;/g, '&');
 }
 
 // Turn root-absolute URLs in href, src and srcset attributes into absolute ones.
