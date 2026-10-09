@@ -1,0 +1,123 @@
+/* The hidden game (game.js, lazy-loaded). The Silkscreen face is added by game.js with the FontFace API,
+   so there is deliberately no @font-face here. Tokens only. */
+
+.game {
+  position: fixed;
+  inset: 4vh auto auto 50%;
+  width: min(26rem, calc(100vw - 2 * var(--space-md)));
+  max-height: 92vh;
+  margin: 0;
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  overflow-y: auto;
+  transform: translateX(-50%);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-family: Silkscreen, var(--font-mono);
+}
+
+.game::backdrop {
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+}
+
+.game__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game__title {
+  color: var(--color-accent);
+  font-family: Silkscreen, var(--font-mono);
+  font-size: var(--text-h4);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.game__close,
+.game__btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  color: var(--color-text);
+  font-family: Silkscreen, var(--font-mono);
+  font-size: var(--text-small);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.game__close {
+  color: var(--color-muted);
+  background: transparent;
+  border-color: transparent;
+}
+
+.game__btn:active {
+  background: var(--color-surface);
+}
+
+.game__hud {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin: var(--space-xs) 0 var(--space-sm);
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+}
+
+.game__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 240 / 300;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  image-rendering: pixelated;
+  touch-action: none;
+}
+
+.game__canvas:focus-visible,
+.game__btn:focus-visible,
+.game__close:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.game__controls {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.game__btn--fire {
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.game__btn--small {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+}
+
+.game__keys {
+  margin-top: var(--space-sm);
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+}
+
+/* The footer logo is also the seven-tap game trigger: no double-tap zoom delay on touch. */
+.footer-home {
+  touch-action: manipulation;
+}

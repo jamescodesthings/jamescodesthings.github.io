@@ -7,6 +7,7 @@ import {
   mkdirp,
   rmrf,
   cpDir,
+  cp,
   exists,
   readJson,
   renderTemplate,
@@ -54,6 +55,8 @@ export async function buildAssets() {
   await mkdirp(outputDir);
   await writeFile(`${outputDir}/css/styles.css`, await bundleCss(resolve(root, config.cssDir)));
   await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
+  // The terminal command parser is shared: tests import src/lib/terminal.js, the browser imports this copy.
+  await cp(resolve(root, 'src/lib/terminal.js'), `${outputDir}/js/terminal-lib.js`);
   // blog-images/, photos/ and projects/ are not copied: only the images that something references are
   // processed (see processHtmlImages and withImage), into public/assets/img/.
   await cpDir(assetsRoot, `${outputDir}/assets`, entry => !PIPELINE_DIRS.includes(entry.name));
@@ -94,7 +97,7 @@ export async function buildPages(data) {
   if (blogPosts.length === 0) throw new Error('No blog posts found');
 
   const stamp = getBuildStamp({ gitDir: resolve(root, '.git') });
-  const common = { links, stamp, pictureHtml };
+  const common = { links, stamp, pictureHtml, site };
   const index = {
     title: 'James Macmillan - codesthings.com',
     description: 'Software engineer portfolio - James Macmillan builds things for the web.',
