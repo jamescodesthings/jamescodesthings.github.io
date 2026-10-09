@@ -7,7 +7,7 @@
   <div class="site-footer__inner container">
     <div class="site-footer__top">
       <a href="/" class="footer-home" id="footer-logo" aria-label="codesthings.com home"><%- include('logo', { variant: 'wordmark', size: 24 }) %></a>
-      <a href="https://codesthings.com/cv" class="footer-cv"><%- include('icon', { name: 'cv', size: 18 }) %><span>View CV</span></a>
+      <a href="/cv/" class="footer-cv"><%- include('icon', { name: 'cv', size: 18 }) %><span>View CV</span></a>
     </div>
     <nav aria-label="Footer">
       <ul class="footer-links">
@@ -30,7 +30,7 @@
     </ul>
     <% } %>
     <p class="footer-meta">
-      <span>&copy; 2026 James Macmillan</span>
+      <span>&copy; <%= new Date().getFullYear() %> James Macmillan</span>
       <% if (typeof stamp !== 'undefined' && stamp) { %>
       <% if (stamp.url) { %><a href="<%= stamp.url %>" rel="noopener">v<%= stamp.short %> &middot; built <%= stamp.date %></a><% } else { %><span>v<%= stamp.short %> &middot; built <%= stamp.date %></span><% } %>
       <% } %>

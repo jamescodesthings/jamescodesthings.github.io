@@ -113,6 +113,15 @@ export async function createRenderer() {
     }),
   });
 
+  // External links open nothing new, but get rel="noopener" so a linked page cannot reach window.opener.
+  const defaultLinkOpen =
+    md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+  md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+    const href = tokens[idx].attrGet('href') || '';
+    if (/^(?:https?:)?\/\//i.test(href) && !tokens[idx].attrGet('rel')) tokens[idx].attrSet('rel', 'noopener');
+    return defaultLinkOpen(tokens, idx, options, env, self);
+  };
+
   // headings: h2 and h3 only, read after markdown-it-anchor has set the ids.
   md.core.ruler.push('collect_headings', state => {
     const headings = (state.env.headings = []);

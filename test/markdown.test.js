@@ -151,3 +151,13 @@ test('the copy button keeps a static label and the live region sits beside it', 
   assert.doesNotMatch(button, /role="status"/);
   assert.match(html, /<\/button><span class="code-block__status visually-hidden" role="status"><\/span>/);
 });
+
+test('external links get rel="noopener"; site links and anchors do not', () => {
+  const { html } = r.render(
+    '[ext](https://example.com/x) [rel](//example.com) [local](/blog/) [rel2](../a) [top](#top)\n',
+  );
+  assert.match(html, /<a href="https:\/\/example\.com\/x" rel="noopener">ext<\/a>/);
+  assert.match(html, /<a href="\/\/example\.com" rel="noopener">/);
+  assert.match(html, /<a href="\/blog\/">local<\/a>/);
+  assert.match(html, /<a href="#top">top<\/a>/);
+});

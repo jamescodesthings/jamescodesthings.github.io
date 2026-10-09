@@ -1,5 +1,5 @@
 <%
-  // locals: title (full page title), description, path (root-absolute), ogImage (absolute URL of the page's share card, set by renderPage; falls back to the logo), type ('website' | 'article'), noindex?
+  // locals: title (full page title), description, path (root-absolute), ogImage (absolute URL of the page's share card, set by renderPage; falls back to the logo), type ('website' | 'article'), publishedTime? (YYYY-MM-DD, articles only), noindex?
   const origin = 'https://codesthings.com';
   const pageTitle = typeof title === 'undefined' ? 'James Macmillan - codesthings.com' : title;
   const pageDescription = typeof description === 'undefined' ? '' : description;
@@ -22,7 +22,8 @@
 <meta property="og:title" content="<%= pageTitle %>" />
 <% if (pageDescription) { %><meta property="og:description" content="<%= pageDescription %>" />
 <% } %><meta property="og:url" content="<%= canonical %>" />
-<meta property="og:image" content="<%= imageUrl %>" />
+<% if (pageType === 'article' && typeof publishedTime !== 'undefined' && publishedTime) { %><meta property="article:published_time" content="<%= publishedTime %>" />
+<% } %><meta property="og:image" content="<%= imageUrl %>" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Share card for <%= pageTitle %>" />
@@ -32,7 +33,8 @@
 <% } %><meta name="twitter:image" content="<%= imageUrl %>" />
 <meta name="twitter:image:alt" content="Share card for <%= pageTitle %>" />
 
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<% if (typeof jsonLd !== 'undefined' && jsonLd) { %><script type="application/ld+json"><%- JSON.stringify(jsonLd).replace(/</g, '\\u003c') %></script>
+<% } %><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 <link rel="alternate" type="application/atom+xml" title="codesthings.com" href="/feed.xml" />

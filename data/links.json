@@ -2,7 +2,7 @@
   {
     "name": "CV",
     "label": "View CV",
-    "url": "https://codesthings.com/cv",
+    "url": "/cv/",
     "icon": "cv",
     "primary": true
   },

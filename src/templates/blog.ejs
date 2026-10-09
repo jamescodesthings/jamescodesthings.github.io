@@ -29,6 +29,7 @@
         <header class="post-header">
           <p class="post-meta">
             <% if (post.date) { %><time datetime="<%= post.date %>"><%= formatLongDate(post.date) %></time><% } %>
+            <% if (post.draft) { %><strong class="post-meta__draft">Draft</strong><% } %>
             <span><%= post.readingTime %> min read</span>
             <% if (post.updated) { %><span>Updated <time datetime="<%= post.updated %>"><%= formatLongDate(post.updated) %></time></span><% } %>
           </p>
