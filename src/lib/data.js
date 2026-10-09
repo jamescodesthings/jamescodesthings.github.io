@@ -29,10 +29,11 @@ const tagList = value =>
 
 const link = post => (post ? { slug: post.slug, title: post.title } : null);
 
-// Posts come back newest first. A post needs no front matter: summary is '' and cover null when absent.
+// Returns {posts, drafts}, each newest first; `draft: true` in front matter puts a post in drafts.
+// A post needs no front matter: summary is '' and cover null when absent.
 // `html` is the rendered body without its title heading; image references are raw unless `images` is given. prev is the older post, next the newer one.
 async function loadPosts(blogDir, images) {
-  if (!(await exists(blogDir))) return [];
+  if (!(await exists(blogDir))) return { posts: [], drafts: [] };
   const renderer = await createRenderer();
   const files = (await ls(blogDir)).filter(f => f.endsWith('.md')).sort();
   const posts = [];
@@ -46,6 +47,7 @@ async function loadPosts(blogDir, images) {
       slug,
       title: title || slug,
       summary: meta.summary || '',
+      draft: meta.draft === 'true',
       date: dateMatch ? dateMatch[1] : '',
       updated: meta.updated || '',
       cover: meta.cover || null,
@@ -57,11 +59,18 @@ async function loadPosts(blogDir, images) {
     });
   }
   posts.reverse();
-  posts.forEach((post, i) => {
-    post.next = link(posts[i - 1]);
-    post.prev = link(posts[i + 1]);
+  // Drafts render a page (for preview) but are not part of the published sequence.
+  const drafts = posts.filter(post => post.draft);
+  const published = posts.filter(post => !post.draft);
+  published.forEach((post, i) => {
+    post.next = link(published[i - 1]);
+    post.prev = link(published[i + 1]);
   });
-  return posts;
+  drafts.forEach(post => {
+    post.next = null;
+    post.prev = null;
+  });
+  return { posts: published, drafts };
 }
 
 // Reads and validates everything under <root>/data. A bad project or photo file throws, naming the file.
@@ -77,6 +86,6 @@ export async function loadData(root, { images } = {}) {
     make: all.filter(p => p.lane === 'make').sort(byOrder),
   };
   const photos = (await loadAll(resolve(dir, 'photos'), validatePhoto)).sort(byOrder);
-  const posts = await loadPosts(resolve(dir, 'blog'), images);
-  return { site, now, uses, links, projects, photos, posts };
+  const { posts, drafts } = await loadPosts(resolve(dir, 'blog'), images);
+  return { site, now, uses, links, projects, photos, posts, drafts };
 }

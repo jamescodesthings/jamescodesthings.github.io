@@ -23,22 +23,26 @@ npm run server    # Serve at http://localhost:8080
 
 ```
 src/              Build pipeline and source files
-  index.js        Main build script
+  index.js        Main build script (pages, feed, sitemap, robots, share cards)
   server.js       Dev server
   watch.js        File watcher
   config.js       Path configuration
   utils.js        File I/O helpers
-  lib/            Build modules (front matter, build stamp, CSS bundling)
+  lib/            Build modules (data loading and validation, front matter, Markdown, images, share cards, feeds, CSS bundling, build stamp)
   templates/      EJS templates (index.ejs, blog.ejs, sections/)
-  css/            Stylesheets
+  css/            Stylesheets (tokens, base, layout, components, pages, print)
   js/             Client-side JS (plain ES modules, no bundler)
-  assets/         Icons, images, logos, favicons, fonts
-scripts/          contrast.js, lighthouse.js and serve.js (measurement, not part of the site)
-data/             Site content as JSON + blog posts as Markdown
+  assets/         Favicons, fonts, blog images and the CampSnap clip; only referenced files reach public/
+scripts/          contrast.js, lighthouse.js, serve.js and make-icons.sh (measurement and icon generation, not part of the site)
+test/             Unit tests (node --test)
+data/             Site content: JSON for the home page, projects, /now, /uses and the colophon; blog posts as Markdown
 raw/              Source design files (Illustrator, tracked via LFS)
 public/           Build output (gitignored)
-docs/             Project documentation
 ```
+
+## Writing a post
+
+Add `data/blog/YYYY-MM-DD-slug.md`. The file name gives the slug and the date, the first `# ` heading is the title, and an optional `---` front matter block takes `summary`, `tags`, `cover`, `coverAlt`, `updated` and `draft`. A post with `draft: true` still renders at its URL so it can be previewed, but it is left out of the blog list, the home page, the feed, the sitemap and the previous/next links, and carries `noindex`.
 
 ## Make Targets
 

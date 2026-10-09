@@ -98,6 +98,12 @@
   color: var(--color-muted);
 }
 
+.post-meta__draft {
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
 .post-title {
   font-size: var(--text-h1);
   line-height: 1.1;
