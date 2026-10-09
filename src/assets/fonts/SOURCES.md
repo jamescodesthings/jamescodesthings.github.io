@@ -23,3 +23,13 @@ Latin, weight 400, woff2, vendored from the `@fontsource/silkscreen` package on 
 | `silkscreen-OFL.txt`       | https://cdn.jsdelivr.net/npm/@fontsource/silkscreen@5.3.0/LICENSE                                 |
 
 Size: 8,404 B. It is not counted in the 100 KB first-load font budget because the page never requests it until the game opens.
+
+## Share cards (build time only)
+
+Latin, static `.woff` (satori cannot read woff2), from the non-variable `@fontsource` packages on jsDelivr (version 5.3.0), in `fonts/og/`. Licences are SIL OFL 1.1 (same as the variable files above). `buildAssets` skips `fonts/og/`, so these are never copied to `public/`. They are read by `src/lib/og.js` only.
+
+| File                                           | Source                                                                                                             |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `og/bricolage-grotesque-latin-700-normal.woff` | https://cdn.jsdelivr.net/npm/@fontsource/bricolage-grotesque@5.3.0/files/bricolage-grotesque-latin-700-normal.woff |
+| `og/figtree-latin-400-normal.woff`             | https://cdn.jsdelivr.net/npm/@fontsource/figtree@5.3.0/files/figtree-latin-400-normal.woff                         |
+| `og/geist-mono-latin-400-normal.woff`          | https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@5.3.0/files/geist-mono-latin-400-normal.woff                   |

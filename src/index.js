@@ -17,6 +17,7 @@ import {
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { atomFeed, sitemap, robots, pagePathFor } from './lib/feeds.js';
+import { ogSlugFor, ogCardPath, cachedOgCard } from './lib/og.js';
 import { getBuildStamp } from './lib/buildstamp.js';
 import {
   processImage,
@@ -35,6 +36,7 @@ const assetsRoot = resolve(root, config.assetsDir);
 // Processed images land here (URL /assets/img/...); the cache is keyed by source content.
 const imageOutDir = resolve(outputDir, 'assets/img');
 const imageCacheDir = resolve(root, '.cache/images');
+const ogCacheDir = resolve(root, '.cache/og');
 
 const debug = Debug('codesthings:index');
 debug.enabled = true;
@@ -43,9 +45,24 @@ debug.enabled = true;
 // Every page written, so the sitemap is derived from the build rather than listed by hand.
 const renderedPaths = new Set();
 
+// One entry per page that gets a share card, recorded as pages render and drawn by buildOg.
+const ogCards = new Map();
+let siteUrl = 'https://codesthings.com';
+const TITLE_SUFFIX = / - codesthings\.com$/;
+
 export async function renderPage(template, data, outPath) {
   debug(`Rendering ${outPath}`);
   renderedPaths.add(outPath);
+  const cardPath = ogCardPath(outPath);
+  if (cardPath) {
+    // head.ejs reads ogImage; the slug comes from the same helper buildOg writes with.
+    data = { ...data, ogImage: `${siteUrl}${cardPath}` };
+    ogCards.set(outPath, {
+      title: String(data.title ?? '').replace(TITLE_SUFFIX, ''),
+      summary: data.description || data.site?.tagline || '',
+      path: data.path ?? '/',
+    });
+  }
   const html = await renderTemplate(resolve(root, config.templateDir, template), data);
   await writeFile(resolve(outputDir, outPath), html);
 }
@@ -59,7 +76,12 @@ export async function buildAssets() {
   await cp(resolve(root, 'src/lib/terminal.js'), `${outputDir}/js/terminal-lib.js`);
   // blog-images/, photos/ and projects/ are not copied: only the images that something references are
   // processed (see processHtmlImages and withImage), into public/assets/img/.
-  await cpDir(assetsRoot, `${outputDir}/assets`, entry => !PIPELINE_DIRS.includes(entry.name));
+  // fonts/og/ holds the build-time .woff files for share cards; they are never served.
+  await cpDir(
+    assetsRoot,
+    `${outputDir}/assets`,
+    entry => !PIPELINE_DIRS.includes(entry.name) && !(entry.name === 'og' && entry.isDirectory()),
+  );
 }
 
 // Returns a copy of `item` with `imageData` (the processed image) when `item[key]` names an image under
@@ -76,6 +98,7 @@ async function withImage(item, key, label, resolveFn = resolveAssetPath) {
 
 export async function buildPages(data) {
   const { links, posts: blogPosts, site, now, uses } = data;
+  siteUrl = site.url;
   // Only a missing file means "not measured yet"; a malformed one fails the build naming the file.
   const colophonPath = resolve(root, config.dataDir, 'colophon.json');
   let colophon = { measured: null };
@@ -237,6 +260,16 @@ export async function buildFeeds(data) {
   await writeFile(resolve(outputDir, 'robots.txt'), robots(data.site));
 }
 
+// Draws one 1200x630 card per rendered page (not 404) into public/og/<slug>.png, through the .cache/og cache.
+export async function buildOg() {
+  for (const [outPath, card] of ogCards) {
+    const png = await cachedOgCard(card, ogCacheDir);
+    await mkdirp(resolve(outputDir, 'og'));
+    await writeFile(resolve(outputDir, `og/${ogSlugFor(outPath)}.png`), png);
+  }
+  debug(`Share cards: ${ogCards.size}`);
+}
+
 async function build() {
   const buildStart = Date.now();
   debug(`Build started at ${new Date(buildStart).toLocaleTimeString()}`);
@@ -245,6 +278,7 @@ async function build() {
   await buildAssets();
   await buildPages(data);
   await buildFeeds(data);
+  await buildOg();
 
   const buildEnd = Date.now();
   debug(`Build Complete (${((buildEnd - buildStart) / 1000).toFixed(2)}s)\n`);
