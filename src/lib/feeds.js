@@ -26,9 +26,18 @@ function decodeEntities(s) {
 }
 
 // Turn root-absolute URLs in href, src and srcset attributes into absolute ones.
-export function absolutizeHtml(html, base) {
-  const abs = u => (u.startsWith('/') && !u.startsWith('//') ? base + u : u);
+// `pageUrl` (the entry's own URL) resolves fragment-only links such as heading anchors.
+// The YouTube facade needs site JS, so it becomes a plain link to the video.
+export function absolutizeHtml(html, base, pageUrl = base + '/') {
+  const abs = u => {
+    if (u.startsWith('#')) return pageUrl + u;
+    return u.startsWith('/') && !u.startsWith('//') ? base + u : u;
+  };
   return html
+    .replace(
+      /<div class="yt-facade"[^>]*data-yt-facade[^>]*data-yt-title="([^"]*)"[^>]*>[\s\S]*?<a [^>]*href="([^"]+)"[^>]*>[\s\S]*?<\/a><\/div>/g,
+      (_, title, href) => `<p><a href="${href}" rel="noopener">Watch on YouTube: ${title}</a></p>`,
+    )
     .replace(/\b(href|src)=("|')([^"']*)\2/g, (_, attr, q, v) => `${attr}=${q}${abs(v)}${q}`)
     .replace(/\bsrcset=("|')([^"']*)\1/g, (_, q, v) => {
       const candidates = v
@@ -72,7 +81,7 @@ export function atomFeed(posts, site) {
     <id>${escapeXml(link)}</id>
     <updated>${stamp(p.date)}</updated>
     <summary>${escapeXml(postSummary(p))}</summary>
-    <content type="html">${escapeXml(absolutizeHtml(p.html || '', base))}</content>
+    <content type="html">${escapeXml(absolutizeHtml(p.html || '', base, link))}</content>
   </entry>`;
   });
   return `<?xml version="1.0" encoding="utf-8"?>
