@@ -41,3 +41,6 @@ dist-ssr
 
 # Lighthouse CI reports
 .lighthouseci/
+
+# gstack browse state
+.gstack/
