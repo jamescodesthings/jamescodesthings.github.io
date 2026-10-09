@@ -415,7 +415,11 @@ function init(win) {
     closeGame();
   });
   dialog.addEventListener('click', event => {
-    if (event.target === dialog) closeGame();
+    // The dialog element also covers its padding ring, so only a click outside its box counts as the backdrop.
+    const r = dialog.getBoundingClientRect();
+    const outside =
+      event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom;
+    if (event.target === dialog && outside) closeGame();
   });
   dialog.querySelector('[data-game-close]').addEventListener('click', closeGame);
 

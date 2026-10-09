@@ -12,6 +12,13 @@ import { toast } from './toast.js';
 const HISTORY_KEY = 'terminal-history';
 const HISTORY_MAX = 50;
 
+// Commands that need an argument. Choosing one of these completes it and waits; the rest run straight away.
+const ARGUMENTS = { theme: ['dark', 'light', 'system'], nav: ['on', 'off'] };
+const argumentCandidates = () =>
+  Object.entries(ARGUMENTS).flatMap(([cmd, values]) =>
+    values.map(v => ({ name: `${cmd} ${v}`, description: `${cmd} ${v}` })),
+  );
+
 let dialog = null;
 let ui = null;
 let opener = null;
@@ -106,9 +113,11 @@ function hideOptions() {
 // Suggestions are commands whose name starts with what has been typed; an empty line suggests them all
 // only when asked (ArrowDown).
 function showOptions(all = false) {
-  const typed = ui.input.value.trim().toLowerCase().replace(/\s+/g, ' ');
-  if (!typed && !all) return hideOptions();
-  const matches = COMMANDS.filter(c => c.name.startsWith(typed) && c.name !== typed);
+  // Keeps one trailing space: "theme " asks for the arguments, "theme" for the command.
+  const typed = ui.input.value.toLowerCase().replace(/^\s+/, '').replace(/\s+/g, ' ');
+  if (!typed.trim() && !all) return hideOptions();
+  const candidates = [...COMMANDS, ...argumentCandidates().filter(c => typed.startsWith(c.name.split(' ')[0] + ' '))];
+  const matches = candidates.filter(c => c.name.startsWith(typed) && c.name !== typed);
   if (!matches.length) return hideOptions();
   const doc = ui.el.ownerDocument;
   options = matches.map((c, i) => {
@@ -117,6 +126,7 @@ function showOptions(all = false) {
     li.setAttribute('role', 'option');
     li.setAttribute('aria-selected', 'false');
     li.dataset.value = c.name;
+    if (Object.hasOwn(ARGUMENTS, c.name)) li.dataset.partial = ''; // takes arguments: complete, do not run
     li.innerHTML = '<span class="terminal__opt-name"></span><span class="terminal__opt-desc"></span>';
     li.firstChild.textContent = c.name;
     li.lastChild.textContent = c.description;
@@ -126,6 +136,24 @@ function showOptions(all = false) {
   ui.list.hidden = false;
   ui.input.setAttribute('aria-expanded', 'true');
   setActive(-1);
+}
+
+// Takes a suggestion: argument-taking commands are completed with a trailing space and focus stays in the input
+// (with the argument suggestions showing); everything else runs.
+function accept(li, win) {
+  const input = ui.input;
+  hideOptions();
+  if (li.dataset.partial !== undefined) {
+    input.value = `${li.dataset.value} `;
+    input.focus();
+    showOptions();
+    return;
+  }
+  input.value = li.dataset.value;
+  run(input.value, win);
+  input.value = '';
+  draft = '';
+  input.focus();
 }
 
 function go(value, win) {
@@ -222,15 +250,14 @@ function onKeydown(event, win) {
       if (ui.list.hidden) return; // nothing to complete: Tab moves focus as normal
       event.preventDefault();
       const pick = options[active >= 0 ? active : 0];
-      input.value =
-        pick.dataset.value +
-        (pick.dataset.value.includes(' ') || ['theme', 'nav'].includes(pick.dataset.value) ? ' ' : '');
       hideOptions();
+      input.value = pick.dataset.value + (pick.dataset.partial !== undefined ? ' ' : '');
+      if (pick.dataset.partial !== undefined) showOptions();
       break;
     }
     case 'Enter':
       event.preventDefault();
-      if (active >= 0 && options[active]) input.value = options[active].dataset.value;
+      if (active >= 0 && options[active]) return accept(options[active], win);
       hideOptions();
       run(input.value, win);
       input.value = '';
@@ -255,12 +282,7 @@ function init(win) {
   ui.list.addEventListener('pointerdown', event => event.preventDefault()); // keep focus in the input
   ui.list.addEventListener('click', event => {
     const li = event.target.closest('[role="option"]');
-    if (!li) return;
-    ui.input.value = li.dataset.value;
-    hideOptions();
-    run(ui.input.value, win);
-    ui.input.value = '';
-    ui.input.focus();
+    if (li) accept(li, win);
   });
   ui.close.addEventListener('click', close);
   // The native Escape path: take it over so focus handling is ours and the event is marked handled.

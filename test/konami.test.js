@@ -76,3 +76,12 @@ test('the toast counts down from four taps away', () => {
   assert.equal(tapsAwayMessage(2, 7), null);
   assert.equal(tapsAwayMessage(7, 7), null);
 });
+
+test('only touch pointers count as logo taps', async () => {
+  const { isTouchTap } = await import('../src/js/konami.js');
+  assert.equal(isTouchTap('touch', ''), true);
+  assert.equal(isTouchTap('mouse', 'touch'), false);
+  assert.equal(isTouchTap('', 'touch'), false); // keyboard activation
+  assert.equal(isTouchTap(undefined, 'touch'), true); // no pointerType on click: fall back to pointerdown
+  assert.equal(isTouchTap(undefined, 'mouse'), false);
+});

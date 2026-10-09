@@ -82,14 +82,25 @@ export function initKonami({ onTrigger, win = window }) {
   });
 }
 
-// The footer logo is a home link. A tap counter cannot also let every tap navigate, so the link keeps working
-// for a single plain click (after a short pause) and is intercepted once taps pile up. Modified clicks pass through.
+// Whether a click on the logo counts as a touch tap. The spec scopes the tap trigger to touch screens, so mouse and
+// keyboard activation (pointerType 'mouse' or '') must act as a plain link. Where click carries no pointerType
+// (very old engines), the last pointerdown's type stands in.
+export function isTouchTap(clickPointerType, lastPointerType) {
+  if (typeof clickPointerType === 'string') return clickPointerType === 'touch';
+  return lastPointerType === 'touch';
+}
+
+// The footer logo is a home link. On touch, a tap counter cannot also let every tap navigate, so a single tap still
+// goes home after a short pause and further taps are counted. Mouse, keyboard and modified clicks pass through.
 export function initLogoTaps({ toast, onTrigger, win = window }) {
   const doc = win.document;
   const logo = doc.getElementById('footer-logo');
   if (!logo) return null;
   const counter = createTapCounter();
   let timer = 0;
+  let lastPointerType = '';
+  logo.addEventListener('pointerdown', event => (lastPointerType = event.pointerType));
+  logo.addEventListener('keydown', () => (lastPointerType = ''));
 
   logo.addEventListener('click', event => {
     if (
@@ -102,6 +113,8 @@ export function initLogoTaps({ toast, onTrigger, win = window }) {
     ) {
       return;
     }
+    // Mouse and keyboard: an ordinary link, no delay.
+    if (!isTouchTap(event.pointerType, lastPointerType)) return;
     event.preventDefault();
     win.clearTimeout(timer);
     const count = counter.tap();
