@@ -114,3 +114,8 @@
     height: 36px;
   }
 }
+
+/* The footer logo is also the seven-tap game trigger: no double-tap zoom delay on touch. */
+.footer-home {
+  touch-action: manipulation;
+}

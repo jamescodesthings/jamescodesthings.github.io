@@ -116,8 +116,3 @@
   font-family: var(--font-body);
   font-size: var(--text-xs);
 }
-
-/* The footer logo is also the seven-tap game trigger: no double-tap zoom delay on touch. */
-.footer-home {
-  touch-action: manipulation;
-}
