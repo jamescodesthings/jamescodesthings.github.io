@@ -1,0 +1,22 @@
+{
+  "title": "PicoCalc Grip Stand Handle",
+  "lane": "make",
+  "summary": "A printable handle, stand and grip that makes the PicoCalc comfortable to hold.",
+  "stack": ["3D printing", "PicoCalc"],
+  "links": [
+    {
+      "label": "MakerWorld",
+      "url": "https://makerworld.com/en/models/2759394-picocalc-grip-stand-handle-comfy-edition",
+      "icon": "makerworld"
+    },
+    {
+      "label": "Blog",
+      "url": "/blog/2026-05-01-zerocalc.html",
+      "icon": "blog"
+    }
+  ],
+  "image": null,
+  "date": "2026-05",
+  "featured": true,
+  "order": 3
+}

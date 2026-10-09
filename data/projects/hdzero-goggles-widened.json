@@ -1,0 +1,11 @@
+{
+  "title": "HDZero Goggles, Widened",
+  "lane": "make",
+  "summary": "A Blender-modelled widening of the HDZero BoxPro goggles so they fit over big glasses.",
+  "stack": ["Blender", "3D printing", "HDZero"],
+  "links": [{ "label": "GitHub", "url": "https://github.com/jamescodesthings/hdzero", "icon": "github" }],
+  "image": null,
+  "date": "2026-05",
+  "featured": false,
+  "order": 4
+}

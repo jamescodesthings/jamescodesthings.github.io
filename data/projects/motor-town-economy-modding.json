@@ -1,0 +1,13 @@
+{
+  "title": "Motor Town Economy Modding Guide",
+  "lane": "work",
+  "summary": "A beginner-friendly guide to editing economy values in Motor Town, and Unreal Engine 5 games in general.",
+  "stack": ["Unreal Engine 5", "Modding", "Windows"],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/jamescodesthings/motor-town-economy-mod-guide", "icon": "github" }
+  ],
+  "image": null,
+  "date": "2026-01",
+  "featured": false,
+  "order": 4
+}

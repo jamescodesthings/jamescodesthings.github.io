@@ -1,0 +1,19 @@
+{
+  "tagline": "Senior Software Engineer. Full-stack, cloud and mobile.",
+  "bio": "A pragmatic engineer who builds for the web, and makes things.",
+  "email": "james@codesthings.com",
+  "status": "Available now · Birmingham, UK",
+  "proof": [
+    {
+      "value": "800+",
+      "label": "Makerworld downloads",
+      "source": "cv/data/sidebar.json, outside.items 3D design & FPV"
+    },
+    {
+      "value": "Worldwide",
+      "label": "CampSnap filters used worldwide",
+      "source": "cv/data/sidebar.json, outside.items Photography; docs/redesign/05-projects-notes.md"
+    }
+  ],
+  "careerSummary": "14 years building web, mobile and cloud platforms, from native mobile integrations to serverless APIs and pipelines handling over a million releases a day. I work across the stack, pick up new languages quickly, and care most about shipping software that the people using it need."
+}
