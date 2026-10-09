@@ -17,6 +17,7 @@ import {
 } from './utils.js';
 import { parsePost } from './lib/frontmatter.js';
 import { bundleCss } from './lib/css.js';
+import { getBuildStamp } from './lib/buildstamp.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -51,15 +52,43 @@ export async function buildPages(data) {
   if (!(await exists(resolve(root, config.templateDir, '404.ejs')))) throw new Error('404 template not found');
   if (blogPosts.length === 0) throw new Error('No blog posts found');
 
-  await renderPage('index.ejs', { links, blogPosts, formatDate }, 'index.html');
-  await renderPage('404.ejs', {}, '404.html');
-  await renderPage('privacy-notice.ejs', {}, 'privacy-notice.html');
-  await renderPage('about-cookies.ejs', {}, 'about-cookies.html');
+  const stamp = getBuildStamp({ gitDir: resolve(root, '.git') });
+  const common = { links, stamp };
+  const index = {
+    title: 'James Macmillan - codesthings.com',
+    description: 'Software engineer portfolio - James Macmillan builds things for the web.',
+    path: '/',
+  };
+
+  await renderPage('index.ejs', { ...common, ...index, blogPosts, formatDate }, 'index.html');
+  await renderPage(
+    '404.ejs',
+    { ...common, title: '404 - codesthings.com', path: '/404.html', noindex: true },
+    '404.html',
+  );
+  await renderPage(
+    'privacy-notice.ejs',
+    { ...common, title: 'Privacy Notice - codesthings.com', path: '/privacy-notice' },
+    'privacy-notice.html',
+  );
+  await renderPage(
+    'about-cookies.ejs',
+    { ...common, title: 'About Cookies - codesthings.com', path: '/about-cookies' },
+    'about-cookies.html',
+  );
   for (const post of blogPosts) {
     debug(` - Blog: ${post.title} (${post.slug})`);
     await renderPage(
       'blog.ejs',
-      { title: post.title, summary: post.summary, content: markdownToHtml(post.body) },
+      {
+        ...common,
+        title: `${post.title} - codesthings.com`,
+        description: post.summary,
+        path: `/blog/${post.slug}.html`,
+        type: 'article',
+        summary: post.summary,
+        content: markdownToHtml(post.body),
+      },
       `blog/${post.slug}.html`,
     );
   }

@@ -1,64 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>James Macmillan - CodesThings.com</title>
-    <meta name="description" content="Software engineer portfolio - James Macmillan builds things for the web." />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="James Macmillan - Software Engineer" />
-    <meta
-      property="og:description"
-      content="Software engineer portfolio - James Macmillan builds things for the web."
-    />
-    <meta property="og:url" content="https://codesthings.com/" />
-    <meta property="og:image" content="https://codesthings.com/assets/logo/logo.png" />
-    <meta property="og:site_name" content="codesthings.com" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="canonical" href="https://codesthings.com/" />
-
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="assets/favicon.ico" sizes="48x48" />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <%- include('sections/head') %>
   </head>
   <body>
-    <%- include('sections/dark-mode-switch') %>
-    <%- include('sections/hero', { name: 'James Macmillan', links }) %>
-    <%- include('sections/campsnap-banner') %>
-    <% if (blogPosts && blogPosts.length > 0) { %>
-    <section class="section" data-animate>
-      <div class="section-inner">
-        <span class="section-label">01 - LATEST</span>
-        <h2 class="section-title">Blog</h2>
-        <ul class="blog-list">
-          <% blogPosts.forEach(function(post) { %>
-          <li class="blog-list-item">
-            <a href="blog/<%= post.slug %>.html" class="blog-list-link">
-              <span class="blog-list-title"><%= post.title %></span>
-              <%- include('sections/icon', { name: 'arrow', size: 18, className: 'blog-list-arrow' }) %>
-            </a>
-            <% if (post.summary) { %><p class="blog-list-summary"><%= post.summary %></p><% } %>
-            <% if (post.date) { %><time class="blog-list-date" datetime="<%= post.date %>"><%= formatDate(post.date) %></time><% } %>
-          </li>
-          <% }); %>
-        </ul>
-      </div>
-    </section>
-    <% } %>
+    <%- include('sections/header') %>
+    <main id="main">
+      <%- include('sections/hero', { name: 'James Macmillan', links }) %>
+      <%- include('sections/campsnap-banner') %>
+      <% if (blogPosts && blogPosts.length > 0) { %>
+      <section class="section">
+        <div class="section-inner">
+          <span class="section-label">01 - LATEST</span>
+          <h2 class="section-title">Blog</h2>
+          <ul class="blog-list">
+            <% blogPosts.forEach(function(post) { %>
+            <li class="blog-list-item">
+              <a href="/blog/<%= post.slug %>.html" class="blog-list-link">
+                <span class="blog-list-title"><%= post.title %></span>
+                <%- include('sections/icon', { name: 'arrow', size: 18, className: 'blog-list-arrow' }) %>
+              </a>
+              <% if (post.summary) { %><p class="blog-list-summary"><%= post.summary %></p><% } %>
+              <% if (post.date) { %><time class="blog-list-date" datetime="<%= post.date %>"><%= formatDate(post.date) %></time><% } %>
+            </li>
+            <% }); %>
+          </ul>
+        </div>
+      </section>
+      <% } %>
+    </main>
     <%- include('sections/campsnap-fab') %>
     <%- include('sections/footer') %>
-    <script src="js/theme.js"></script>
-    <script src="js/fab.js"></script>
+    <script src="/js/fab.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

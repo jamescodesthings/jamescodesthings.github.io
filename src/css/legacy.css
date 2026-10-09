@@ -1,177 +1,26 @@
+/*
+ * Legacy rules for the parts of the site not yet rebuilt (homepage body sections, blog content, FAB).
+ * Tokens, fonts, reset, header, footer and the theme toggle live in the new files. These aliases map
+ * the old variable names onto the new tokens until those sections are rewritten.
+ */
 :root {
-  /* Dark theme (primary) */
-  --color-bg: #0a0a0f;
-  --color-surface: #141419;
-  --color-surface-raised: #1e1e26;
-  --color-blog-h1: #ffffff;
-  --color-blog-h2: #cbcbcb;
-  --color-blog-h3: #b8b8b8;
-  --color-blog-h4: #a1a1a1;
-  --color-numbered-heading-h1: rgba(255, 255, 255, 0.55);
-  --color-numbered-heading-h2: rgba(255, 255, 255, 0.5);
-  --color-numbered-heading-h3: rgba(255, 255, 255, 0.45);
-  --color-numbered-heading-h4: rgba(255, 255, 255, 0.4);
-  --color-text: #f0ece4;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
-  --color-heading: #f0ece4;
-  --color-accent: #f59e0b;
-  --color-accent-hover: #d97706;
-  --color-border: #2a2a35;
-  --color-link: #f59e0b;
-  --color-link-hover: #fbbf24;
-  --color-badge-bg: transparent;
-  --color-badge-text: #d1d5db;
-  --color-badge-border: #3a3a48;
-
-  --font-heading: 'Oswald', sans-serif;
-  --font-body: 'Karla', sans-serif;
-  --font-mono: 'FiraMono', monospace;
-  --font-mono-display: 'Major Mono Display', monospace;
-
-  /* Type scale */
-  --text-display: clamp(2.5rem, 5vw, 4.5rem);
-  --text-h1: clamp(1.2rem, 3vw, 3em);
-  --text-h2: clamp(1rem, 3vw, 2.5rem);
-  --text-h3: clamp(0.8rem, 3vw, 2rem);
-  --text-h4: clamp(0.75rem, 3vw, 1.8rem);
-  --text-body: clamp(0.75rem, 3vw, 1.125rem);
-  --text-small: clamp(0.7rem, 3vw, 1rem);
-  --text-xs: clamp(0.65rem, 3vw, 0.875rem);
-
-  /* Spacing */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
-  --space-5xl: 8rem;
-
-  /* Layout */
-  --max-width: 1100px;
-  --border-radius: 8px;
-  --border-radius-lg: 16px;
-}
-
-/* Light theme */
-html:not(.dark) {
-  --color-bg: #faf8f4;
-  --color-surface: #ffffff;
-  --color-surface-raised: #f5f3ee;
-  --color-blog-h1: #000000;
-  --color-blog-h2: #242424;
-  --color-blog-h3: #3c3c3c;
-  --color-blog-h4: #444444;
-  --color-numbered-heading-h1: rgba(0, 0, 0, 0.55);
-  --color-numbered-heading-h2: rgba(0, 0, 0, 0.5);
-  --color-numbered-heading-h3: rgba(0, 0, 0, 0.45);
-  --color-numbered-heading-h4: rgba(0, 0, 0, 0.4);
-  --color-text: #1a1a2e;
-  --color-text-secondary: #4a4a5a;
-  --color-text-muted: #6b7280;
-  --color-heading: #1a1a2e;
-  --color-accent: #d97706;
-  --color-accent-hover: #b45309;
-  --color-border: #e5e2da;
-  --color-link: #d97706;
-  --color-link-hover: #b45309;
-  --color-badge-bg: transparent;
-  --color-badge-text: #4a4a5a;
-  --color-badge-border: #d1cdc4;
-}
-
-/* Fonts */
-@font-face {
-  /* Heading */
-  font-family: 'Oswald';
-  src: url('../assets/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  /* Body */
-  font-family: 'Karla';
-  src: url('../assets/fonts/Karla-VariableFont_wght.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  /* Mono */
-  font-family: 'FiraMono';
-  src: url('../assets/fonts/FiraMono-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  /* Mono Display */
-  font-family: 'Major Mono Display';
-  src: url('../assets/fonts/MajorMonoDisplay-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-/* Reset & Base */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-body);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-a {
-  color: var(--color-link);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--color-link-hover);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* ============================================
-   Scroll-Triggered Animations
-   ============================================ */
-
-[data-animate] {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-
-[data-animate].is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  --color-text-secondary: var(--color-muted);
+  --color-text-muted: var(--color-muted);
+  --color-heading: var(--color-text);
+  --color-link: var(--color-accent);
+  --color-link-hover: var(--color-accent-strong);
+  --color-accent-hover: var(--color-accent-strong);
+  --color-blog-h1: var(--color-text);
+  --color-blog-h2: var(--color-text);
+  --color-blog-h3: var(--color-text);
+  --color-blog-h4: var(--color-text);
+  --color-numbered-heading-h1: var(--color-muted);
+  --color-numbered-heading-h2: var(--color-muted);
+  --color-numbered-heading-h3: var(--color-muted);
+  --color-numbered-heading-h4: var(--color-muted);
+  --font-mono-display: var(--font-mono);
+  --border-radius: var(--radius);
+  --border-radius-lg: var(--radius-lg);
 }
 
 /* ============================================
@@ -179,7 +28,7 @@ img {
    ============================================ */
 
 .hero {
-  min-height: 100svh;
+  min-height: calc(100svh - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,58 +67,6 @@ img {
   color: var(--color-accent);
   letter-spacing: 0.08em;
   margin-top: var(--space-lg);
-}
-
-/* Theme toggle */
-.theme-toggle {
-  position: fixed;
-  top: var(--space-xl);
-  right: var(--space-xl);
-  z-index: 100;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-  color: var(--color-text);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.theme-toggle:hover {
-  background: var(--color-surface-raised);
-  border-color: var(--color-accent);
-  transform: scale(1.05);
-}
-
-.toggle-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dark .icon-sun {
-  display: block;
-}
-
-.dark .icon-moon {
-  display: none;
-}
-
-html:not(.dark) .icon-sun {
-  display: none;
-}
-
-html:not(.dark) .icon-moon {
-  display: block;
 }
 
 /* Scroll hint */
@@ -645,10 +442,6 @@ html:not(.dark) .icon-moon {
   box-shadow: 0 4px 16px rgba(245, 158, 11, 0.08);
 }
 
-html:not(.dark) .bento-badge:hover {
-  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.08);
-}
-
 .bento-badge .badge-icon {
   font-size: var(--text-h2);
   color: var(--color-text-secondary);
@@ -943,24 +736,16 @@ html:not(.dark) .bento-badge:hover {
   border: none;
   border-radius: 16px;
   cursor: pointer;
-  color: #0a0a0f;
+  color: var(--color-on-accent);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-.dark .campsnap-fab-btn {
-  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.3);
-}
-
 .campsnap-fab-btn:hover {
   opacity: 0.8;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.dark .campsnap-fab-btn:hover {
-  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
 }
 
 .campsnap-fab-popover {
@@ -1032,77 +817,6 @@ html:not(.dark) .bento-badge:hover {
 
 .campsnap-fab-link:hover {
   color: var(--color-heading);
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-
-.site-footer {
-  padding: var(--space-3xl) var(--space-xl);
-  border-top: 1px solid var(--color-border);
-}
-
-.footer-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-logo {
-  max-width: 160px;
-  height: auto;
-  opacity: 0.85;
-}
-
-.footer-logo--dark {
-  display: none;
-}
-
-.dark .footer-logo--light {
-  display: none;
-}
-
-.dark .footer-logo--dark {
-  display: block;
-}
-
-.footer-copy {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  letter-spacing: 0.03em;
-}
-
-.footer-links {
-  display: flex;
-  gap: var(--space-lg);
-}
-
-.footer-link {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-}
-
-.footer-link:hover {
-  color: var(--color-text);
-}
-
-.footer-link--cv {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
-.footer-home {
-  display: block;
-  line-height: 0;
 }
 
 /* ============================================
@@ -1464,12 +1178,6 @@ p:has(.published) {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
-  .footer-inner {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-sm);
-  }
-
   .experience-employer {
     font-size: var(--text-h2);
   }
@@ -1578,7 +1286,8 @@ p:has(.published) {
   }
 
   /* Hide interactive and non-CV elements */
-  .theme-toggle,
+  .site-header,
+  .skip-link,
   .hero-scroll-hint,
   .hero-cta,
   .site-footer,
@@ -1591,12 +1300,6 @@ p:has(.published) {
   /* Hide blog section (contains .blog-list) */
   .section:has(.blog-list) {
     display: none !important;
-  }
-
-  /* Ensure animations don't interfere */
-  [data-animate] {
-    opacity: 1;
-    transform: none;
   }
 
   .page-break {

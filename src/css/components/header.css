@@ -1,0 +1,179 @@
+/* Site header: logo, nav, theme pill. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: var(--header-height);
+}
+
+.site-header__home {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-header__home:hover {
+  color: var(--color-text);
+}
+
+.logo {
+  display: block;
+  flex: none;
+  overflow: visible;
+}
+
+.settings-pill {
+  order: 2;
+  margin-left: auto;
+}
+
+.site-menu {
+  order: 3;
+}
+
+/* Phones: nav collapses into a <details> menu. */
+.site-menu > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  padding: 0 var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-text);
+  cursor: pointer;
+  list-style: none;
+  border-radius: var(--radius);
+}
+
+.site-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-menu > summary:hover {
+  background: var(--color-surface-raised);
+}
+
+.site-menu[open] > summary {
+  background: var(--color-surface);
+}
+
+.site-menu__icon-close {
+  display: none;
+}
+
+.site-menu[open] .site-menu__icon-open {
+  display: none;
+}
+
+.site-menu[open] .site-menu__icon-close {
+  display: inline-block;
+}
+
+.site-nav__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-sm) var(--gutter) var(--space-md);
+  list-style: none;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-nav__list li:last-child .site-nav__link {
+  border-bottom: 0;
+}
+
+.site-nav__link:hover,
+.site-nav__link[aria-current] {
+  color: var(--color-text);
+}
+
+.site-nav__link[aria-current] {
+  box-shadow: inset 2px 0 0 var(--color-accent);
+  padding-left: var(--space-sm);
+}
+
+/* 768px and up: nav sits inline. */
+@media (min-width: 768px) {
+  .site-menu {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .settings-pill {
+    order: 2;
+    margin-left: 0;
+  }
+
+  /* JS opens the <details> and marks it inline; ::details-content covers the pre-JS paint. */
+  .site-menu[data-inline] > summary {
+    display: none;
+  }
+
+  .site-menu[data-inline] .site-nav__list,
+  .site-menu .site-nav__list {
+    position: static;
+    flex-direction: row;
+    gap: var(--space-xs);
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .site-nav__link,
+  .site-nav__list li:last-child .site-nav__link {
+    padding: 0 var(--space-sm);
+    border: 0;
+    border-radius: var(--radius);
+  }
+
+  .site-nav__link:hover {
+    background: var(--color-surface-raised);
+  }
+
+  .site-nav__link[aria-current] {
+    box-shadow: none;
+    padding-left: var(--space-sm);
+    color: var(--color-accent);
+  }
+}
+
+@supports selector(::details-content) {
+  @media (min-width: 768px) {
+    .site-menu > summary {
+      display: none;
+    }
+
+    .site-menu::details-content {
+      content-visibility: visible;
+      display: block;
+    }
+  }
+}

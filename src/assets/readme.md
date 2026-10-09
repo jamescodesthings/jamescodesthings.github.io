@@ -8,9 +8,9 @@ Static assets used by the website. During the build, these are copied to the out
 
 A headshot of James Macmillan at 1024x1024px, suitable for cropping to a circle. Used on the homepage as the profile photo.
 
-### logo.png / logo-dark.png
+### favicon.svg / favicon.ico / apple-touch-icon.png / og-logo.png
 
-The "codesthings." wordmark in landscape orientation. `logo.png` has dark grey text with an orange-red accent dot (for light backgrounds); `logo-dark.png` has white text with a cyan-blue accent dot (for dark backgrounds). SVG and PNG variants of all logo files also live in `logo/` - prefer `logo/logo.svg` and `logo/logo-dark.svg` for web use. See `docs/logo.md` and `docs/logo-usage.md` for full details.
+The "ct" monogram. `favicon.svg` is the standalone icon with fixed colours and a dark-mode media rule. The ICO (16 and 32px), the 180px touch icon and the 1200x630 share-card logo are rendered from the monogram on a `#0f1216` tile by `scripts/make-icons.sh`. The inline logo used in the header and footer is `src/templates/sections/logo.ejs`.
 
 ### zipline.gif
 
@@ -19,22 +19,6 @@ A 640x480 animated GIF depicting the "I feel like you're just here for the zipli
 ## Icons
 
 Technology and tool icons used to illustrate skills and experience on the site. All are either SVG or PNG format.
-
-### icons/favicon.svg
-
-The site favicon in SVG format - the icon variant of the logo ("C" + accent dot). Used as the browser tab icon in modern browsers.
-
-### icons/favicon.ico
-
-Multi-size ICO (16×16, 32×32, 48×48) for legacy browser tab support.
-
-### icons/apple-touch-icon.png
-
-180×180px PNG for iOS home screen / Apple touch icon.
-
-### icons/icon-192.png / icon-512.png
-
-192×192 and 512×512 PNG icons for Android/PWA manifest and splash screens.
 
 ### icons/aws-dynamo.svg
 

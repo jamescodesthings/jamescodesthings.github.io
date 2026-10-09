@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Notice - codesthings.com</title>
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" />
+    <%- include('sections/head') %>
   </head>
   <body>
-    <%- include('sections/dark-mode-switch') %>
+    <%- include('sections/header') %>
+    <main id="main">
     <section class="section">
       <div class="section-inner">
         <a href="/" class="footer-link" style="display:inline-block;margin-bottom:var(--space-lg)">&larr; Back</a>
@@ -55,7 +46,8 @@
         </div>
       </div>
     </section>
+    </main>
     <%- include('sections/footer') %>
-    <script src="js/theme.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>
