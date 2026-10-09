@@ -1,0 +1,26 @@
+/* One shared live region for short messages (toast.js). Sits bottom-left so it never covers the CampSnap button. */
+
+.toast-region {
+  position: fixed;
+  bottom: var(--fab-offset);
+  left: var(--fab-offset);
+  z-index: 160;
+  max-width: min(24rem, calc(100vw - 2 * var(--fab-offset) - var(--fab-size) - var(--space-sm)));
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-small);
+  color: var(--color-text);
+  pointer-events: none;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.toast-region[data-visible] {
+  opacity: 1;
+}
+
+.toast-region:empty {
+  display: none;
+}

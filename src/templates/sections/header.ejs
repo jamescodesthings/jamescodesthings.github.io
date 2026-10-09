@@ -20,7 +20,11 @@
         <span class="theme-toggle__icon theme-toggle__icon--sun"><%- include('icon', { name: 'sun', size: 20 }) %></span>
         <span class="theme-toggle__icon theme-toggle__icon--moon"><%- include('icon', { name: 'moon', size: 20 }) %></span>
       </button>
+      <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
+        <%- include('icon', { name: 'chevron', size: 18 }) %>
+      </button>
     </div>
+    <%- include('settings') %>
     <details class="site-menu">
       <summary aria-label="Menu">
         <span class="site-menu__icon-open"><%- include('icon', { name: 'chevron', size: 18 }) %></span>
