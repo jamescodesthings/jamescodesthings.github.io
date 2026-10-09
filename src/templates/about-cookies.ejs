@@ -1,13 +1,5 @@
 <%
   // locals: lastReviewed (build month, e.g. "October 2026"), stamp, links.
-  const storage = [
-    { key: 'theme', where: 'localStorage', what: 'Your colour theme choice: dark, light or system.' },
-    { key: 'nav-sections', where: 'localStorage', what: 'Whether the section navigation on the homepage is switched on or off.' },
-    { key: 'motion', where: 'localStorage', what: 'Your motion preference from the settings menu: system, reduced or full.' },
-    { key: 'campsnapFabDismissed', where: 'localStorage', what: 'Remembers that you dismissed the Campsnap prompt so it does not reappear.' },
-    { key: 'invaders-high', where: 'localStorage', what: 'Your high score in the hidden game.' },
-    { key: 'terminal-history', where: 'sessionStorage', what: 'The commands you typed in the terminal, for the current tab only. It is cleared when you close the tab.' },
-  ];
 -%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +23,7 @@
 
           <h2>Essential storage</h2>
           <p>The following items are stored locally on your device, in your browser's <code>localStorage</code> or <code>sessionStorage</code>. They never leave your device, and are never sent to any server operated by this site.</p>
-          <ul class="storage-list">
-            <% storage.forEach(function (item) { %>
-            <li class="storage-item">
-              <p class="storage-item__head"><code><%= item.key %></code> <span class="storage-item__where"><%= item.where %></span></p>
-              <p class="storage-item__what"><%= item.what %></p>
-            </li>
-            <% }); %>
-          </ul>
+          <%- include('sections/storage-keys') %>
 
           <h2>Third-party services</h2>
           <p>Fonts, icons and scripts are served from this site, not from third parties. The following services are involved:</p>

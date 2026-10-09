@@ -1,6 +1,9 @@
 <%
   // locals: colophon ({ measured: 'YYYY-MM-DD' | null, pages?: [{ path, scores, lcp, cls, tbt, bytes, requests }] }), formatLongDate, stamp, links.
+  // Task 12 writes raw numbers: lcp and tbt in ms, cls unitless, bytes in bytes. Formatted here.
   const kb = function (bytes) { return (bytes / 1024).toFixed(1) + ' KB'; };
+  const seconds = function (ms) { return (ms / 1000).toFixed(1) + ' s'; };
+  const millis = function (ms) { return Math.round(ms) + ' ms'; };
   const fonts = [
     { name: 'Bricolage Grotesque', use: 'headings', url: 'https://fontsource.org/fonts/bricolage-grotesque' },
     { name: 'Figtree', use: 'body text', url: 'https://fontsource.org/fonts/figtree' },
@@ -81,9 +84,9 @@
                   <td><%= p.scores.accessibility %></td>
                   <td><%= p.scores.bestPractices %></td>
                   <td><%= p.scores.seo %></td>
-                  <td><%= p.lcp %></td>
-                  <td><%= p.cls %></td>
-                  <td><%= p.tbt %></td>
+                  <td><%= seconds(p.lcp) %></td>
+                  <td><%= Number(p.cls).toFixed(3) %></td>
+                  <td><%= millis(p.tbt) %></td>
                   <td><%= kb(p.bytes) %></td>
                   <td><%= p.requests %></td>
                 </tr>
