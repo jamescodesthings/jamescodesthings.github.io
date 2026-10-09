@@ -40,7 +40,10 @@
   text-decoration: none;
 }
 
-.rail__link:hover,
+.rail__link:hover {
+  color: var(--color-text);
+}
+
 .rail__link[aria-current='location'] {
   color: var(--color-accent);
 }
@@ -57,16 +60,6 @@
 .rail__link[aria-current='location'] svg,
 .rail__link[aria-current='location'] .rail__num {
   transform: scale(1.15);
-}
-
-@supports (scroll-target-group: auto) {
-  .rail__list {
-    scroll-target-group: auto;
-  }
-
-  .rail__link:target-current {
-    color: var(--color-accent);
-  }
 }
 
 .rail__close {

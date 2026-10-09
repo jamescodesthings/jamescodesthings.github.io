@@ -12,7 +12,7 @@
     },
     {
       "value": "Worldwide",
-      "label": "CampSnap filters used worldwide",
+      "label": "CampSnap filter users",
       "source": "cv/data/sidebar.json, outside.items Photography; docs/redesign/05-projects-notes.md"
     }
   ],
