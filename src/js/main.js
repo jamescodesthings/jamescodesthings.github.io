@@ -1,6 +1,12 @@
 import { initTheme } from './theme.js';
+import { initCopyEmail } from './copy-email.js';
+import { initVideos } from './video.js';
+import { initFab } from './fab.js';
 
 initTheme();
+initCopyEmail();
+initVideos();
+initFab();
 
 // Phone nav collapses into a <details> menu; from 768px it sits inline.
 const menu = document.querySelector('.site-menu');

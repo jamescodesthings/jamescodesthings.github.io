@@ -30,7 +30,7 @@ export async function buildAssets() {
 }
 
 export async function buildPages(data) {
-  const { links, posts: blogPosts } = data;
+  const { links, posts: blogPosts, site, now, projects, photos } = data;
   if (!(await exists(resolve(root, config.templateDir, '404.ejs')))) throw new Error('404 template not found');
   if (blogPosts.length === 0) throw new Error('No blog posts found');
 
@@ -42,7 +42,22 @@ export async function buildPages(data) {
     path: '/',
   };
 
-  await renderPage('index.ejs', { ...common, ...index, blogPosts, formatDate }, 'index.html');
+  await renderPage(
+    'index.ejs',
+    { ...common, ...index, site, now, projects, photos, blogPosts, formatDate },
+    'index.html',
+  );
+  await renderPage(
+    'projects.ejs',
+    {
+      ...common,
+      projects,
+      title: 'Projects - codesthings.com',
+      description: 'Software and maker projects by James Macmillan, newest first.',
+      path: '/projects/',
+    },
+    'projects/index.html',
+  );
   await renderPage(
     '404.ejs',
     { ...common, title: '404 - codesthings.com', path: '/404.html', noindex: true },

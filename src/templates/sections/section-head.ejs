@@ -1,0 +1,8 @@
+<%
+  // locals: id (section id), num ('02'), icon (icon name), title. Renders the numbered heading row.
+-%>
+<header class="section-head">
+  <span class="section-head__num" aria-hidden="true"><%= num %></span>
+  <%- include('icon', { name: icon, size: 22, className: 'section-head__icon' }) %>
+  <h2 class="section-head__title" id="<%= id %>-title"><%= title %></h2>
+</header>

@@ -1,0 +1,41 @@
+<%
+  // locals: projects ({work[], make[]}), links, stamp. Every project, grouped by lane, newest first.
+  const newest = list => [...list].sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.order - b.order);
+  const lanes = [
+    { id: 'work', title: 'Work', icon: 'terminal', blurb: 'Software I have built and shipped.' },
+    { id: 'make', title: 'Make', icon: 'cube', blurb: 'Things I design, print and build.' },
+  ];
+-%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('sections/head') %>
+  </head>
+  <body class="page-projects">
+    <%- include('sections/header') %>
+    <main id="main">
+      <div class="container projects-page">
+        <h1 class="projects-page__title">Projects</h1>
+        <p class="section-lede">Everything in one place, newest first. The homepage shows the featured ones.</p>
+        <% lanes.forEach(function (lane) { %>
+        <section id="<%= lane.id %>" class="projects-lane" aria-labelledby="<%= lane.id %>-title">
+          <header class="section-head">
+            <%- include('sections/icon', { name: lane.icon, size: 22, className: 'section-head__icon' }) %>
+            <h2 class="section-head__title" id="<%= lane.id %>-title"><%= lane.title %></h2>
+          </header>
+          <p class="projects-lane__blurb"><%= lane.blurb %></p>
+          <div class="card-grid-wrap">
+            <ul class="card-grid">
+              <% newest(projects[lane.id]).forEach(function (project) { %>
+              <li><%- include('sections/project-card', { project, wide: false }) %></li>
+              <% }); %>
+            </ul>
+          </div>
+        </section>
+        <% }); %>
+      </div>
+    </main>
+    <%- include('sections/footer') %>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

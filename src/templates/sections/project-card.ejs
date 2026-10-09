@@ -1,0 +1,35 @@
+<%
+  // locals: project (validated data/projects entry), wide (bool; spans two columns when the grid has three).
+  const initials = project.title.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+  const isWide = typeof wide !== 'undefined' && wide;
+-%>
+<article class="project-card<%= isWide ? ' project-card--wide' : '' %>">
+  <div class="project-card__media">
+    <% /* Task 5 swaps this single placeholder branch for pictureHtml when project.image is set. */ %>
+    <% if (!project.image) { %>
+    <div class="project-card__placeholder" aria-hidden="true"><span><%= initials %></span></div>
+    <% } %>
+  </div>
+  <div class="project-card__body">
+    <h3 class="project-card__title"><%= project.title %></h3>
+    <p class="project-card__summary"><%= project.summary %></p>
+    <% if (project.stat) { %><p class="project-card__stat"><%= project.stat %></p><% } %>
+    <% if (project.stack.length) { %>
+    <ul class="tags" aria-label="Stack">
+      <% project.stack.forEach(function (item) { %><li class="tags__item"><%= item %></li><% }); %>
+    </ul>
+    <% } %>
+    <% if (project.links.length) { %>
+    <ul class="project-card__links">
+      <% project.links.forEach(function (link) {
+        const external = /^https?:/.test(link.url); %>
+      <li>
+        <a class="project-link" href="<%= link.url %>"<% if (external) { %> target="_blank" rel="noopener noreferrer"<% } %>>
+          <%- include('icon', { name: link.icon, size: 18 }) %><span><%= link.label %></span><span class="visually-hidden"> for <%= project.title %><%= external ? ' (opens in a new tab)' : '' %></span>
+        </a>
+      </li>
+      <% }); %>
+    </ul>
+    <% } %>
+  </div>
+</article>

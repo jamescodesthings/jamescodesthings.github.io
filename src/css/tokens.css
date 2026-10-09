@@ -16,6 +16,7 @@
   --color-accent-strong: #ffc96b;
   --color-on-accent: #0f1216;
   --color-focus: #f5b84a;
+  --color-status: #4ade80; /* availability dot; decorative, 3:1 or better on surface */
 }
 
 :root[data-theme='light'] {
@@ -30,6 +31,7 @@
   --color-accent-strong: #6e4200;
   --color-on-accent: #fafaf7;
   --color-focus: #8a5300;
+  --color-status: #1a7f37;
 }
 
 /* Fonts: Latin variable woff2, self-hosted. Sources and licences in assets/fonts/. */
