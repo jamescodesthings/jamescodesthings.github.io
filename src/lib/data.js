@@ -3,6 +3,8 @@ import config from '../config.js';
 import { readJson, readFile, ls, exists } from '../utils.js';
 import { parsePost } from './frontmatter.js';
 import { validateProject, validatePhoto } from './validate.js';
+import { createRenderer } from './markdown.js';
+import { readingTime } from './reading.js';
 
 async function jsonFiles(dir) {
   if (!(await exists(dir))) return [];
@@ -19,17 +21,47 @@ async function loadAll(dir, validate) {
 
 const byOrder = (a, b) => a.order - b.order;
 
+const tagList = value =>
+  (value || '')
+    .split(',')
+    .map(t => t.trim())
+    .filter(Boolean);
+
+const link = post => (post ? { slug: post.slug, title: post.title } : null);
+
+// Posts come back newest first. A post needs no front matter: summary is '' and cover null when absent.
+// `html` is the rendered body without its title heading; images are still the raw references, and
+// buildPages runs processHtmlImages over it. prev is the older post, next the newer one.
 async function loadPosts(blogDir) {
   if (!(await exists(blogDir))) return [];
+  const renderer = await createRenderer();
   const files = (await ls(blogDir)).filter(f => f.endsWith('.md')).sort();
   const posts = [];
   for (const file of files) {
     const slug = basename(file, '.md');
     const { meta, title, body } = parsePost(await readFile(resolve(blogDir, file)));
     const dateMatch = slug.match(/^(\d{4}-\d{2}-\d{2})/);
-    posts.push({ slug, title: title || slug, summary: meta.summary || '', body, date: dateMatch ? dateMatch[1] : '' });
+    const { html, headings } = renderer.render(body);
+    posts.push({
+      slug,
+      title: title || slug,
+      summary: meta.summary || '',
+      date: dateMatch ? dateMatch[1] : '',
+      updated: meta.updated || '',
+      cover: meta.cover || null,
+      coverAlt: meta.coverAlt || '',
+      tags: tagList(meta.tags),
+      html,
+      headings,
+      readingTime: readingTime(body),
+    });
   }
-  return posts.reverse(); // newest first
+  posts.reverse();
+  posts.forEach((post, i) => {
+    post.next = link(posts[i - 1]);
+    post.prev = link(posts[i + 1]);
+  });
+  return posts;
 }
 
 // Reads and validates everything under <root>/data. A bad project or photo file throws, naming the file.

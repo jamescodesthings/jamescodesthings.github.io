@@ -1,0 +1,85 @@
+/* Code blocks. Shiki emits colours as var(--shiki-*); they are mapped here to the --code-* tokens,
+   which tokens.css defines for dark and light. No literal colour lives in this file. */
+
+.code-block {
+  --shiki-foreground: var(--code-text);
+  --shiki-background: var(--color-surface);
+  --shiki-token-comment: var(--code-comment);
+  --shiki-token-keyword: var(--code-keyword);
+  --shiki-token-string: var(--code-string);
+  --shiki-token-string-expression: var(--code-string);
+  --shiki-token-constant: var(--code-constant);
+  --shiki-token-function: var(--code-function);
+  --shiki-token-parameter: var(--code-text);
+  --shiki-token-punctuation: var(--code-punctuation);
+  --shiki-token-link: var(--code-constant);
+
+  position: relative;
+  margin-block: var(--space-lg);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: var(--space-md) 3.5rem var(--space-md) var(--space-md);
+  overflow-x: auto;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  tab-size: 2;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.code-block code {
+  font-family: var(--font-mono);
+  font-size: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* Inline code in prose. */
+:not(pre) > code {
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+  background: var(--color-surface-raised);
+  border-radius: 4px;
+}
+
+.code-block__copy {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--color-muted);
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.code-block__copy[hidden] {
+  display: none;
+}
+
+.code-block__copy:hover {
+  color: var(--color-text);
+}
+
+.code-block__icon {
+  display: inline-flex;
+}
+
+.code-block__icon--done,
+.code-block__copy.is-copied .code-block__icon--idle {
+  display: none;
+}
+
+.code-block__copy.is-copied .code-block__icon--done {
+  display: inline-flex;
+  color: var(--code-string);
+}

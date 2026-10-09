@@ -3,15 +3,12 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFile as fsReadFile, readdir, writeFile as fsWriteFile, mkdir, rm, copyFile, stat } from 'fs/promises';
 import ejs from 'ejs';
-import showdown from 'showdown';
 import config from './config.js';
 
 const debug = Debug('codesthings:utils');
 debug.enabled = true;
 const trace = Debug('codesthings:utils:trace');
 trace.enabled = false;
-
-const converter = new showdown.Converter({ tables: true, ghCodeBlocks: true });
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -91,6 +88,13 @@ export function formatDate(dateStr) {
   return `${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
+// "30 March 2026" from a YYYY-MM-DD date, in UTC so the day never shifts with the build machine's zone.
+export function formatLongDate(dateStr) {
+  const date = new Date(`${dateStr}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return '';
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
 export async function renderTemplate(templatePath, data) {
   debug(` - Rendering ${templatePath}`);
   const template = await readFile(templatePath);
@@ -98,8 +102,4 @@ export async function renderTemplate(templatePath, data) {
     filename: templatePath,
     views: [resolve(root, config.templateDir)],
   });
-}
-
-export function markdownToHtml(markdown) {
-  return converter.makeHtml(markdown);
 }

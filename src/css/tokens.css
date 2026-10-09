@@ -17,6 +17,15 @@
   --color-on-accent: #0f1216;
   --color-focus: #f5b84a;
   --color-status: #4ade80; /* availability dot; decorative, 3:1 or better on surface */
+
+  /* Syntax colours for code blocks; each is 4.5:1 or better on --color-surface. */
+  --code-text: var(--color-text);
+  --code-comment: var(--color-muted);
+  --code-keyword: var(--color-accent);
+  --code-punctuation: var(--color-muted);
+  --code-string: #8fd4a4;
+  --code-constant: #7fb7f0;
+  --code-function: #c4a7f0;
 }
 
 :root[data-theme='light'] {
@@ -32,6 +41,14 @@
   --color-on-accent: #fafaf7;
   --color-focus: #8a5300;
   --color-status: #1a7f37;
+
+  --code-text: var(--color-text);
+  --code-comment: var(--color-muted);
+  --code-keyword: var(--color-accent);
+  --code-punctuation: var(--color-muted);
+  --code-string: #1a6a36;
+  --code-constant: #1d5fa8;
+  --code-function: #6b3fa8;
 }
 
 /* Fonts: Latin variable woff2, self-hosted. Sources and licences in assets/fonts/. */

@@ -1,70 +1,58 @@
 ---
-summary: No framework, no CMS. JSON and Markdown go in, plain HTML comes out, and every push to main ships it.
+summary: The whole site is about 600 lines of Node and a folder of JSON. Here's how it works, and why there's no framework.
+tags: node, static site, meta
 ---
 
 # Personal Website
 
-_Published: 30 March 2026_
+This is how codesthings.com is built, from data files to deployed website. It is a small Node program that reads JSON and Markdown, fills in EJS templates, and writes plain HTML into a folder.
 
-This is a quick summary of how codesthings.com is built, from data files to deployed website.
+## The shape of it
 
-## The Architecture
+The pattern is **data in, pipeline, files out**, borrowed from my [campsnap-filters](https://github.com/jamescodesthings/campsnap-filters) project. Nothing runs on a server and nothing is rendered in the browser. The pages are finished HTML before anyone asks for them.
 
-The site follows a **data-in, pipeline, artifacts-out** pattern inspired by the [campsnap-filters](https://github.com/jamescodesthings/campsnap-filters) project.
+### Data
 
-### Data Layer
+All content lives in `data/`:
 
-All site content lives in JSON files under `data/`:
+- `site.json`, `now.json`, `uses.json` and `links.json` hold the homepage copy, the Now page, the Uses page and the link list.
+- `projects/` has one JSON file per project, with a `lane` of `work` or `make`.
+- `photos/` has one JSON file per photo.
+- `blog/` has one Markdown file per post. The file name gives the slug and the date.
 
-- `profile.json` - Name, title, summary
-- `experience.json` - Work history
-- `skills.json` - Technical skills grouped by category
-- `education.json` - Qualifications
-- `projects.json` - Portfolio projects
-- `sidebar.json` - Contact info, social links, tech stacks
-- `socials.json` - Social platform links and descriptions
-- `cover-letter.json` - Cover letter variants
+To change the site, I edit one of those files. A project or photo file with a missing key or a bad `lane` fails the build and names the file, rather than rendering a broken card.
 
-To update the site content, you just edit the JSON.
+### The build
 
-### Generator
+`src/index.js` is orchestration only. It loads the data, builds the assets, and renders every page through a single `renderPage` function. The work happens in small modules under `src/lib/`:
 
-The `src/` directory contains a Node.js (pure ESM) static site builder:
+- `data.js` reads and validates everything under `data/`.
+- `validate.js` checks project and photo files.
+- `frontmatter.js` splits a post into its front matter and body.
+- `markdown.js` renders posts with markdown-it, adds heading anchors, callouts and copy buttons, and highlights code with Shiki at build time.
+- `reading.js` works out the reading time.
+- `images.js` is the image pipeline.
+- `css.js` bundles the stylesheets with Lightning CSS.
+- `buildstamp.js` reads the git commit for the version in the footer.
 
-1. **Load** - Reads all JSON data files
-2. **Render** - Passes data through EJS templates to produce HTML
-3. **Copy** - Moves static assets (CSS, favicons, icons) to the output directory
-4. **Output** - Everything lands in `public/`
+Templates are EJS files in `src/templates/`, and every page is built from the same header, footer and head partials.
 
-There is no React, no Vite, no bundler. Just Node.js reading files and writing files.
+### Images
 
-### Templates
+Every image a post, project or photo refers to goes through [sharp](https://sharp.pixelplumbing.com/). It writes AVIF and WebP at 480, 960 and 1600 pixels wide, wraps them in a `<picture>` with the real width and height, and lazy-loads everything except the first image. Results are cached in `.cache/images/`, keyed by a hash of the source, so a rebuild only does new work. Only images that something refers to are shipped. If a post points at an image that doesn't exist, the build fails and names the post and the path.
 
-EJS templates in `src/templates/` define the page structure. Each section (hero, experience, skills, projects, etc.) is its own partial template. The main `index.ejs` composes them together.
+### Styling and scripts
 
-### Styling
+The stylesheet is plain CSS in ordered files: design tokens, a base layer, layout, components and pages. The build joins and minifies them into one file. Dark is the default and light is a switch on `<html>`, set by a tiny inline script before first paint. The JavaScript is plain ES modules with no framework and no bundler, and the post-only scripts (the contents list, the copy buttons and the video facade) only load on posts.
 
-Plain CSS with CSS custom properties (variables) for theming. Dark and light modes are supported via a `.dark` class on the body, toggled by a small client-side script. No Tailwind, no PostCSS, no preprocessor.
+### Tests
 
-### Infrastructure
+The pure parts have unit tests that run with `node --test`: front matter, validation, the build stamp, the image pipeline, the Markdown renderer, reading time and the theme and floating-button scripts. `npm test` runs them all.
 
-- **Makefile** - All developer-facing commands. `make build`, `make serve`, `make dev`.
-- **Docker Compose** - Services for containerized builds: a static file server, Gotenberg (Chromium headless for PDF generation), and the Node.js build container.
-- **GitHub Actions** - On push to `main`: build the site, generate a PDF, deploy to the `pages` branch.
+## Deploying
 
-## Why This Approach?
+A push to `main` runs `.github/workflows/deploy.yml`. It runs `make build`, which runs the same Node build inside a `node:24-alpine` container, and publishes the `public/` folder to the `pages` branch. GitHub Pages serves that branch at codesthings.com. There is no server to look after.
 
-The previous version used React, Vite, TypeScript, Tailwind, PostCSS, Storybook, and CircleCI. That was a lot of tooling for what is fundamentally a single-page CV website.
+## Why no framework?
 
-The new version has:
-
-- **No build step for the browser** - The output is plain HTML, CSS, and zero JavaScript (except a tiny dark mode toggle)
-- **No framework** - EJS templates are simple and readable
-- **No CSS framework** - CSS variables do everything Tailwind did, with less abstraction
-- **Portable PDF generation** - Gotenberg prints the page to PDF via Chromium, no local browser required
-
-The entire generator is about 200 lines of JavaScript. The data is in JSON. The templates are in EJS. The styles are in CSS. That is the whole thing.
-
----
-
-[Back to codesthings.com](/)
+The site is a handful of pages that change when I write something. A framework would add a build step, a dependency tree and a runtime for no visible gain, and this version is easier to read in an afternoon than to configure.

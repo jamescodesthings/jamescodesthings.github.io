@@ -8,6 +8,15 @@ initCopyEmail();
 initVideos();
 initFab();
 
+// Post pages only: the table of contents, code copy buttons and the video facade.
+if (document.querySelector('.post-body')) {
+  Promise.all([import('./toc.js'), import('./copy-code.js'), import('./yt-facade.js')]).then(([toc, copy, yt]) => {
+    toc.initToc();
+    copy.initCopyCode();
+    yt.initYoutubeFacades();
+  });
+}
+
 // Phone nav collapses into a <details> menu; from 768px it sits inline.
 const menu = document.querySelector('.site-menu');
 if (menu) {
