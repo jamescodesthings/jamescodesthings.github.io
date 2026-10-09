@@ -18,6 +18,8 @@ services:
       service: base
     ports:
       - 8080:8080
+    environment:
+      HOST: 0.0.0.0
     command: sh -c "npm install && node --no-deprecation src/watch.js & node --no-deprecation src/server.js & wait"
 
   serve:
