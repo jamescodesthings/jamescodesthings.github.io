@@ -34,6 +34,14 @@
   overflow: visible;
 }
 
+.logo__accent {
+  stroke: var(--color-accent);
+}
+
+.logo__dot {
+  fill: var(--color-accent);
+}
+
 .settings-pill {
   order: 2;
   margin-left: auto;

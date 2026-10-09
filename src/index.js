@@ -34,7 +34,7 @@ const debug = Debug('codesthings:index');
 debug.enabled = true;
 
 // The single page-render entry point: `template` is relative to the template dir, `outPath` to the output dir.
-// Every page written, so the sitemap is derived from the build rather than listed by hand.
+// Every public page written, so the sitemap is derived from the build rather than listed by hand (drafts are left out).
 const renderedPaths = new Set();
 
 // One entry per page that gets a share card, recorded as pages render and drawn by buildOg.
@@ -44,7 +44,7 @@ const TITLE_SUFFIX = / - codesthings\.com$/;
 
 export async function renderPage(template, data, outPath) {
   debug(`Rendering ${outPath}`);
-  renderedPaths.add(outPath);
+  if (!data.post?.draft) renderedPaths.add(outPath);
   const cardPath = ogCardPath(outPath);
   if (cardPath) {
     // head.ejs reads ogImage; the slug comes from the same helper buildOg writes with.
@@ -102,6 +102,7 @@ async function withImage(item, key, label, resolveFn = resolveAssetPath) {
 
 export async function buildPages(data) {
   const { links, posts: blogPosts, site, now, uses } = data;
+  const drafts = data.drafts || [];
   siteUrl = site.url;
   // Only a missing file means "not measured yet"; a malformed one fails the build naming the file.
   const colophonPath = resolve(root, config.dataDir, 'colophon.json');
@@ -149,7 +150,13 @@ export async function buildPages(data) {
   );
   await renderPage(
     '404.ejs',
-    { ...common, title: '404 - codesthings.com', path: '/404.html', noindex: true },
+    {
+      ...common,
+      title: '404 - codesthings.com',
+      description: 'This page does not exist. Head back to the home page, the CV or the blog.',
+      path: '/404.html',
+      noindex: true,
+    },
     '404.html',
   );
   const lastReviewed = new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -214,7 +221,7 @@ export async function buildPages(data) {
   // Post body images already went through the pipeline in loadData (renderPost), so every consumer
   // (pages, feed) sees final html. Covers are processed here.
   const imageOpts = { assetsRoot, outDir: imageOutDir, cacheDir: imageCacheDir };
-  for (const post of blogPosts) {
+  for (const post of [...blogPosts, ...drafts]) {
     if (post.cover) {
       post.coverImage = await processImage(resolveAssetPath(post.cover, assetsRoot), imageOpts).catch(err => {
         throw new Error(`${post.slug}: cover ${post.cover}: ${err.message}`);
@@ -236,7 +243,8 @@ export async function buildPages(data) {
     },
     'blog/index.html',
   );
-  for (const post of blogPosts) {
+  // Drafts get a page at their URL so they can be previewed, but are kept out of the lists, feed and sitemap.
+  for (const post of [...blogPosts, ...drafts]) {
     debug(` - Blog: ${post.title} (${post.slug})`);
     await renderPage(
       'blog.ejs',
@@ -251,6 +259,8 @@ export async function buildPages(data) {
         description: postSummary(post),
         path: `/blog/${post.slug}.html`,
         type: 'article',
+        publishedTime: post.date,
+        noindex: post.draft,
       },
       `blog/${post.slug}.html`,
     );

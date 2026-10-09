@@ -1,6 +1,5 @@
 <%
   // locals: project (validated data/projects entry), wide (bool; spans two columns when the grid has three).
-  const initials = project.title.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
   const isWide = typeof wide !== 'undefined' && wide;
 -%>
 <article class="project-card<%= isWide ? ' project-card--wide' : '' %>">
@@ -8,7 +7,7 @@
     <% if (project.imageData) { %>
     <%- include('picture', { image: project.imageData, alt: '', sizes: isWide ? '(min-width: 64rem) 45vw, 100vw' : '(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw', priority: false }) %>
     <% } else { %>
-    <div class="project-card__placeholder" aria-hidden="true"><span><%= initials %></span></div>
+    <div class="project-card__placeholder" aria-hidden="true"><%- include('icon', { name: project.lane === 'make' ? 'cube' : 'terminal', size: 72 }) %></div>
     <% } %>
   </div>
   <div class="project-card__body">
