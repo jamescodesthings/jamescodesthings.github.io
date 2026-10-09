@@ -1,7 +1,7 @@
 // Image pipeline: sharp resizes each referenced raster to AVIF and WebP at a few widths, caches the
 // output by content hash, and renders a <picture>. Only images that something references get output.
 import { createHash } from 'crypto';
-import { resolve, relative, isAbsolute, posix, extname } from 'path';
+import { resolve, relative, isAbsolute, posix, extname, basename } from 'path';
 import { readFile, writeFile, mkdir, copyFile, stat } from 'fs/promises';
 import sharp from 'sharp';
 
@@ -148,37 +148,78 @@ export function resolveAssetPath(ref, assetsRoot) {
 
 const isRaster = ref => RASTER.has(extname(ref.split(/[?#]/)[0]).toLowerCase());
 
-// Rewrites every local raster <img> in `html` to a <picture>. `<a>` wrapping an image that links to the
-// same file gets its href pointed at the largest WebP. The first image gets priority, the rest are lazy.
-// A missing image throws, naming the slug and the reference.
+// A photo `src` in data/photos/*.json is relative to src/assets/photos/ ("x.jpg"). A leading "/assets/",
+// "assets/" or "../assets/" still means src/assets/ as written.
+export function resolvePhotoPath(src, assetsRoot) {
+  if (/^(\.\.?\/)?\/?assets\//.test(src)) return resolveAssetPath(src, assetsRoot);
+  return resolveAssetPath(posix.join('photos', src), assetsRoot);
+}
+
+// Local, non-image-tag link targets that point into the assets tree must exist and ship.
+const isAssetLink = ref => !isExternal(ref) && /(^|\/)assets\//.test(ref.split(/[?#]/)[0]);
+
+// Rewrites every local <img> in `html`. Raster images become a <picture>; other local files (svg, gif)
+// are copied as-is. A wrapping <a> whose href is the same image points at the largest WebP; a different
+// local file under assets/ is validated and shipped too. The first image gets priority, the rest are
+// lazy. Every failure is prefixed with the slug, so a missing or undecodable file names the post.
 export async function processHtmlImages(
   html,
-  { slug, assetsRoot, outDir, cacheDir, sizes = POST_SIZES, widths, urlPrefix },
+  { slug, assetsRoot, outDir, cacheDir, sizes = POST_SIZES, widths, urlPrefix = DEFAULT_URL_PREFIX },
 ) {
-  const cache = new Map();
-  const load = async ref => {
-    if (!cache.has(ref)) {
-      const abs = resolveAssetPath(ref, assetsRoot);
-      if (!(await fileExists(abs))) throw new Error(`${slug}: image not found: ${ref} (looked for ${abs})`);
-      cache.set(ref, await processImage(abs, { widths, outDir, cacheDir, urlPrefix }));
-    }
-    return cache.get(ref);
+  const images = new Map(); // ref -> processImage result
+  const copies = new Map(); // ref -> url of a copied non-raster file
+  const fail = (ref, err) => {
+    throw new Error(err.message.startsWith(`${slug}:`) ? err.message : `${slug}: ${ref}: ${err.message}`);
   };
+  const locate = async ref => {
+    let abs;
+    try {
+      abs = resolveAssetPath(ref, assetsRoot);
+    } catch (err) {
+      fail(ref, err);
+    }
+    if (!(await fileExists(abs))) throw new Error(`${slug}: image not found: ${ref} (looked for ${abs})`);
+    return abs;
+  };
+  const ship = async ref => {
+    if (images.has(ref) || copies.has(ref)) return;
+    const abs = await locate(ref);
+    try {
+      if (isRaster(ref)) {
+        images.set(ref, await processImage(abs, { widths, outDir, cacheDir, urlPrefix }));
+      } else {
+        const bytes = await readFile(abs);
+        const name = `${createHash('sha1').update(bytes).digest('hex').slice(0, 12)}-${basename(abs)}`;
+        await mkdir(outDir, { recursive: true });
+        await writeFile(resolve(outDir, name), bytes);
+        copies.set(ref, `${urlPrefix}/${name}`);
+      }
+    } catch (err) {
+      fail(ref, err);
+    }
+  };
+  const urlFor = ref => (images.has(ref) ? images.get(ref).fallback : copies.get(ref));
 
+  const TAGS = /(<a\b[^>]*>\s*)?(<img\b[^>]*>)/gi;
   // Resolve everything first (async), then substitute synchronously.
-  const refs = collectImageRefs(html).filter(r => !isExternal(r) && isRaster(r));
-  for (const ref of new Set(refs)) await load(ref);
+  for (const [, anchor, tag] of html.matchAll(TAGS)) {
+    const src = attr(tag, 'src');
+    if (src && !isExternal(src)) await ship(src);
+    const href = anchor && attr(anchor, 'href');
+    if (href && href !== src && isAssetLink(href)) await ship(href);
+  }
 
   let first = true;
-  return html.replace(/(<a\b[^>]*>\s*)?(<img\b[^>]*>)/gi, (whole, anchor = '', tag) => {
+  return html.replace(TAGS, (whole, anchor = '', tag) => {
     const src = attr(tag, 'src');
-    if (!src || isExternal(src) || !isRaster(src)) return whole;
-    const image = cache.get(src);
-    const priority = first;
-    first = false;
+    if (!src || isExternal(src)) return whole;
     let open = anchor;
     const href = anchor && attr(anchor, 'href');
-    if (href && href === src) open = anchor.replace(/(href\s*=\s*")[^"]*(")/i, `$1${image.fallback}$2`);
-    return open + pictureHtml({ image, alt: attr(tag, 'alt') ?? '', sizes, priority });
+    if (href && (href === src || isAssetLink(href)))
+      open = anchor.replace(/(href\s*=\s*")[^"]*(")/i, `$1${urlFor(href)}$2`);
+    if (!images.has(src)) return open + tag.replace(/(src\s*=\s*")[^"]*(")/i, `$1${copies.get(src)}$2`);
+    const priority = first;
+    first = false;
+    return open + pictureHtml({ image: images.get(src), alt: attr(tag, 'alt') ?? '', sizes, priority });
   });
 }
