@@ -1,1 +1,33 @@
-{ "measured": null }
+{
+  "measured": "2026-10-09",
+  "pages": [
+    {
+      "path": "/",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "lcp": 1530,
+      "cls": 0,
+      "tbt": 0,
+      "bytes": 132874,
+      "requests": 19
+    },
+    {
+      "path": "/blog/2026-05-01-zerocalc.html",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "lcp": 1504,
+      "cls": 0,
+      "tbt": 0,
+      "bytes": 157196,
+      "requests": 23
+    }
+  ]
+}

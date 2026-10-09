@@ -1,5 +1,5 @@
 ---
-summary: The whole site is about 1300 lines of Node and a folder of JSON. Here's how it works, and why there's no framework.
+summary: The whole site is about 3000 lines of JavaScript and a folder of JSON. Here's how it works, and why there's no framework.
 tags: node, static site, meta
 ---
 
