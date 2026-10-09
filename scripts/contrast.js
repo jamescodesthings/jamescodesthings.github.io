@@ -32,11 +32,12 @@ const PAIRS = [
   ]),
 ];
 
-export function parseBlock(css, selectorPattern) {
+export function parseBlock(source, selectorPattern) {
+  const css = source.replace(/\/\*[\s\S]*?\*\//g, ''); // comments can hold ';' and '}'
   const m = css.match(new RegExp(`${selectorPattern}\\s*\\{([^}]*)\\}`));
   if (!m) throw new Error(`tokens.css: no block matching ${selectorPattern}`);
   const vars = {};
-  for (const d of m[1].matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)) vars[d[1]] = d[2].replace(/\/\*.*?\*\//g, '').trim();
+  for (const d of m[1].matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)) vars[d[1]] = d[2].trim();
   return vars;
 }
 

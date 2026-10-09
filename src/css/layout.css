@@ -42,12 +42,3 @@ main {
 [id] {
   scroll-margin-top: calc(var(--header-height) + var(--space-md));
 }
-
-@media print {
-  .site-header,
-  .skip-link,
-  .site-footer,
-  .campsnap-fab {
-    display: none !important;
-  }
-}

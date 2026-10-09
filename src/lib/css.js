@@ -22,6 +22,7 @@ export async function bundleCss(cssDir) {
     join(cssDir, 'layout.css'),
     ...(await cssIn(join(cssDir, 'components'))),
     ...(await cssIn(join(cssDir, 'pages'))),
+    join(cssDir, 'print.css'),
   ];
   const parts = [];
   for (const file of files) {

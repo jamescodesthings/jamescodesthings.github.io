@@ -1,0 +1,68 @@
+/*
+ * Print: the light palette whatever the theme, no chrome, and link addresses after links.
+ * The token values below repeat the light block in tokens.css (test/contrast.test.js keeps them equal).
+ */
+@media print {
+  :root,
+  :root[data-theme='dark'],
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --color-bg: #fafaf7;
+    --color-surface: #f1f1ec;
+    --color-surface-raised: #e8e8e2;
+    --color-border: #d9d9d2;
+    --color-text: #1b1f24;
+    --color-muted: #566070;
+    --color-accent: #8a5300;
+    --color-accent-strong: #6e4200;
+    --color-on-accent: #fafaf7;
+    --color-focus: #8a5300;
+    --color-status: #1a7f37;
+    --code-string: #1a6a36;
+    --code-constant: #1d5fa8;
+    --code-function: #6b3fa8;
+  }
+
+  /* Header, nav, rail, buttons, video, the floating button and the hidden extras never print. */
+  .site-header,
+  .skip-link,
+  .site-footer,
+  .rail,
+  .toc,
+  .campsnap-fab,
+  .settings-popover,
+  .terminal,
+  .game,
+  .toast,
+  button,
+  .btn,
+  .code-block__copy,
+  .video-toggle,
+  .spotlight__media,
+  video,
+  iframe {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* Link addresses after the text. In-page anchors and links that wrap images are skipped. */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  a[href^='/']::after {
+    content: ' (https://codesthings.com' attr(href) ')';
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  a[href^='#']::after,
+  a:has(img, picture, svg)::after {
+    content: none;
+  }
+}
