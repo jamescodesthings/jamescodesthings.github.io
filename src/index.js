@@ -1,6 +1,6 @@
 import Debug from 'debug';
 import { resolve, dirname, basename } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import config from './config.js';
 import {
   readJson,
@@ -12,64 +12,69 @@ import {
   ls,
   readFile,
   renderTemplate,
-  parsePost,
   formatDate,
-  renderBlogPost,
+  markdownToHtml,
 } from './utils.js';
+import { parsePost } from './lib/frontmatter.js';
+import { bundleCss } from './lib/css.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
+const outputDir = resolve(root, config.outputDir);
 
 const debug = Debug('codesthings:index');
 debug.enabled = true;
+
+export async function loadData() {
+  const links = await readJson(resolve(root, config.dataDir, 'links.json'));
+  const blogPosts = await getBlogPosts();
+  return { links, blogPosts };
+}
+
+// The single page-render entry point: `template` is relative to the template dir, `outPath` to the output dir.
+export async function renderPage(template, data, outPath) {
+  debug(`Rendering ${outPath}`);
+  const html = await renderTemplate(resolve(root, config.templateDir, template), data);
+  await writeFile(resolve(outputDir, outPath), html);
+}
+
+export async function buildAssets() {
+  await rmrf(outputDir);
+  await mkdirp(outputDir);
+  await writeFile(`${outputDir}/css/styles.css`, await bundleCss(resolve(root, config.cssDir)));
+  await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
+  await cpDir(resolve(root, config.assetsDir), `${outputDir}/assets`);
+}
+
+export async function buildPages(data) {
+  const { links, blogPosts } = data;
+  if (!(await exists(resolve(root, config.templateDir, '404.ejs')))) throw new Error('404 template not found');
+  if (blogPosts.length === 0) throw new Error('No blog posts found');
+
+  await renderPage('index.ejs', { links, blogPosts, formatDate }, 'index.html');
+  await renderPage('404.ejs', {}, '404.html');
+  await renderPage('privacy-notice.ejs', {}, 'privacy-notice.html');
+  await renderPage('about-cookies.ejs', {}, 'about-cookies.html');
+  for (const post of blogPosts) {
+    debug(` - Blog: ${post.title} (${post.slug})`);
+    await renderPage(
+      'blog.ejs',
+      { title: post.title, summary: post.summary, content: markdownToHtml(post.body) },
+      `blog/${post.slug}.html`,
+    );
+  }
+}
 
 async function build() {
   const buildStart = Date.now();
   debug(`Build started at ${new Date(buildStart).toLocaleTimeString()}`);
 
-  const outputDir = resolve(root, config.outputDir);
-  const links = await readJson(resolve(root, config.dataDir, 'links.json'));
-  const blogPosts = await getBlogPosts();
-
-  await rmrf(outputDir);
-  await mkdirp(outputDir);
-  await cpDir(resolve(root, config.cssDir), `${outputDir}/css`);
-  await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
-  await cpDir(resolve(root, config.assetsDir), `${outputDir}/assets`);
-
-  await renderIndex({ links, blogPosts }, outputDir);
-  await render404(outputDir);
-  await renderStaticPage('privacy-notice.ejs', 'privacy-notice.html', outputDir);
-  await renderStaticPage('about-cookies.ejs', 'about-cookies.html', outputDir);
-  await renderBlogPosts(blogPosts, outputDir);
+  const data = await loadData();
+  await buildAssets();
+  await buildPages(data);
 
   const buildEnd = Date.now();
   debug(`Build Complete (${((buildEnd - buildStart) / 1000).toFixed(2)}s)\n`);
-}
-
-async function renderIndex(data, outputDir) {
-  debug('Rendering index.html');
-  const indexTemplatePath = resolve(root, config.templateDir, 'index.ejs');
-  const html = await renderTemplate(indexTemplatePath, { ...data, formatDate });
-  await writeFile(`${outputDir}/index.html`, html);
-}
-
-async function render404(outputDir) {
-  const notFoundTemplatePath = resolve(root, config.templateDir, '404.ejs');
-  if (await exists(notFoundTemplatePath)) {
-    debug(`Rendering ${outputDir}/404.html`);
-    const notFoundHtml = await renderTemplate(notFoundTemplatePath, {});
-    await writeFile(`${outputDir}/404.html`, notFoundHtml);
-  } else {
-    throw new Error('404 template not found');
-  }
-}
-
-async function renderStaticPage(template, output, outputDir) {
-  const templatePath = resolve(root, config.templateDir, template);
-  debug(`Rendering ${outputDir}/${output}`);
-  const html = await renderTemplate(templatePath, {});
-  await writeFile(`${outputDir}/${output}`, html);
 }
 
 async function getBlogPosts() {
@@ -80,21 +85,14 @@ async function getBlogPosts() {
   const posts = [];
   for (const file of files) {
     const slug = basename(file, '.md');
-    const { title, summary, body } = parsePost(await readFile(resolve(blogDir, file)));
+    const { meta, title, body } = parsePost(await readFile(resolve(blogDir, file)));
     const dateMatch = slug.match(/^(\d{4}-\d{2}-\d{2})/);
     const date = dateMatch ? dateMatch[1] : '';
-    posts.unshift({ slug, title: title || slug, summary, body, date });
+    posts.unshift({ slug, title: title || slug, summary: meta.summary || '', body, date });
   }
   return posts;
 }
 
-async function renderBlogPosts(blogPosts, outputDir) {
-  if (blogPosts.length === 0) throw new Error('No blog posts found');
-
-  await mkdirp(`${outputDir}/blog`);
-  for (const post of blogPosts) {
-    await renderBlogPost(post);
-  }
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await build();
 }
-
-await build();

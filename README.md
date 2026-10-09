@@ -12,7 +12,8 @@ make dev          # Watch + serve at http://localhost:8080
 
 # Without Docker
 npm install
-npm start         # Build to public/
+npm run build     # Build to public/
+npm test          # Run tests
 npm run server    # Serve at http://localhost:8080
 ```
 
@@ -23,9 +24,9 @@ src/              Build pipeline and source files
   index.js        Main build script
   server.js       Dev server
   watch.js        File watcher
-  pages.js        GitHub Pages build
   config.js       Path configuration
   utils.js        File I/O helpers
+  lib/            Build modules (front matter, build stamp, CSS bundling)
   templates/      EJS templates (index.ejs, blog.ejs, sections/)
   css/            Stylesheets
   js/             Client-side JS (theme toggle, animations)
@@ -33,7 +34,6 @@ src/              Build pipeline and source files
 data/             Site content as JSON + blog posts as Markdown
 raw/              Source design files (Illustrator, tracked via LFS)
 public/           Build output (gitignored)
-pages/            GitHub Pages output (gitignored)
 docs/             Project documentation
 ```
 
@@ -42,9 +42,7 @@ docs/             Project documentation
 | Target       | Description                                              |
 | ------------ | -------------------------------------------------------- |
 | `make build` | Build via Docker (includes PDF generation via Gotenberg) |
-| `make serve` | Serve built site at http://localhost:8080 (Docker)       |
 | `make dev`   | Local development: watch + serve (Docker)                |
-| `make pages` | Build GitHub Pages output (Docker)                       |
 | `make clean` | Remove build output, stop containers                     |
 
 ## Deployment

@@ -43,7 +43,14 @@ const server = createServer(async (req, res) => {
   }
 
   try {
-    const fileStat = await stat(filePath);
+    let fileStat = await stat(filePath).catch(err => {
+      if (err.code === 'ENOENT' && !extname(filePath)) return null;
+      throw err;
+    });
+    if (!fileStat) {
+      filePath = `${filePath}.html`;
+      fileStat = await stat(filePath);
+    }
     if (fileStat.isDirectory()) {
       filePath = resolve(filePath, 'index.html');
     }
