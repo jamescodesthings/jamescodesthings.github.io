@@ -113,6 +113,10 @@ export function initRail({ toast, win = window } = {}) {
   rail.addEventListener('focusin', wake);
   rail.addEventListener('focusout', wake);
   doc.addEventListener('motion:change', render);
+  // An OS reduced-motion change mid-session takes effect straight away.
+  try {
+    win.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', render);
+  } catch (e) {}
   wide.addEventListener('change', () => {
     if (wide.matches) setExpanded(false);
   });

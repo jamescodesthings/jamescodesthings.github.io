@@ -3,7 +3,7 @@
   const cv = links.find(l => l.primary);
   const social = links.filter(l => !l.primary);
 -%>
-<section id="top" class="home-hero" aria-labelledby="hero-title" data-rail-icon="home" data-rail-title="Top">
+<section id="<%= rail.id %>" class="home-hero" aria-labelledby="hero-title" data-rail-icon="<%= rail.icon %>" data-rail-title="<%= rail.title %>">
   <svg class="home-hero__dots" aria-hidden="true" focusable="false">
     <defs>
       <pattern id="hero-dots" width="24" height="24" patternUnits="userSpaceOnUse">

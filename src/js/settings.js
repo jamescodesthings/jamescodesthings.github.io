@@ -62,9 +62,13 @@ export function initSettings(win = window) {
       close({ focus: true });
     }
   });
-  // Outside click closes it without taking focus from whatever was clicked.
+  // Outside click closes it and returns focus to the chevron, unless the click landed on something focusable:
+  // then that element takes focus as normal.
+  const FOCUSABLE = 'a[href], button, input, select, textarea, summary, [tabindex]';
   doc.addEventListener('pointerdown', event => {
-    if (isOpen() && !pop.contains(event.target) && !toggle.contains(event.target)) close();
+    if (!isOpen() || pop.contains(event.target) || toggle.contains(event.target)) return;
+    const target = event.target instanceof win.Element ? event.target : null;
+    close({ focus: !(target && target.closest(FOCUSABLE)) });
   });
   // So does tabbing out of it.
   pop.addEventListener('focusout', event => {

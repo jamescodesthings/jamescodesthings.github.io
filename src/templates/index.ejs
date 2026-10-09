@@ -8,14 +8,16 @@
     solo: item.label.toLowerCase().includes(item.value.toLowerCase()),
   }));
   const latest = blogPosts.slice(0, 5);
-  const railSections = [
-    { id: 'top', icon: 'home', title: 'Top', num: '01' },
-    { id: 'currently', icon: 'pulse', title: 'Currently', num: '02' },
-    { id: 'work', icon: 'terminal', title: 'Work', num: '03' },
-    { id: 'make', icon: 'cube', title: 'Make', num: '04' },
-    { id: 'photos', icon: 'aperture', title: 'Photos', num: '05' },
-    ...(latest.length > 0 ? [{ id: 'blog', icon: 'pen', title: 'Blog', num: '06' }] : []),
-  ];
+  // One source for the section ids, icons, titles and numbers: the rail, the headings and data-rail-* all read it.
+  const R = {
+    top: { id: 'top', icon: 'home', title: 'Top', num: '01' },
+    currently: { id: 'currently', icon: 'pulse', title: 'Currently', num: '02' },
+    work: { id: 'work', icon: 'terminal', title: 'Work', num: '03' },
+    make: { id: 'make', icon: 'cube', title: 'Make', num: '04' },
+    photos: { id: 'photos', icon: 'aperture', title: 'Photos', num: '05' },
+    blog: { id: 'blog', icon: 'pen', title: 'Blog', num: '06' },
+  };
+  const railSections = Object.values(R).filter(s => s.id !== 'blog' || latest.length > 0);
 -%>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +27,11 @@
   <body class="page-home">
     <%- include('sections/header') %>
     <main id="main">
-      <%- include('sections/hero', { site, links }) %>
+      <%- include('sections/hero', { site, links, rail: R.top }) %>
 
-      <section id="currently" class="home-section" aria-labelledby="currently-title" data-rail-icon="pulse" data-rail-title="Currently">
+      <section id="<%= R.currently.id %>" class="home-section" aria-labelledby="<%= R.currently.id %>-title" data-rail-icon="<%= R.currently.icon %>" data-rail-title="<%= R.currently.title %>">
         <div class="container">
-          <%- include('sections/section-head', { id: 'currently', num: '02', icon: 'pulse', title: 'Currently' }) %>
+          <%- include('sections/section-head', R.currently) %>
           <ul class="currently-list">
             <% now.items.forEach(function (item) { %><li><%= item %></li><% }); %>
           </ul>
@@ -40,9 +42,9 @@
         </div>
       </section>
 
-      <section id="work" class="home-section" aria-labelledby="work-title" data-rail-icon="terminal" data-rail-title="Work">
+      <section id="<%= R.work.id %>" class="home-section" aria-labelledby="<%= R.work.id %>-title" data-rail-icon="<%= R.work.icon %>" data-rail-title="<%= R.work.title %>">
         <div class="container">
-          <%- include('sections/section-head', { id: 'work', num: '03', icon: 'terminal', title: 'Work' }) %>
+          <%- include('sections/section-head', R.work) %>
           <p class="section-lede"><%= site.careerSummary %></p>
           <% if (proof.length) { %>
           <ul class="proof">
@@ -68,9 +70,9 @@
         </div>
       </section>
 
-      <section id="make" class="home-section" aria-labelledby="make-title" data-rail-icon="cube" data-rail-title="Make">
+      <section id="<%= R.make.id %>" class="home-section" aria-labelledby="<%= R.make.id %>-title" data-rail-icon="<%= R.make.icon %>" data-rail-title="<%= R.make.title %>">
         <div class="container">
-          <%- include('sections/section-head', { id: 'make', num: '04', icon: 'cube', title: 'Make' }) %>
+          <%- include('sections/section-head', R.make) %>
           <div class="card-grid-wrap">
             <ul class="card-grid">
               <% featured(projects.make).forEach(function (project, i) { %>
@@ -84,9 +86,9 @@
         </div>
       </section>
 
-      <section id="photos" class="home-section" aria-labelledby="photos-title" data-rail-icon="aperture" data-rail-title="Photos">
+      <section id="<%= R.photos.id %>" class="home-section" aria-labelledby="<%= R.photos.id %>-title" data-rail-icon="<%= R.photos.icon %>" data-rail-title="<%= R.photos.title %>">
         <div class="container">
-          <%- include('sections/section-head', { id: 'photos', num: '05', icon: 'aperture', title: 'Photos' }) %>
+          <%- include('sections/section-head', R.photos) %>
           <%- include('sections/campsnap-banner') %>
           <% if (photos.length) { %>
           <ul class="photo-strip">
@@ -119,9 +121,9 @@
       </section>
 
       <% if (latest.length > 0) { %>
-      <section id="blog" class="home-section" aria-labelledby="blog-title" data-rail-icon="pen" data-rail-title="Blog">
+      <section id="<%= R.blog.id %>" class="home-section" aria-labelledby="<%= R.blog.id %>-title" data-rail-icon="<%= R.blog.icon %>" data-rail-title="<%= R.blog.title %>">
         <div class="container">
-          <%- include('sections/section-head', { id: 'blog', num: '06', icon: 'pen', title: 'Blog' }) %>
+          <%- include('sections/section-head', R.blog) %>
           <ul class="blog-list">
             <% latest.forEach(function (post) { %>
             <li class="blog-list__item">
