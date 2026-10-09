@@ -1,0 +1,241 @@
+/* Section rail (homepage). Without JS it is a plain list of anchors, shown from 1024px. With JS (data-js on
+   <html>) it also fades after idle. Under 1024px it collapses to a pill above the CampSnap button. */
+
+.rail {
+  position: fixed;
+  z-index: 80;
+  transition: opacity 200ms ease;
+}
+
+.rail[hidden] {
+  display: none;
+}
+
+/* Away (hero still on screen): invisible and inert. Idle: invisible but still reachable by hover. */
+:root[data-js] .rail[data-state='away']:not(:focus-within) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:root[data-js] .rail[data-state='idle']:not(:focus-within) {
+  opacity: 0;
+}
+
+.rail__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.rail__item {
+  position: relative;
+}
+
+.rail__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.rail__link:hover,
+.rail__link[aria-current='location'] {
+  color: var(--color-accent);
+}
+
+.rail__num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.rail__link svg {
+  flex: none;
+}
+
+.rail__link[aria-current='location'] svg,
+.rail__link[aria-current='location'] .rail__num {
+  transform: scale(1.15);
+}
+
+@supports (scroll-target-group: auto) {
+  .rail__list {
+    scroll-target-group: auto;
+  }
+
+  .rail__link:target-current {
+    color: var(--color-accent);
+  }
+}
+
+.rail__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-muted);
+  background: none;
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.rail__close:hover {
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+}
+
+/* Close needs JS. */
+:root:not([data-js]) .rail__close,
+:root:not([data-js]) .rail__toggle {
+  display: none;
+}
+
+/* Phones and tablets: a pill above the CampSnap button (--fab-size and --fab-offset come from fab.css). */
+@media (max-width: 1023.98px) {
+  :root:not([data-js]) .rail {
+    display: none;
+  }
+
+  .rail {
+    right: var(--fab-offset);
+    bottom: calc(var(--fab-offset) + var(--fab-size) + var(--space-sm));
+  }
+
+  .rail__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    min-width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 0 var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .rail[data-expanded] .rail__toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .rail[hidden] {
+    display: none;
+  }
+
+  .rail__panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + var(--space-sm));
+    display: none;
+    min-width: 11rem;
+    padding: var(--space-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .rail[data-expanded] .rail__panel {
+    display: block;
+  }
+
+  .rail__link {
+    gap: var(--space-sm);
+    padding-inline: var(--space-sm);
+    border-radius: var(--radius);
+  }
+
+  .rail__link:hover {
+    background: var(--color-surface-raised);
+  }
+
+  .rail__num {
+    min-width: 1.5em;
+  }
+
+  .rail__close {
+    margin-left: auto;
+  }
+}
+
+/* Desktop: a vertical rail on the right edge, centred, with tick marks between stops. */
+@media (min-width: 1024px) {
+  .rail {
+    top: 50%;
+    right: var(--space-xs);
+    transform: translateY(-50%);
+  }
+
+  .rail__toggle {
+    display: none;
+  }
+
+  .rail__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-xs);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+  }
+
+  .rail__link {
+    flex-direction: column;
+    justify-content: center;
+    width: 44px;
+    gap: 0;
+    line-height: 1;
+  }
+
+  .rail__num {
+    font-size: 0.6875rem;
+  }
+
+  .rail__item + .rail__item::before {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    width: 1px;
+    height: 4px;
+    content: '';
+    background: var(--color-border);
+  }
+
+  /* The title: visually hidden text that shows as a tooltip on hover and focus. */
+  .rail__label {
+    position: absolute;
+    top: 50%;
+    right: calc(100% + var(--space-sm));
+    padding: var(--space-xs) var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.4;
+    color: var(--color-text);
+    white-space: nowrap;
+    pointer-events: none;
+    background: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 150ms ease;
+  }
+
+  .rail__link:hover .rail__label,
+  .rail__link:focus-visible .rail__label {
+    opacity: 1;
+  }
+}

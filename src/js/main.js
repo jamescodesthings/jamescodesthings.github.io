@@ -2,10 +2,19 @@ import { initTheme } from './theme.js';
 import { initCopyEmail } from './copy-email.js';
 import { initVideos } from './video.js';
 import { initFab } from './fab.js';
+import { initSettings } from './settings.js';
+import { initRail } from './rail.js';
+import { initToast, toast } from './toast.js';
 
+export { toast };
+
+initToast();
 initTheme();
+initSettings();
+initRail({ toast });
 initCopyEmail();
 initVideos();
+// After the settings popover and the rail, so their Escape handlers run first and mark the event handled.
 initFab();
 
 // Post pages only: the table of contents, code copy buttons and the video facade.

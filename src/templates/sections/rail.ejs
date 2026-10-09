@@ -1,0 +1,24 @@
+<%
+  // locals: railSections [{ id, icon, title, num }]. Homepage only. Plain anchor links without JS; rail.js adds
+  // the active state, fading, the phone pill and the close button.
+-%>
+<nav class="rail" id="section-rail" aria-label="Page sections" data-rail>
+  <button type="button" class="rail__toggle" data-rail-toggle aria-expanded="false" aria-controls="rail-list" aria-label="Page sections">
+    <span class="rail__toggle-num" data-rail-current aria-hidden="true">01</span>
+    <%- include('icon', { name: 'chevron', size: 16 }) %>
+  </button>
+  <div class="rail__panel" id="rail-list">
+    <ol class="rail__list">
+      <% railSections.forEach(function (s) { %>
+      <li class="rail__item">
+        <a class="rail__link" href="#<%= s.id %>" data-rail-id="<%= s.id %>">
+          <span class="rail__num" aria-hidden="true"><%= s.num %></span>
+          <%- include('icon', { name: s.icon, size: 20 }) %>
+          <span class="rail__label"><%= s.title %></span>
+        </a>
+      </li>
+      <% }); %>
+    </ol>
+    <button type="button" class="rail__close" data-rail-close aria-label="Hide section navigation"><%- include('icon', { name: 'close', size: 16 }) %></button>
+  </div>
+</nav>

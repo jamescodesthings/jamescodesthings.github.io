@@ -8,6 +8,14 @@
     solo: item.label.toLowerCase().includes(item.value.toLowerCase()),
   }));
   const latest = blogPosts.slice(0, 5);
+  const railSections = [
+    { id: 'top', icon: 'home', title: 'Top', num: '01' },
+    { id: 'currently', icon: 'pulse', title: 'Currently', num: '02' },
+    { id: 'work', icon: 'terminal', title: 'Work', num: '03' },
+    { id: 'make', icon: 'cube', title: 'Make', num: '04' },
+    { id: 'photos', icon: 'aperture', title: 'Photos', num: '05' },
+    ...(latest.length > 0 ? [{ id: 'blog', icon: 'pen', title: 'Blog', num: '06' }] : []),
+  ];
 -%>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,6 +139,7 @@
       </section>
       <% } %>
     </main>
+    <%- include('sections/rail', { railSections }) %>
     <%- include('sections/campsnap-fab') %>
     <%- include('sections/footer') %>
     <script type="module" src="/js/main.js"></script>

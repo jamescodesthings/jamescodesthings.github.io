@@ -1,0 +1,23 @@
+<%
+  // Settings popover content. Behaviour in settings.js. Hidden until JS opens it.
+-%>
+<div class="settings-popover" id="settings-popover" popover="manual" role="group" aria-label="Settings" hidden>
+  <fieldset class="settings-group">
+    <legend>Theme</legend>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="dark" /><span>Dark</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="light" /><span>Light</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="system" /><span>System</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Section navigation</legend>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="on" /><span>On</span></label>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="off" /><span>Off</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Motion</legend>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="system" /><span>System</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="reduce" /><span>Reduced</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="full" /><span>Full</span></label>
+  </fieldset>
+  <button type="button" class="settings-hint" data-terminal-open>Press <kbd>`</kbd> for terminal</button>
+</div>

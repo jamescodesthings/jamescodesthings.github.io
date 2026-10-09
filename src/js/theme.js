@@ -1,13 +1,12 @@
 // Theme toggle and the window.__theme API. theme-init.js has already set data-theme before first paint.
+import { createStorage } from './storage.js';
+
 const KEY = 'theme';
 const PREFS = ['dark', 'light', 'system'];
 
-function readPref(win) {
-  try {
-    const saved = win.localStorage.getItem(KEY);
-    if (PREFS.includes(saved)) return saved;
-  } catch (e) {}
-  return 'dark';
+function readPref(store) {
+  const saved = store.get(KEY);
+  return PREFS.includes(saved) ? saved : 'dark';
 }
 
 function systemTheme(win) {
@@ -22,7 +21,8 @@ export function initTheme(win = window) {
   const doc = win.document;
   const root = doc.documentElement;
   // Held in memory too, so the toggle still works when storage throws (Safari private mode).
-  let pref = readPref(win);
+  const store = createStorage(win);
+  let pref = readPref(store);
 
   const resolved = () => (pref === 'system' ? systemTheme(win) : pref);
 
@@ -40,9 +40,7 @@ export function initTheme(win = window) {
     set(next) {
       if (!PREFS.includes(next)) return;
       pref = next;
-      try {
-        win.localStorage.setItem(KEY, next);
-      } catch (e) {}
+      store.set(KEY, next);
       apply();
     },
   };
