@@ -1,18 +1,27 @@
+<%
+  // locals: lastReviewed (build month, e.g. "October 2026"), stamp, links.
+  const storage = [
+    { key: 'theme', where: 'localStorage', what: 'Your colour theme choice: dark, light or system.' },
+    { key: 'nav-sections', where: 'localStorage', what: 'Whether the section navigation on the homepage is switched on or off.' },
+    { key: 'motion', where: 'localStorage', what: 'Your motion preference from the settings menu: system, reduced or full.' },
+    { key: 'campsnapFabDismissed', where: 'localStorage', what: 'Remembers that you dismissed the Campsnap prompt so it does not reappear.' },
+    { key: 'invaders-high', where: 'localStorage', what: 'Your high score in the hidden game.' },
+    { key: 'terminal-history', where: 'sessionStorage', what: 'The commands you typed in the terminal, for the current tab only. It is cleared when you close the tab.' },
+  ];
+-%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <%- include('sections/head') %>
   </head>
-  <body>
+  <body class="page-static">
     <%- include('sections/header') %>
     <main id="main">
-    <section class="section">
-      <div class="section-inner">
-        <a href="/" class="footer-link" style="display:inline-block;margin-bottom:var(--space-lg)">&larr; Back</a>
-        <span class="section-label">Legal</span>
-        <h1 class="section-title">About Cookies <small style="opacity:0.6;font-size:0.6em">and Similar Technologies.</small></h1>
-        <div class="prose" style="max-width:720px">
-          <p><em>Last reviewed: June 2026</em></p>
+      <div class="container static-page">
+        <p class="static-page__label">Legal</p>
+        <h1 class="static-page__title">About Cookies <span class="static-page__sub">and Similar Technologies</span></h1>
+        <div class="doc">
+          <p><em>Last reviewed: <%= lastReviewed %></em></p>
 
           <h2>Summary</h2>
           <p>This website only uses cookies and similar technologies to provide essential functionality. No tracking or analytics cookies are used.</p>
@@ -21,51 +30,36 @@
           <p>Cookies are small files saved on your device when you visit a website. We use them to make CodesThings.com work correctly.</p>
 
           <h2>Essential storage</h2>
-          <p>The following items are stored locally on your device. They are never sent to any server operated by this site.</p>
-          <table style="width:100%;border-collapse:collapse;margin-bottom:var(--space-md)">
-            <thead>
-              <tr style="border-bottom:1px solid var(--color-border)">
-                <th style="text-align:left;padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">Name</th>
-                <th style="text-align:left;padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">Mechanism</th>
-                <th style="text-align:left;padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">Purpose</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--color-border)">
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)"><code>theme</code></td>
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">LocalStorage</td>
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">Stores your light/dark theme preference.</td>
-              </tr>
-              <tr>
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)"><code>campsnapFabDismissed</code></td>
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">LocalStorage</td>
-                <td style="padding:var(--space-xs) var(--space-sm);font-size:var(--text-small)">Remembers that you dismissed the Campsnap prompt so it doesn't reappear.</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>The following items are stored locally on your device, in your browser's <code>localStorage</code> or <code>sessionStorage</code>. They never leave your device, and are never sent to any server operated by this site.</p>
+          <ul class="storage-list">
+            <% storage.forEach(function (item) { %>
+            <li class="storage-item">
+              <p class="storage-item__head"><code><%= item.key %></code> <span class="storage-item__where"><%= item.where %></span></p>
+              <p class="storage-item__what"><%= item.what %></p>
+            </li>
+            <% }); %>
+          </ul>
 
           <h2>Third-party services</h2>
-          <p>This site loads resources from the following third parties, which may set their own cookies or log requests:</p>
+          <p>Fonts, icons and scripts are served from this site, not from third parties. The following services are involved:</p>
           <ul>
-            <li><strong>Google Fonts</strong> — loaded from <code>fonts.googleapis.com</code>. Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google's Privacy Policy</a>.</li>
-            <li><strong>jsDelivr CDN</strong> — icons loaded from <code>cdn.jsdelivr.net</code>. Subject to <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noreferrer">jsDelivr's Privacy Policy</a>.</li>
-            <li><strong>GitHub Pages</strong> — this site is hosted on GitHub Pages. Subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">GitHub's Privacy Statement</a>.</li>
+            <li><strong>GitHub Pages</strong>: this site is hosted on GitHub Pages. Subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">GitHub's Privacy Statement</a>.</li>
+            <li><strong>YouTube</strong>: the ZeroCalc blog post shows a click-to-load video. Nothing is requested from YouTube until you click it. After that, the video loads from <code>youtube-nocookie.com</code>, which may set its own cookies or log requests. Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google's Privacy Policy</a>.</li>
           </ul>
 
           <h2>Managing cookies</h2>
-          <p>You can manage or delete cookies and local storage through your browser settings. Clearing local storage will reset your theme preference and Campsnap dismissal.</p>
+          <p>You can manage or delete cookies and local storage through your browser settings. Clearing local storage will reset your theme, navigation and motion settings, the Campsnap dismissal and the game high score.</p>
           <ul>
-            <li><strong>Chrome:</strong> Settings → Privacy and Security → Cookies and other site data</li>
-            <li><strong>Firefox:</strong> Settings → Privacy & Security → Cookies and Site Data</li>
-            <li><strong>Safari:</strong> Preferences → Privacy → Manage Website Data</li>
-            <li><strong>Edge:</strong> Settings → Cookies and site permissions</li>
+            <li><strong>Chrome:</strong> Settings, Privacy and Security, Cookies and other site data</li>
+            <li><strong>Firefox:</strong> Settings, Privacy &amp; Security, Cookies and Site Data</li>
+            <li><strong>Safari:</strong> Preferences, Privacy, Manage Website Data</li>
+            <li><strong>Edge:</strong> Settings, Cookies and site permissions</li>
           </ul>
 
           <h2>More information</h2>
           <p>The <a href="https://ico.org.uk/for-organisations/guide-to-pecr/guidance-on-the-use-of-cookies-and-similar-technologies/what-are-cookies-and-similar-technologies/" target="_blank" rel="noreferrer">Information Commissioner's Office</a> provides up-to-date guidance on the use of cookies and similar technologies.</p>
         </div>
       </div>
-    </section>
     </main>
     <%- include('sections/footer') %>
     <script type="module" src="/js/main.js"></script>

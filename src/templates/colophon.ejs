@@ -1,0 +1,105 @@
+<%
+  // locals: colophon ({ measured: 'YYYY-MM-DD' | null, pages?: [{ path, scores, lcp, cls, tbt, bytes, requests }] }), formatLongDate, stamp, links.
+  const kb = function (bytes) { return (bytes / 1024).toFixed(1) + ' KB'; };
+  const fonts = [
+    { name: 'Bricolage Grotesque', use: 'headings', url: 'https://fontsource.org/fonts/bricolage-grotesque' },
+    { name: 'Figtree', use: 'body text', url: 'https://fontsource.org/fonts/figtree' },
+    { name: 'Geist Mono', use: 'code and labels', url: 'https://fontsource.org/fonts/geist-mono' },
+  ];
+  const stack = [
+    { name: 'Node', note: 'runs the build' },
+    { name: 'EJS', note: 'page templates' },
+    { name: 'markdown-it', note: 'blog posts' },
+    { name: 'Shiki', note: 'code highlighting' },
+    { name: 'sharp', note: 'image processing' },
+    { name: 'lightningcss', note: 'CSS bundling and minifying' },
+  ];
+  const measured = colophon && colophon.measured && colophon.pages && colophon.pages.length;
+-%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('sections/head') %>
+  </head>
+  <body class="page-static">
+    <%- include('sections/header') %>
+    <main id="main">
+      <div class="container static-page">
+        <h1 class="static-page__title">Colophon</h1>
+        <p class="static-page__lede">How this site is made.</p>
+
+        <section aria-labelledby="colophon-stack">
+          <h2 class="static-h2" id="colophon-stack">Stack</h2>
+          <p>A small Node static site generator, with no framework and no bundler. It turns JSON data and Markdown posts into plain HTML, CSS and a little JavaScript.</p>
+          <ul class="uses-list">
+            <% stack.forEach(function (item) { %>
+            <li class="uses-item"><span class="uses-item__name"><%= item.name %></span> <span class="uses-item__note"><%= item.note %></span></li>
+            <% }); %>
+          </ul>
+        </section>
+
+        <section aria-labelledby="colophon-fonts">
+          <h2 class="static-h2" id="colophon-fonts">Fonts</h2>
+          <p>Self-hosted Latin variable fonts, all under the SIL Open Font Licence.</p>
+          <ul class="uses-list">
+            <% fonts.forEach(function (font) { %>
+            <li class="uses-item"><a class="uses-item__name" href="<%= font.url %>" target="_blank" rel="noopener noreferrer"><%= font.name %></a> <span class="uses-item__note"><%= font.use %></span></li>
+            <% }); %>
+          </ul>
+        </section>
+
+        <section aria-labelledby="colophon-hosting">
+          <h2 class="static-h2" id="colophon-hosting">Hosting</h2>
+          <p>Hosted on GitHub Pages and deployed by a GitHub Actions workflow (<code>.github/workflows/deploy.yml</code>) on every push to <code>main</code>. The source is public at <a href="https://github.com/jamescodesthings/jamescodesthings.github.io" target="_blank" rel="noopener noreferrer">github.com/jamescodesthings/jamescodesthings.github.io</a>.</p>
+        </section>
+
+        <section aria-labelledby="colophon-measured">
+          <h2 class="static-h2" id="colophon-measured">Measured</h2>
+          <% if (measured) { %>
+          <p>Lighthouse lab results on a local build, measured on <time datetime="<%= colophon.measured %>"><%= formatLongDate(colophon.measured) %></time>.</p>
+          <div class="static-table-wrap" tabindex="0" role="region" aria-label="Lighthouse results">
+            <table class="static-table">
+              <thead>
+                <tr>
+                  <th scope="col">Page</th>
+                  <th scope="col">Performance</th>
+                  <th scope="col">Accessibility</th>
+                  <th scope="col">Best practices</th>
+                  <th scope="col">SEO</th>
+                  <th scope="col">LCP</th>
+                  <th scope="col">CLS</th>
+                  <th scope="col">TBT</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Requests</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% colophon.pages.forEach(function (p) { %>
+                <tr>
+                  <th scope="row"><code><%= p.path %></code></th>
+                  <td><%= p.scores.performance %></td>
+                  <td><%= p.scores.accessibility %></td>
+                  <td><%= p.scores.bestPractices %></td>
+                  <td><%= p.scores.seo %></td>
+                  <td><%= p.lcp %></td>
+                  <td><%= p.cls %></td>
+                  <td><%= p.tbt %></td>
+                  <td><%= kb(p.bytes) %></td>
+                  <td><%= p.requests %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+          <% } else { %>
+          <p>Not measured yet.</p>
+          <% } %>
+        </section>
+
+        <p class="static-hint">There's a game in here somewhere.</p>
+      </div>
+    </main>
+    <%- include('sections/footer') %>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

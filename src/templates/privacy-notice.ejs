@@ -1,18 +1,19 @@
+<%
+  // locals: lastReviewed (build month, e.g. "October 2026"), site, stamp, links.
+-%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <%- include('sections/head') %>
   </head>
-  <body>
+  <body class="page-static">
     <%- include('sections/header') %>
     <main id="main">
-    <section class="section">
-      <div class="section-inner">
-        <a href="/" class="footer-link" style="display:inline-block;margin-bottom:var(--space-lg)">&larr; Back</a>
-        <span class="section-label">Legal</span>
-        <h1 class="section-title">Privacy Notice</h1>
-        <div class="prose" style="max-width:720px">
-          <p><em>Last reviewed: June 2026</em></p>
+      <div class="container static-page">
+        <p class="static-page__label">Legal</p>
+        <h1 class="static-page__title">Privacy Notice</h1>
+        <div class="doc">
+          <p><em>Last reviewed: <%= lastReviewed %></em></p>
 
           <h2>Summary</h2>
           <p>I do not collect, store, or process any personal data directly. This website uses a small number of third-party services that may process your IP address as part of normal web operation. No analytics or tracking are performed.</p>
@@ -20,17 +21,16 @@
           <h2>Who I am</h2>
           <p>
             CodesThings.com is the personal website of James Macmillan.<br />
-            Contact: <a href="mailto:james@codesthings.com">james@codesthings.com</a>
+            Contact: <a href="mailto:<%= site.email %>"><%= site.email %></a>
           </p>
 
           <h2>What data is processed and by whom</h2>
           <p>I do not directly collect or store personal data. The following third-party services are used to operate the site and may process your IP address:</p>
           <ul>
-            <li><strong>GitHub Pages</strong> — hosts this website. GitHub may log IP addresses per their <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">Privacy Statement</a>.</li>
-            <li><strong>Google Fonts</strong> — fonts are loaded from Google's servers. Google may process your IP address per their <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</li>
-            <li><strong>jsDelivr CDN</strong> — icons are loaded from jsDelivr's CDN. jsDelivr may log requests per their <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noreferrer">Privacy Policy</a>.</li>
+            <li><strong>GitHub Pages</strong>: hosts this website. GitHub may log IP addresses per their <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">Privacy Statement</a>.</li>
+            <li><strong>YouTube</strong>: the ZeroCalc blog post shows a video. Until you click it, the post shows a plain link and your browser makes no request to YouTube. If you click to play, the video loads from <code>youtube-nocookie.com</code>, YouTube's privacy-enhanced embed, and Google may process your IP address per their <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</li>
           </ul>
-          <p>The source code for this website is publicly available at <a href="https://github.com/jamescodesthings/jamescodesthings.github.io" target="_blank" rel="noreferrer">github.com/jamescodesthings/jamescodesthings.github.io</a>.</p>
+          <p>Fonts, icons and scripts are all served from this site. The source code for this website is publicly available at <a href="https://github.com/jamescodesthings/jamescodesthings.github.io" target="_blank" rel="noreferrer">github.com/jamescodesthings/jamescodesthings.github.io</a>.</p>
 
           <h2>Legal basis</h2>
           <p>Third-party service processing described above is carried out on the basis of legitimate interests in operating a functional, accessible website (UK GDPR Article 6(1)(f)).</p>
@@ -45,7 +45,6 @@
           <p>You have the right to lodge a complaint with the <a href="https://ico.org.uk" target="_blank" rel="noreferrer">Information Commissioner's Office (ICO)</a> if you believe your data has been handled unlawfully.</p>
         </div>
       </div>
-    </section>
     </main>
     <%- include('sections/footer') %>
     <script type="module" src="/js/main.js"></script>

@@ -1,5 +1,5 @@
 /*
- * Legacy rules for the parts of the site not yet rebuilt (the 404 hero, legal pages).
+ * Legacy rules for the parts of the site not yet rebuilt (the old CV sections).
  * Tokens, fonts, reset, header, footer and the theme toggle live in the new files. These aliases map
  * the old variable names onto the new tokens until those sections are rewritten.
  */
@@ -13,83 +13,6 @@
   --font-mono-display: var(--font-mono);
   --border-radius: var(--radius);
   --border-radius-lg: var(--radius-lg);
-}
-
-/* ============================================
-   Hero Section
-   ============================================ */
-
-.hero {
-  min-height: calc(100svh - var(--header-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background-color: var(--color-bg);
-  overflow: hidden;
-}
-
-.hero--center {
-  justify-content: center;
-}
-
-.hero-inner {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-3xl) var(--space-xl);
-  position: relative;
-}
-
-.hero-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-display);
-  line-height: 1;
-  color: var(--color-heading);
-}
-
-.hero-role {
-  font-family: var(--font-mono-display);
-  font-size: var(--text-medium);
-  font-weight: 400;
-  color: var(--color-accent);
-  letter-spacing: 0.08em;
-  margin-top: var(--space-lg);
-}
-
-/* Scroll hint */
-/* ============================================
-   Section Layout
-   ============================================ */
-
-.section {
-  padding: var(--space-4xl) 0;
-}
-
-.section-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-xl);
-}
-
-.section-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: var(--space-sm);
-}
-
-.section-title {
-  font-family: var(--font-heading);
-  font-size: var(--text-h1);
-  font-weight: 700;
-  color: var(--color-heading);
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-2xl);
 }
 
 /* ============================================
@@ -145,14 +68,12 @@
   margin-bottom: var(--space-md);
 }
 
-.label.display,
-.section-label.display {
+.label.display {
   font-family: var(--font-mono-display);
   text-transform: none;
 }
 
-.label.lg,
-.section-label.lg {
+.label.lg {
   font-size: var(--text-sm);
   letter-spacing: 0.12em;
 }
@@ -222,17 +143,6 @@
   50% {
     opacity: 0.5;
   }
-}
-
-.prose p {
-  font-size: var(--text-body);
-  line-height: 1.75;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-md);
-}
-
-.prose p:last-child {
-  margin-bottom: 0;
 }
 
 .signature {
@@ -512,18 +422,6 @@
    ============================================ */
 
 @media (max-width: 768px) {
-  .hero-inner {
-    padding: var(--space-2xl) var(--space-lg);
-  }
-
-  .section {
-    padding: var(--space-2xl) 0;
-  }
-
-  .section-inner {
-    padding: 0 var(--space-lg);
-  }
-
   .about-grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
@@ -573,17 +471,6 @@
     --text-xs: 0.5rem;
   }
 
-  .hero {
-    min-height: auto;
-    padding: 0;
-  }
-
-  .hero-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: var(--space-xl) var(--space-xl);
-  }
-
   .contact-card {
     border: none;
     background: none;
@@ -597,30 +484,13 @@
     grid-template-columns: auto 1fr;
   }
 
-  .section {
-    margin-top: var(--space-xl);
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .section-title {
-    margin-bottom: var(--space-sm);
-  }
-
   /* Hide interactive and non-CV elements */
   .site-header,
   .skip-link,
-  .hero-scroll-hint,
-  .hero-cta,
   .site-footer,
   .campsnap-banner,
   .campsnap-fab,
   .print-hide {
-    display: none !important;
-  }
-
-  /* Hide blog section (contains .blog-list) */
-  .section:has(.blog-list) {
     display: none !important;
   }
 
@@ -672,24 +542,4 @@
   .bento-grid {
     margin-bottom: 0;
   }
-}
-
-/* Kept for the 404 page until it is rebuilt. */
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-xl);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  font-weight: 500;
-  text-decoration: none;
-  color: var(--color-on-accent);
-  background: var(--color-accent);
-  border-radius: var(--radius);
-}
-
-.hero-cta:hover {
-  color: var(--color-on-accent);
-  background: var(--color-accent-strong);
 }

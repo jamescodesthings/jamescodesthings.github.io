@@ -64,8 +64,10 @@ const server = createServer(async (req, res) => {
   } catch (err) {
     if (err.code === 'ENOENT') {
       debug(`File not found: ${filePath}`);
-      res.writeHead(404);
-      res.end('Not Found');
+      // Like GitHub Pages: unknown paths get the built 404 page with a 404 status.
+      const notFound = await readFile(resolve(outputDir, '404.html')).catch(() => null);
+      res.writeHead(404, { 'Content-Type': notFound ? 'text/html' : 'text/plain' });
+      res.end(notFound || 'Not Found');
     } else {
       debug(`Error serving ${filePath}: ${err.message}`);
       res.writeHead(500);
