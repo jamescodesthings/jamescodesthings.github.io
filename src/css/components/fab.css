@@ -12,6 +12,14 @@
   z-index: 90;
 }
 
+/* From 1240px the vertical section rail sits on the right edge (rail.css), so the button and its popover
+   move left of it and never overlap it. */
+@media (min-width: 1240px) {
+  .campsnap-fab {
+    right: calc(var(--fab-offset) + 4.5rem);
+  }
+}
+
 .campsnap-fab-btn {
   display: flex;
   align-items: center;
