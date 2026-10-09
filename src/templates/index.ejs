@@ -34,39 +34,28 @@
   </head>
   <body>
     <%- include('sections/dark-mode-switch') %>
-    <%- include('sections/hero', { name: 'James Macmillan' }) %>
+    <%- include('sections/hero', { name: 'James Macmillan', links }) %>
     <%- include('sections/campsnap-banner') %>
     <% if (blogPosts && blogPosts.length > 0) { %>
     <section class="section" data-animate>
       <div class="section-inner">
-        <span class="section-label">01 - BLOG</span>
-        <h2 class="section-title">Writing</h2>
-        <div class="blog-cards">
+        <span class="section-label">01 - LATEST</span>
+        <h2 class="section-title">Blog</h2>
+        <ul class="blog-list">
           <% blogPosts.forEach(function(post) { %>
-          <a href="blog/<%= post.slug %>.html" class="blog-card">
-            <span class="blog-card-title"><%= post.title %></span>
-            <% if (post.date) { %><span class="blog-card-date"><%= formatDate(post.date) %></span><% } %>
-            <svg
-              class="blog-card-arrow"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </a>
+          <li class="blog-list-item">
+            <a href="blog/<%= post.slug %>.html" class="blog-list-link">
+              <span class="blog-list-title"><%= post.title %></span>
+              <%- include('sections/icon', { name: 'arrow', size: 18, className: 'blog-list-arrow' }) %>
+            </a>
+            <% if (post.summary) { %><p class="blog-list-summary"><%= post.summary %></p><% } %>
+            <% if (post.date) { %><time class="blog-list-date" datetime="<%= post.date %>"><%= formatDate(post.date) %></time><% } %>
+          </li>
           <% }); %>
-        </div>
+        </ul>
       </div>
     </section>
     <% } %>
-    <%- include('sections/socials', { socials }) %>
     <%- include('sections/campsnap-fab') %>
     <%- include('sections/footer') %>
     <script src="js/theme.js"></script>

@@ -12,6 +12,7 @@ import {
   ls,
   readFile,
   renderTemplate,
+  parsePost,
   formatDate,
   renderBlogPost,
 } from './utils.js';
@@ -27,7 +28,7 @@ async function build() {
   debug(`Build started at ${new Date(buildStart).toLocaleTimeString()}`);
 
   const outputDir = resolve(root, config.outputDir);
-  const socials = await readJson(resolve(root, config.dataDir, 'socials.json'));
+  const links = await readJson(resolve(root, config.dataDir, 'links.json'));
   const blogPosts = await getBlogPosts();
 
   await rmrf(outputDir);
@@ -36,7 +37,7 @@ async function build() {
   await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
   await cpDir(resolve(root, config.assetsDir), `${outputDir}/assets`);
 
-  await renderIndex({ socials, blogPosts }, outputDir);
+  await renderIndex({ links, blogPosts }, outputDir);
   await render404(outputDir);
   await renderStaticPage('privacy-notice.ejs', 'privacy-notice.html', outputDir);
   await renderStaticPage('about-cookies.ejs', 'about-cookies.html', outputDir);
@@ -79,12 +80,10 @@ async function getBlogPosts() {
   const posts = [];
   for (const file of files) {
     const slug = basename(file, '.md');
-    const markdown = await readFile(resolve(blogDir, file));
-    const titleMatch = markdown.match(/^#\s+(.+)$/m);
-    const title = titleMatch ? titleMatch[1] : slug;
+    const { title, summary, body } = parsePost(await readFile(resolve(blogDir, file)));
     const dateMatch = slug.match(/^(\d{4}-\d{2}-\d{2})/);
     const date = dateMatch ? dateMatch[1] : '';
-    posts.unshift({ slug, title, date });
+    posts.unshift({ slug, title: title || slug, summary, body, date });
   }
   return posts;
 }
@@ -94,7 +93,7 @@ async function renderBlogPosts(blogPosts, outputDir) {
 
   await mkdirp(`${outputDir}/blog`);
   for (const post of blogPosts) {
-    await renderBlogPost(`${post.slug}.md`);
+    await renderBlogPost(post);
   }
 }
 

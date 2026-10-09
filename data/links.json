@@ -1,0 +1,33 @@
+[
+  {
+    "name": "CV",
+    "label": "View CV",
+    "url": "https://codesthings.com/cv",
+    "icon": "cv",
+    "primary": true
+  },
+  {
+    "name": "GitHub",
+    "label": "GitHub",
+    "url": "https://github.com/jamescodesthings",
+    "icon": "github"
+  },
+  {
+    "name": "Makerworld",
+    "label": "Makerworld",
+    "url": "https://makerworld.com/en/@jamescodesthing",
+    "icon": "makerworld"
+  },
+  {
+    "name": "LinkedIn",
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/in/jamescodesthings",
+    "icon": "linkedin"
+  },
+  {
+    "name": "Instagram",
+    "label": "Instagram",
+    "url": "https://www.instagram.com/jamescodesthings/",
+    "icon": "instagram"
+  }
+]

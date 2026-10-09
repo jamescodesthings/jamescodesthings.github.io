@@ -1,22 +1,26 @@
 <footer class="site-footer">
   <div class="footer-inner">
-    <img
-      src="assets/logo/logo.svg"
-      alt="codesthings"
-      class="footer-logo footer-logo--light"
-      width="160"
-      loading="lazy"
-    />
-    <img
-      src="assets/logo/logo-dark.svg"
-      alt=""
-      class="footer-logo footer-logo--dark"
-      width="160"
-      loading="lazy"
-      aria-hidden="true"
-    />
+    <a href="/" class="footer-home" aria-label="codesthings.com home">
+      <img
+        src="/assets/logo/logo.svg"
+        alt=""
+        class="footer-logo footer-logo--light"
+        width="160"
+        loading="lazy"
+      />
+      <img
+        src="/assets/logo/logo-dark.svg"
+        alt=""
+        class="footer-logo footer-logo--dark"
+        width="160"
+        loading="lazy"
+      />
+    </a>
     <div class="footer-links">
-      <a href="https://codesthings.com/cv" class="footer-link">View CV</a>
+      <a href="https://codesthings.com/cv" class="footer-link footer-link--cv">
+        <%- include('icon', { name: 'cv', size: 16 }) %>
+        <span>View CV</span>
+      </a>
       <a href="/privacy-notice" class="footer-link">Privacy Notice</a>
       <a href="/about-cookies" class="footer-link">About Cookies</a>
     </div>
