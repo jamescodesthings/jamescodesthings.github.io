@@ -2,7 +2,17 @@ import Debug from 'debug';
 import { resolve, dirname } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import config from './config.js';
-import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, formatLongDate } from './utils.js';
+import {
+  writeFile,
+  mkdirp,
+  rmrf,
+  cpDir,
+  exists,
+  readJson,
+  renderTemplate,
+  formatDate,
+  formatLongDate,
+} from './utils.js';
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { atomFeed, sitemap, robots, pagePathFor } from './lib/feeds.js';
@@ -62,7 +72,8 @@ async function withImage(item, key, label, resolveFn = resolveAssetPath) {
 }
 
 export async function buildPages(data) {
-  const { links, posts: blogPosts, site, now } = data;
+  const { links, posts: blogPosts, site, now, uses } = data;
+  const colophon = await readJson(resolve(root, config.dataDir, 'colophon.json')).catch(() => ({ measured: null }));
   const projects = {};
   for (const lane of Object.keys(data.projects)) {
     projects[lane] = [];
@@ -102,15 +113,64 @@ export async function buildPages(data) {
     { ...common, title: '404 - codesthings.com', path: '/404.html', noindex: true },
     '404.html',
   );
+  const lastReviewed = new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
   await renderPage(
     'privacy-notice.ejs',
-    { ...common, title: 'Privacy Notice - codesthings.com', path: '/privacy-notice' },
+    {
+      ...common,
+      site,
+      lastReviewed,
+      title: 'Privacy Notice - codesthings.com',
+      description: 'What this site does and does not do with your data. No analytics, no tracking.',
+      path: '/privacy-notice',
+    },
     'privacy-notice.html',
   );
   await renderPage(
     'about-cookies.ejs',
-    { ...common, title: 'About Cookies - codesthings.com', path: '/about-cookies' },
+    {
+      ...common,
+      lastReviewed,
+      title: 'About Cookies - codesthings.com',
+      description: 'The few items this site stores on your device, and why.',
+      path: '/about-cookies',
+    },
     'about-cookies.html',
+  );
+  await renderPage(
+    'now.ejs',
+    {
+      ...common,
+      now,
+      formatLongDate,
+      title: 'Now - codesthings.com',
+      description: 'What James Macmillan is working on at the moment.',
+      path: '/now',
+    },
+    'now.html',
+  );
+  await renderPage(
+    'uses.ejs',
+    {
+      ...common,
+      uses,
+      title: 'Uses - codesthings.com',
+      description: 'Gear and software James Macmillan uses to build and make things.',
+      path: '/uses',
+    },
+    'uses.html',
+  );
+  await renderPage(
+    'colophon.ejs',
+    {
+      ...common,
+      colophon,
+      formatLongDate,
+      title: 'Colophon - codesthings.com',
+      description: 'How codesthings.com is made: stack, fonts, hosting and measurements.',
+      path: '/colophon',
+    },
+    'colophon.html',
   );
   // Post images go through the pipeline once, up front, so every consumer (pages, feed) sees final html.
   const imageOpts = { assetsRoot, outDir: imageOutDir, cacheDir: imageCacheDir };

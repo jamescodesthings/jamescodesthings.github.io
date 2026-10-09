@@ -1,0 +1,47 @@
+/* 404: the segfault page. */
+
+.segfault {
+  max-width: 48rem;
+  padding-block: var(--space-3xl) var(--space-4xl);
+}
+
+.segfault__code {
+  font-family: var(--font-mono);
+  font-size: clamp(5rem, 28vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.segfault__title {
+  margin-top: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.segfault__trace {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-size: var(--text-small);
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.segfault__muted {
+  color: var(--color-muted);
+}
+
+.segfault__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  list-style: none;
+}

@@ -1,0 +1,30 @@
+<%
+  // locals: now ({ updated, items[] }), formatLongDate, stamp, links.
+-%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('sections/head') %>
+  </head>
+  <body class="page-static">
+    <%- include('sections/header') %>
+    <main id="main">
+      <div class="container static-page">
+        <h1 class="static-page__title">Now</h1>
+        <p class="static-page__lede">What I'm up to at the moment. Updated <time datetime="<%= now.updated %>"><%= formatLongDate(now.updated) %></time>.</p>
+        <% if (now.items.length) { %>
+        <ul class="static-list">
+          <% now.items.forEach(function (item) { %>
+          <li><%= item %></li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <p class="static-empty">Nothing to report at the moment.</p>
+        <% } %>
+        <p class="static-note">This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">now page</a>.</p>
+      </div>
+    </main>
+    <%- include('sections/footer') %>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

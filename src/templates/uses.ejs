@@ -1,0 +1,38 @@
+<%
+  // locals: uses ({ groups: [{ name, items: [{ name, note?, url? }] }] }), stamp, links.
+  const filled = uses.groups.filter(function (g) { return g.items.length; });
+  const empty = uses.groups.filter(function (g) { return !g.items.length; });
+-%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('sections/head') %>
+  </head>
+  <body class="page-static">
+    <%- include('sections/header') %>
+    <main id="main">
+      <div class="container static-page">
+        <h1 class="static-page__title">Uses</h1>
+        <p class="static-page__lede">Gear and software I use to build and make things.</p>
+        <% filled.forEach(function (group) { %>
+        <section class="uses-group" aria-labelledby="uses-<%= group.name.toLowerCase() %>">
+          <h2 class="static-h2" id="uses-<%= group.name.toLowerCase() %>"><%= group.name %></h2>
+          <ul class="uses-list">
+            <% group.items.forEach(function (item) { %>
+            <li class="uses-item">
+              <% if (item.url) { %><a class="uses-item__name" href="<%= item.url %>"<% if (/^https?:/.test(item.url)) { %> target="_blank" rel="noopener noreferrer"<% } %>><%= item.name %></a><% } else { %><span class="uses-item__name"><%= item.name %></span><% } %>
+              <% if (item.note) { %><span class="uses-item__note"><%= item.note %></span><% } %>
+            </li>
+            <% }); %>
+          </ul>
+        </section>
+        <% }); %>
+        <% if (empty.length) { %>
+        <p class="static-note">Still to come: <%= empty.map(function (g) { return g.name; }).join(' and ') %>.</p>
+        <% } %>
+      </div>
+    </main>
+    <%- include('sections/footer') %>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
