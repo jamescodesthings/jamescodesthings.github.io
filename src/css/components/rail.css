@@ -102,6 +102,9 @@
   .rail {
     right: var(--fab-offset);
     bottom: calc(var(--fab-offset) + var(--fab-size) + var(--space-sm));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .rail__toggle {
@@ -123,16 +126,6 @@
 
   .rail[data-expanded] .rail__toggle svg {
     transform: rotate(180deg);
-  }
-
-  .rail {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .rail[hidden] {
-    display: none;
   }
 
   .rail__panel {

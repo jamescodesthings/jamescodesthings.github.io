@@ -21,16 +21,19 @@ export function toast(message, { duration = 5000, doc = document } = {}) {
   const el = ensureRegion(doc);
   clearTimeout(timer);
   el.textContent = '';
-  el.removeAttribute('data-visible');
-  // Set the text on a later task so the live region sees a change even for a repeated message.
+  // A new child each time, added on a later task, so the live region sees an insertion even for a repeat message.
   setTimeout(() => {
-    el.textContent = message;
-    el.setAttribute('data-visible', '');
+    const item = doc.createElement('p');
+    item.className = 'toast';
+    item.textContent = message;
+    el.replaceChildren(item);
+    requestAnimationFrame(() => item.setAttribute('data-visible', ''));
   }, 50);
   timer = setTimeout(() => {
-    el.removeAttribute('data-visible');
+    const item = el.firstElementChild;
+    if (item) item.removeAttribute('data-visible');
     setTimeout(() => {
-      if (!el.hasAttribute('data-visible')) el.textContent = '';
+      if (!el.querySelector('[data-visible]')) el.textContent = '';
     }, 300);
   }, duration);
 }
