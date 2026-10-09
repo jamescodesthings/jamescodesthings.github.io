@@ -1,6 +1,9 @@
 {
   "groups": [
-    { "name": "Desk", "items": [] },
+    {
+      "name": "Desk",
+      "items": []
+    },
     {
       "name": "Making",
       "items": [
@@ -9,12 +12,24 @@
           "note": "The ZeroCalc build, a pocket Pico-8 machine.",
           "url": "/blog/2026-05-01-zerocalc.html"
         },
-        { "name": "Pico-8", "note": "Fantasy console for small games." },
-        { "name": "uConsole", "note": "Used before the ZeroCalc.", "url": "https://www.clockworkpi.com/uconsole" },
-        { "name": "3D printer", "note": "Prints the PicoCalc grip and the FPV parts on Makerworld." }
+        {
+          "name": "Pico-8"
+        },
+        {
+          "name": "uConsole",
+          "note": "Used before the ZeroCalc.",
+          "url": "https://www.clockworkpi.com/uconsole"
+        },
+        {
+          "name": "3D printer",
+          "note": "Printed the handle for the ZeroCalc."
+        }
       ]
     },
-    { "name": "Camera", "items": [] },
+    {
+      "name": "Camera",
+      "items": []
+    },
     {
       "name": "Software",
       "items": [
@@ -22,11 +37,6 @@
           "name": "Zsh with zinit",
           "note": "My shell setup is public.",
           "url": "https://github.com/jamescodesthings/zsh-config"
-        },
-        {
-          "name": "Blender",
-          "note": "Models for 3D printing, such as the widened HDZero goggles.",
-          "url": "https://github.com/jamescodesthings/hdzero"
         }
       ]
     }
