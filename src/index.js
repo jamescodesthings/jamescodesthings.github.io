@@ -73,7 +73,16 @@ async function withImage(item, key, label, resolveFn = resolveAssetPath) {
 
 export async function buildPages(data) {
   const { links, posts: blogPosts, site, now, uses } = data;
-  const colophon = await readJson(resolve(root, config.dataDir, 'colophon.json')).catch(() => ({ measured: null }));
+  // Only a missing file means "not measured yet"; a malformed one fails the build naming the file.
+  const colophonPath = resolve(root, config.dataDir, 'colophon.json');
+  let colophon = { measured: null };
+  if (await exists(colophonPath)) {
+    try {
+      colophon = await readJson(colophonPath);
+    } catch (err) {
+      throw new Error(`data/colophon.json: ${err.message}`);
+    }
+  }
   const projects = {};
   for (const lane of Object.keys(data.projects)) {
     projects[lane] = [];

@@ -10,7 +10,7 @@
         <p class="segfault__code" aria-hidden="true">404</p>
         <h1 class="segfault__title">Segmentation fault (page dumped)</h1>
         <pre class="segfault__trace" aria-label="Stack trace"><code>at resolve(<span id="segfault-path">/this/page</span>)
-at <span class="segfault__muted">location.pathname</span> (index.html:1:1)
+at <span class="segfault__muted" id="segfault-path-2">/this/page</span> (location.pathname:1:1)
 at Object.&lt;anonymous&gt; (404.html:1:1)</code></pre>
         <ul class="segfault__links">
           <li><a class="btn btn--primary" href="/">Home</a></li>
@@ -22,8 +22,10 @@ at Object.&lt;anonymous&gt; (404.html:1:1)</code></pre>
     <%- include('sections/footer') %>
     <script>
       (function () {
-        var el = document.getElementById('segfault-path');
-        if (el) el.textContent = location.pathname;
+        ['segfault-path', 'segfault-path-2'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = location.pathname;
+        });
       })();
     </script>
     <script type="module" src="/js/main.js"></script>

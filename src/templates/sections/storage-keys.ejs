@@ -1,0 +1,19 @@
+<%
+  // The single list of everything this site stores on a device; shown on both legal pages.
+  const storage = [
+    { key: 'theme', where: 'localStorage', what: 'Your colour theme choice: dark, light or system.' },
+    { key: 'nav-sections', where: 'localStorage', what: 'Whether the section navigation on the homepage is switched on or off.' },
+    { key: 'motion', where: 'localStorage', what: 'Your motion preference from the settings menu: system, reduced or full.' },
+    { key: 'campsnapFabDismissed', where: 'localStorage', what: 'Remembers that you dismissed the Campsnap prompt so it does not reappear.' },
+    { key: 'invaders-high', where: 'localStorage', what: 'Your high score in the hidden game.' },
+    { key: 'terminal-history', where: 'sessionStorage', what: 'The commands you typed in the terminal, for the current tab only. It is cleared when you close the tab.' },
+  ];
+-%>
+<ul class="storage-list">
+  <% storage.forEach(function (item) { %>
+  <li class="storage-item">
+    <p class="storage-item__head"><code><%= item.key %></code> <span class="storage-item__where"><%= item.where %></span></p>
+    <p class="storage-item__what"><%= item.what %></p>
+  </li>
+  <% }); %>
+</ul>
