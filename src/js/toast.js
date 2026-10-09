@@ -27,7 +27,9 @@ export function toast(message, { duration = 5000, doc = document } = {}) {
     item.className = 'toast';
     item.textContent = message;
     el.replaceChildren(item);
-    requestAnimationFrame(() => item.setAttribute('data-visible', ''));
+    // Reading offsetWidth commits the hidden style first so the opacity transition plays; no animation frame needed.
+    void item.offsetWidth;
+    item.setAttribute('data-visible', '');
   }, 50);
   timer = setTimeout(() => {
     const item = el.firstElementChild;
