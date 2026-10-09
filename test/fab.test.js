@@ -102,6 +102,22 @@ test('document clicks and other keys do not dismiss', () => {
   assert.equal(e.popover.hidden, false);
 });
 
+test('Escape already handled by another dialog does not close the FAB or steal focus', () => {
+  const e = fakeEnv();
+  initFab(e.win);
+  e.btn.focused = 0;
+  e.docHandlers.keydown({ key: 'Escape', defaultPrevented: true });
+  assert.equal(e.popover.hidden, false);
+  assert.equal(e.btn.focused, 0);
+});
+
+test('Escape with the FAB closed does not move focus', () => {
+  const e = fakeEnv({ width: 300 });
+  initFab(e.win);
+  e.docHandlers.keydown({ key: 'Escape' });
+  assert.equal(e.btn.focused, 0);
+});
+
 function motionWin({ mode = null, reduce = false } = {}) {
   return {
     document: { documentElement: { getAttribute: () => mode } },
