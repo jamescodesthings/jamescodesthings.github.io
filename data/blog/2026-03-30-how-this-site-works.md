@@ -1,4 +1,8 @@
-# How This Site Works
+---
+summary: No framework, no CMS. JSON and Markdown go in, plain HTML comes out, and every push to main ships it.
+---
+
+# Personal Website
 
 _Published: 30 March 2026_
 

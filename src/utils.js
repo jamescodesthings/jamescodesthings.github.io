@@ -1,5 +1,5 @@
 import Debug from 'debug';
-import { resolve, basename, dirname } from 'path';
+import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFile as fsReadFile, readdir, writeFile as fsWriteFile, mkdir, rm, copyFile, stat } from 'fs/promises';
 import ejs from 'ejs';
@@ -98,24 +98,33 @@ export async function renderTemplate(templatePath, data) {
   });
 }
 
-export async function renderBlogPost(file) {
-  const slug = basename(file, '.md');
-  const blogDir = resolve(root, config.blogDir);
-  const markdown = await readFile(resolve(blogDir, file));
-  const titleMatch = markdown.match(/^#\s+(.+)$/m);
-  const title = titleMatch ? titleMatch[1] : slug;
-  const content = converter.makeHtml(markdown);
+// A post may open with a `---` block of `key: value` lines; `summary` is the one-liner shown on the blog list.
+export function parsePost(markdown) {
+  const frontMatch = markdown.match(/^---\n([\s\S]*?)\n---\n/);
+  const meta = {};
+  if (frontMatch) {
+    for (const line of frontMatch[1].split('\n')) {
+      const [key, ...rest] = line.split(':');
+      if (key.trim()) meta[key.trim()] = rest.join(':').trim();
+    }
+  }
+  const body = frontMatch ? markdown.slice(frontMatch[0].length) : markdown;
+  const titleMatch = body.match(/^#\s+(.+)$/m);
+  return { title: titleMatch ? titleMatch[1] : null, summary: meta.summary || '', body };
+}
+
+export async function renderBlogPost(post) {
   const blogTemplatePath = resolve(root, config.templateDir, 'blog.ejs');
   const blogTemplate = await readFile(blogTemplatePath);
   const html = ejs.render(
     blogTemplate,
-    { title, content },
+    { title: post.title, summary: post.summary, content: converter.makeHtml(post.body) },
     {
       filename: blogTemplatePath,
       views: [resolve(root, config.templateDir)],
     },
   );
 
-  debug(` - Blog: ${title} (${slug})`);
-  await writeFile(`${config.outputDir}/blog/${slug}.html`, html);
+  debug(` - Blog: ${post.title} (${post.slug})`);
+  await writeFile(`${config.outputDir}/blog/${post.slug}.html`, html);
 }
