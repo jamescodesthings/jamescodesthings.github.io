@@ -83,11 +83,10 @@
           <% if (photos.length) { %>
           <ul class="photo-strip">
             <% photos.slice(0, 8).forEach(function (photo) {
-              const src = photo.src.startsWith('/') ? photo.src : '/assets/photos/' + photo.src.split('/').pop();
               const exif = photo.exif ? [photo.exif.camera, photo.exif.lens, photo.exif.focal, photo.exif.aperture, photo.exif.shutter, photo.exif.iso && 'ISO ' + photo.exif.iso].filter(Boolean).join(' · ') : ''; %>
             <li>
               <figure class="photo" tabindex="0">
-                <img src="<%= src %>" alt="<%= photo.alt %>" loading="lazy" decoding="async" />
+                <%- include('sections/picture', { image: photo.imageData, alt: photo.alt, sizes: '(min-width: 48rem) 25vw, 60vw', priority: false }) %>
                 <% if (photo.caption || exif) { %>
                 <figcaption class="photo__caption">
                   <% if (photo.caption) { %><span><%= photo.caption %></span><% } %>
