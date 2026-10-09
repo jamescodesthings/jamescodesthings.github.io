@@ -40,6 +40,19 @@ test('entry links are absolute and content urls are absolutised', () => {
   assert.doesNotMatch(xml, /&quot;\/assets/);
 });
 
+test('fragment links resolve against the entry url and the video facade becomes a link', () => {
+  const facade =
+    '<div class="yt-facade" data-yt-facade data-yt-id="abc" data-yt-title="Demo &amp; more"><a class="yt-facade__link" href="https://www.youtube.com/watch?v=abc" rel="noopener"><span class="yt-facade__play">x</span><span class="yt-facade__title">Demo &amp; more</span></a></div>';
+  const xml = atomFeed(
+    [{ slug: 's', title: 'T', summary: 'x', date: '2026-01-01', html: `<h2 id="a"><a href="#a">a</a></h2>${facade}` }],
+    site,
+  );
+  assert.match(xml, /href=&quot;https:\/\/codesthings\.com\/blog\/s\.html#a&quot;/);
+  assert.doesNotMatch(xml, /yt-facade|data-yt/);
+  assert.match(xml, /Watch on YouTube: Demo &amp;amp; more/);
+  assert.match(xml, /href=&quot;https:\/\/www\.youtube\.com\/watch\?v=abc&quot;/);
+});
+
 test('ampersand in a title is escaped', () => {
   assert.match(atomFeed(posts, site), /<title>Fish &amp; Chips<\/title>/);
 });
