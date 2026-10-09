@@ -152,6 +152,7 @@ const isRaster = ref => RASTER.has(extname(ref.split(/[?#]/)[0]).toLowerCase());
 // "assets/" or "../assets/" still means src/assets/ as written.
 export function resolvePhotoPath(src, assetsRoot) {
   if (/^(\.\.?\/)?\/?assets\//.test(src)) return resolveAssetPath(src, assetsRoot);
+  if (posix.normalize(src).split('/').includes('..')) throw new Error(`Photo path escapes photos/: ${src}`);
   return resolveAssetPath(posix.join('photos', src), assetsRoot);
 }
 
