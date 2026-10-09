@@ -2,7 +2,6 @@ import { motionAllowed } from './motion.js';
 
 function setButton(btn, playing) {
   btn.textContent = playing ? 'Pause video' : 'Play video';
-  btn.setAttribute('aria-pressed', playing ? 'false' : 'true');
 }
 
 // Starts a video unless the visitor has paused it. Autoplay only runs when motion is allowed.
@@ -25,7 +24,7 @@ export function initVideos(win = window) {
     const btn = scope.querySelector('[data-video-toggle]');
     if (!video || !btn) return;
 
-    setButton(btn, false);
+    setButton(btn, !video.paused);
     video.addEventListener('play', () => setButton(btn, true));
     video.addEventListener('pause', () => setButton(btn, false));
     btn.addEventListener('click', () => {

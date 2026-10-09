@@ -50,7 +50,7 @@ export function initFab(win = window) {
   btn.addEventListener('click', () => (isOpen() ? close() : open()));
   closeBtn.addEventListener('click', close);
   doc.addEventListener('keydown', event => {
-    if (event.key === 'Escape') close();
+    if (event.key === 'Escape' && !event.defaultPrevented && isOpen()) close();
   });
 
   // Auto-open once. The flag is written on open, so a reload does not repeat it. If storage throws the
