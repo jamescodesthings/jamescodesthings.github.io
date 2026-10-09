@@ -10,3 +10,4 @@ node_modules/
 
 # Raw source files
 raw/
+.superpowers/

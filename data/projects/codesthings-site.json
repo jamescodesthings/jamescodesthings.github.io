@@ -1,0 +1,14 @@
+{
+  "title": "codesthings.com",
+  "lane": "work",
+  "summary": "This site: JSON and Markdown in, plain HTML out, and a push to main ships it.",
+  "stack": ["Node", "EJS", "CSS", "GitHub Actions"],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/jamescodesthings/jamescodesthings.github.io", "icon": "github" },
+    { "label": "How it works", "url": "/blog/2026-03-30-how-this-site-works.html", "icon": "blog" }
+  ],
+  "image": null,
+  "date": "2026-10",
+  "featured": true,
+  "order": 2
+}

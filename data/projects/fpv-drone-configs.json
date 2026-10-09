@@ -1,0 +1,17 @@
+{
+  "title": "FPV Drone Configs",
+  "lane": "make",
+  "summary": "Config and rates for a hangar of FPV builds, from Pavo Femto whoops to Crux35, kept in version control.",
+  "stack": ["FPV", "Git", "Markdown"],
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/jamescodesthings/drones",
+      "icon": "github"
+    }
+  ],
+  "image": null,
+  "date": "2025-08",
+  "featured": false,
+  "order": 5
+}

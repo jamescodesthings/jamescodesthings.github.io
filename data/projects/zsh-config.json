@@ -1,0 +1,11 @@
+{
+  "title": "ZshConfig",
+  "lane": "work",
+  "summary": "A fast, modular zsh setup with lazy-loaded functions and one command that updates the whole machine.",
+  "stack": ["Zsh", "zinit", "Homebrew"],
+  "links": [{ "label": "GitHub", "url": "https://github.com/jamescodesthings/zsh-config", "icon": "github" }],
+  "image": null,
+  "date": "2026-10",
+  "featured": true,
+  "order": 3
+}

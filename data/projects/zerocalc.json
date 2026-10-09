@@ -1,0 +1,14 @@
+{
+  "title": "ZeroCalc",
+  "lane": "make",
+  "summary": "A PicoCalc rebuilt around a Pi Zero 2W: a pocket Pico-8 dev machine, with the full build guide.",
+  "stack": ["Pi Zero 2W", "PicoCalc", "Debian", "Pico-8"],
+  "links": [
+    { "label": "Build guide", "url": "/blog/2026-05-01-zerocalc.html", "icon": "blog" },
+    { "label": "GitHub", "url": "https://github.com/jamescodesthings/picocalc_trixie", "icon": "github" }
+  ],
+  "image": null,
+  "date": "2026-05",
+  "featured": true,
+  "order": 1
+}

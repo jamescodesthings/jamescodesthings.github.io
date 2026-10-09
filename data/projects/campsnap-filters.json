@@ -1,0 +1,15 @@
+{
+  "title": "CampSnap Filters",
+  "lane": "work",
+  "summary": "Free film and retro video looks for the CampSnap CS8, built by a Node pipeline that generates each pack.",
+  "stack": ["Node", "Sharp", "EJS", "Docker"],
+  "stat": "Used by photographers worldwide",
+  "links": [
+    { "label": "Site", "url": "https://filters.campsnapphoto.com/", "icon": "web" },
+    { "label": "GitHub", "url": "https://github.com/jamescodesthings/campsnap", "icon": "github" }
+  ],
+  "image": null,
+  "date": "2026-07",
+  "featured": true,
+  "order": 1
+}

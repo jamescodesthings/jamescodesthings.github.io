@@ -1,0 +1,18 @@
+{
+  "title": "The Dome Whoop Canopy",
+  "lane": "make",
+  "summary": "A printable canopy for Air65 and Air75 whoops, in its second revision.",
+  "stack": ["3D printing", "FPV"],
+  "stat": "Rated 4.9 from 43 reviews",
+  "links": [
+    {
+      "label": "MakerWorld",
+      "url": "https://makerworld.com/en/models/1244940-the-dome-air65-air75-canopy-mk-2",
+      "icon": "makerworld"
+    }
+  ],
+  "image": null,
+  "date": null,
+  "featured": true,
+  "order": 2
+}
