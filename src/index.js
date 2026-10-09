@@ -6,7 +6,14 @@ import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, mar
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { getBuildStamp } from './lib/buildstamp.js';
-import { processImage, pictureHtml, processHtmlImages, resolveAssetPath, PIPELINE_DIRS } from './lib/images.js';
+import {
+  processImage,
+  pictureHtml,
+  processHtmlImages,
+  resolveAssetPath,
+  resolvePhotoPath,
+  PIPELINE_DIRS,
+} from './lib/images.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -38,9 +45,9 @@ export async function buildAssets() {
 
 // Returns a copy of `item` with `imageData` (the processed image) when `item[key]` names an image under
 // src/assets/. A missing file fails the build naming `label`.
-async function withImage(item, key, label) {
+async function withImage(item, key, label, resolveFn = resolveAssetPath) {
   if (!item[key]) return item;
-  const abs = resolveAssetPath(item[key], assetsRoot);
+  const abs = resolveFn(item[key], assetsRoot);
   try {
     return { ...item, imageData: await processImage(abs, { outDir: imageOutDir, cacheDir: imageCacheDir }) };
   } catch (err) {
@@ -56,7 +63,7 @@ export async function buildPages(data) {
     for (const p of data.projects[lane]) projects[lane].push(await withImage(p, 'image', `project ${p.title}`));
   }
   const photos = [];
-  for (const p of data.photos) photos.push(await withImage(p, 'src', `photo ${p.src}`));
+  for (const p of data.photos) photos.push(await withImage(p, 'src', `photo ${p.src}`, resolvePhotoPath));
   if (!(await exists(resolve(root, config.templateDir, '404.ejs')))) throw new Error('404 template not found');
   if (blogPosts.length === 0) throw new Error('No blog posts found');
 
