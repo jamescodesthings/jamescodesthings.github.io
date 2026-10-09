@@ -1,0 +1,46 @@
+<%
+  // locals: posts[] (newest first), formatLongDate, links, stamp.
+  const years = [];
+  posts.forEach(function (post) {
+    const year = post.date ? post.date.slice(0, 4) : 'Undated';
+    let group = years.find(function (y) { return y.year === year; });
+    if (!group) { group = { year: year, posts: [] }; years.push(group); }
+    group.posts.push(post);
+  });
+-%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('sections/head') %>
+  </head>
+  <body class="page-blog">
+    <%- include('sections/header') %>
+    <main id="main">
+      <div class="container blog-index">
+        <h1 class="blog-index__title">Blog</h1>
+        <p class="blog-index__lede">
+          <span>Notes on things I build and make.</span>
+          <a class="text-link" href="/feed.xml"><%- include('sections/icon', { name: 'rss', size: 18 }) %><span>RSS feed</span></a>
+        </p>
+        <% years.forEach(function (group) { %>
+        <section class="blog-year" aria-labelledby="year-<%= group.year %>">
+          <h2 class="blog-year__title" id="year-<%= group.year %>"><%= group.year %></h2>
+          <ul class="blog-year__list">
+            <% group.posts.forEach(function (post) { %>
+            <li class="blog-entry">
+              <h3 class="blog-entry__title"><a href="/blog/<%= post.slug %>.html"><%= post.title %></a></h3>
+              <% if (post.summary) { %><p class="blog-entry__summary"><%= post.summary %></p><% } %>
+              <p class="blog-entry__meta">
+                <% if (post.date) { %><time datetime="<%= post.date %>"><%= formatLongDate(post.date) %></time> &middot; <% } %><%= post.readingTime %> min read
+              </p>
+            </li>
+            <% }); %>
+          </ul>
+        </section>
+        <% }); %>
+      </div>
+    </main>
+    <%- include('sections/footer') %>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

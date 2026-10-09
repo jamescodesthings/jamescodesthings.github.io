@@ -1,12 +1,65 @@
+<%
+  // locals: post ({title, summary, date, updated, tags, readingTime, headings, html, prev, next}),
+  // coverHtml ('' or a <picture>), formatLongDate, links, stamp.
+  const toc = post.headings;
+  const tocList = function (items) {
+    let out = '<ol>';
+    let open = false;
+    items.forEach(function (h) {
+      if (h.level === 3 && !open) { out += '<li><ol>'; open = true; }
+      if (h.level === 2 && open) { out += '</ol></li>'; open = false; }
+      out += '<li><a href="#' + h.id + '">' + h.text.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</a></li>';
+    });
+    if (open) out += '</ol></li>';
+    return out + '</ol>';
+  };
+-%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <%- include('sections/head') %>
   </head>
-  <body>
+  <body class="page-post">
     <%- include('sections/header') %>
-    <main id="main" class="blog-post">
-      <article class="paper-page"><%- content %></article>
+    <div class="read-progress" aria-hidden="true"></div>
+    <main id="main">
+      <div class="container post">
+        <a class="post-back" href="/blog/"><%- include('sections/icon', { name: 'blog', size: 18 }) %><span>All posts</span></a>
+        <header class="post-header">
+          <p class="post-meta">
+            <% if (post.date) { %><time datetime="<%= post.date %>"><%= formatLongDate(post.date) %></time><% } %>
+            <span><%= post.readingTime %> min read</span>
+            <% if (post.updated) { %><span>Updated <time datetime="<%= post.updated %>"><%= formatLongDate(post.updated) %></time></span><% } %>
+          </p>
+          <h1 class="post-title"><%= post.title %></h1>
+          <% if (post.summary) { %><p class="post-summary"><%= post.summary %></p><% } %>
+          <% if (post.tags.length) { %>
+          <ul class="post-tags" aria-label="Tags">
+            <% post.tags.forEach(function (tag) { %><li><%= tag %></li><% }); %>
+          </ul>
+          <% } %>
+        </header>
+        <% if (coverHtml) { %><figure class="post-cover"><%- coverHtml %></figure><% } %>
+        <div class="post-layout<%= toc.length ? ' post-layout--toc' : '' %>">
+          <% if (toc.length) { %>
+          <details class="toc toc--mobile">
+            <summary>On this page</summary>
+            <nav aria-label="Table of contents"><%- tocList(toc) %></nav>
+          </details>
+          <nav class="toc toc--side" aria-label="Table of contents">
+            <p class="toc__title" aria-hidden="true">On this page</p>
+            <%- tocList(toc) %>
+          </nav>
+          <% } %>
+          <article class="post-body"><%- post.html %></article>
+        </div>
+        <% if (post.prev || post.next) { %>
+        <nav class="post-pager" aria-label="More posts">
+          <% if (post.prev) { %><a class="post-pager__prev" href="/blog/<%= post.prev.slug %>.html" rel="prev"><span class="post-pager__label">Previous</span><span><%= post.prev.title %></span></a><% } %>
+          <% if (post.next) { %><a class="post-pager__next" href="/blog/<%= post.next.slug %>.html" rel="next"><span class="post-pager__label">Next</span><span><%= post.next.title %></span></a><% } %>
+        </nav>
+        <% } %>
+      </div>
     </main>
     <%- include('sections/footer') %>
     <script type="module" src="/js/main.js"></script>

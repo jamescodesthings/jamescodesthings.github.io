@@ -16,8 +16,10 @@
     "debug": "^4.4.3",
     "ejs": "^6.0.1",
     "lightningcss": "^1.33.0",
+    "markdown-it": "^15.0.2",
+    "markdown-it-anchor": "^10.0.0",
     "sharp": "^0.35.5",
-    "showdown": "^2.1.0"
+    "shiki": "^4.5.0"
   },
   "devDependencies": {
     "prettier": "3.8.4"

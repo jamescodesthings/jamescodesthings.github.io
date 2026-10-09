@@ -2,7 +2,7 @@ import Debug from 'debug';
 import { resolve, dirname } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import config from './config.js';
-import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, markdownToHtml } from './utils.js';
+import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, formatLongDate } from './utils.js';
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { getBuildStamp } from './lib/buildstamp.js';
@@ -13,6 +13,7 @@ import {
   resolveAssetPath,
   resolvePhotoPath,
   PIPELINE_DIRS,
+  POST_SIZES,
 } from './lib/images.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -106,23 +107,46 @@ export async function buildPages(data) {
     { ...common, title: 'About Cookies - codesthings.com', path: '/about-cookies' },
     'about-cookies.html',
   );
+  // Post images go through the pipeline once, up front, so every consumer (pages, feed) sees final html.
+  const imageOpts = { assetsRoot, outDir: imageOutDir, cacheDir: imageCacheDir };
+  for (const post of blogPosts) {
+    post.html = await processHtmlImages(post.html, { slug: post.slug, ...imageOpts });
+    if (post.cover) {
+      post.coverImage = await processImage(resolveAssetPath(post.cover, assetsRoot), imageOpts).catch(err => {
+        throw new Error(`${post.slug}: cover ${post.cover}: ${err.message}`);
+      });
+      // The cover is the LCP image, so the body's first image is no longer the priority one.
+      post.html = post.html.replace('fetchpriority="high"', 'loading="lazy"');
+    }
+  }
+
+  await renderPage(
+    'blog-index.ejs',
+    {
+      ...common,
+      formatLongDate,
+      posts: blogPosts,
+      title: 'Blog - codesthings.com',
+      description: 'Posts by James Macmillan on software, making and photography, newest first.',
+      path: '/blog/',
+    },
+    'blog/index.html',
+  );
   for (const post of blogPosts) {
     debug(` - Blog: ${post.title} (${post.slug})`);
     await renderPage(
       'blog.ejs',
       {
         ...common,
+        formatLongDate,
+        post,
+        coverHtml: post.coverImage
+          ? pictureHtml({ image: post.coverImage, alt: post.coverAlt, sizes: POST_SIZES, priority: true })
+          : '',
         title: `${post.title} - codesthings.com`,
         description: post.summary,
         path: `/blog/${post.slug}.html`,
         type: 'article',
-        summary: post.summary,
-        content: await processHtmlImages(markdownToHtml(post.body), {
-          slug: post.slug,
-          assetsRoot,
-          outDir: imageOutDir,
-          cacheDir: imageCacheDir,
-        }),
       },
       `blog/${post.slug}.html`,
     );
