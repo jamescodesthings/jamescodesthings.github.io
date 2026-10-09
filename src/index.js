@@ -6,10 +6,15 @@ import { writeFile, mkdirp, rmrf, cpDir, exists, renderTemplate, formatDate, mar
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { getBuildStamp } from './lib/buildstamp.js';
+import { processImage, pictureHtml, processHtmlImages, resolveAssetPath, PIPELINE_DIRS } from './lib/images.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
 const outputDir = resolve(root, config.outputDir);
+const assetsRoot = resolve(root, config.assetsDir);
+// Processed images land here (URL /assets/img/...); the cache is keyed by source content.
+const imageOutDir = resolve(outputDir, 'assets/img');
+const imageCacheDir = resolve(root, '.cache/images');
 
 const debug = Debug('codesthings:index');
 debug.enabled = true;
@@ -26,16 +31,37 @@ export async function buildAssets() {
   await mkdirp(outputDir);
   await writeFile(`${outputDir}/css/styles.css`, await bundleCss(resolve(root, config.cssDir)));
   await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
-  await cpDir(resolve(root, config.assetsDir), `${outputDir}/assets`);
+  // blog-images/, photos/ and projects/ are not copied: only the images that something references are
+  // processed (see processHtmlImages and withImage), into public/assets/img/.
+  await cpDir(assetsRoot, `${outputDir}/assets`, entry => !PIPELINE_DIRS.includes(entry.name));
+}
+
+// Returns a copy of `item` with `imageData` (the processed image) when `item[key]` names an image under
+// src/assets/. A missing file fails the build naming `label`.
+async function withImage(item, key, label) {
+  if (!item[key]) return item;
+  const abs = resolveAssetPath(item[key], assetsRoot);
+  try {
+    return { ...item, imageData: await processImage(abs, { outDir: imageOutDir, cacheDir: imageCacheDir }) };
+  } catch (err) {
+    throw new Error(`${label}: ${err.message}`);
+  }
 }
 
 export async function buildPages(data) {
-  const { links, posts: blogPosts, site, now, projects, photos } = data;
+  const { links, posts: blogPosts, site, now } = data;
+  const projects = {};
+  for (const lane of Object.keys(data.projects)) {
+    projects[lane] = [];
+    for (const p of data.projects[lane]) projects[lane].push(await withImage(p, 'image', `project ${p.title}`));
+  }
+  const photos = [];
+  for (const p of data.photos) photos.push(await withImage(p, 'src', `photo ${p.src}`));
   if (!(await exists(resolve(root, config.templateDir, '404.ejs')))) throw new Error('404 template not found');
   if (blogPosts.length === 0) throw new Error('No blog posts found');
 
   const stamp = getBuildStamp({ gitDir: resolve(root, '.git') });
-  const common = { links, stamp };
+  const common = { links, stamp, pictureHtml };
   const index = {
     title: 'James Macmillan - codesthings.com',
     description: 'Software engineer portfolio - James Macmillan builds things for the web.',
@@ -84,7 +110,12 @@ export async function buildPages(data) {
         path: `/blog/${post.slug}.html`,
         type: 'article',
         summary: post.summary,
-        content: markdownToHtml(post.body),
+        content: await processHtmlImages(markdownToHtml(post.body), {
+          slug: post.slug,
+          assetsRoot,
+          outDir: imageOutDir,
+          cacheDir: imageCacheDir,
+        }),
       },
       `blog/${post.slug}.html`,
     );

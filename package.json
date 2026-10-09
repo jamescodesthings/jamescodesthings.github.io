@@ -16,6 +16,7 @@
     "debug": "^4.4.3",
     "ejs": "^6.0.1",
     "lightningcss": "^1.33.0",
+    "sharp": "^0.35.5",
     "showdown": "^2.1.0"
   },
   "devDependencies": {

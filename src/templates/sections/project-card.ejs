@@ -5,8 +5,9 @@
 -%>
 <article class="project-card<%= isWide ? ' project-card--wide' : '' %>">
   <div class="project-card__media">
-    <% /* Task 5 swaps this single placeholder branch for pictureHtml when project.image is set. */ %>
-    <% if (!project.image) { %>
+    <% if (project.imageData) { %>
+    <%- include('picture', { image: project.imageData, alt: '', sizes: isWide ? '(min-width: 64rem) 45vw, 100vw' : '(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw', priority: false }) %>
+    <% } else { %>
     <div class="project-card__placeholder" aria-hidden="true"><span><%= initials %></span></div>
     <% } %>
   </div>

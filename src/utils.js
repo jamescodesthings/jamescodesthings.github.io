@@ -65,17 +65,19 @@ export async function cp(src, dest) {
   await copyFile(src, dest);
 }
 
-export async function cpDir(srcDir, destDir) {
+// `filter(dirent)` returns false to skip an entry.
+export async function cpDir(srcDir, destDir, filter = () => true) {
   if (!(await exists(srcDir))) throw new Error(`Source directory not found at ${srcDir}`);
 
   const entries = await readdir(srcDir, { withFileTypes: true });
   await mkdirp(destDir);
   for (const entry of entries) {
+    if (!filter(entry)) continue;
     const srcPath = `${srcDir}/${entry.name}`;
     const destPath = `${destDir}/${entry.name}`;
     if (entry.isDirectory()) {
       trace(`cp ${destPath}`);
-      await cpDir(srcPath, destPath);
+      await cpDir(srcPath, destPath, filter);
     } else {
       trace(`cp ${destPath}`);
       await copyFile(srcPath, destPath);
