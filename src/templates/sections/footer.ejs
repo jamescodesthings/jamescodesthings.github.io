@@ -1,29 +1,38 @@
+<%
+  // locals: stamp ({ short, date, url } from getBuildStamp); links (optional, data/links.json) for the social icons.
+  const social = typeof links === 'undefined' ? [] : links.filter(l => !l.primary);
+-%>
 <footer class="site-footer">
-  <div class="footer-inner">
-    <a href="/" class="footer-home" aria-label="codesthings.com home">
-      <img
-        src="/assets/logo/logo.svg"
-        alt=""
-        class="footer-logo footer-logo--light"
-        width="160"
-        loading="lazy"
-      />
-      <img
-        src="/assets/logo/logo-dark.svg"
-        alt=""
-        class="footer-logo footer-logo--dark"
-        width="160"
-        loading="lazy"
-      />
-    </a>
-    <div class="footer-links">
-      <a href="https://codesthings.com/cv" class="footer-link footer-link--cv">
-        <%- include('icon', { name: 'cv', size: 16 }) %>
-        <span>View CV</span>
-      </a>
-      <a href="/privacy-notice" class="footer-link">Privacy Notice</a>
-      <a href="/about-cookies" class="footer-link">About Cookies</a>
+  <div class="site-footer__inner container">
+    <div class="site-footer__top">
+      <a href="/" class="footer-home" id="footer-logo" aria-label="codesthings.com home"><%- include('logo', { variant: 'wordmark', size: 24 }) %></a>
+      <a href="https://codesthings.com/cv" class="footer-cv"><%- include('icon', { name: 'cv', size: 18 }) %><span>View CV</span></a>
     </div>
-    <span class="footer-copy">&copy; 2026 James Macmillan</span>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a class="footer-link" href="/blog/">Blog</a></li>
+        <li><a class="footer-link" href="/feed.xml">RSS</a></li>
+        <li><a class="footer-link" href="/now">Now</a></li>
+        <li><a class="footer-link" href="/uses">Uses</a></li>
+        <li><a class="footer-link" href="/colophon">Colophon</a></li>
+        <li><a class="footer-link" href="/privacy-notice">Privacy Notice</a></li>
+        <li><a class="footer-link" href="/about-cookies">About Cookies</a></li>
+      </ul>
+    </nav>
+    <% if (social.length) { %>
+    <ul class="footer-social">
+      <% social.forEach(function (link) { %>
+      <li>
+        <a class="footer-social__link" href="<%= link.url %>" target="_blank" rel="noopener noreferrer" aria-label="<%= link.label %> (opens in a new tab)"><%- include('icon', { name: link.icon, size: 20 }) %></a>
+      </li>
+      <% }); %>
+    </ul>
+    <% } %>
+    <p class="footer-meta">
+      <span>&copy; 2026 James Macmillan</span>
+      <% if (typeof stamp !== 'undefined' && stamp) { %>
+      <% if (stamp.url) { %><a href="<%= stamp.url %>" rel="noopener">v<%= stamp.short %> &middot; built <%= stamp.date %></a><% } else { %><span>v<%= stamp.short %> &middot; built <%= stamp.date %></span><% } %>
+      <% } %>
+    </p>
   </div>
 </footer>

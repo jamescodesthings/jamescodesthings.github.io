@@ -1,0 +1,39 @@
+<%
+  // locals: title (full page title), description, path (root-absolute), ogImage (root-absolute or absolute URL), type ('website' | 'article'), noindex?
+  const origin = 'https://codesthings.com';
+  const pageTitle = typeof title === 'undefined' ? 'James Macmillan - codesthings.com' : title;
+  const pageDescription = typeof description === 'undefined' ? '' : description;
+  const pagePath = typeof path === 'undefined' ? '/' : path;
+  const pageType = typeof type === 'undefined' ? 'website' : type;
+  const image = typeof ogImage === 'undefined' || !ogImage ? '/assets/og-logo.png' : ogImage;
+  const imageUrl = /^https?:/.test(image) ? image : origin + image;
+  const canonical = origin + pagePath;
+-%>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><%= pageTitle %></title>
+<% if (pageDescription) { %><meta name="description" content="<%= pageDescription %>" />
+<% } %><% if (typeof noindex !== 'undefined' && noindex) { %><meta name="robots" content="noindex" />
+<% } %><link rel="canonical" href="<%= canonical %>" />
+<meta name="color-scheme" content="dark light" />
+
+<meta property="og:type" content="<%= pageType %>" />
+<meta property="og:site_name" content="codesthings.com" />
+<meta property="og:title" content="<%= pageTitle %>" />
+<% if (pageDescription) { %><meta property="og:description" content="<%= pageDescription %>" />
+<% } %><meta property="og:url" content="<%= canonical %>" />
+<meta property="og:image" content="<%= imageUrl %>" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<%= pageTitle %>" />
+<% if (pageDescription) { %><meta name="twitter:description" content="<%= pageDescription %>" />
+<% } %><meta name="twitter:image" content="<%= imageUrl %>" />
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="alternate" type="application/atom+xml" title="codesthings.com" href="/feed.xml" />
+
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/styles.css" />
+<%# theme-init.js is plain ES5, inlined so data-theme is set before first paint. %><script><%- include('../../js/theme-init.js') %></script>

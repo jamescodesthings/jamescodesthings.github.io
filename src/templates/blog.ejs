@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %> - CodesThings.com</title>
-    <% if (summary) { %><meta name="description" content="<%= summary %>" /><% } %>
-
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <%- include('sections/head') %>
   </head>
   <body>
-    <%- include('sections/dark-mode-switch') %>
-    <nav class="blog-nav">
-      <a href="/">&larr; Back to codesthings.com</a>
-    </nav>
-
-    <main class="blog-post">
+    <%- include('sections/header') %>
+    <main id="main" class="blog-post">
       <article class="paper-page"><%- content %></article>
     </main>
-
     <%- include('sections/footer') %>
-
-    <script src="../js/theme.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

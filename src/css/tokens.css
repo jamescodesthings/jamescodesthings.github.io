@@ -1,0 +1,135 @@
+/*
+ * Design tokens: palette, type, spacing. Shared set: the cv and campsnap sub-sites copy this file.
+ * Dark is the default (no attribute, or data-theme="dark"). Light is data-theme="light" on <html>.
+ */
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #0f1216;
+  --color-surface: #171c22;
+  --color-surface-raised: #1e242c;
+  --color-border: #2a313a;
+  --color-text: #e8ebef;
+  --color-muted: #9aa4b0;
+  --color-accent: #f5b84a;
+  --color-accent-strong: #ffc96b;
+  --color-on-accent: #0f1216;
+  --color-focus: #f5b84a;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #fafaf7;
+  --color-surface: #f1f1ec;
+  --color-surface-raised: #e8e8e2;
+  --color-border: #d9d9d2;
+  --color-text: #1b1f24;
+  --color-muted: #566070;
+  --color-accent: #8a5300;
+  --color-accent-strong: #6e4200;
+  --color-on-accent: #fafaf7;
+  --color-focus: #8a5300;
+}
+
+/* Fonts: Latin variable woff2, self-hosted. Sources and licences in assets/fonts/. */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('/assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/assets/fonts/geist-mono-latin-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched fallbacks keep layout shift at zero while the real faces load. */
+@font-face {
+  font-family: 'Bricolage Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Arimo');
+  size-adjust: 113.2%;
+  ascent-override: 82.2%;
+  descent-override: 23.9%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Figtree Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Arimo');
+  size-adjust: 100.5%;
+  ascent-override: 94.5%;
+  descent-override: 24.9%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Geist Mono Fallback';
+  src: local('Courier New'), local('Liberation Mono'), local('Cousine');
+  size-adjust: 100%;
+  ascent-override: 100.5%;
+  descent-override: 29.5%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --font-heading: 'Bricolage Grotesque', 'Bricolage Fallback', system-ui, sans-serif;
+  --font-body: 'Figtree', 'Figtree Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale: fixed rem, one step-up at 768px. No vw middles. */
+  --text-display: 2.5rem;
+  --text-h1: 2rem;
+  --text-h2: 1.5rem;
+  --text-h3: 1.25rem;
+  --text-h4: 1.0625rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-xs: 0.8125rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Layout */
+  --max-width: 1100px;
+  --gutter: 1.25rem;
+  --header-height: 3.5rem;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --text-display: 3.75rem;
+    --text-h1: 2.5rem;
+    --text-h2: 1.875rem;
+    --text-h3: 1.5rem;
+    --text-h4: 1.25rem;
+    --text-body: 1.125rem;
+    --text-small: 1rem;
+    --text-xs: 0.875rem;
+    --gutter: 2rem;
+  }
+}

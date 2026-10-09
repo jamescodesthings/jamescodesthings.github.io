@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - codesthings.com</title>
-    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/css/styles.css" />
+    <%- include('sections/head') %>
   </head>
   <body>
-    <section class="hero hero--center">
-      <div class="hero-inner" style="text-align: center">
-        <h1 class="hero-title">404</h1>
-        <p class="hero-role" style="margin-bottom: var(--space-xl)">This page doesn't exist.</p>
-        <a href="/" class="hero-cta">Back to codesthings.com</a>
-      </div>
-    </section>
+    <%- include('sections/header') %>
+    <main id="main">
+      <section class="hero hero--center">
+        <div class="hero-inner" style="text-align: center">
+          <h1 class="hero-title">404</h1>
+          <p class="hero-role" style="margin-bottom: var(--space-xl)">This page doesn't exist.</p>
+          <a href="/" class="hero-cta">Back to codesthings.com</a>
+        </div>
+      </section>
+    </main>
     <%- include('sections/footer') %>
-    <script src="/js/theme.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

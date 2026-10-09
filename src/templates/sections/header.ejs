@@ -1,0 +1,39 @@
+<%
+  // locals: path (root-absolute). Section links are in-page anchors on the homepage and /#id elsewhere.
+  const onHome = typeof path !== 'undefined' && path === '/';
+  const anchor = id => (onHome ? '#' : '/#') + id;
+  const current = typeof path === 'undefined' ? '' : path.replace(/\.html$/, '').replace(/\/$/, '');
+  const navLinks = [
+    { label: 'Work', href: anchor('work') },
+    { label: 'Make', href: anchor('make') },
+    { label: 'Photos', href: anchor('photos') },
+    { label: 'Blog', href: anchor('blog') },
+    { label: 'Now', href: '/now', current: current === '/now' },
+  ];
+-%>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__home" href="/" aria-label="codesthings.com home"><%- include('logo', { variant: 'wordmark', size: 26 }) %></a>
+    <div class="settings-pill">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
+        <span class="theme-toggle__icon theme-toggle__icon--sun"><%- include('icon', { name: 'sun', size: 20 }) %></span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon"><%- include('icon', { name: 'moon', size: 20 }) %></span>
+      </button>
+    </div>
+    <details class="site-menu">
+      <summary aria-label="Menu">
+        <span class="site-menu__icon-open"><%- include('icon', { name: 'chevron', size: 18 }) %></span>
+        <span class="site-menu__icon-close"><%- include('icon', { name: 'close', size: 18 }) %></span>
+        <span>Menu</span>
+      </summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          <% navLinks.forEach(function (link) { %>
+          <li><a class="site-nav__link" href="<%= link.href %>"<% if (link.current) { %> aria-current="page"<% } %>><%= link.label %></a></li>
+          <% }); %>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
