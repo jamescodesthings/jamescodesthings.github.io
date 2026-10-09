@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!--
+  ___ _
+ / __| |_
+| (__|  _|
+ \___|\__|
+
+Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is at github.com/jamescodesthings.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Making my site fast - codesthings.com</title>
+<meta name="description" content="I ran Lighthouse on my own site before a redesign and did not love the numbers. Here is what I changed, what moved them, and what I now check on every deploy." />
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="https://codesthings.com/blog/2026-10-09-making-my-site-fast.html" />
+<meta name="color-scheme" content="dark light" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="codesthings.com" />
+<meta property="og:title" content="Making my site fast - codesthings.com" />
+<meta property="og:description" content="I ran Lighthouse on my own site before a redesign and did not love the numbers. Here is what I changed, what moved them, and what I now check on every deploy." />
+<meta property="og:url" content="https://codesthings.com/blog/2026-10-09-making-my-site-fast.html" />
+<meta property="article:published_time" content="2026-10-09" />
+<meta property="og:image" content="https://codesthings.com/og/blog-2026-10-09-making-my-site-fast.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Share card for Making my site fast - codesthings.com" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Making my site fast - codesthings.com" />
+<meta name="twitter:description" content="I ran Lighthouse on my own site before a redesign and did not love the numbers. Here is what I changed, what moved them, and what I now check on every deploy." />
+<meta name="twitter:image" content="https://codesthings.com/og/blog-2026-10-09-making-my-site-fast.png" />
+<meta name="twitter:image:alt" content="Share card for Making my site fast - codesthings.com" />
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="alternate" type="application/atom+xml" title="codesthings.com" href="/feed.xml" />
+
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/styles.css" />
+<script>(function () {
+  var root = document.documentElement;
+  var theme = 'dark';
+  var motion = null;
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light' || saved === 'system') theme = saved;
+  } catch (e) {}
+  try {
+    motion = localStorage.getItem('motion');
+  } catch (e) {}
+  if (theme === 'system') {
+    var light = false;
+    try {
+      light = window.matchMedia('(prefers-color-scheme: light)').matches;
+    } catch (e) {}
+    theme = light ? 'light' : 'dark';
+  }
+  root.setAttribute('data-theme', theme);
+  if (motion === 'reduce' || motion === 'full') root.setAttribute('data-motion', motion);
+  root.setAttribute('data-js', '');
+})();
+</script>
+
+  </head>
+  <body class="page-post">
+    <a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__home" href="/" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="156" height="26" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" class="logo__accent" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" class="logo__dot"/></g></svg>
+</a>
+    <div class="settings-pill">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
+        <span class="theme-toggle__icon theme-toggle__icon--sun"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+</span>
+      </button>
+      <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
+        <svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
+
+      </button>
+    </div>
+    <div class="settings-popover" id="settings-popover" popover="manual" role="group" aria-label="Settings" hidden>
+  <fieldset class="settings-group">
+    <legend>Theme</legend>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="dark" /><span>Dark</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="light" /><span>Light</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="system" /><span>System</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Section navigation</legend>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="on" /><span>On</span></label>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="off" /><span>Off</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Motion</legend>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="system" /><span>System</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="reduce" /><span>Reduced</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="full" /><span>Full</span></label>
+  </fieldset>
+  <button type="button" class="settings-hint" data-terminal-open>Press <kbd>`</kbd> for terminal</button>
+</div>
+
+    <details class="site-menu">
+      <summary aria-label="Menu">
+        <span class="site-menu__icon-open"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
+</span>
+        <span class="site-menu__icon-close"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+</span>
+        <span>Menu</span>
+      </summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          
+          <li><a class="site-nav__link" href="/#work">Work</a></li>
+          
+          <li><a class="site-nav__link" href="/#make">Make</a></li>
+          
+          <li><a class="site-nav__link" href="/#photos">Photos</a></li>
+          
+          <li><a class="site-nav__link" href="/#blog">Blog</a></li>
+          
+          <li><a class="site-nav__link" href="/now">Now</a></li>
+          
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+    <div class="read-progress" aria-hidden="true"></div>
+    <main id="main">
+      <div class="container post">
+        <a class="post-back" href="/blog/"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
+<span>All posts</span></a>
+        <header class="post-header">
+          <p class="post-meta">
+            <time datetime="2026-10-09">9 October 2026</time>
+            <strong class="post-meta__draft">Draft</strong>
+            <span>7 min read</span>
+            
+          </p>
+          <h1 class="post-title">Making my site fast</h1>
+          <p class="post-summary">I ran Lighthouse on my own site before a redesign and did not love the numbers. Here is what I changed, what moved them, and what I now check on every deploy.</p>
+          
+          <ul class="post-tags" aria-label="Tags">
+            <li>performance</li><li>accessibility</li><li>lighthouse</li><li>meta</li>
+          </ul>
+          
+        </header>
+        
+        <div class="post-layout post-layout--toc">
+          
+          <details class="toc toc--mobile">
+            <summary>On this page</summary>
+            <nav aria-label="Table of contents"><ol><li><a href="#the-numbers">The numbers</a></li><li><a href="#what-moved-them">What moved them</a></li><li><ol><li><a href="#fonts-and-icons-came-from-my-own-domain">Fonts and icons came from my own domain</a></li><li><a href="#images-go-through-sharp">Images go through sharp</a></li><li><a href="#layout-shift">Layout shift</a></li><li><a href="#contrast-tokens">Contrast tokens</a></li><li><a href="#lighthouse-gates-the-deploy">Lighthouse gates the deploy</a></li></ol></li><li><a href="#what-i-d-do-differently">What I'd do differently</a></li></ol></nav>
+          </details>
+          <nav class="toc toc--side" aria-label="Table of contents">
+            <p class="toc__title" aria-hidden="true">On this page</p>
+            <ol><li><a href="#the-numbers">The numbers</a></li><li><a href="#what-moved-them">What moved them</a></li><li><ol><li><a href="#fonts-and-icons-came-from-my-own-domain">Fonts and icons came from my own domain</a></li><li><a href="#images-go-through-sharp">Images go through sharp</a></li><li><a href="#layout-shift">Layout shift</a></li><li><a href="#contrast-tokens">Contrast tokens</a></li><li><a href="#lighthouse-gates-the-deploy">Lighthouse gates the deploy</a></li></ol></li><li><a href="#what-i-d-do-differently">What I'd do differently</a></li></ol>
+          </nav>
+          
+          <article class="post-body"><p>I redesigned this site recently, and before I touched anything I ran Lighthouse on the live version to get a baseline. I didn't expect to be proud of it, and I wasn't. The home page was fine. The ZeroCalc post was not.</p>
+<p>This is what the numbers were, what I changed, and how I keep them from drifting back. Everything below is measured, and where a number comes from somewhere other than the live site I say so.</p>
+<div class="heading-wrap">
+<h2 id="the-numbers">The numbers</h2>
+<a class="heading-anchor" href="#the-numbers"><span class="visually-hidden">Link to section: The numbers</span> <span aria-hidden="true">#</span></a></div>
+<p>Lighthouse, mobile preset, one run each. &quot;Before&quot; is the live site on 9 October 2026, from the reports I kept in the repo. &quot;After&quot; is the new build, served from a local HTTP/2 server with gzip, which is how GitHub Pages serves it. The &quot;after&quot; figures are in <code>data/colophon.json</code> and are shown on the <a href="/colophon">colophon</a> page.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Build</th>
+<th>Performance</th>
+<th>Accessibility</th>
+<th>LCP</th>
+<th>CLS</th>
+<th>Transferred</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>before</td>
+<td>88</td>
+<td>95</td>
+<td>2.6 s</td>
+<td>0.169</td>
+<td>1,049 KiB</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>after</td>
+<td>100</td>
+<td>100</td>
+<td>1.5 s</td>
+<td>0</td>
+<td>130 KiB</td>
+</tr>
+<tr>
+<td>ZeroCalc post</td>
+<td>before</td>
+<td>67</td>
+<td>87</td>
+<td>53.9 s</td>
+<td>0.109</td>
+<td>12,994 KiB</td>
+</tr>
+<tr>
+<td>ZeroCalc post</td>
+<td>after</td>
+<td>100</td>
+<td>100</td>
+<td>1.5 s</td>
+<td>0</td>
+<td>154 KiB</td>
+</tr>
+</tbody>
+</table></div>
+<p>Best practices and SEO were already at or near 100 on the home page before. On the ZeroCalc post, best practices was 93 before and is 100 now.</p>
+<p>Two caveats. These are single-run lab numbers on a simulated mobile connection, so treat the small differences as noise and the big ones as real. And the &quot;after&quot; run is local, so the first thing I'll do after deploying is run the same check against the live site.</p>
+<div class="heading-wrap">
+<h2 id="what-moved-them">What moved them</h2>
+<a class="heading-anchor" href="#what-moved-them"><span class="visually-hidden">Link to section: What moved them</span> <span aria-hidden="true">#</span></a></div>
+<div class="heading-wrap">
+<h3 id="fonts-and-icons-came-from-my-own-domain">Fonts and icons came from my own domain</h3>
+<a class="heading-anchor" href="#fonts-and-icons-came-from-my-own-domain"><span class="visually-hidden">Link to section: Fonts and icons came from my own domain</span> <span aria-hidden="true">#</span></a></div>
+<p>The old site asked Google Fonts for its typefaces and jsDelivr for the devicon stylesheet. It also shipped three font families as TTF files from its own assets, and the page loaded some of them eagerly. The biggest, Oswald, was 89 KB on its own.</p>
+<p>Now every font is a Latin-only variable WOFF2 file in <code>src/assets/fonts/</code>, declared like this:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">@font-face</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  font-family</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> 'Bricolage Grotesque'</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  src</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-function)"> url</span><span style="color:var(--shiki-token-constant)">(</span><span style="color:var(--shiki-token-string-expression)">'/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2'</span><span style="color:var(--shiki-token-constant)">) </span><span style="color:var(--shiki-token-function)">format</span><span style="color:var(--shiki-token-constant)">(</span><span style="color:var(--shiki-token-string-expression)">'woff2'</span><span style="color:var(--shiki-token-constant)">)</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  font-weight</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 200 800</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  font-style</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> normal</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  font-display</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> swap</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>The three fonts used on every page come to 61.5 KB, and the head preloads them so they arrive with the first response:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-foreground)">&#x3C;</span><span style="color:var(--shiki-token-string-expression)">link</span><span style="color:var(--shiki-token-function)"> rel</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)">"preload"</span><span style="color:var(--shiki-token-function)"> href</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)">"/assets/fonts/figtree-latin-wght-normal.woff2"</span><span style="color:var(--shiki-token-function)"> as</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)">"font"</span><span style="color:var(--shiki-token-function)"> type</span><span style="color:var(--shiki-token-keyword)">=</span><span style="color:var(--shiki-token-string-expression)">"font/woff2"</span><span style="color:var(--shiki-token-function)"> crossorigin</span><span style="color:var(--shiki-foreground)"> /></span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>The icons are inline SVG in one template, so there is no icon font or stylesheet to wait for. There are no third-party requests on a normal page view any more, which also lets the privacy notice say what it says.</p>
+<div class="heading-wrap">
+<h3 id="images-go-through-sharp">Images go through sharp</h3>
+<a class="heading-anchor" href="#images-go-through-sharp"><span class="visually-hidden">Link to section: Images go through sharp</span> <span aria-hidden="true">#</span></a></div>
+<p>This was the big one for the ZeroCalc post. The cover image was a 5.1 MB PNG, and four more photos in the post were 1.5 to 1.7 MB each. That is where almost all of the 12,994 KiB came from, and it is why the simulated largest contentful paint was 53.9 seconds on a throttled phone.</p>
+<p>I wrote a small image step in <code>src/lib/images.js</code> that runs at build time. For every image a post, project or photo refers to, it writes AVIF and WebP at three widths:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">export</span><span style="color:var(--shiki-token-keyword)"> const</span><span style="color:var(--shiki-token-constant)"> DEFAULT_WIDTHS</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-constant)">480</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 960</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 1600</span><span style="color:var(--shiki-foreground)">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> FORMATS</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-foreground)"> [</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  { type</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> 'image/avif'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> ext</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> 'avif'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-function)"> encode</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> img </span><span style="color:var(--shiki-token-keyword)">=></span><span style="color:var(--shiki-token-constant)"> img</span><span style="color:var(--shiki-token-function)">.avif</span><span style="color:var(--shiki-foreground)">({ quality</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 50</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> effort</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 4</span><span style="color:var(--shiki-foreground)"> }) }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  { type</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> 'image/webp'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> ext</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-string-expression)"> 'webp'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-function)"> encode</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> img </span><span style="color:var(--shiki-token-keyword)">=></span><span style="color:var(--shiki-token-constant)"> img</span><span style="color:var(--shiki-token-function)">.webp</span><span style="color:var(--shiki-foreground)">({ quality</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 78</span><span style="color:var(--shiki-foreground)"> }) }</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">];</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>The browser picks a format and size from a <code>&lt;picture&gt;</code> element. A 390 pixel wide phone gets the 480 pixel AVIF, which for the ZeroCalc photos comes to 68 KB in total. Results are cached by a hash of the source file, so a rebuild only does new work. Only images that something actually refers to are copied to <code>public/</code>, so a stray file in the assets folder never ships. A broken image path fails the build and names the post.</p>
+<p>I also stopped shipping the 765 KB <code>zipline.webm</code> clip that the old home page was downloading. The CampSnap clip is now MP4 with <code>preload=&quot;none&quot;</code> and a poster image, so it costs nothing until someone plays it.</p>
+<div class="heading-wrap">
+<h3 id="layout-shift">Layout shift</h3>
+<a class="heading-anchor" href="#layout-shift"><span class="visually-hidden">Link to section: Layout shift</span> <span aria-hidden="true">#</span></a></div>
+<p>Lighthouse blamed two things for the 0.169 on the home page: the hero container (0.142) and the floating CampSnap button (0.027). On the ZeroCalc post it blamed the YouTube iframe (0.109).</p>
+<p>For images, the fix is the boring one. The generated <code>&lt;img&gt;</code> always carries its real dimensions, so the browser reserves the space before anything loads:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-string-expression)">`&#x3C;picture></span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-foreground)">sources</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">&#x3C;img src="</span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-token-constant)">image</span><span style="color:var(--shiki-foreground)">.fallback</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">" alt="</span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-token-function)">escapeAttr</span><span style="color:var(--shiki-foreground)">(alt)</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">" `</span><span style="color:var(--shiki-token-keyword)"> +</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">  `width="</span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-token-constant)">image</span><span style="color:var(--shiki-foreground)">.width</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">" height="</span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-token-constant)">image</span><span style="color:var(--shiki-foreground)">.height</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)">" </span><span style="color:var(--shiki-token-keyword)">${</span><span style="color:var(--shiki-foreground)">loading</span><span style="color:var(--shiki-token-keyword)">}</span><span style="color:var(--shiki-token-string-expression)"> decoding="async">&#x3C;/picture>`</span><span style="color:var(--shiki-foreground)">;</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>For the video, the post no longer embeds YouTube directly. It renders a fixed-ratio box with a link, and the real embed only loads when someone clicks:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">.yt-facade</span><span style="color:var(--shiki-foreground)"> {</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  position</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> relative</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  aspect-ratio</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> 16 / 9</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  overflow</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-constant)"> hidden</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-token-constant)">  background</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-token-function)"> var</span><span style="color:var(--shiki-token-constant)">(--color-surface)</span><span style="color:var(--shiki-foreground)">;</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">}</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>That removed about 1 MB of YouTube traffic from the baseline ZeroCalc load, and the page stays small until someone chooses to play it. For the hero, I can't say which single change fixed it. The fonts are now preloaded and self-hosted, the floating button has a fixed size and position, and the measured CLS is 0 on both pages. I'd rather report that than invent a tidy cause.</p>
+<div class="heading-wrap">
+<h3 id="contrast-tokens">Contrast tokens</h3>
+<a class="heading-anchor" href="#contrast-tokens"><span class="visually-hidden">Link to section: Contrast tokens</span> <span aria-hidden="true">#</span></a></div>
+<p>The accessibility scores had the least to do with speed and the most to do with me not checking. The baseline had colour contrast failures on both pages (four elements on the home page, five on the ZeroCalc post), plus link and tap target problems in the post.</p>
+<p>The old light-theme accent was an orange that came to about 3:1 against its background, which fails for small text. I moved all the colours into one file of tokens, <code>src/css/tokens.css</code>, and wrote a script that checks every text and background pair in both themes:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)">// [foreground, background, minimum ratio, why]</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">const</span><span style="color:var(--shiki-token-constant)"> PAIRS</span><span style="color:var(--shiki-token-keyword)"> =</span><span style="color:var(--shiki-foreground)"> [</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  [</span><span style="color:var(--shiki-token-string-expression)">'text'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'bg'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 4.5</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'body text'</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  [</span><span style="color:var(--shiki-token-string-expression)">'muted'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'surface'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 4.5</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'secondary text'</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  [</span><span style="color:var(--shiki-token-string-expression)">'accent'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'bg'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 4.5</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'accent link text'</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  [</span><span style="color:var(--shiki-token-string-expression)">'on-accent'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'accent'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 4.5</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'text on accent buttons'</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">  [</span><span style="color:var(--shiki-token-string-expression)">'focus'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'bg'</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-constant)"> 3</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string-expression)"> 'focus ring'</span><span style="color:var(--shiki-foreground)">]</span><span style="color:var(--shiki-token-punctuation)">,</span></span>
+<span class="line"><span style="color:var(--shiki-foreground)">];</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p><code>npm run contrast</code> exits non-zero and names the failing pair if a token change breaks a ratio. The dark theme's accent stayed amber. The light theme's accent is now a darker brown-amber, because that is what it took to clear 4.5:1. Links in posts are underlined and have a minimum tap target, which cleared the other two audits.</p>
+<div class="heading-wrap">
+<h3 id="lighthouse-gates-the-deploy">Lighthouse gates the deploy</h3>
+<a class="heading-anchor" href="#lighthouse-gates-the-deploy"><span class="visually-hidden">Link to section: Lighthouse gates the deploy</span> <span aria-hidden="true">#</span></a></div>
+<p>The part I think matters most is that none of this relies on me remembering. The GitHub Actions workflow now has three jobs, and <code>deploy</code> needs the other two:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">deploy</span><span style="color:var(--shiki-token-keyword)">:</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">  needs</span><span style="color:var(--shiki-token-keyword)">:</span><span style="color:var(--shiki-foreground)"> [</span><span style="color:var(--shiki-token-string)">build</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-token-string)"> lighthouse</span><span style="color:var(--shiki-foreground)">]</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>The <code>lighthouse</code> job serves the built site over local HTTP/2 with gzip and runs <code>lhci</code> against the home page and the ZeroCalc post, three runs each, using the median. The rules are in <code>lighthouserc.json</code>:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-string-expression)">"categories:accessibility"</span><span style="color:var(--shiki-foreground)">: [</span><span style="color:var(--shiki-token-string-expression)">"error"</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { </span><span style="color:var(--shiki-token-keyword)">"minScore"</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-foreground)"> }],</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">"categories:best-practices"</span><span style="color:var(--shiki-foreground)">: [</span><span style="color:var(--shiki-token-string-expression)">"error"</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { </span><span style="color:var(--shiki-token-keyword)">"minScore"</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-foreground)"> }],</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">"categories:seo"</span><span style="color:var(--shiki-foreground)">: [</span><span style="color:var(--shiki-token-string-expression)">"error"</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { </span><span style="color:var(--shiki-token-keyword)">"minScore"</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 1</span><span style="color:var(--shiki-foreground)"> }],</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">"categories:performance"</span><span style="color:var(--shiki-foreground)">: [</span><span style="color:var(--shiki-token-string-expression)">"warn"</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { </span><span style="color:var(--shiki-token-keyword)">"minScore"</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 0.95</span><span style="color:var(--shiki-foreground)"> }],</span></span>
+<span class="line"><span style="color:var(--shiki-token-string-expression)">"cumulative-layout-shift"</span><span style="color:var(--shiki-foreground)">: [</span><span style="color:var(--shiki-token-string-expression)">"error"</span><span style="color:var(--shiki-token-punctuation)">,</span><span style="color:var(--shiki-foreground)"> { </span><span style="color:var(--shiki-token-keyword)">"maxNumericValue"</span><span style="color:var(--shiki-token-punctuation)">:</span><span style="color:var(--shiki-token-constant)"> 0.01</span><span style="color:var(--shiki-foreground)"> }]</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<p>Accessibility, best practices, SEO and layout shift fail the build. Performance and page weight only warn, because they vary more from run to run and I don't want a noisy score blocking a typo fix. The home page also has a warning if its total weight goes over about 500 KB. The workflow has not run on GitHub yet as I write this, so the first push will be its first real test.</p>
+<div class="heading-wrap">
+<h2 id="what-i-d-do-differently">What I'd do differently</h2>
+<a class="heading-anchor" href="#what-i-d-do-differently"><span class="visually-hidden">Link to section: What I'd do differently</span> <span aria-hidden="true">#</span></a></div>
+<p>I measured late. The ZeroCalc images were 12 MB for months, and a single Lighthouse run would have shown it. Putting the check in the pipeline means that can't happen quietly again.</p>
+<p>I also trust the HTTP/2 result more than I trust the HTTP/1.1 one. When I served the same build over HTTP/1.1 the simulated LCP was 1.96 seconds, which is over my own budget. GitHub Pages serves HTTP/2, so the number I report is the right one, but I'd like to confirm it against the live site rather than assume.</p>
+<p>None of this is clever. Self-host the fonts, resize the images, reserve space for things that arrive late, check your contrast, and make the machine do the checking. The score went up because the page got smaller and stopped moving around.</p>
+</article>
+        </div>
+        
+      </div>
+    </main>
+    <footer class="site-footer">
+  <div class="site-footer__inner container">
+    <div class="site-footer__top">
+      <a href="/" class="footer-home" id="footer-logo" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="144" height="24" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" class="logo__accent" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" class="logo__dot"/></g></svg>
+</a>
+      <a href="/cv/" class="footer-cv"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><circle cx="9.5" cy="11" r="1.75" /><path d="M7 16c.4-1.3 1.3-2 2.5-2s2.1.7 2.5 2" /><path d="M14 11h2.5" /><path d="M14 14h2.5" /><path d="M7 18.5h9.5" /></svg>
+<span>View CV</span></a>
+    </div>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a class="footer-link" href="/blog/">Blog</a></li>
+        <li><a class="footer-link" href="/feed.xml">RSS</a></li>
+        <li><a class="footer-link" href="/now">Now</a></li>
+        <li><a class="footer-link" href="/uses">Uses</a></li>
+        <li><a class="footer-link" href="/colophon">Colophon</a></li>
+        <li><a class="footer-link" href="/privacy-notice">Privacy Notice</a></li>
+        <li><a class="footer-link" href="/about-cookies">About Cookies</a></li>
+      </ul>
+    </nav>
+    
+    <ul class="footer-social">
+      
+      <li>
+        <a class="footer-social__link" href="https://github.com/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://makerworld.com/en/@jamescodesthing" target="_blank" rel="noopener noreferrer" aria-label="Makerworld (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.linkedin.com/in/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.instagram.com/jamescodesthings/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><path d="M17.5 6.5h.01" /></svg>
+</a>
+      </li>
+      
+    </ul>
+    
+    <p class="footer-meta">
+      <span>&copy; 2026 James Macmillan</span>
+      
+      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/55d9251570805d6ef15d011121fd898eb39968e9" rel="noopener">v55d9251 &middot; built 9 Oct 2026</a>
+      
+    </p>
+  </div>
+</footer>
+<script type="application/json" id="site-data">{"bio":"A pragmatic engineer who builds for the web, and makes things.","email":"james@codesthings.com"}</script>
+
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
