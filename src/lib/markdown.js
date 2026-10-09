@@ -81,7 +81,7 @@ const copyButton = icons =>
   `<button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code">` +
   `<span class="code-block__icon code-block__icon--idle">${icons.copy}</span>` +
   `<span class="code-block__icon code-block__icon--done">${icons.check}</span>` +
-  `<span class="code-block__status visually-hidden" role="status"></span></button>`;
+  `</button><span class="code-block__status visually-hidden" role="status"></span>`;
 
 function facade(id, title, icons) {
   const safe = escapeHtml(title || 'Watch the video');

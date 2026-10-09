@@ -22,7 +22,7 @@ export function initCopyCode(win = window) {
     const button = block.querySelector('[data-copy-button]');
     const pre = block.querySelector('pre[data-copy]');
     if (!button || !pre) return;
-    const status = button.querySelector('[role="status"]');
+    const status = block.querySelector('.code-block__status');
     let timer = null;
     button.hidden = false;
     button.addEventListener('click', async () => {
@@ -30,16 +30,14 @@ export function initCopyCode(win = window) {
         await writeText(pre.textContent, win);
       } catch (e) {
         selectContents(pre, win);
-        if (status) status.textContent = 'Press copy to finish';
+        if (status) status.textContent = 'Copy blocked. Code selected, press Ctrl+C.';
         return;
       }
       button.classList.add('is-copied');
-      button.setAttribute('aria-label', 'Copied');
       if (status) status.textContent = 'Copied to clipboard';
       win.clearTimeout(timer);
       timer = win.setTimeout(() => {
         button.classList.remove('is-copied');
-        button.setAttribute('aria-label', 'Copy code');
         if (status) status.textContent = '';
       }, 2000);
     });
