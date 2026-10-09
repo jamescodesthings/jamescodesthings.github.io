@@ -31,3 +31,9 @@ test('CRLF front matter parses', () => {
   assert.equal(title, 'Title');
   assert.ok(body.startsWith('# Title'));
 });
+
+test('title skips # lines inside fenced code blocks', () => {
+  const { title } = parsePost('intro\n\n```bash\n# not a title\n```\n\n~~~\n# nor this\n~~~\n\n# Real\n');
+  assert.equal(title, 'Real');
+  assert.equal(parsePost('```\n# only code\n```\n').title, null);
+});

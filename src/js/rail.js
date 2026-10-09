@@ -15,7 +15,7 @@ export function initRail({ toast, win = window } = {}) {
   const closeBtn = rail.querySelector('[data-rail-close]');
   const links = Array.from(rail.querySelectorAll('[data-rail-id]'));
   const currentNum = rail.querySelector('[data-rail-current]');
-  const wide = win.matchMedia('(min-width: 1024px)');
+  const wide = win.matchMedia('(min-width: 1240px)');
 
   let enabled = storage.get('nav-sections', 'on') !== 'off';
   let heroPast = false;

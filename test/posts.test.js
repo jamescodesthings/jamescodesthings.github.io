@@ -11,7 +11,8 @@ before(async () => {
   const root = await mkdtemp(resolve(tmpdir(), 'posts-test-'));
   const data = resolve(root, 'data');
   await mkdir(resolve(data, 'blog'), { recursive: true });
-  for (const name of ['site', 'now', 'uses', 'links']) await writeFile(resolve(data, `${name}.json`), '{}');
+  for (const name of ['site', 'now', 'uses', 'links'])
+    await writeFile(resolve(data, `${name}.json`), name === 'uses' ? '{"groups":[]}' : '{}');
   await writeFile(
     resolve(data, 'blog/2026-01-01-first.md'),
     '---\nsummary: First one\ncover: /assets/blog-images/c.png\ntags: pi, hardware\nupdated: 2026-02-01\n---\n\n# First\n\n## Part\n\ntext\n',

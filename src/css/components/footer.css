@@ -108,7 +108,7 @@
   color: var(--color-text);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (pointer: fine) {
   .footer-social__link {
     width: 36px;
     height: 36px;

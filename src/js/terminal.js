@@ -8,6 +8,7 @@ import { applyNavSections } from './settings.js';
 import { motionAllowed } from './motion.js';
 import { openGame } from './konami.js';
 import { toast } from './toast.js';
+import { isBackdropClick } from './dialog.js';
 
 const HISTORY_KEY = 'terminal-history';
 const HISTORY_MAX = 50;
@@ -293,7 +294,7 @@ function init(win) {
   });
   // A click on the backdrop (the dialog element itself) closes it.
   dialog.addEventListener('click', event => {
-    if (event.target === dialog) close();
+    if (isBackdropClick(event, dialog)) close();
   });
   print('Type help to see what this does.');
 }

@@ -23,7 +23,11 @@ export async function readFile(path) {
 
 export async function readJson(path) {
   const contents = await readFile(path);
-  return JSON.parse(contents);
+  try {
+    return JSON.parse(contents);
+  } catch (err) {
+    throw new Error(`Invalid JSON in ${path}: ${err.message}`);
+  }
 }
 
 export async function writeFile(path, contents) {

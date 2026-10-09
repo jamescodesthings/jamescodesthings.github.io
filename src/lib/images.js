@@ -4,11 +4,10 @@ import { createHash } from 'crypto';
 import { resolve, relative, isAbsolute, posix, extname, basename } from 'path';
 import { readFile, writeFile, mkdir, copyFile, stat } from 'fs/promises';
 import sharp from 'sharp';
+import { decodeEntities } from './text.js';
 
 export const DEFAULT_WIDTHS = [480, 960, 1600];
 export const DEFAULT_URL_PREFIX = '/assets/img';
-// Directories under src/assets/ that the pipeline owns; the wholesale asset copy skips them.
-export const PIPELINE_DIRS = ['blog-images', 'photos', 'projects'];
 export const POST_SIZES = '(min-width: 760px) 720px, 100vw';
 
 const RASTER = new Set(['.png', '.jpg', '.jpeg', '.webp', '.avif', '.tif', '.tiff']);
@@ -221,6 +220,6 @@ export async function processHtmlImages(
     if (!images.has(src)) return open + tag.replace(/(src\s*=\s*")[^"]*(")/i, `$1${copies.get(src)}$2`);
     const priority = first;
     first = false;
-    return open + pictureHtml({ image: images.get(src), alt: attr(tag, 'alt') ?? '', sizes, priority });
+    return open + pictureHtml({ image: images.get(src), alt: decodeEntities(attr(tag, 'alt') ?? ''), sizes, priority });
   });
 }

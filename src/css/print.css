@@ -45,7 +45,7 @@
   }
 
   body {
-    background: #fff;
+    background: var(--color-bg);
   }
 
   /* Link addresses after the text. In-page anchors and links that wrap images are skipped. */

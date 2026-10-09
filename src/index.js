@@ -16,18 +16,10 @@ import {
 } from './utils.js';
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
-import { atomFeed, sitemap, robots, pagePathFor } from './lib/feeds.js';
+import { atomFeed, sitemap, robots, pagePathFor, postSummary } from './lib/feeds.js';
 import { ogSlugFor, ogCardPath, cachedOgCard } from './lib/og.js';
 import { getBuildStamp } from './lib/buildstamp.js';
-import {
-  processImage,
-  pictureHtml,
-  processHtmlImages,
-  resolveAssetPath,
-  resolvePhotoPath,
-  PIPELINE_DIRS,
-  POST_SIZES,
-} from './lib/images.js';
+import { processImage, pictureHtml, resolveAssetPath, resolvePhotoPath, POST_SIZES } from './lib/images.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -67,6 +59,16 @@ export async function renderPage(template, data, outPath) {
   await writeFile(resolve(outputDir, outPath), html);
 }
 
+// Files directly under src/assets/ that the site references (head.ejs, campsnap banner and FAB).
+const SHIPPED_ASSET_FILES = [
+  'favicon.svg',
+  'favicon.ico',
+  'apple-touch-icon.png',
+  'og-logo.png',
+  'zipline-poster.jpg',
+  'zipline.mp4',
+];
+
 export async function buildAssets() {
   await rmrf(outputDir);
   await mkdirp(outputDir);
@@ -74,13 +76,15 @@ export async function buildAssets() {
   await cpDir(resolve(root, config.jsDir), `${outputDir}/js`);
   // The terminal command parser is shared: tests import src/lib/terminal.js, the browser imports this copy.
   await cp(resolve(root, 'src/lib/terminal.js'), `${outputDir}/js/terminal-lib.js`);
-  // blog-images/, photos/ and projects/ are not copied: only the images that something references are
-  // processed (see processHtmlImages and withImage), into public/assets/img/.
-  // fonts/og/ holds the build-time .woff files for share cards; they are never served.
+  // Only the assets that a template, script or stylesheet references are shipped (an allowlist, so a
+  // stray file dropped in src/assets/ never reaches public/). Post, project and photo images are not
+  // copied either: only the ones something references are processed (see renderPost and withImage)
+  // into public/assets/img/. fonts/og/ holds the build-time .woff files for share cards; never served.
+  for (const name of SHIPPED_ASSET_FILES) await cp(resolve(assetsRoot, name), `${outputDir}/assets/${name}`);
   await cpDir(
-    assetsRoot,
-    `${outputDir}/assets`,
-    entry => !PIPELINE_DIRS.includes(entry.name) && !(entry.name === 'og' && entry.isDirectory()),
+    resolve(assetsRoot, 'fonts'),
+    `${outputDir}/assets/fonts`,
+    entry => !(entry.name === 'og' && entry.isDirectory()),
   );
 }
 
@@ -207,10 +211,10 @@ export async function buildPages(data) {
     },
     'colophon.html',
   );
-  // Post images go through the pipeline once, up front, so every consumer (pages, feed) sees final html.
+  // Post body images already went through the pipeline in loadData (renderPost), so every consumer
+  // (pages, feed) sees final html. Covers are processed here.
   const imageOpts = { assetsRoot, outDir: imageOutDir, cacheDir: imageCacheDir };
   for (const post of blogPosts) {
-    post.html = await processHtmlImages(post.html, { slug: post.slug, ...imageOpts });
     if (post.cover) {
       post.coverImage = await processImage(resolveAssetPath(post.cover, assetsRoot), imageOpts).catch(err => {
         throw new Error(`${post.slug}: cover ${post.cover}: ${err.message}`);
@@ -244,7 +248,7 @@ export async function buildPages(data) {
           ? pictureHtml({ image: post.coverImage, alt: post.coverAlt, sizes: POST_SIZES, priority: true })
           : '',
         title: `${post.title} - codesthings.com`,
-        description: post.summary,
+        description: postSummary(post),
         path: `/blog/${post.slug}.html`,
         type: 'article',
       },
@@ -274,8 +278,9 @@ async function build() {
   const buildStart = Date.now();
   debug(`Build started at ${new Date(buildStart).toLocaleTimeString()}`);
 
-  const data = await loadSiteData(root);
+  // Assets first: buildAssets clears public/, and loading posts writes their images into it.
   await buildAssets();
+  const data = await loadSiteData(root, { images: { assetsRoot, outDir: imageOutDir, cacheDir: imageCacheDir } });
   await buildPages(data);
   await buildFeeds(data);
   await buildOg();

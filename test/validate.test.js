@@ -85,7 +85,8 @@ async function fixture(extra = {}) {
   await mkdir(join(d, 'projects'), { recursive: true });
   await mkdir(join(d, 'photos'), { recursive: true });
   await mkdir(join(d, 'blog'), { recursive: true });
-  for (const f of ['site', 'now', 'uses', 'links']) await writeFile(join(d, `${f}.json`), f === 'links' ? '[]' : '{}');
+  for (const f of ['site', 'now', 'uses', 'links'])
+    await writeFile(join(d, `${f}.json`), f === 'links' ? '[]' : f === 'uses' ? '{"groups":[]}' : '{}');
   await writeFile(join(d, 'projects', 'b.json'), JSON.stringify(project({ title: 'B', order: 2 })));
   await writeFile(join(d, 'projects', 'a.json'), JSON.stringify(project({ title: 'A', order: 1 })));
   await writeFile(join(d, 'projects', 'm.json'), JSON.stringify(project({ title: 'M', lane: 'make', order: 1 })));
@@ -123,4 +124,22 @@ test('loadData sorts projects by order within lane, photos by order, posts newes
 test('loadData names the bad project file', async () => {
   const root = await fixture({ 'projects/bad.json': JSON.stringify(project({ lane: 'photo' })) });
   await assert.rejects(loadData(root), /bad\.json.*lane/);
+});
+
+test('validateUses accepts http(s) and root-absolute urls and rejects others naming the file', async () => {
+  const { validateUses } = await import('../src/lib/validate.js');
+  const uses = url => ({ groups: [{ name: 'G', items: [{ name: 'a', url }] }] });
+  validateUses(uses('https://example.com'), 'uses.json');
+  validateUses(uses('/blog/x.html'), 'uses.json');
+  validateUses({ groups: [{ name: 'G', items: [{ name: 'a' }] }] }, 'uses.json');
+  for (const bad of ['javascript:alert(1)', '//evil.com', 'example.com'])
+    assert.throws(() => validateUses(uses(bad), 'uses.json'), /uses\.json: .*url/);
+});
+
+test('loadData names the file for a JSON syntax error', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'badjson-'));
+  await mkdir(join(root, 'data'), { recursive: true });
+  for (const n of ['site', 'now', 'links']) await writeFile(join(root, 'data', `${n}.json`), '{}');
+  await writeFile(join(root, 'data', 'uses.json'), '{ nope');
+  await assert.rejects(loadData(root), /uses\.json/);
 });

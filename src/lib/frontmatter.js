@@ -1,3 +1,5 @@
+import { findTitleLine } from './text.js';
+
 // A post may open with a `---` block of `key: value` lines. Values may contain colons; CRLF is accepted.
 // `body` is the input minus the front matter, unchanged (title heading retained).
 export function parsePost(markdown) {
@@ -12,6 +14,8 @@ export function parsePost(markdown) {
     }
   }
   const body = frontMatch ? markdown.slice(frontMatch[0].length) : markdown;
-  const titleMatch = body.match(/^#[ \t]+(.+?)[ \t]*\r?$/m);
-  return { meta, title: titleMatch ? titleMatch[1] : null, body };
+  const lines = body.split('\n');
+  const at = findTitleLine(lines);
+  const title = at === -1 ? null : lines[at].replace(/^#[ \t]+/, '').replace(/[ \t\r]+$/, '');
+  return { meta, title, body };
 }
