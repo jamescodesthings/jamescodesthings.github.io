@@ -19,12 +19,3 @@ Self-hosted Latin variable woff2 files for Bricolage Grotesque, Figtree and Geis
 ## Processed by the image pipeline
 
 `blog-images/` holds the images that blog posts reference. Anything under `src/assets/` that a post, project or photo references is resized to AVIF and WebP by `src/lib/images.js` and written to `public/assets/img/`. These folders are not copied as they are.
-
-## Kept in the repo but not shipped
-
-Nothing references these, so they are not copied to `public/`:
-
-- `profile.png`: a 1024x1024 headshot, no longer used on any page.
-- `icons/`: old technology logos (DynamoDB, Lambda, Serverless, Capacitor, Cordova, NativeScript, Stencil, Vite) from the previous design.
-- `svg/campsnap.svg`: an old CampSnap graphic.
-- `zipline.webm`: an unused alternative encoding of the clip.
