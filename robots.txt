@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codesthings.com/sitemap.xml

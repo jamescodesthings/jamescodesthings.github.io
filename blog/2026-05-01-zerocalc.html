@@ -1,105 +1,295 @@
 <!DOCTYPE html>
+<!--
+  ___ _
+ / __| |_
+| (__|  _|
+ \___|\__|
+
+Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is at github.com/jamescodesthings.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ZeroCalc - CodesThings.com</title>
-    <meta name="description" content="From delivery box to a standalone Pico-8 dev machine. The ZeroCalc 2W build, minus the forum digging." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZeroCalc - codesthings.com</title>
+<meta name="description" content="From delivery box to a standalone Pico-8 dev machine. The ZeroCalc 2W build, minus the forum digging." />
+<link rel="canonical" href="https://codesthings.com/blog/2026-05-01-zerocalc.html" />
+<meta name="color-scheme" content="dark light" />
 
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../css/styles.css" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="codesthings.com" />
+<meta property="og:title" content="ZeroCalc - codesthings.com" />
+<meta property="og:description" content="From delivery box to a standalone Pico-8 dev machine. The ZeroCalc 2W build, minus the forum digging." />
+<meta property="og:url" content="https://codesthings.com/blog/2026-05-01-zerocalc.html" />
+<meta property="og:image" content="https://codesthings.com/og/blog-2026-05-01-zerocalc.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Share card for ZeroCalc - codesthings.com" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ZeroCalc - codesthings.com" />
+<meta name="twitter:description" content="From delivery box to a standalone Pico-8 dev machine. The ZeroCalc 2W build, minus the forum digging." />
+<meta name="twitter:image" content="https://codesthings.com/og/blog-2026-05-01-zerocalc.png" />
+<meta name="twitter:image:alt" content="Share card for ZeroCalc - codesthings.com" />
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="alternate" type="application/atom+xml" title="codesthings.com" href="/feed.xml" />
+
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/styles.css" />
+<script>(function () {
+  var root = document.documentElement;
+  var theme = 'dark';
+  var motion = null;
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light' || saved === 'system') theme = saved;
+  } catch (e) {}
+  try {
+    motion = localStorage.getItem('motion');
+  } catch (e) {}
+  if (theme === 'system') {
+    var light = false;
+    try {
+      light = window.matchMedia('(prefers-color-scheme: light)').matches;
+    } catch (e) {}
+    theme = light ? 'light' : 'dark';
+  }
+  root.setAttribute('data-theme', theme);
+  if (motion === 'reduce' || motion === 'full') root.setAttribute('data-motion', motion);
+  root.setAttribute('data-js', '');
+})();
+</script>
+
   </head>
-  <body>
-    <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
-  <span class="toggle-icon" id="toggleIcon">
-    <svg
-      class="icon-sun"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" />
-      <line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" />
-      <line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-    <svg
-      class="icon-moon"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  </span>
-</button>
+  <body class="page-post">
+    <a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__home" href="/" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="156" height="26" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" style="stroke:var(--color-accent, #f5b84a)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" style="fill:var(--color-accent, #f5b84a)"/></g></svg>
+</a>
+    <div class="settings-pill">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
+        <span class="theme-toggle__icon theme-toggle__icon--sun"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+</span>
+      </button>
+      <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
+        <svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
 
-    <nav class="blog-nav">
-      <a href="/">&larr; Back to codesthings.com</a>
-    </nav>
+      </button>
+    </div>
+    <div class="settings-popover" id="settings-popover" popover="manual" role="group" aria-label="Settings" hidden>
+  <fieldset class="settings-group">
+    <legend>Theme</legend>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="dark" /><span>Dark</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="light" /><span>Light</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="system" /><span>System</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Section navigation</legend>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="on" /><span>On</span></label>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="off" /><span>Off</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Motion</legend>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="system" /><span>System</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="reduce" /><span>Reduced</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="full" /><span>Full</span></label>
+  </fieldset>
+  <button type="button" class="settings-hint" data-terminal-open>Press <kbd>`</kbd> for terminal</button>
+</div>
 
-    <main class="blog-post">
-      <article class="paper-page"><p><a href="../assets/blog-images/cover-wide.png"><img src="../assets/blog-images/cover-wide.png" alt="Cover" /></a></p>
-<h1 id="zerocalc">ZeroCalc</h1>
-<p><span class="published">Published 01 May 2026</span></p>
-<p>How to go from delivery to a ZeroCalc 2W in 2026: My happy standalone little Pico8 dev machine.</p>
-<h2 id="whattoexpect">What to expect</h2>
-<p>Here's a quick demo of Pico8 running on my Zerocalc 2W.</p>
-<iframe class="yt" src="https://www.youtube-nocookie.com/embed/A72Jcj_3LAM?si=t_zLvrG_AkeEjOAf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <details class="site-menu">
+      <summary aria-label="Menu">
+        <span class="site-menu__icon-open"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
+</span>
+        <span class="site-menu__icon-close"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+</span>
+        <span>Menu</span>
+      </summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          
+          <li><a class="site-nav__link" href="/#work">Work</a></li>
+          
+          <li><a class="site-nav__link" href="/#make">Make</a></li>
+          
+          <li><a class="site-nav__link" href="/#photos">Photos</a></li>
+          
+          <li><a class="site-nav__link" href="/#blog">Blog</a></li>
+          
+          <li><a class="site-nav__link" href="/now">Now</a></li>
+          
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+    <div class="read-progress" aria-hidden="true"></div>
+    <main id="main">
+      <div class="container post">
+        <a class="post-back" href="/blog/"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
+<span>All posts</span></a>
+        <header class="post-header">
+          <p class="post-meta">
+            <time datetime="2026-05-01">1 May 2026</time>
+            <span>10 min read</span>
+            
+          </p>
+          <h1 class="post-title">ZeroCalc</h1>
+          <p class="post-summary">From delivery box to a standalone Pico-8 dev machine. The ZeroCalc 2W build, minus the forum digging.</p>
+          
+          <ul class="post-tags" aria-label="Tags">
+            <li>pico-8</li><li>raspberry pi</li><li>hardware</li><li>guide</li>
+          </ul>
+          
+        </header>
+        <figure class="post-cover"><picture><source type="image/avif" srcset="/assets/img/fc720e0fa2b3-480.avif 480w, /assets/img/fc720e0fa2b3-960.avif 960w, /assets/img/fc720e0fa2b3-1600.avif 1600w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/fc720e0fa2b3-480.webp 480w, /assets/img/fc720e0fa2b3-960.webp 960w, /assets/img/fc720e0fa2b3-1600.webp 1600w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/fc720e0fa2b3-1600.webp" alt="A ZeroCalc standing upright in a printed stand on a windowsill, showing the Pico-8 editor." width="2662" height="1497" fetchpriority="high" decoding="async"></picture></figure>
+        <div class="post-layout post-layout--toc">
+          
+          <details class="toc toc--mobile">
+            <summary>On this page</summary>
+            <nav aria-label="Table of contents"><ol><li><a href="#what-to-expect">What to expect</a></li><li><a href="#why-write-this">Why write this?</a></li><li><a href="#what-you-need">What you need</a></li><li><ol><li><a href="#optional-soldering-helpers">Optional: soldering helpers</a></li><li><a href="#optional-case">Optional: Case</a></li></ol></li><li><a href="#shameless-plug-handle-stand-grip-for-the-zerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</a></li><li><a href="#flashing-the-sd-card">Flashing the SD Card</a></li><li><a href="#building-the-hardware">Building the hardware</a></li><li><ol><li><a href="#video">Video</a></li><li><a href="#text-summary">Text Summary</a></li></ol></li><li><a href="#software-setup">Software setup</a></li><li><ol><li><a href="#power-on">Power on</a></li><li><a href="#find-your-pi-on-the-network">Find your Pi on the network</a></li><li><a href="#ssh-into-the-pi">SSH into the Pi</a></li><li><a href="#update-installed-software">Update installed software</a></li><li><a href="#install-git">Install git</a></li><li><a href="#clone-the-picocalc-trixie-repo">Clone the picocalc_trixie repo</a></li><li><a href="#in-the-picocalc-trixie-directory-copy-the-display-firmware">In the picocalc_trixie directory, copy the display firmware</a></li><li><a href="#set-up-the-display">Set up the display</a></li><li><a href="#set-up-the-keyboard">Set up the keyboard</a></li><li><a href="#set-up-audio">Set up Audio</a></li><li><a href="#optional-configure-your-terminal-font-for-a-better-display-experience">Optional: Configure your terminal font for a better display experience</a></li></ol></li><li><a href="#optional-fix-keyboard-layout">Optional: Fix keyboard layout</a></li><li><a href="#optional-copy-useful-scripts-to-your-path">Optional: Copy useful scripts to your path</a></li><li><a href="#optional-power-off-shutdown-script">Optional: Power off shutdown script</a></li><li><ol><li><a href="#fix-problems-with-the-original-commands">Fix problems with the original commands</a></li><li><a href="#ez-mode">EZ Mode</a></li></ol></li><li><a href="#resources">Resources</a></li><li><a href="#fin">Fin</a></li></ol></nav>
+          </details>
+          <nav class="toc toc--side" aria-label="Table of contents">
+            <p class="toc__title" aria-hidden="true">On this page</p>
+            <ol><li><a href="#what-to-expect">What to expect</a></li><li><a href="#why-write-this">Why write this?</a></li><li><a href="#what-you-need">What you need</a></li><li><ol><li><a href="#optional-soldering-helpers">Optional: soldering helpers</a></li><li><a href="#optional-case">Optional: Case</a></li></ol></li><li><a href="#shameless-plug-handle-stand-grip-for-the-zerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</a></li><li><a href="#flashing-the-sd-card">Flashing the SD Card</a></li><li><a href="#building-the-hardware">Building the hardware</a></li><li><ol><li><a href="#video">Video</a></li><li><a href="#text-summary">Text Summary</a></li></ol></li><li><a href="#software-setup">Software setup</a></li><li><ol><li><a href="#power-on">Power on</a></li><li><a href="#find-your-pi-on-the-network">Find your Pi on the network</a></li><li><a href="#ssh-into-the-pi">SSH into the Pi</a></li><li><a href="#update-installed-software">Update installed software</a></li><li><a href="#install-git">Install git</a></li><li><a href="#clone-the-picocalc-trixie-repo">Clone the picocalc_trixie repo</a></li><li><a href="#in-the-picocalc-trixie-directory-copy-the-display-firmware">In the picocalc_trixie directory, copy the display firmware</a></li><li><a href="#set-up-the-display">Set up the display</a></li><li><a href="#set-up-the-keyboard">Set up the keyboard</a></li><li><a href="#set-up-audio">Set up Audio</a></li><li><a href="#optional-configure-your-terminal-font-for-a-better-display-experience">Optional: Configure your terminal font for a better display experience</a></li></ol></li><li><a href="#optional-fix-keyboard-layout">Optional: Fix keyboard layout</a></li><li><a href="#optional-copy-useful-scripts-to-your-path">Optional: Copy useful scripts to your path</a></li><li><a href="#optional-power-off-shutdown-script">Optional: Power off shutdown script</a></li><li><ol><li><a href="#fix-problems-with-the-original-commands">Fix problems with the original commands</a></li><li><a href="#ez-mode">EZ Mode</a></li></ol></li><li><a href="#resources">Resources</a></li><li><a href="#fin">Fin</a></li></ol>
+          </nav>
+          
+          <article class="post-body"><p>How to go from delivery to a ZeroCalc 2W in 2026: My happy standalone little Pico-8 dev machine.</p>
+<div class="heading-wrap">
+<h2 id="what-to-expect">What to expect</h2>
+<a class="heading-anchor" href="#what-to-expect"><span class="visually-hidden">Link to section: What to expect</span> <span aria-hidden="true">#</span></a></div>
+<p>Here's a quick demo of Pico-8 running on my ZeroCalc 2W.</p>
+<div class="yt-facade" data-yt-facade data-yt-id="A72Jcj_3LAM" data-yt-title="ZeroCalc demo: Pico-8 running on a ZeroCalc 2W"><a class="yt-facade__link" href="https://www.youtube.com/watch?v=A72Jcj_3LAM" rel="noopener"><span class="yt-facade__play"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M6 3l14 9-14 9z" /></svg></span><span class="yt-facade__title">ZeroCalc demo: Pico-8 running on a ZeroCalc 2W</span><span class="yt-facade__hint">Watch on YouTube</span></a></div>
 <p><em>Ignore the 3d printer sounds, I'm printing a handle for the thing.</em></p>
-<h2 id="whywritethis">Why write this?</h2>
+<div class="heading-wrap">
+<h2 id="why-write-this">Why write this?</h2>
+<a class="heading-anchor" href="#why-write-this"><span class="visually-hidden">Link to section: Why write this?</span> <span aria-hidden="true">#</span></a></div>
 <p>There's a bunch of awesome people over at <a href="https://forum.clockworkpi.com/">forum.clockworkpi.com</a> who have worked out how to make this work. But, the forum post is a bit difficult to navigate, and find out what you absolutely need, vs. what's just cool tinkering.</p>
-<p><strong>For my purposes;</strong> the PicoCalc hits a great form factor and price point for a standalone <a href="https://www.lexaloffle.com/pico-8.php">Pico8</a> dev machine. I love the <a href="https://www.lexaloffle.com/pico-8.php">Pico8 platform</a> and regularly tinker with small game ideas.</p>
-<p>I've previously used a <a href="https://www.clockworkpi.com/uconsole">uconsole</a> with a RPI CM5 for this purposes; but it's overkill.</p>
-<p>The Pi Pico that the PicoCalc uses by default lacks power to run Pico8 well, like I'd like it to.</p>
+<p><strong>For my purposes:</strong> the PicoCalc hits a great form factor and price point for a standalone <a href="https://www.lexaloffle.com/pico-8.php">Pico-8</a> dev machine. I love the <a href="https://www.lexaloffle.com/pico-8.php">Pico-8 platform</a> and regularly tinker with small game ideas.</p>
+<p>I've previously used a <a href="https://www.clockworkpi.com/uconsole">uconsole</a> with a RPI CM5 for this purpose, but it's overkill.</p>
+<p>The Pi Pico that the PicoCalc uses by default lacks power to run Pico-8 well, like I'd like it to.</p>
 <p>My aim was to get the PicoCalc to run on a Zero 2W with <code>pico8</code> and <code>git</code>. So that I can tinker with ideas, and hand them off to a repo and pick up elsewhere.</p>
 <p>I don't need <code>external USB</code>/<code>gpio</code>/<code>etc</code>.</p>
 <p>Just <code>pico8</code>, <code>a display</code>, <code>a keyboard</code>, <code>audio</code>, and <code>internet</code>.</p>
-<p><em>If your needs are different, don't worry!</em> I've left links to all the resources and hints about where to look for different setups throughout this guide. The Zero2W is fairly capable compute with a lot of versatility, you could use it for all sorts.</p>
-<h1 id="whatyouneed">What you need</h1>
+<p><em>If your needs are different, don't worry!</em> I've left links to all the resources and hints about where to look for different setups throughout this guide. The Zero 2W is fairly capable compute with a lot of versatility, you could use it for all sorts.</p>
+<div class="heading-wrap">
+<h2 id="what-you-need">What you need</h2>
+<a class="heading-anchor" href="#what-you-need"><span class="visually-hidden">Link to section: What you need</span> <span aria-hidden="true">#</span></a></div>
 <ol>
 <li><a href="https://www.clockworkpi.com/picocalc">A PicoCalc kit</a> - I got mine from AliExpress.</li>
 <li><a href="https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/">A Raspberry Pi Zero 2WH</a> - The WH stands for Wifi + Headers (presoldered headers). You can also just get a 2W and solder the headers yourself.</li>
 <li><a href="https://www.amazon.co.uk/dp/B0B7NTY2S6?ref=ppx_yo2ov_dt_b_fed_asin_title">A reasonably speedy SD card with a bit of space (32gb+)</a> - I use Sandisk Ultras because I trust them, I wanted about 128GB so this is what I went with.</li>
 <li><a href="https://www.pcbway.com/project/shareproject/Picocalc_Zero_Mod_for_Raspberry_Pi_Zero_2W_1c0c1a06.html">The adapter board</a> - I purchased from PCBWay, they sold me 5 for approx $1us each. Shipped to the UK in 3-4 days for a reasonable cost ($20us).</li>
-<li><a href="https://www.amazon.co.uk/dp/B0DXKP8Y8S?ref=ppx_yo2ov_dt_b_fed_asin_title">2x20 pin headers with 2.54mm pitch</a> - I bought mine from amazon in a set, I only used 2 of the 20pin headers. My Pi Zero came with headers presoldered. If you get the Pi zero without headers you'll need some more for that too.</li>
+<li><a href="https://www.amazon.co.uk/dp/B0DXKP8Y8S?ref=ppx_yo2ov_dt_b_fed_asin_title">2x20 pin headers with 2.54mm pitch</a> - I bought mine from amazon in a set, I only used 2 of the 20pin headers. My Pi Zero came with headers presoldered. If you get the Pi Zero without headers you'll need some more for that too.</li>
 <li><a href="https://www.nubattery.co.uk/panasonic-ncr18650b-18650-battery">2x 18650 batteries from a good source</a> - I bought mine (flat top) from NuBattery in the UK. There's <a href="https://forum.clockworkpi.com/t/picocalc-18650-battery-advice/16209/6">forum posts on battery options</a> if you're stuck.</li>
 <li>A trusty soldering iron and some solder.</li>
 </ol>
-<h2 id="optionalsolderinghelpers">Optional: soldering helpers</h2>
+<div class="heading-wrap">
+<h3 id="optional-soldering-helpers">Optional: soldering helpers</h3>
+<a class="heading-anchor" href="#optional-soldering-helpers"><span class="visually-hidden">Link to section: Optional: soldering helpers</span> <span aria-hidden="true">#</span></a></div>
 <p>I also used 2 female 8 pin headers (2.54mm pitch) to help with soldering. Mine came from <a href="https://www.amazon.co.uk/dp/B095Y8L12Z?ref=ppx_yo2ov_dt_b_fed_asin_title">this kit</a> some time ago.</p>
 <p><em>tldr;</em> if you plug the male headers into the female and sit the adapter board on top it's super easy to solder them straight.</p>
-<p><a href="/assets/blog-images/solder-setup.png"><img src="/assets/blog-images/solder-setup.png" alt="Like this" /></a></p>
-<h2 id="optionalcase">Optional: Case</h2>
+<p><a href="/assets/img/30d6f7b8eb62-480.webp"><picture><source type="image/avif" srcset="/assets/img/30d6f7b8eb62-480.avif 480w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/30d6f7b8eb62-480.webp 480w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/30d6f7b8eb62-480.webp" alt="Like this" width="605" height="399" loading="lazy" decoding="async"></picture></a></p>
+<div class="heading-wrap">
+<h3 id="optional-case">Optional: Case</h3>
+<a class="heading-anchor" href="#optional-case"><span class="visually-hidden">Link to section: Optional: Case</span> <span aria-hidden="true">#</span></a></div>
 <p>There are other optional features like external usb, and a custom case. Most of the details of those can be found
 on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Michael's Printables project</a>.</p>
-<h1 id="shamelessplughandlestandgripforthezerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</h1>
+<div class="heading-wrap">
+<h2 id="shameless-plug-handle-stand-grip-for-the-zerocalc">Shameless Plug: Handle, stand, grip for the ZeroCalc</h2>
+<a class="heading-anchor" href="#shameless-plug-handle-stand-grip-for-the-zerocalc"><span class="visually-hidden">Link to section: Shameless Plug: Handle, stand, grip for the ZeroCalc</span> <span aria-hidden="true">#</span></a></div>
 <div class="image-carousel">
-<a href="../assets/blog-images/v2/front.png"><img src="../assets/blog-images/v2/front.png" alt="Front"></a>
-<a href="../assets/blog-images/v2/side.png"><img src="../assets/blog-images/v2/side.png" alt="Side"></a>
-<a href="../assets/blog-images/v2/back.png"><img src="../assets/blog-images/v2/back.png" alt="Rear"></a>
+<a href="/assets/img/254f602ea91e-960.webp"><picture><source type="image/avif" srcset="/assets/img/254f602ea91e-480.avif 480w, /assets/img/254f602ea91e-960.avif 960w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/254f602ea91e-480.webp 480w, /assets/img/254f602ea91e-960.webp 960w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/254f602ea91e-960.webp" alt="Front" width="1280" height="814" loading="lazy" decoding="async"></picture></a>
+<a href="/assets/img/d3fccb030223-960.webp"><picture><source type="image/avif" srcset="/assets/img/d3fccb030223-480.avif 480w, /assets/img/d3fccb030223-960.avif 960w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/d3fccb030223-480.webp 480w, /assets/img/d3fccb030223-960.webp 960w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/d3fccb030223-960.webp" alt="Side" width="1280" height="832" loading="lazy" decoding="async"></picture></a>
+<a href="/assets/img/01029f978de4-960.webp"><picture><source type="image/avif" srcset="/assets/img/01029f978de4-480.avif 480w, /assets/img/01029f978de4-960.avif 960w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/01029f978de4-480.webp 480w, /assets/img/01029f978de4-960.webp 960w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/01029f978de4-960.webp" alt="Rear" width="1280" height="817" loading="lazy" decoding="async"></picture></a>
 </div>
 <p>If you like the grip in the cover image, you can find it on at Makerworld: <a href="https://makerworld.com/en/models/2759394-picocalc-grip-stand-handle-comfy-edition">PicoCalc Grip Stand Handle</a>.</p>
 <p>If you like it, check out the other things I make!</p>
-<p>Heads up; there's a version you can print without the <code>pico-8</code> logo on the front. It's plate 2 in the print profile, and the <code>.step</code> files are included in the 3D model files if you want to modify it yourself.</p>
+<p>Heads up: there's a version you can print without the Pico-8 logo on the front. It's plate 2 in the print profile, and the <code>.step</code> files are included in the 3D model files if you want to modify it yourself.</p>
 <p>Pictured and link is version 2 of the handle, that I made more comfy!</p>
-<h1 id="flashingthesdcard">Flashing the SD Card</h1>
+<div class="heading-wrap">
+<h2 id="flashing-the-sd-card">Flashing the SD Card</h2>
+<a class="heading-anchor" href="#flashing-the-sd-card"><span class="visually-hidden">Link to section: Flashing the SD Card</span> <span aria-hidden="true">#</span></a></div>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie#step-1-install-raspberry-pi-os-lite-64-bit-debian-trixie-using-the-raspberry-pi-imager">github.com/nibheis/picocalc_trixie: Step 1</a></p>
 <ol>
 <li>Download and install <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a></li>
@@ -108,208 +298,245 @@ on <a href="https://www.printables.com/model/1399739-picocalc-zero-mod-case">Mic
 </ol>
 <p>In Imager:</p>
 <ol>
-<li>On the select device page choose "Raspberry Pi Zero 2 W" and hit next</li>
-<li>On the Choose OS page, choose "Raspberry Pi OS (other)" and hit next</li>
-<li>On the next page, choose "Raspberry Pi OS Lite (64 Bit)" (A port of Debian Trixie) and hit next</li>
+<li>On the select device page choose &quot;Raspberry Pi Zero 2 W&quot; and hit next</li>
+<li>On the Choose OS page, choose &quot;Raspberry Pi OS (other)&quot; and hit next</li>
+<li>On the next page, choose &quot;Raspberry Pi OS Lite (64 Bit)&quot; (A port of Debian Trixie) and hit next</li>
 <li>On the storage page, select your SD card and hit next</li>
-<li>On the Customization page, set your hostname. I used "zerocalc" for mine, but you can choose whatever you like.</li>
-<li>On the Localisation page, set your locale. But! Set your keyboard layout to "us".</li>
+<li>On the Customization page, set your hostname. I used &quot;zerocalc&quot; for mine, but you can choose whatever you like.</li>
+<li>On the Localisation page, set your locale. But! Set your keyboard layout to &quot;us&quot;.</li>
 <li>On the User page, set your username, and password.</li>
 <li>On the wifi page, set up your wifi credentials; so we can ssh for the rest of the install.</li>
 <li>On the remote access page, enable SSH and set your authentication method as you wish.</li>
-<li>Hit "Write" and wait for it to finish.</li>
+<li>Hit &quot;Write&quot; and wait for it to finish.</li>
 <li>Unplug the SD card and plug it into your Pi Zero 2W.</li>
 </ol>
-<h1 id="3buildingthehardware">3 Building the hardware</h1>
+<div class="heading-wrap">
+<h2 id="building-the-hardware">Building the hardware</h2>
+<a class="heading-anchor" href="#building-the-hardware"><span class="visually-hidden">Link to section: Building the hardware</span> <span aria-hidden="true">#</span></a></div>
 <p>Others have covered this topic better than I could. You can watch Michael's video for a great walkthrough, and the summary below is the steps I took.</p>
-<h2 id="video">Video</h2>
+<div class="heading-wrap">
+<h3 id="video">Video</h3>
+<a class="heading-anchor" href="#video"><span class="visually-hidden">Link to section: Video</span> <span aria-hidden="true">#</span></a></div>
 <p>Michael posted a great build video that <a href="https://www.youtube.com/watch?v=wgE0R1M0_ZE">goes over the soldering</a>, and physical build.</p>
-<h2 id="textsummary">Text Summary</h2>
+<div class="heading-wrap">
+<h3 id="text-summary">Text Summary</h3>
+<a class="heading-anchor" href="#text-summary"><span class="visually-hidden">Link to section: Text Summary</span> <span aria-hidden="true">#</span></a></div>
 <ol>
 <li>Solder the 20pin headers to the adapter board</li>
 <li>Solder the Pi to the adapter board as well</li>
-<li>Plug in your micro sd to the Pi Zero 2w (Flash instructions below)</li>
+<li>Plug in your micro sd to the Pi Zero 2W (Flash instructions below)</li>
 <li>Plug the adapter board into your PicoCalc</li>
 <li>Add batteries</li>
 <li>Screw everything together</li>
 </ol>
-<p><a href="assets/blog-images/after-soldering.png"><img src="/assets/blog-images/after-soldering.png" alt="It should look like this" /></a></p>
+<p><a href="/assets/img/79350c52c39d-480.webp"><picture><source type="image/avif" srcset="/assets/img/79350c52c39d-480.avif 480w" sizes="(min-width: 760px) 720px, 100vw"><source type="image/webp" srcset="/assets/img/79350c52c39d-480.webp 480w" sizes="(min-width: 760px) 720px, 100vw"><img src="/assets/img/79350c52c39d-480.webp" alt="It should look like this" width="880" height="892" loading="lazy" decoding="async"></picture></a></p>
 <p><em>Note: in this image my SD card isn't plugged in, it should be plugged into the Pi Zero 2W.</em></p>
-<h1 id="softwaresetup">Software setup</h1>
+<div class="heading-wrap">
+<h2 id="software-setup">Software setup</h2>
+<a class="heading-anchor" href="#software-setup"><span class="visually-hidden">Link to section: Software setup</span> <span aria-hidden="true">#</span></a></div>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
-<h2 id="poweron">Power on.</h2>
-<p>Once you have flashed the SD card and completed the hardware build. Power it on. You'll find it may reboot a couple times the first time you hit it; don't worry, it'll eventually come up stable. I think it's doing SD expansiona nd initial set up at that time.</p>
-<h2 id="findyourpionthenetwork">Find your Pi on the network</h2>
-<p>The easiest wat to find your zerocalc on the network is to use <code>ping</code> with the hostname you set in the imager. For example, if you set your hostname to <code>zerocalc</code> you can ping it with:</p>
-<pre><code>ping zerocalc.local
-# or
-ping zerocalc
-</code></pre>
-<h2 id="sshintothepi">SSH into the Pi</h2>
+<div class="heading-wrap">
+<h3 id="power-on">Power on</h3>
+<a class="heading-anchor" href="#power-on"><span class="visually-hidden">Link to section: Power on</span> <span aria-hidden="true">#</span></a></div>
+<p>Once you have flashed the SD card and completed the hardware build. Power it on. You'll find it may reboot a couple times the first time you hit it; don't worry, it'll eventually come up stable. I think it's doing SD expansion and initial setup at that time.</p>
+<div class="heading-wrap">
+<h3 id="find-your-pi-on-the-network">Find your Pi on the network</h3>
+<a class="heading-anchor" href="#find-your-pi-on-the-network"><span class="visually-hidden">Link to section: Find your Pi on the network</span> <span aria-hidden="true">#</span></a></div>
+<p>The easiest way to find your ZeroCalc on the network is to use <code>ping</code> with the hostname you set in the imager. For example, if you set your hostname to <code>zerocalc</code> you can ping it with:</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">ping</span><span style="color:var(--shiki-token-string)"> zerocalc.local</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># or</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">ping</span><span style="color:var(--shiki-token-string)"> zerocalc</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="ssh-into-the-pi">SSH into the Pi</h3>
+<a class="heading-anchor" href="#ssh-into-the-pi"><span class="visually-hidden">Link to section: SSH into the Pi</span> <span aria-hidden="true">#</span></a></div>
 <p>Use the same hostname or ip to ssh in:</p>
-<pre><code>ssh zerocalc
-# You can prepend your username to set the correct user to log in to as well.
-ssh james@zerocalc
-</code></pre>
-<h2 id="updateinstalledsoftware">Update installed software</h2>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">ssh</span><span style="color:var(--shiki-token-string)"> zerocalc</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># You can prepend your username to set the correct user to log in to as well.</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">ssh</span><span style="color:var(--shiki-token-string)"> james@zerocalc</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="update-installed-software">Update installed software</h3>
+<a class="heading-anchor" href="#update-installed-software"><span class="visually-hidden">Link to section: Update installed software</span> <span aria-hidden="true">#</span></a></div>
 <p>Out the gate you want to run apt update.</p>
-<pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y
-</code></pre>
-<h2 id="installgit">Install git</h2>
-<pre><code>sudo apt install git -y
-</code></pre>
-<h2 id="clonethepicocalc_trixierepo">Clone the picocalc_trixie repo</h2>
-<pre><code>git clone https://github.com/nibheis/picocalc_trixie.git
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> apt</span><span style="color:var(--shiki-token-string)"> update</span><span style="color:var(--shiki-token-punctuation)"> &#x26;&#x26;</span><span style="color:var(--shiki-token-function)"> sudo</span><span style="color:var(--shiki-token-string)"> apt</span><span style="color:var(--shiki-token-string)"> upgrade</span><span style="color:var(--shiki-token-string)"> -y</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="install-git">Install git</h3>
+<a class="heading-anchor" href="#install-git"><span class="visually-hidden">Link to section: Install git</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> apt</span><span style="color:var(--shiki-token-string)"> install</span><span style="color:var(--shiki-token-string)"> git</span><span style="color:var(--shiki-token-string)"> -y</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="clone-the-picocalc-trixie-repo">Clone the picocalc_trixie repo</h3>
+<a class="heading-anchor" href="#clone-the-picocalc-trixie-repo"><span class="visually-hidden">Link to section: Clone the picocalc_trixie repo</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">git</span><span style="color:var(--shiki-token-string)"> clone</span><span style="color:var(--shiki-token-string)"> https://github.com/nibheis/picocalc_trixie.git</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>It should be cloned into <code>~/picocalc_trixie</code>(<code>/home/your-username/picocalc_trixie</code>)</p>
-<h2 id="inthepicocalc_trixiedirectorycopythedisplayfirmware">In the picocalc_trixie directory, copy the display firmware</h2>
-<pre><code>cd picocalc_trixie
-sudo cp display/picomipi.bin /lib/firmware/
-</code></pre>
-<h2 id="setupthedisplay">Set up the display</h2>
-<h3 id="activatethespiinterfaceforthedisplay">Activate the SPI Interface for the display</h3>
-<pre><code>sudo nano /boot/firmware/config.txt
-</code></pre>
+<div class="heading-wrap">
+<h3 id="in-the-picocalc-trixie-directory-copy-the-display-firmware">In the picocalc_trixie directory, copy the display firmware</h3>
+<a class="heading-anchor" href="#in-the-picocalc-trixie-directory-copy-the-display-firmware"><span class="visually-hidden">Link to section: In the picocalc_trixie directory, copy the display firmware</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> picocalc_trixie</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> cp</span><span style="color:var(--shiki-token-string)"> display/picomipi.bin</span><span style="color:var(--shiki-token-string)"> /lib/firmware/</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="set-up-the-display">Set up the display</h3>
+<a class="heading-anchor" href="#set-up-the-display"><span class="visually-hidden">Link to section: Set up the display</span> <span aria-hidden="true">#</span></a></div>
+<div class="heading-wrap">
+<h4 id="activate-the-spi-interface-for-the-display">Activate the SPI Interface for the display</h4>
+<a class="heading-anchor" href="#activate-the-spi-interface-for-the-display"><span class="visually-hidden">Link to section: Activate the SPI Interface for the display</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> /boot/firmware/config.txt</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>Add the following lines to the end of the file:</p>
-<pre><code># Enable SPI for the display
-dtparam=spi=on
-
-# Driver configuration for the display
-dtoverlay=mipi-dbi-spi,spi0-0,speed=70000000
-dtparam=compatible=picomipi\0panel-mipi-dbi-spi
-dtparam=width=320,height=320,width-mm=43,height-mm=43
-dtparam=reset-gpio=25,dc-gpio=24
-dtparam=backlight-gpio=18
-dtparam=clock-frequency=50
-</code></pre>
-<h3 id="configuretheframebufferconfigurationinthekernelcommandline">Configure the framebuffer configuration in the kernel command line</h3>
-<pre><code>sudo nano /boot/firmware/cmdline.txt
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)"># Enable SPI for the display</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=spi=</span><span style="color:var(--shiki-foreground)">on</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Driver configuration for the display</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtoverlay=</span><span style="color:var(--shiki-foreground)">mipi-dbi-spi,spi0-0,</span><span style="color:var(--shiki-token-keyword)">speed=</span><span style="color:var(--shiki-foreground)">70000000</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=compatible=</span><span style="color:var(--shiki-foreground)">picomipi\0panel-mipi-dbi-spi</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=width=</span><span style="color:var(--shiki-foreground)">320,</span><span style="color:var(--shiki-token-keyword)">height=</span><span style="color:var(--shiki-foreground)">320,</span><span style="color:var(--shiki-token-keyword)">width-mm=</span><span style="color:var(--shiki-foreground)">43,</span><span style="color:var(--shiki-token-keyword)">height-mm=</span><span style="color:var(--shiki-foreground)">43</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=reset-gpio=</span><span style="color:var(--shiki-foreground)">25,</span><span style="color:var(--shiki-token-keyword)">dc-gpio=</span><span style="color:var(--shiki-foreground)">24</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=backlight-gpio=</span><span style="color:var(--shiki-foreground)">18</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=clock-frequency=</span><span style="color:var(--shiki-foreground)">50</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h4 id="configure-the-framebuffer-configuration-in-the-kernel-command-line">Configure the framebuffer configuration in the kernel command line</h4>
+<a class="heading-anchor" href="#configure-the-framebuffer-configuration-in-the-kernel-command-line"><span class="visually-hidden">Link to section: Configure the framebuffer configuration in the kernel command line</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> /boot/firmware/cmdline.txt</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>Add the following to the end of the line:</p>
-<pre><code>fbcon=map:1 fbcon=font:MINI4x6
-</code></pre>
-<h3 id="reboot">Reboot</h3>
-<pre><code>sudo reboot
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">fbcon=</span><span style="color:var(--shiki-foreground)">map:1 </span><span style="color:var(--shiki-token-keyword)">fbcon=</span><span style="color:var(--shiki-foreground)">font:MINI4x6</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h4 id="reboot">Reboot</h4>
+<a class="heading-anchor" href="#reboot"><span class="visually-hidden">Link to section: Reboot</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> reboot</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>When you reboot this time, your display should work, but your keyboard won't be set up yet.</p>
-<h2 id="setupthekeyboard">Set up the keyboard</h2>
-<h3 id="navigatetothekeyboardfirmwaredirectory">Navigate to the keyboard firmware directory</h3>
+<div class="heading-wrap">
+<h3 id="set-up-the-keyboard">Set up the keyboard</h3>
+<a class="heading-anchor" href="#set-up-the-keyboard"><span class="visually-hidden">Link to section: Set up the keyboard</span> <span aria-hidden="true">#</span></a></div>
+<div class="heading-wrap">
+<h4 id="navigate-to-the-keyboard-firmware-directory">Navigate to the keyboard firmware directory</h4>
+<a class="heading-anchor" href="#navigate-to-the-keyboard-firmware-directory"><span class="visually-hidden">Link to section: Navigate to the keyboard firmware directory</span> <span aria-hidden="true">#</span></a></div>
 <ol>
 <li>SSH back into the Pi</li>
 <li><code>cd</code> to the <code>picocalc_trixie</code> directory</li>
 <li><code>cd</code> into the <code>keyboard</code> directory</li>
 </ol>
-<h3 id="ifyouneedthemouseeditthefirmware">If you need the mouse, edit the firmware</h3>
+<div class="heading-wrap">
+<h4 id="if-you-need-the-mouse-edit-the-firmware">If you need the mouse, edit the firmware</h4>
+<a class="heading-anchor" href="#if-you-need-the-mouse-edit-the-firmware"><span class="visually-hidden">Link to section: If you need the mouse, edit the firmware</span> <span aria-hidden="true">#</span></a></div>
 <p>If you need the mouse emulation that comes with pico calc:
 <code>press shift to turn the arrow keys into the mouse, and the square brackets into lmb and rmb</code></p>
 <p>You need to update the <code>picocalc_kbd.c</code> file to uncomment the disabled mouse emulation.</p>
-<pre><code>sudo nano picocalc_kbd/picocalc_kbd.c
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> picocalc_kbd/picocalc_kbd.c</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <ul>
 <li>Remove the <code>//|</code> in front of the lines commented out.</li>
 <li>They are the only lines commented out with this pattern <code>//|</code> so it should be easy to find.</li>
 <li><a href="https://github.com/nibheis/picocalc_trixie/blob/dccf9c22fa913b1abc67eb5e682ed41a95d40792/keyboard/picocalc_kbd/picocalc_kbd.c">At the time of writing it's lines 223-311</a></li>
 <li>Delete the <code>//|</code> from the start of each line in that block, and save the file.</li>
 </ul>
-<h3 id="buildandinstallthekeyboardfirmware">Build and install the keyboard firmware</h3>
-<pre><code># In the picocalc_trixie/keyboard directory
-chmod +x setup_keyboard.sh
-sudo ./setup_keyboard.sh
-</code></pre>
-<h3 id="confirmthekeyboardsetupworked">Confirm the keyboard setup worked</h3>
-<pre><code>sudo cat /boot/firmware/config.txt
-</code></pre>
+<div class="heading-wrap">
+<h4 id="build-and-install-the-keyboard-firmware">Build and install the keyboard firmware</h4>
+<a class="heading-anchor" href="#build-and-install-the-keyboard-firmware"><span class="visually-hidden">Link to section: Build and install the keyboard firmware</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)"># In the picocalc_trixie/keyboard directory</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">chmod</span><span style="color:var(--shiki-token-string)"> +x</span><span style="color:var(--shiki-token-string)"> setup_keyboard.sh</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> ./setup_keyboard.sh</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h4 id="confirm-the-keyboard-setup-worked">Confirm the keyboard setup worked</h4>
+<a class="heading-anchor" href="#confirm-the-keyboard-setup-worked"><span class="visually-hidden">Link to section: Confirm the keyboard setup worked</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> cat</span><span style="color:var(--shiki-token-string)"> /boot/firmware/config.txt</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>The start of the file should now have the following lines:</p>
-<pre><code>dtparam=i2c_arm=on
-dtoverlay=picocalc_kbd
-</code></pre>
-<h2 id="setupaudio">Set up Audio</h2>
-<pre><code>sudo nano /boot/firmware/config.txt
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=i2c_arm=</span><span style="color:var(--shiki-foreground)">on</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtoverlay=</span><span style="color:var(--shiki-foreground)">picocalc_kbd</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h3 id="set-up-audio">Set up Audio</h3>
+<a class="heading-anchor" href="#set-up-audio"><span class="visually-hidden">Link to section: Set up Audio</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> /boot/firmware/config.txt</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>Add the following lines to the end of the file:</p>
-<pre><code>dtparam=audio=on
-dtoverlay=audremap,pins_12_13
-</code></pre>
-<p>Note, you may already see the <code>dtparam=audio=on</code> line in your config.txt, if so just add the <code>dtoverlay=audremap,pins_12_13</code> line.</p>
-<h3 id="reboot-1">Reboot</h3>
-<pre><code>sudo reboot
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-keyword)">dtparam=audio=</span><span style="color:var(--shiki-foreground)">on</span></span>
+<span class="line"><span style="color:var(--shiki-token-keyword)">dtoverlay=</span><span style="color:var(--shiki-foreground)">audremap,pins_12_13</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<aside class="callout callout--note" role="note">
+<p class="callout__title"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg><span>Note</span></p>
+<p>You may already see the <code>dtparam=audio=on</code> line in your config.txt. If so, just add the <code>dtoverlay=audremap,pins_12_13</code> line.</p>
+</aside>
+<div class="heading-wrap">
+<h4 id="reboot-1">Reboot</h4>
+<a class="heading-anchor" href="#reboot-1"><span class="visually-hidden">Link to section: Reboot</span> <span aria-hidden="true">#</span></a></div>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> reboot</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>Once you've rebooted you should have most things working! The rest is optional but might be handy.</p>
-<h2 id="optionalconfigureyourterminalfontforabetterdisplayexperience">Optional: Configure your terminal font for a better display experience</h2>
+<div class="heading-wrap">
+<h3 id="optional-configure-your-terminal-font-for-a-better-display-experience">Optional: Configure your terminal font for a better display experience</h3>
+<a class="heading-anchor" href="#optional-configure-your-terminal-font-for-a-better-display-experience"><span class="visually-hidden">Link to section: Optional: Configure your terminal font for a better display experience</span> <span aria-hidden="true">#</span></a></div>
 <p>Source: <a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">a comment by Lachlan_Beveridge</a></p>
-<pre><code>sudo dpkg-reconfigure console-setup
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> dpkg-reconfigure</span><span style="color:var(--shiki-token-string)"> console-setup</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>When you run this command, you'll be prompted with a series of questions. Here's how to answer them for the best experience on the PicoCalc display:</p>
-<pre><code>encoding: UTF-8
-character set: Guess optimal
-font: Terminus
-size: 6×12
-</code></pre>
-<h1 id="optionalfixkeyboardlayout">Optional: Fix keyboard layout</h1>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span>encoding: UTF-8</span></span>
+<span class="line"><span>character set: Guess optimal</span></span>
+<span class="line"><span>font: Terminus</span></span>
+<span class="line"><span>size: 6×12</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h2 id="optional-fix-keyboard-layout">Optional: Fix keyboard layout</h2>
+<a class="heading-anchor" href="#optional-fix-keyboard-layout"><span class="visually-hidden">Link to section: Optional: Fix keyboard layout</span> <span aria-hidden="true">#</span></a></div>
 <p>If, like me, you flashed with the wrong keyboard layout, you can fix it with:</p>
-<pre><code>sudo nano /etc/default/keyboard
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> /etc/default/keyboard</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <ol>
 <li>Find the line that starts with <code>XKBLAYOUT=</code></li>
 <li>Change the value to <code>us</code> (or your desired layout)</li>
 <li>Save the file and exit</li>
 <li>Reboot the Pi</li>
 </ol>
-<h1 id="optionalcopyusefulscriptstoyourpath">Optional: Copy useful scripts to your path</h1>
+<div class="heading-wrap">
+<h2 id="optional-copy-useful-scripts-to-your-path">Optional: Copy useful scripts to your path</h2>
+<a class="heading-anchor" href="#optional-copy-useful-scripts-to-your-path"><span class="visually-hidden">Link to section: Optional: Copy useful scripts to your path</span> <span aria-hidden="true">#</span></a></div>
 <p>Source: <a href="https://github.com/nibheis/picocalc_trixie">github.com/nibheis/picocalc_trixie</a></p>
-<p>The <code>picocalc_trixie</code> repo has some useful scripts for running Pico8 and other utilities. You can copy them to a directory in your <code>PATH</code> for easier access.</p>
-<pre><code class="sh language-sh"># Go to the picocalc_trixie directory
-cd ~/picocalc_trixie
-# Copy the scripts to /usr/local/bin
-sudo cp -r user_bin/* /usr/local/bin/
-# one is called "shudown" which will lead to an infinite loop. rename it.
-mv /usr/local/bin/shutdown /usr/local/bin/shutdown-pi
-
-# alternatively, modify the script and have it point to /usr/sbin/shutdown
-sudo nano /usr/local/bin/shutdown
-# Change 'shutdown' to '/usr/sbin/shutdown' and save the file.
-</code></pre>
-<h1 id="optionalpoweroffshutdownscript">Optional: Power off shutdown script</h1>
-<h2 id="fixproblemswiththeoriginalcommands">Fix problems with the original commands</h2>
+<p>The <code>picocalc_trixie</code> repo has some useful scripts for running Pico-8 and other utilities. You can copy them to a directory in your <code>PATH</code> for easier access.</p>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)"># Go to the picocalc_trixie directory</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> ~/picocalc_trixie</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Copy the scripts to /usr/local/bin</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> cp</span><span style="color:var(--shiki-token-string)"> -r</span><span style="color:var(--shiki-token-string)"> user_bin/*</span><span style="color:var(--shiki-token-string)"> /usr/local/bin/</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># one is called "shutdown" which will lead to an infinite loop. rename it.</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> mv</span><span style="color:var(--shiki-token-string)"> /usr/local/bin/shutdown</span><span style="color:var(--shiki-token-string)"> /usr/local/bin/shutdown-pi</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># alternatively, modify the script and have it point to /usr/sbin/shutdown</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> nano</span><span style="color:var(--shiki-token-string)"> /usr/local/bin/shutdown</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Change 'shutdown' to '/usr/sbin/shutdown' and save the file.</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<div class="heading-wrap">
+<h2 id="optional-power-off-shutdown-script">Optional: Power off shutdown script</h2>
+<a class="heading-anchor" href="#optional-power-off-shutdown-script"><span class="visually-hidden">Link to section: Optional: Power off shutdown script</span> <span aria-hidden="true">#</span></a></div>
+<div class="heading-wrap">
+<h3 id="fix-problems-with-the-original-commands">Fix problems with the original commands</h3>
+<a class="heading-anchor" href="#fix-problems-with-the-original-commands"><span class="visually-hidden">Link to section: Fix problems with the original commands</span> <span aria-hidden="true">#</span></a></div>
 <ol>
 <li>Enable i2c in <code>raspi-config</code></li>
 </ol>
-<pre><code># Run raspi-config
-sudo raspi-config
-# Navigate to "Interface Options"
-# Select "I2C" and enable it
-# Finish and reboot
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)"># Run raspi-config</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> raspi-config</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Navigate to "Interface Options"</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Select "I2C" and enable it</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Finish and reboot</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <ol>
 <li>Install <code>i2c-tools</code></li>
 </ol>
-<pre><code>sudo apt install i2c-tools -y
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> apt</span><span style="color:var(--shiki-token-string)"> install</span><span style="color:var(--shiki-token-string)"> i2c-tools</span><span style="color:var(--shiki-token-string)"> -y</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <p>Follow the original guide here: <a href="https://github.com/nibheis/picocalc_trixie#step-7-make-the-pi-turn-off-the-main-board-when-powering-off">Picocalc Trixie Guide</a></p>
-<h2 id="ezmode">EZ Mode</h2>
+<div class="heading-wrap">
+<h3 id="ez-mode">EZ Mode</h3>
+<a class="heading-anchor" href="#ez-mode"><span class="visually-hidden">Link to section: EZ Mode</span> <span aria-hidden="true">#</span></a></div>
 <ol>
 <li>Enable i2c in <code>raspi-config</code></li>
 </ol>
-<pre><code># Run raspi-config
-sudo raspi-config
-# Navigate to "Interface Options"
-# Select "I2C" and enable it
-# Finish and reboot
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-comment)"># Run raspi-config</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">sudo</span><span style="color:var(--shiki-token-string)"> raspi-config</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Navigate to "Interface Options"</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Select "I2C" and enable it</span></span>
+<span class="line"><span style="color:var(--shiki-token-comment)"># Finish and reboot</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <ol start="2">
 <li>Clone my fork of the repo with a full install script</li>
 </ol>
-<pre><code>git clone git@github.com:jamescodesthings/picocalc_trixie.git
-</code></pre>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">git</span><span style="color:var(--shiki-token-string)"> clone</span><span style="color:var(--shiki-token-string)"> https://github.com/jamescodesthings/picocalc_trixie.git</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
 <ol start="3">
 <li>Run the install script for the shutdown utility</li>
 </ol>
-<pre><code class="sh language-sh">cd picocalc_trixie
-cd poweroff
-./install
-</code></pre>
-<p><em>note: if you run it from one of the parent directories the path to the service and script file won't be right.</em></p>
-<h1 id="resources">Resources</h1>
+<div class="code-block"><pre class="shiki css-variables" style="background-color:var(--shiki-background);color:var(--shiki-foreground)" tabindex="0" data-copy=""><code><span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> picocalc_trixie</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">cd</span><span style="color:var(--shiki-token-string)"> poweroff</span></span>
+<span class="line"><span style="color:var(--shiki-token-function)">./install</span></span></code></pre><button type="button" class="code-block__copy" data-copy-button hidden aria-label="Copy code"><span class="code-block__icon code-block__icon--idle"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" /></svg></span><span class="code-block__icon code-block__icon--done"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><path d="M20 6 9 17l-5-5" /></svg></span></button><span class="code-block__status visually-hidden" role="status"></span></div>
+<aside class="callout callout--note" role="note">
+<p class="callout__title"><svg class="icon " width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" ><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg><span>Note</span></p>
+<p>If you run it from one of the parent directories the path to the service and script file won't be right.</p>
+</aside>
+<div class="heading-wrap">
+<h2 id="resources">Resources</h2>
+<a class="heading-anchor" href="#resources"><span class="visually-hidden">Link to section: Resources</span> <span aria-hidden="true">#</span></a></div>
 <p>Here's the main resources I used when working this out.</p>
 <ul>
 <li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc">The forum post</a></li>
@@ -318,36 +545,31 @@ cd poweroff
 <li><a href="https://github.com/nibheis/picocalc_trixie/">The Trixie 64bit install instructions</a></li>
 <li><a href="https://forum.clockworkpi.com/t/raspberry-pi-zero-2-on-picocalc/17946/235?u=jamescodesthings">A comment in the forum post about making the default font easier to work with</a></li>
 </ul>
-<h1 id="fin">Fin</h1>
+<div class="heading-wrap">
+<h2 id="fin">Fin</h2>
+<a class="heading-anchor" href="#fin"><span class="visually-hidden">Link to section: Fin</span> <span aria-hidden="true">#</span></a></div>
 <p>That's it for this one! I hope it's useful to anyone looking to do something similar. If you have any questions, or suggestions for improvements, feel free to reach out.</p>
 <p>Many thanks to everyone mentioned in the resources, and anyone else who's worked on this in the forums. It's a great community and I'm grateful for all the work that's gone into making this possible.</p>
-<p>If anyone involved in the project wants to add anything, or correct any mistakes, just let me know!</p></article>
+<p>If anyone involved in the project wants to add anything, or correct any mistakes, just let me know!</p>
+</article>
+        </div>
+        
+        <nav class="post-pager" aria-label="More posts">
+          <a class="post-pager__prev" href="/blog/2026-03-30-how-this-site-works.html" rel="prev"><span class="post-pager__label">Previous</span><span>Personal Website</span></a>
+          
+        </nav>
+        
+      </div>
     </main>
-
     <footer class="site-footer">
-  <div class="footer-inner">
-    <a href="/" class="footer-home" aria-label="codesthings.com home">
-      <img
-        src="/assets/logo/logo.svg"
-        alt=""
-        class="footer-logo footer-logo--light"
-        width="160"
-        loading="lazy"
-      />
-      <img
-        src="/assets/logo/logo-dark.svg"
-        alt=""
-        class="footer-logo footer-logo--dark"
-        width="160"
-        loading="lazy"
-      />
-    </a>
-    <div class="footer-links">
-      <a href="https://codesthings.com/cv" class="footer-link footer-link--cv">
-        <svg
+  <div class="site-footer__inner container">
+    <div class="site-footer__top">
+      <a href="/" class="footer-home" id="footer-logo" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="144" height="24" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" style="stroke:var(--color-accent, #f5b84a)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" style="fill:var(--color-accent, #f5b84a)"/></g></svg>
+</a>
+      <a href="https://codesthings.com/cv" class="footer-cv"><svg
   class="icon "
-  width="16"
-  height="16"
+  width="18"
+  height="18"
   viewBox="0 0 24 24"
   fill="none"
   stroke="currentColor"
@@ -357,17 +579,103 @@ cd poweroff
   aria-hidden="true"
   focusable="false"
 ><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><circle cx="9.5" cy="11" r="1.75" /><path d="M7 16c.4-1.3 1.3-2 2.5-2s2.1.7 2.5 2" /><path d="M14 11h2.5" /><path d="M14 14h2.5" /><path d="M7 18.5h9.5" /></svg>
-
-        <span>View CV</span>
-      </a>
-      <a href="/privacy-notice" class="footer-link">Privacy Notice</a>
-      <a href="/about-cookies" class="footer-link">About Cookies</a>
+<span>View CV</span></a>
     </div>
-    <span class="footer-copy">&copy; 2026 James Macmillan</span>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a class="footer-link" href="/blog/">Blog</a></li>
+        <li><a class="footer-link" href="/feed.xml">RSS</a></li>
+        <li><a class="footer-link" href="/now">Now</a></li>
+        <li><a class="footer-link" href="/uses">Uses</a></li>
+        <li><a class="footer-link" href="/colophon">Colophon</a></li>
+        <li><a class="footer-link" href="/privacy-notice">Privacy Notice</a></li>
+        <li><a class="footer-link" href="/about-cookies">About Cookies</a></li>
+      </ul>
+    </nav>
+    
+    <ul class="footer-social">
+      
+      <li>
+        <a class="footer-social__link" href="https://github.com/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://makerworld.com/en/@jamescodesthing" target="_blank" rel="noopener noreferrer" aria-label="Makerworld (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.linkedin.com/in/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.instagram.com/jamescodesthings/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><path d="M17.5 6.5h.01" /></svg>
+</a>
+      </li>
+      
+    </ul>
+    
+    <p class="footer-meta">
+      <span>&copy; 2026 James Macmillan</span>
+      
+      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/3611e98871e61890b82dc90aa74dd3876ca85602" rel="noopener">v3611e98 &middot; built 9 Oct 2026</a>
+      
+    </p>
   </div>
 </footer>
+<script type="application/json" id="site-data">{"bio":"A pragmatic engineer who builds for the web, and makes things.","email":"james@codesthings.com"}</script>
 
 
-    <script src="../js/theme.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>

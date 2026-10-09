@@ -1,135 +1,309 @@
 <!DOCTYPE html>
+<!--
+  ___ _
+ / __| |_
+| (__|  _|
+ \___|\__|
+
+Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is at github.com/jamescodesthings.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Website - CodesThings.com</title>
-    <meta name="description" content="No framework, no CMS. JSON and Markdown go in, plain HTML comes out, and every push to main ships it." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Personal Website - codesthings.com</title>
+<meta name="description" content="The whole site is about 3000 lines of JavaScript and a folder of JSON. Here&#39;s how it works, and why there&#39;s no framework." />
+<link rel="canonical" href="https://codesthings.com/blog/2026-03-30-how-this-site-works.html" />
+<meta name="color-scheme" content="dark light" />
 
-    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../css/styles.css" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="codesthings.com" />
+<meta property="og:title" content="Personal Website - codesthings.com" />
+<meta property="og:description" content="The whole site is about 3000 lines of JavaScript and a folder of JSON. Here&#39;s how it works, and why there&#39;s no framework." />
+<meta property="og:url" content="https://codesthings.com/blog/2026-03-30-how-this-site-works.html" />
+<meta property="og:image" content="https://codesthings.com/og/blog-2026-03-30-how-this-site-works.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Share card for Personal Website - codesthings.com" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Personal Website - codesthings.com" />
+<meta name="twitter:description" content="The whole site is about 3000 lines of JavaScript and a folder of JSON. Here&#39;s how it works, and why there&#39;s no framework." />
+<meta name="twitter:image" content="https://codesthings.com/og/blog-2026-03-30-how-this-site-works.png" />
+<meta name="twitter:image:alt" content="Share card for Personal Website - codesthings.com" />
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="alternate" type="application/atom+xml" title="codesthings.com" href="/feed.xml" />
+
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/css/styles.css" />
+<script>(function () {
+  var root = document.documentElement;
+  var theme = 'dark';
+  var motion = null;
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light' || saved === 'system') theme = saved;
+  } catch (e) {}
+  try {
+    motion = localStorage.getItem('motion');
+  } catch (e) {}
+  if (theme === 'system') {
+    var light = false;
+    try {
+      light = window.matchMedia('(prefers-color-scheme: light)').matches;
+    } catch (e) {}
+    theme = light ? 'light' : 'dark';
+  }
+  root.setAttribute('data-theme', theme);
+  if (motion === 'reduce' || motion === 'full') root.setAttribute('data-motion', motion);
+  root.setAttribute('data-js', '');
+})();
+</script>
+
   </head>
-  <body>
-    <button class="theme-toggle" id="darkModeToggle" aria-label="Toggle theme">
-  <span class="toggle-icon" id="toggleIcon">
-    <svg
-      class="icon-sun"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" />
-      <line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" />
-      <line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-    <svg
-      class="icon-moon"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  </span>
-</button>
-
-    <nav class="blog-nav">
-      <a href="/">&larr; Back to codesthings.com</a>
-    </nav>
-
-    <main class="blog-post">
-      <article class="paper-page"><h1 id="personalwebsite">Personal Website</h1>
-<p><em>Published: 30 March 2026</em></p>
-<p>This is a quick summary of how codesthings.com is built, from data files to deployed website.</p>
-<h2 id="thearchitecture">The Architecture</h2>
-<p>The site follows a <strong>data-in, pipeline, artifacts-out</strong> pattern inspired by the <a href="https://github.com/jamescodesthings/campsnap-filters">campsnap-filters</a> project.</p>
-<h3 id="datalayer">Data Layer</h3>
-<p>All site content lives in JSON files under <code>data/</code>:</p>
-<ul>
-<li><code>profile.json</code> - Name, title, summary</li>
-<li><code>experience.json</code> - Work history</li>
-<li><code>skills.json</code> - Technical skills grouped by category</li>
-<li><code>education.json</code> - Qualifications</li>
-<li><code>projects.json</code> - Portfolio projects</li>
-<li><code>sidebar.json</code> - Contact info, social links, tech stacks</li>
-<li><code>socials.json</code> - Social platform links and descriptions</li>
-<li><code>cover-letter.json</code> - Cover letter variants</li>
-</ul>
-<p>To update the site content, you just edit the JSON.</p>
-<h3 id="generator">Generator</h3>
-<p>The <code>src/</code> directory contains a Node.js (pure ESM) static site builder:</p>
-<ol>
-<li><strong>Load</strong> - Reads all JSON data files</li>
-<li><strong>Render</strong> - Passes data through EJS templates to produce HTML</li>
-<li><strong>Copy</strong> - Moves static assets (CSS, favicons, icons) to the output directory</li>
-<li><strong>Output</strong> - Everything lands in <code>public/</code></li>
-</ol>
-<p>There is no React, no Vite, no bundler. Just Node.js reading files and writing files.</p>
-<h3 id="templates">Templates</h3>
-<p>EJS templates in <code>src/templates/</code> define the page structure. Each section (hero, experience, skills, projects, etc.) is its own partial template. The main <code>index.ejs</code> composes them together.</p>
-<h3 id="styling">Styling</h3>
-<p>Plain CSS with CSS custom properties (variables) for theming. Dark and light modes are supported via a <code>.dark</code> class on the body, toggled by a small client-side script. No Tailwind, no PostCSS, no preprocessor.</p>
-<h3 id="infrastructure">Infrastructure</h3>
-<ul>
-<li><strong>Makefile</strong> - All developer-facing commands. <code>make build</code>, <code>make serve</code>, <code>make dev</code>.</li>
-<li><strong>Docker Compose</strong> - Services for containerized builds: a static file server, Gotenberg (Chromium headless for PDF generation), and the Node.js build container.</li>
-<li><strong>GitHub Actions</strong> - On push to <code>main</code>: build the site, generate a PDF, deploy to the <code>pages</code> branch.</li>
-</ul>
-<h2 id="whythisapproach">Why This Approach?</h2>
-<p>The previous version used React, Vite, TypeScript, Tailwind, PostCSS, Storybook, and CircleCI. That was a lot of tooling for what is fundamentally a single-page CV website.</p>
-<p>The new version has:</p>
-<ul>
-<li><strong>No build step for the browser</strong> - The output is plain HTML, CSS, and zero JavaScript (except a tiny dark mode toggle)</li>
-<li><strong>No framework</strong> - EJS templates are simple and readable</li>
-<li><strong>No CSS framework</strong> - CSS variables do everything Tailwind did, with less abstraction</li>
-<li><strong>Portable PDF generation</strong> - Gotenberg prints the page to PDF via Chromium, no local browser required</li>
-</ul>
-<p>The entire generator is about 200 lines of JavaScript. The data is in JSON. The templates are in EJS. The styles are in CSS. That is the whole thing.</p>
-<hr />
-<p><a href="/">Back to codesthings.com</a></p></article>
-    </main>
-
-    <footer class="site-footer">
-  <div class="footer-inner">
-    <a href="/" class="footer-home" aria-label="codesthings.com home">
-      <img
-        src="/assets/logo/logo.svg"
-        alt=""
-        class="footer-logo footer-logo--light"
-        width="160"
-        loading="lazy"
-      />
-      <img
-        src="/assets/logo/logo-dark.svg"
-        alt=""
-        class="footer-logo footer-logo--dark"
-        width="160"
-        loading="lazy"
-      />
-    </a>
-    <div class="footer-links">
-      <a href="https://codesthings.com/cv" class="footer-link footer-link--cv">
+  <body class="page-post">
+    <a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a class="site-header__home" href="/" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="156" height="26" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" style="stroke:var(--color-accent, #f5b84a)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" style="fill:var(--color-accent, #f5b84a)"/></g></svg>
+</a>
+    <div class="settings-pill">
+      <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
+        <span class="theme-toggle__icon theme-toggle__icon--sun"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
+</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+</span>
+      </button>
+      <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
         <svg
   class="icon "
-  width="16"
-  height="16"
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
+
+      </button>
+    </div>
+    <div class="settings-popover" id="settings-popover" popover="manual" role="group" aria-label="Settings" hidden>
+  <fieldset class="settings-group">
+    <legend>Theme</legend>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="dark" /><span>Dark</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="light" /><span>Light</span></label>
+    <label class="settings-option"><input type="radio" name="settings-theme" value="system" /><span>System</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Section navigation</legend>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="on" /><span>On</span></label>
+    <label class="settings-option"><input type="radio" name="settings-nav" value="off" /><span>Off</span></label>
+  </fieldset>
+  <fieldset class="settings-group">
+    <legend>Motion</legend>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="system" /><span>System</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="reduce" /><span>Reduced</span></label>
+    <label class="settings-option"><input type="radio" name="settings-motion" value="full" /><span>Full</span></label>
+  </fieldset>
+  <button type="button" class="settings-hint" data-terminal-open>Press <kbd>`</kbd> for terminal</button>
+</div>
+
+    <details class="site-menu">
+      <summary aria-label="Menu">
+        <span class="site-menu__icon-open"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="m6 9 6 6 6-6" /></svg>
+</span>
+        <span class="site-menu__icon-close"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+</span>
+        <span>Menu</span>
+      </summary>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list">
+          
+          <li><a class="site-nav__link" href="/#work">Work</a></li>
+          
+          <li><a class="site-nav__link" href="/#make">Make</a></li>
+          
+          <li><a class="site-nav__link" href="/#photos">Photos</a></li>
+          
+          <li><a class="site-nav__link" href="/#blog">Blog</a></li>
+          
+          <li><a class="site-nav__link" href="/now">Now</a></li>
+          
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+    <div class="read-progress" aria-hidden="true"></div>
+    <main id="main">
+      <div class="container post">
+        <a class="post-back" href="/blog/"><svg
+  class="icon "
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
+<span>All posts</span></a>
+        <header class="post-header">
+          <p class="post-meta">
+            <time datetime="2026-03-30">30 March 2026</time>
+            <span>3 min read</span>
+            
+          </p>
+          <h1 class="post-title">Personal Website</h1>
+          <p class="post-summary">The whole site is about 3000 lines of JavaScript and a folder of JSON. Here&#39;s how it works, and why there&#39;s no framework.</p>
+          
+          <ul class="post-tags" aria-label="Tags">
+            <li>node</li><li>static site</li><li>meta</li>
+          </ul>
+          
+        </header>
+        
+        <div class="post-layout post-layout--toc">
+          
+          <details class="toc toc--mobile">
+            <summary>On this page</summary>
+            <nav aria-label="Table of contents"><ol><li><a href="#the-shape-of-it">The shape of it</a></li><li><ol><li><a href="#data">Data</a></li><li><a href="#the-build">The build</a></li><li><a href="#images">Images</a></li><li><a href="#styling-and-scripts">Styling and scripts</a></li><li><a href="#tests">Tests</a></li></ol></li><li><a href="#deploying">Deploying</a></li><li><a href="#why-no-framework">Why no framework?</a></li></ol></nav>
+          </details>
+          <nav class="toc toc--side" aria-label="Table of contents">
+            <p class="toc__title" aria-hidden="true">On this page</p>
+            <ol><li><a href="#the-shape-of-it">The shape of it</a></li><li><ol><li><a href="#data">Data</a></li><li><a href="#the-build">The build</a></li><li><a href="#images">Images</a></li><li><a href="#styling-and-scripts">Styling and scripts</a></li><li><a href="#tests">Tests</a></li></ol></li><li><a href="#deploying">Deploying</a></li><li><a href="#why-no-framework">Why no framework?</a></li></ol>
+          </nav>
+          
+          <article class="post-body"><p>This is how codesthings.com is built, from data files to deployed website. It is a small Node program that reads JSON and Markdown, fills in EJS templates, and writes plain HTML into a folder.</p>
+<div class="heading-wrap">
+<h2 id="the-shape-of-it">The shape of it</h2>
+<a class="heading-anchor" href="#the-shape-of-it"><span class="visually-hidden">Link to section: The shape of it</span> <span aria-hidden="true">#</span></a></div>
+<p>The pattern is <strong>data in, pipeline, files out</strong>, borrowed from my <a href="https://github.com/jamescodesthings/campsnap-filters">campsnap-filters</a> project. Nothing runs on a server and no page content is rendered in the browser. The pages are finished HTML before anyone asks for them.</p>
+<div class="heading-wrap">
+<h3 id="data">Data</h3>
+<a class="heading-anchor" href="#data"><span class="visually-hidden">Link to section: Data</span> <span aria-hidden="true">#</span></a></div>
+<p>All content lives in <code>data/</code>:</p>
+<ul>
+<li><code>site.json</code>, <code>now.json</code>, <code>uses.json</code> and <code>links.json</code> hold the homepage copy, the Now page, the Uses page and the link list.</li>
+<li><code>projects/</code> has one JSON file per project, with a <code>lane</code> of <code>work</code> or <code>make</code>.</li>
+<li><code>photos/</code> has one JSON file per photo.</li>
+<li><code>blog/</code> has one Markdown file per post. The file name gives the slug and the date.</li>
+</ul>
+<p>To change the site, I edit one of those files. A project or photo file with a missing key or a bad <code>lane</code> fails the build and names the file, rather than rendering a broken card.</p>
+<div class="heading-wrap">
+<h3 id="the-build">The build</h3>
+<a class="heading-anchor" href="#the-build"><span class="visually-hidden">Link to section: The build</span> <span aria-hidden="true">#</span></a></div>
+<p><code>src/index.js</code> is orchestration only. It loads the data, builds the assets, and renders every page through a single <code>renderPage</code> function. The work happens in small modules under <code>src/lib/</code>:</p>
+<ul>
+<li><code>data.js</code> reads and validates everything under <code>data/</code>.</li>
+<li><code>validate.js</code> checks project and photo files.</li>
+<li><code>frontmatter.js</code> splits a post into its front matter and body.</li>
+<li><code>markdown.js</code> renders posts with markdown-it, adds heading anchors, callouts and copy buttons, and highlights code with Shiki at build time.</li>
+<li><code>reading.js</code> works out the reading time.</li>
+<li><code>images.js</code> is the image pipeline.</li>
+<li><code>css.js</code> bundles the stylesheets with Lightning CSS.</li>
+<li><code>buildstamp.js</code> reads the git commit for the version in the footer.</li>
+</ul>
+<p>Templates are EJS files in <code>src/templates/</code>, and every page is built from the same header, footer and head partials.</p>
+<div class="heading-wrap">
+<h3 id="images">Images</h3>
+<a class="heading-anchor" href="#images"><span class="visually-hidden">Link to section: Images</span> <span aria-hidden="true">#</span></a></div>
+<p>Every image a post, project or photo refers to goes through <a href="https://sharp.pixelplumbing.com/">sharp</a>. It writes AVIF and WebP at 480, 960 and 1600 pixels wide, wraps them in a <code>&lt;picture&gt;</code> with the real width and height, and lazy-loads everything except the first image. Results are cached in <code>.cache/images/</code>, keyed by a hash of the source, so a rebuild only does new work. Only images that something refers to are shipped. If a post points at an image that doesn't exist, the build fails and names the post and the path.</p>
+<div class="heading-wrap">
+<h3 id="styling-and-scripts">Styling and scripts</h3>
+<a class="heading-anchor" href="#styling-and-scripts"><span class="visually-hidden">Link to section: Styling and scripts</span> <span aria-hidden="true">#</span></a></div>
+<p>The stylesheet is plain CSS in ordered files: tokens, base, layout, components, pages and print. The build joins and minifies them into one file. Dark is the default and light is a switch on <code>&lt;html&gt;</code>, set by a tiny inline script before first paint. The JavaScript is plain ES modules with no framework and no bundler, and the post-only scripts (the contents list, the copy buttons and the video facade) only load on posts.</p>
+<div class="heading-wrap">
+<h3 id="tests">Tests</h3>
+<a class="heading-anchor" href="#tests"><span class="visually-hidden">Link to section: Tests</span> <span aria-hidden="true">#</span></a></div>
+<p>The pure parts have unit tests that run with <code>node --test</code>: front matter, validation, the build stamp, the image pipeline, the Markdown renderer, reading time and the theme and floating-button scripts. <code>npm test</code> runs them all.</p>
+<div class="heading-wrap">
+<h2 id="deploying">Deploying</h2>
+<a class="heading-anchor" href="#deploying"><span class="visually-hidden">Link to section: Deploying</span> <span aria-hidden="true">#</span></a></div>
+<p>A push to <code>main</code> runs <code>.github/workflows/deploy.yml</code>. It runs <code>make build</code>, which runs the same Node build inside a <code>node:24-alpine</code> container, and publishes the <code>public/</code> folder to the <code>pages</code> branch. GitHub Pages serves that branch at codesthings.com. There is no server to look after.</p>
+<div class="heading-wrap">
+<h2 id="why-no-framework">Why no framework?</h2>
+<a class="heading-anchor" href="#why-no-framework"><span class="visually-hidden">Link to section: Why no framework?</span> <span aria-hidden="true">#</span></a></div>
+<p>The site is a handful of pages that change when I write something. A framework would add a build step, a dependency tree and a runtime for no visible gain, and this version is easier to read in an afternoon than to configure.</p>
+</article>
+        </div>
+        
+        <nav class="post-pager" aria-label="More posts">
+          
+          <a class="post-pager__next" href="/blog/2026-05-01-zerocalc.html" rel="next"><span class="post-pager__label">Next</span><span>ZeroCalc</span></a>
+        </nav>
+        
+      </div>
+    </main>
+    <footer class="site-footer">
+  <div class="site-footer__inner container">
+    <div class="site-footer__top">
+      <a href="/" class="footer-home" id="footer-logo" aria-label="codesthings.com home"><svg class="logo logo--wordmark" xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -6 552.2 92" width="144" height="24" aria-hidden="true" focusable="false"><g transform="translate(0 0) scale(1.25)"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" style="stroke:var(--color-accent, #f5b84a)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(106 4) scale(0.9)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path transform="translate(0 0)" d="M34.14 25.86 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(49 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z"/><path transform="translate(102 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 0 V60"/><path transform="translate(155 0)" d="M0 40 H40 A20 20 0 0 0 20 20 H20 A20 20 0 0 0 0 40 V40 A20 20 0 0 0 20 60 H20 A20 20 0 0 0 34.14 54.14"/><path transform="translate(208 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/><path transform="translate(251 0)" d="M8 4 V50 A10 10 0 0 0 18 60 H24 M0 20 H22"/><path transform="translate(286 0)" d="M0 0 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(339 0)" d="M0 20 V60"/><path transform="translate(352 0)" d="M0 20 V60 M0 40 A20 20 0 0 1 20 20 H20 A20 20 0 0 1 40 40 V60"/><path transform="translate(405 0)" d="M20 20 H20 A20 20 0 0 1 40 40 V40 A20 20 0 0 1 20 60 H20 A20 20 0 0 1 0 40 V40 A20 20 0 0 1 20 20 Z M40 20 V66 A14 14 0 0 1 26 80 H6"/><path transform="translate(458 0)" d="M30 20 H10 A10 10 0 0 0 10 40 H20 A10 10 0 0 1 20 60 H0"/></g><circle cx="339" cy="6" r="5.04" style="fill:var(--color-accent, #f5b84a)"/></g></svg>
+</a>
+      <a href="https://codesthings.com/cv" class="footer-cv"><svg
+  class="icon "
+  width="18"
+  height="18"
   viewBox="0 0 24 24"
   fill="none"
   stroke="currentColor"
@@ -139,17 +313,103 @@
   aria-hidden="true"
   focusable="false"
 ><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><circle cx="9.5" cy="11" r="1.75" /><path d="M7 16c.4-1.3 1.3-2 2.5-2s2.1.7 2.5 2" /><path d="M14 11h2.5" /><path d="M14 14h2.5" /><path d="M7 18.5h9.5" /></svg>
-
-        <span>View CV</span>
-      </a>
-      <a href="/privacy-notice" class="footer-link">Privacy Notice</a>
-      <a href="/about-cookies" class="footer-link">About Cookies</a>
+<span>View CV</span></a>
     </div>
-    <span class="footer-copy">&copy; 2026 James Macmillan</span>
+    <nav aria-label="Footer">
+      <ul class="footer-links">
+        <li><a class="footer-link" href="/blog/">Blog</a></li>
+        <li><a class="footer-link" href="/feed.xml">RSS</a></li>
+        <li><a class="footer-link" href="/now">Now</a></li>
+        <li><a class="footer-link" href="/uses">Uses</a></li>
+        <li><a class="footer-link" href="/colophon">Colophon</a></li>
+        <li><a class="footer-link" href="/privacy-notice">Privacy Notice</a></li>
+        <li><a class="footer-link" href="/about-cookies">About Cookies</a></li>
+      </ul>
+    </nav>
+    
+    <ul class="footer-social">
+      
+      <li>
+        <a class="footer-social__link" href="https://github.com/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://makerworld.com/en/@jamescodesthing" target="_blank" rel="noopener noreferrer" aria-label="Makerworld (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.linkedin.com/in/jamescodesthings" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+</a>
+      </li>
+      
+      <li>
+        <a class="footer-social__link" href="https://www.instagram.com/jamescodesthings/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg
+  class="icon "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><path d="M17.5 6.5h.01" /></svg>
+</a>
+      </li>
+      
+    </ul>
+    
+    <p class="footer-meta">
+      <span>&copy; 2026 James Macmillan</span>
+      
+      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/3611e98871e61890b82dc90aa74dd3876ca85602" rel="noopener">v3611e98 &middot; built 9 Oct 2026</a>
+      
+    </p>
   </div>
 </footer>
+<script type="application/json" id="site-data">{"bio":"A pragmatic engineer who builds for the web, and makes things.","email":"james@codesthings.com"}</script>
 
 
-    <script src="../js/theme.js"></script>
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>
