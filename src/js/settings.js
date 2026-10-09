@@ -12,6 +12,15 @@ export function applyMotion(value, doc = document) {
   doc.dispatchEvent(new CustomEvent('motion:change', { detail: { value } }));
 }
 
+// Turns the section rail on or off: saves the choice and tells the rail and the settings radios. Shared with
+// the terminal's `nav` command so there is one way to do it.
+export function applyNavSections(value, doc = document) {
+  const next = value === 'off' ? 'off' : 'on';
+  storage.set('nav-sections', next);
+  doc.dispatchEvent(new CustomEvent('navsections:change', { detail: { value: next } }));
+  return next;
+}
+
 export function initSettings(win = window) {
   const doc = win.document;
   const toggle = doc.querySelector('[data-settings-toggle]');
@@ -81,9 +90,7 @@ export function initSettings(win = window) {
     if (!(input instanceof win.HTMLInputElement)) return;
     if (input.name === 'settings-theme' && win.__theme) win.__theme.set(input.value);
     if (input.name === 'settings-nav') {
-      nav = input.value === 'off' ? 'off' : 'on';
-      storage.set('nav-sections', nav);
-      doc.dispatchEvent(new CustomEvent('navsections:change', { detail: { value: nav } }));
+      nav = applyNavSections(input.value, doc);
     }
     if (input.name === 'settings-motion' && MOTIONS.includes(input.value)) {
       motion = input.value;

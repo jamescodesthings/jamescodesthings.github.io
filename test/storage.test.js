@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createStorage } from '../src/js/storage.js';
+import { createStorage, createSessionStorage } from '../src/js/storage.js';
 
 function working(store = {}) {
   return {
@@ -57,3 +57,31 @@ for (const [name, win] of [
     assert.equal(s.set('theme', 'light'), false);
   });
 }
+
+test('session storage reads and writes sessionStorage, not localStorage', () => {
+  const store = {};
+  const s = createSessionStorage({
+    localStorage: working({}).localStorage,
+    sessionStorage: working(store).localStorage,
+  });
+  assert.equal(s.set('terminal-history', '[]'), true);
+  assert.equal(store['terminal-history'], '[]');
+  assert.equal(s.get('terminal-history'), '[]');
+  assert.equal(s.get('nope', 'x'), 'x');
+});
+
+test('session storage never throws', () => {
+  for (const win of [
+    { sessionStorage: throwingMethods.localStorage },
+    {
+      get sessionStorage() {
+        throw new Error('x');
+      },
+    },
+    {},
+  ]) {
+    const s = createSessionStorage(win);
+    assert.equal(s.get('a', 'fb'), 'fb');
+    assert.equal(s.set('a', 'b'), false);
+  }
+});

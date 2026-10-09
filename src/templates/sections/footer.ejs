@@ -1,5 +1,6 @@
 <%
-  // locals: stamp ({ short, date, url } from getBuildStamp); links (optional, data/links.json) for the social icons.
+  // locals: stamp ({ short, date, url } from getBuildStamp); links (optional, data/links.json) for the social icons;
+  // site (optional, data/site.json): its bio and email reach terminal mode through the JSON block at the end.
   const social = typeof links === 'undefined' ? [] : links.filter(l => !l.primary);
 -%>
 <footer class="site-footer">
@@ -36,3 +37,5 @@
     </p>
   </div>
 </footer>
+<% if (typeof site !== 'undefined' && site) { %><script type="application/json" id="site-data"><%- JSON.stringify({ bio: site.bio, email: site.email }).replace(/</g, '\\u003c') %></script>
+<% } %>

@@ -20,6 +20,7 @@
   const railSections = Object.values(R).filter(s => s.id !== 'blog' || latest.length > 0);
 -%>
 <!DOCTYPE html>
+<%- include('sections/banner') -%>
 <html lang="en">
   <head>
     <%- include('sections/head') %>
