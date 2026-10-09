@@ -12,7 +12,7 @@
       "lcp": 1530,
       "cls": 0,
       "tbt": 0,
-      "bytes": 132874,
+      "bytes": 133218,
       "requests": 19
     },
     {
@@ -23,10 +23,10 @@
         "bestPractices": 100,
         "seo": 100
       },
-      "lcp": 1504,
+      "lcp": 1530,
       "cls": 0,
       "tbt": 0,
-      "bytes": 157196,
+      "bytes": 157531,
       "requests": 23
     }
   ]

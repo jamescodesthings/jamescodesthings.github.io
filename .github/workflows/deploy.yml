@@ -48,7 +48,11 @@ jobs:
       - name: Serve site and run Lighthouse CI
         run: |
           node scripts/serve.js 8099 &
-          sleep 2
+          for i in $(seq 1 30); do
+            curl -ksf -o /dev/null https://127.0.0.1:8099/ && break
+            [ "$i" = 30 ] && { echo "server did not start"; exit 1; }
+            sleep 1
+          done
           npx lhci autorun --config=lighthouserc.json
 
       - name: Upload Lighthouse reports
