@@ -9,11 +9,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const fontDir = resolve(here, '../assets/fonts/og');
 
 // Bump when the card design changes, so cached PNGs are rebuilt.
-export const OG_VERSION = 2;
+export const OG_VERSION = 3;
 
-// Dark-theme values copied from src/css/tokens.css (--color-bg, --color-text, --color-accent, --color-muted).
-// A server-rendered PNG has no CSS, so they live here; keep them in step with tokens.css.
-const COLOR = { bg: '#0f1216', text: '#e8ebef', accent: '#f5b84a', muted: '#9aa4b0' };
+// Moonlit (dark-theme) values copied from src/css/tokens.css (--color-bg, --color-heading, --color-accent,
+// --color-muted). A server-rendered PNG has no CSS, so they live here; keep them in step with tokens.css.
+const COLOR = { bg: '#090b12', text: '#f0ece4', accent: '#a9bce0', muted: '#9ca3af' };
 
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;

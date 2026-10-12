@@ -6,7 +6,7 @@ Static assets for the website. The build copies only the files the site referenc
 
 ### favicon.svg / favicon.ico / apple-touch-icon.png / og-logo.png
 
-The "ct" monogram. `favicon.svg` is the standalone icon with fixed colours and a dark-mode media rule. The ICO (16 and 32px), the 180px touch icon and the 1200x630 fallback share-card logo are rendered from the monogram on a `#0f1216` tile by `scripts/make-icons.sh`. The inline logo used in the header and footer is `src/templates/sections/logo.ejs`.
+The "ct" monogram. All four are written by `scripts/make-icons.sh` from the paths in `logo.ejs`. `favicon.svg` follows the OS theme: ink by day, warm white with the moon-blue stroke by night. The ICO (16 and 32px) and the 180px touch icon are the mark on a moonlit `#090b12` tile, and the 1200x630 fallback share card is the wordmark on the moonlit page with a dotted arc and a small moon, matching the LinkedIn banner. The inline logo used in the header and footer is `src/templates/sections/logo.ejs`.
 
 ### zipline.mp4 / zipline-poster.jpg
 
