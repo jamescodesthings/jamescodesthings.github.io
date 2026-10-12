@@ -15,6 +15,8 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 <meta name="description" content="The whole site is about 3000 lines of JavaScript and a folder of JSON. Here&#39;s how it works, and why there&#39;s no framework." />
 <link rel="canonical" href="https://codesthings.com/blog/2026-03-30-how-this-site-works.html" />
 <meta name="color-scheme" content="dark light" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f4" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090b12" />
 
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="codesthings.com" />
@@ -60,6 +62,15 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
     theme = light ? 'light' : 'dark';
   }
   root.setAttribute('data-theme', theme);
+  // One theme-color tag for the theme showing, in place of head.ejs's two media-query tags.
+  try {
+    var metas = document.querySelectorAll('meta[name="theme-color"]');
+    for (var i = 0; i < metas.length; i++) metas[i].remove();
+    var meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    meta.content = theme === 'light' ? '#faf8f4' : '#090b12';
+    document.head.appendChild(meta);
+  } catch (e) {}
   if (motion === 'reduce' || motion === 'full') root.setAttribute('data-motion', motion);
   root.setAttribute('data-js', '');
 })();
@@ -74,7 +85,8 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </a>
     <div class="settings-pill">
       <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
-        <span class="theme-toggle__icon theme-toggle__icon--sun"><svg
+        <span class="theme-toggle__orbit" aria-hidden="true">
+          <span class="theme-toggle__icon theme-toggle__icon--sun"><svg
   class="icon "
   width="20"
   height="20"
@@ -88,7 +100,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
   focusable="false"
 ><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
 </span>
-        <span class="theme-toggle__icon theme-toggle__icon--moon"><svg
+          <span class="theme-toggle__icon theme-toggle__icon--moon"><svg
   class="icon "
   width="20"
   height="20"
@@ -102,6 +114,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
   focusable="false"
 ><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
 </span>
+        </span>
       </button>
       <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
         <svg
@@ -409,7 +422,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
     <p class="footer-meta">
       <span>&copy; 2026 James Macmillan</span>
       
-      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/5908e944f215933d7eda08b4990f09d56e4290ab" rel="noopener">v5908e94 &middot; built 12 Oct 2026</a>
+      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/d1e3f0bc7aa63b00477c089a0a8691da31b1ac1a" rel="noopener">vd1e3f0b &middot; built 12 Oct 2026</a>
       
     </p>
   </div>
