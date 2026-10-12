@@ -38,6 +38,10 @@
 }
 
 /* Copy email: swap the icon and label while "Copied" shows. */
+.btn__icon {
+  display: inline-flex;
+}
+
 .btn__icon--done,
 .btn.is-copied .btn__icon--idle {
   display: none;

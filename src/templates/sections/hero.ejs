@@ -2,6 +2,8 @@
   // locals: site (data/site.json), links (data/links.json).
   const cv = links.find(l => l.primary);
   const social = links.filter(l => !l.primary);
+  // Non-breaking spaces keep each "·" on the line before it and "Birmingham, UK" together, so a narrow screen wraps between items, never inside one.
+  const keep = text => text.replace(/ · /g, '\u00a0· ').replace(/, /g, ',\u00a0');
 -%>
 <section id="<%= rail.id %>" class="home-hero" aria-labelledby="hero-title" data-rail-icon="<%= rail.icon %>" data-rail-title="<%= rail.title %>">
   <svg class="home-hero__dots" aria-hidden="true" focusable="false">
@@ -14,10 +16,10 @@
   </svg>
   <div class="home-hero__inner container">
     <% if (site.status) { %>
-    <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span><%= site.status %></p>
+    <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span><%= keep(site.status) %></p>
     <% } %>
     <h1 class="home-hero__name" id="hero-title">James Macmillan</h1>
-    <p class="home-hero__tagline"><span class="home-hero__prompt" aria-hidden="true">&gt;</span> senior software engineer · maker · photographer<span class="home-hero__cursor" aria-hidden="true"></span></p>
+    <p class="home-hero__tagline"><span class="home-hero__prompt" aria-hidden="true">&gt;</span> <%= keep('senior software engineer · maker · photographer') %><span class="home-hero__cursor" aria-hidden="true"></span></p>
     <p class="home-hero__bio"><%= site.bio %></p>
     <ul class="home-hero__links">
       <% if (cv) { %>

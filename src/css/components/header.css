@@ -128,6 +128,17 @@
   padding-left: var(--space-sm);
 }
 
+/* Under 360px the logo, theme pill and menu don't fit with their labels: the menu keeps its icon (the summary's aria-label still names it) and the gaps tighten. */
+@media (max-width: 359px) {
+  .site-header__inner {
+    gap: var(--space-sm);
+  }
+
+  .site-menu__label {
+    display: none;
+  }
+}
+
 /* 768px and up: nav sits inline. */
 @media (min-width: 768px) {
   .site-menu {

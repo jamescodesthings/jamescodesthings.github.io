@@ -62,7 +62,8 @@
 
 .proof {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  /* Two cards side by side only when each has room for its value on one line; phones stack them. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
   gap: var(--space-md);
   margin-top: var(--space-xl);
   list-style: none;
@@ -86,7 +87,7 @@
   font-weight: 700;
   line-height: 1.1;
   color: var(--color-accent);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   text-wrap: balance;
 }
 

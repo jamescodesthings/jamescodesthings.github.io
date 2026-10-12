@@ -55,6 +55,7 @@
   font-size: var(--text-small);
   text-transform: lowercase;
   color: var(--color-muted);
+  text-wrap: balance;
 }
 
 .home-hero__prompt {
@@ -94,6 +95,26 @@
 
 .home-hero__links li {
   position: relative;
+}
+
+/* Phones: a two-column grid, so the two buttons sit side by side at equal width and the profile links line up beneath them instead of wrapping raggedly. */
+@media (max-width: 599px) {
+  .home-hero__links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  /* Every icon in a column sits on one vertical line: button contents start at the left, and the links below are inset by the button's padding and border. */
+  .home-hero__links .btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding-inline: var(--space-md);
+  }
+
+  .home-hero__links li:nth-child(n + 3) {
+    padding-left: calc(var(--space-md) + 1px);
+  }
 }
 
 @media (min-width: 768px) {
