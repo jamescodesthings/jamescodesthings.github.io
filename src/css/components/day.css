@@ -1,0 +1,122 @@
+/* The day arc, as on the CV (see docs/brand in the top-level repo). One day for everything that
+   loops: the sun climbs the left edge, crosses the top, sets down the right and rests through a
+   short night. The keyframes are spaced unevenly and run linear, so the sun keeps a steady pace.
+   By night it is silver light; by day --color-sun is ink, so it reads as a moving shadow. Light
+   lives in the 1px border only, and reduced motion (the OS setting or the settings menu) removes it. */
+@property --sun-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -25%;
+}
+
+@property --sun-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 120%;
+}
+
+@keyframes day {
+  0% {
+    --sun-x: -25%;
+    --sun-y: 120%;
+  }
+  12% {
+    --sun-x: 10%;
+    --sun-y: 20%;
+  }
+  40% {
+    --sun-x: 50%;
+    --sun-y: -30%;
+  }
+  68% {
+    --sun-x: 90%;
+    --sun-y: 20%;
+  }
+  80%,
+  100% {
+    --sun-x: 125%;
+    --sun-y: 120%;
+  }
+}
+
+/* The primary button: a small sun, and a faster day under the pointer. The two layers cross-fade,
+   so the speed never jumps. */
+.btn--primary {
+  position: relative;
+  isolation: isolate;
+}
+
+.btn--primary::before,
+.btn--primary::after,
+.project-card::before,
+.proof__item::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: day var(--day) linear infinite;
+}
+
+.btn--primary::before,
+.btn--primary::after {
+  background: radial-gradient(
+    circle 46px at var(--sun-x) var(--sun-y),
+    color-mix(in srgb, var(--color-sun) var(--sun-mix), transparent),
+    color-mix(in srgb, var(--color-sun) 25%, transparent) 60%,
+    transparent 100%
+  );
+  transition: opacity 0.6s ease;
+}
+
+.btn--primary::after {
+  opacity: 0;
+  animation-duration: var(--day-hover);
+}
+
+.btn--primary:is(:hover, :focus-visible)::before {
+  opacity: 0;
+}
+
+.btn--primary:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+/* Cards: the same sun in step with the button, bigger and softer because the card is bigger.
+   Cards aren't links, so nothing here changes on hover. */
+.project-card::before,
+.proof__item::before {
+  background: radial-gradient(
+    circle 120px at var(--sun-x) var(--sun-y),
+    color-mix(in srgb, var(--color-sun) 75%, transparent),
+    color-mix(in srgb, var(--color-sun) 18%, transparent) 60%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) :is(.btn--primary, .project-card, .proof__item)::before,
+  :root:not([data-motion='full']) .btn--primary::after {
+    display: none;
+  }
+}
+
+:root[data-motion='reduce'] :is(.btn--primary, .project-card, .proof__item)::before,
+:root[data-motion='reduce'] .btn--primary::after {
+  display: none;
+}
+
+@media print {
+  .btn--primary::before,
+  .btn--primary::after,
+  .project-card::before,
+  .proof__item::before {
+    display: none;
+  }
+}

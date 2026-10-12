@@ -40,14 +40,15 @@
 
   .card-grid__wide .project-card--wide .project-card__media {
     flex: 0 0 45%;
+    border-radius: calc(var(--radius-lg) - 1px) 0 0 calc(var(--radius-lg) - 1px);
   }
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: hidden;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -62,6 +63,8 @@
   flex: none;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  /* The card can't clip its own corners, because the day arc sits on its border. */
+  border-radius: calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px) 0 0;
   background: var(--color-surface-raised);
 }
 

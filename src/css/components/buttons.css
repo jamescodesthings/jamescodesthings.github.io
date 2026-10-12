@@ -17,13 +17,15 @@
 }
 
 .btn--primary {
-  color: var(--color-on-accent);
-  background: var(--color-accent);
+  font-weight: 700;
+  color: var(--color-heading);
+  background: var(--color-surface);
+  border-color: var(--color-border);
 }
 
-.btn--primary:hover {
-  color: var(--color-on-accent);
-  background: var(--color-link-hover);
+.btn--primary:is(:hover, :focus-visible) {
+  color: var(--color-heading);
+  border-color: var(--color-sun);
 }
 
 .btn--secondary {

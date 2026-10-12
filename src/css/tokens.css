@@ -159,7 +159,10 @@
   --radius: 8px;
   --radius-lg: 12px;
 
-  /* Motion: --dusk is the theme change, on the same ease as the CV's sun. */
+  /* Motion, as on the CV. Everything that loops is the same sun crossing the sky: one day takes
+     --day, or --day-hover on the button under the pointer. --dusk is the theme change. */
+  --day: 16s;
+  --day-hover: 6s;
   --dusk: 0.9s;
   --ease-sun: cubic-bezier(0.37, 0, 0.63, 1);
 }
