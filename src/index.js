@@ -127,8 +127,9 @@ export async function buildPages(data) {
   const stamp = getBuildStamp({ gitDir: resolve(root, '.git') });
   const common = { links, stamp, pictureHtml, site };
   const index = {
-    title: 'James Macmillan - codesthings.com',
-    description: 'Software engineer portfolio - James Macmillan builds things for the web.',
+    title: 'James Macmillan | Senior Software Engineer, Birmingham UK',
+    description:
+      'Senior Software Engineer with 14 years across web, mobile and cloud (Node.js, .NET, GCP/AWS). CV, writing and side projects.',
     path: '/',
   };
 
