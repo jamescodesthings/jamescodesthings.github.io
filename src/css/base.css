@@ -36,17 +36,29 @@ h4 {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
-  color: var(--color-text);
+  color: var(--color-heading);
 }
 
+/* Links carry a resting underline drawn in the sun; under the pointer the line takes the link colour. */
 a {
-  color: var(--color-accent);
+  color: var(--color-link);
+  text-decoration-color: var(--color-underline);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
 }
 
 a:hover {
-  color: var(--color-accent-strong);
+  color: var(--color-link-hover);
+  text-decoration-color: currentColor;
+}
+
+/* The page eases between themes at dusk pace, only once the visitor has changed it, so the first paint
+   never animates. Reduced motion (below) cuts the transition to nothing. */
+:root[data-theme-motion] :is(body, .site-header, .site-footer) {
+  transition:
+    background-color var(--dusk) var(--ease-sun),
+    color var(--dusk) var(--ease-sun),
+    border-color var(--dusk) var(--ease-sun);
 }
 
 img,

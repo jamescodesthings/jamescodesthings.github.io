@@ -52,7 +52,7 @@
 }
 
 .blog-entry__title a:hover {
-  color: var(--color-accent-strong);
+  color: var(--color-link-hover);
 }
 
 .blog-entry__summary {
@@ -177,7 +177,7 @@
 
 .toc a[aria-current] {
   color: var(--color-accent);
-  border-left-color: var(--color-accent);
+  border-left-color: var(--color-sun);
 }
 
 .toc__title {
@@ -283,7 +283,7 @@
 }
 
 .heading-anchor:hover {
-  color: var(--color-accent);
+  color: var(--color-link-hover);
 }
 
 .post-body a:not(.heading-anchor):not(.yt-facade__link) {
@@ -400,7 +400,7 @@
 }
 
 .yt-facade__link:hover .yt-facade__play {
-  background: var(--color-accent-strong);
+  background: var(--color-link-hover);
 }
 
 .yt-facade__title {
@@ -499,7 +499,7 @@
     z-index: 150;
     width: 100%;
     height: 3px;
-    background: var(--color-accent);
+    background: var(--color-underline);
     transform: scaleX(0);
     transform-origin: left;
     /* Longhands on purpose: the minifier would fold a complete set into the new shorthand form. */

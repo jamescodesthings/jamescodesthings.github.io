@@ -21,6 +21,7 @@
   width: 44px;
   height: 44px;
   padding: 0;
+  overflow: hidden;
   color: var(--color-text);
   background: transparent;
   border: 0;
@@ -39,24 +40,29 @@
   }
 }
 
-/* Both icons stack; the one for the theme you would switch to shows, with a 150ms rotate. */
+/* Dusk: sun and moon ride one orbit pivoting below the button. The sun is up by day; going dark turns
+   the orbit half a circle, so the sun sets and the moon rises in its place. It only turns once the
+   visitor has changed the theme, never on first paint, and reduced motion cuts it to a swap. */
+.theme-toggle__orbit,
 .theme-toggle__icon {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transform: rotate(-90deg) scale(0.6);
-  transition:
-    opacity 150ms ease,
-    transform 150ms ease;
+  transform-origin: 50% 160%;
 }
 
-:root:not([data-theme='light']) .theme-toggle__icon--sun,
-:root[data-theme='light'] .theme-toggle__icon--moon {
-  opacity: 1;
-  transform: none;
+.theme-toggle__icon--moon {
+  transform: rotate(180deg);
+}
+
+:root:not([data-theme='light']) .theme-toggle__orbit {
+  transform: rotate(-180deg);
+}
+
+:root[data-theme-motion] .theme-toggle__orbit {
+  transition: transform var(--dusk) var(--ease-sun);
 }
 
 /* Chevron button: opens the settings popover. */

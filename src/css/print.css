@@ -7,16 +7,20 @@
   :root[data-theme='dark'],
   :root[data-theme='light'] {
     color-scheme: light;
-    --color-bg: #fafaf7;
-    --color-surface: #f1f1ec;
-    --color-surface-raised: #e8e8e2;
-    --color-border: #d9d9d2;
-    --color-text: #1b1f24;
-    --color-muted: #566070;
-    --color-accent: #8a5300;
-    --color-accent-strong: #6e4200;
-    --color-on-accent: #fafaf7;
-    --color-focus: #8a5300;
+    --color-bg: #faf8f4;
+    --color-surface: #ffffff;
+    --color-surface-raised: #f5f3ee;
+    --color-border: #e5e2da;
+    --color-heading: #14161d;
+    --color-text: #22252e;
+    --color-muted: #5a5f6b;
+    --color-accent: #14161d;
+    --weight-accent: 700;
+    --color-on-accent: #faf8f4;
+    --color-link: #14161d;
+    --color-link-hover: #000000;
+    --color-sun: #14161d;
+    --sun-mix: 45%;
     --color-status: #1a7f37;
     --code-string: #1a6a36;
     --code-constant: #1d5fa8;

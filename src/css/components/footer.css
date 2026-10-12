@@ -50,7 +50,7 @@
 
 .footer-cv:hover {
   color: var(--color-on-accent);
-  background: var(--color-accent-strong);
+  background: var(--color-link-hover);
 }
 
 .footer-links,

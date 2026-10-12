@@ -17,8 +17,10 @@
     <a class="site-header__home" href="/" aria-label="codesthings.com home"><%- include('logo', { variant: 'wordmark', size: 26 }) %></a>
     <div class="settings-pill">
       <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme">
-        <span class="theme-toggle__icon theme-toggle__icon--sun"><%- include('icon', { name: 'sun', size: 20 }) %></span>
-        <span class="theme-toggle__icon theme-toggle__icon--moon"><%- include('icon', { name: 'moon', size: 20 }) %></span>
+        <span class="theme-toggle__orbit" aria-hidden="true">
+          <span class="theme-toggle__icon theme-toggle__icon--sun"><%- include('icon', { name: 'sun', size: 20 }) %></span>
+          <span class="theme-toggle__icon theme-toggle__icon--moon"><%- include('icon', { name: 'moon', size: 20 }) %></span>
+        </span>
       </button>
       <button type="button" class="settings-toggle" data-settings-toggle aria-label="Settings" aria-expanded="false" aria-controls="settings-popover">
         <%- include('icon', { name: 'chevron', size: 18 }) %>

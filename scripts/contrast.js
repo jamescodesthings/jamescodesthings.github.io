@@ -7,21 +7,19 @@ const tokensPath = resolve(import.meta.dirname, '../src/css/tokens.css');
 
 // [foreground, background, minimum ratio, why]
 const PAIRS = [
-  ['text', 'bg', 4.5, 'body text'],
-  ['text', 'surface', 4.5, 'body text'],
-  ['text', 'surface-raised', 4.5, 'body text'],
-  ['muted', 'bg', 4.5, 'secondary text'],
-  ['muted', 'surface', 4.5, 'secondary text'],
-  ['muted', 'surface-raised', 4.5, 'secondary text'],
-  ['accent', 'bg', 3, 'accent graphics and large text'],
-  ['accent', 'surface', 3, 'accent graphics and large text'],
-  ['accent', 'bg', 4.5, 'accent link text'],
-  ['accent', 'surface', 4.5, 'accent link text'],
-  ['accent-strong', 'bg', 4.5, 'link hover text'],
-  ['accent-strong', 'surface', 4.5, 'link hover text'],
-  ['on-accent', 'accent', 4.5, 'text on accent buttons'],
+  ...['bg', 'surface', 'surface-raised'].flatMap(bg => [
+    ['heading', bg, 4.5, 'headings'],
+    ['text', bg, 4.5, 'body text'],
+    ['muted', bg, 4.5, 'secondary text'],
+    ['accent', bg, 4.5, 'accent labels and numbers'],
+    ['link', bg, 4.5, 'link text'],
+    ['link-hover', bg, 4.5, 'link hover text'],
+  ]),
+  ['on-accent', 'accent', 4.5, 'text on filled accent controls'],
+  ['on-accent', 'link-hover', 4.5, 'text on filled controls under the pointer'],
   ['focus', 'bg', 3, 'focus ring'],
   ['focus', 'surface', 3, 'focus ring'],
+  ['sun', 'bg', 3, 'hover marks and drawn rules'],
   ['status', 'bg', 3, 'availability dot'],
   ['status', 'surface', 3, 'availability dot'],
   ...['text', 'comment', 'keyword', 'punctuation', 'string', 'constant', 'function'].map(t => [

@@ -23,7 +23,7 @@
 
 .btn--primary:hover {
   color: var(--color-on-accent);
-  background: var(--color-accent-strong);
+  background: var(--color-link-hover);
 }
 
 .btn--secondary {
@@ -60,7 +60,9 @@
 }
 
 .text-link:hover {
-  color: var(--color-accent);
+  color: var(--color-link-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-underline);
 }
 
 .video-toggle {

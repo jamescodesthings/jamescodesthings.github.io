@@ -9,6 +9,18 @@ function readPref(store) {
   return PREFS.includes(saved) ? saved : 'dark';
 }
 
+// Browser bars take the page background: head.ejs ships one tag per prefers-color-scheme for the first
+// paint, and once the theme is known they become one tag for the theme actually showing.
+export const THEME_COLORS = { dark: '#090b12', light: '#faf8f4' };
+
+export function setThemeColor(doc, theme) {
+  doc.querySelectorAll('meta[name="theme-color"]').forEach(meta => meta.remove());
+  const meta = doc.createElement('meta');
+  meta.name = 'theme-color';
+  meta.content = THEME_COLORS[theme];
+  doc.head.appendChild(meta);
+}
+
 function systemTheme(win) {
   try {
     return win.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
@@ -29,6 +41,7 @@ export function initTheme(win = window) {
   function apply() {
     const theme = resolved();
     root.setAttribute('data-theme', theme);
+    setThemeColor(doc, theme);
     const next = theme === 'dark' ? 'light' : 'dark';
     doc
       .querySelectorAll('[data-theme-toggle]')
@@ -41,6 +54,8 @@ export function initTheme(win = window) {
       if (!PREFS.includes(next)) return;
       pref = next;
       store.set(KEY, next);
+      // The dusk orbit and the page colours only animate once the visitor has asked for a change.
+      root.setAttribute('data-theme-motion', '');
       apply();
     },
   };

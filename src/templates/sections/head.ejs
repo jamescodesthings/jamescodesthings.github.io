@@ -16,6 +16,8 @@
 <% } %><% if (typeof noindex !== 'undefined' && noindex) { %><meta name="robots" content="noindex" />
 <% } %><link rel="canonical" href="<%= canonical %>" />
 <meta name="color-scheme" content="dark light" />
+<%# theme.js swaps these for one tag naming the theme actually showing. %><meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f4" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090b12" />
 
 <meta property="og:type" content="<%= pageType %>" />
 <meta property="og:site_name" content="codesthings.com" />

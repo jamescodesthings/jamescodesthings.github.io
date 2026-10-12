@@ -124,7 +124,7 @@
 }
 
 .site-nav__link[aria-current] {
-  box-shadow: inset 2px 0 0 var(--color-accent);
+  box-shadow: inset 2px 0 0 var(--color-sun);
   padding-left: var(--space-sm);
 }
 

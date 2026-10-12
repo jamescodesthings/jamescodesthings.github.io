@@ -61,7 +61,7 @@ function readColours(win) {
     text: token('text'),
     muted: token('muted'),
     accent: token('accent'),
-    strong: token('accent-strong'),
+    strong: token('link-hover'),
   };
 }
 

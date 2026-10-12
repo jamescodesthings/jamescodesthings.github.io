@@ -3,19 +3,33 @@
  * Dark is the default (no attribute, or data-theme="dark"). Light is data-theme="light" on <html>.
  */
 
+/*
+ * Three colour roles, as on the CV. --color-accent is small coloured text and marks: labels, numbers,
+ * the logo stroke, filled controls. --color-link is for links. --color-sun is light and never text:
+ * resting link underlines, drawn rules, hover marks and focus rings; --sun-mix is its strength when
+ * it is laid over the page. By day the sun is ink, so what it draws reads as a shadow.
+ */
+
 :root,
 :root[data-theme='dark'] {
+  /* Night: a moonlit page in cool blue-greys. */
   color-scheme: dark;
-  --color-bg: #0f1216;
-  --color-surface: #171c22;
-  --color-surface-raised: #1e242c;
-  --color-border: #2a313a;
-  --color-text: #e8ebef;
-  --color-muted: #9aa4b0;
-  --color-accent: #f5b84a;
-  --color-accent-strong: #ffc96b;
-  --color-on-accent: #0f1216;
-  --color-focus: #f5b84a;
+  --color-bg: #090b12;
+  --color-surface: #121521;
+  --color-surface-raised: #1a1e2d;
+  --color-border: #262b3d;
+  --color-heading: #f0ece4;
+  --color-text: #d4d8e2;
+  --color-muted: #9ca3af;
+  --color-accent: #a9bce0;
+  --weight-accent: 500;
+  --color-on-accent: #090b12;
+  --color-link: #c3d2ee;
+  --color-link-hover: #e6ecf7;
+  --color-sun: #e6ecf7;
+  --sun-mix: 85%;
+  --color-underline: color-mix(in srgb, var(--color-sun) var(--sun-mix), transparent);
+  --color-focus: var(--color-sun);
   --color-status: #4ade80; /* availability dot; decorative, 3:1 or better on surface */
 
   /* Syntax colours for code blocks; each is 4.5:1 or better on --color-surface. */
@@ -29,17 +43,24 @@
 }
 
 :root[data-theme='light'] {
+  /* Day: a sundial, warm paper and ink. The accent is bold ink. */
   color-scheme: light;
-  --color-bg: #fafaf7;
-  --color-surface: #f1f1ec;
-  --color-surface-raised: #e8e8e2;
-  --color-border: #d9d9d2;
-  --color-text: #1b1f24;
-  --color-muted: #566070;
-  --color-accent: #8a5300;
-  --color-accent-strong: #6e4200;
-  --color-on-accent: #fafaf7;
-  --color-focus: #8a5300;
+  --color-bg: #faf8f4;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f5f3ee;
+  --color-border: #e5e2da;
+  --color-heading: #14161d;
+  --color-text: #22252e;
+  --color-muted: #5a5f6b;
+  --color-accent: #14161d;
+  --weight-accent: 700;
+  --color-on-accent: #faf8f4;
+  --color-link: #14161d;
+  --color-link-hover: #000000;
+  --color-sun: #14161d;
+  --sun-mix: 45%;
+  --color-underline: color-mix(in srgb, var(--color-sun) var(--sun-mix), transparent);
+  --color-focus: var(--color-sun);
   --color-status: #1a7f37;
 
   --code-text: var(--color-text);
@@ -137,6 +158,10 @@
   --radius-sm: 6px;
   --radius: 8px;
   --radius-lg: 12px;
+
+  /* Motion: --dusk is the theme change, on the same ease as the CV's sun. */
+  --dusk: 0.9s;
+  --ease-sun: cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 @media (min-width: 768px) {
