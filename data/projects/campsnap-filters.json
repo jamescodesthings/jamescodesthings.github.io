@@ -5,7 +5,7 @@
   "stack": ["Node", "Sharp", "EJS", "Docker"],
   "stat": "Used by photographers worldwide",
   "links": [
-    { "label": "Site", "url": "https://filters.campsnapphoto.com/", "icon": "web" },
+    { "label": "Site", "url": "/campsnap", "icon": "web" },
     { "label": "GitHub", "url": "https://github.com/jamescodesthings/campsnap", "icon": "github" }
   ],
   "image": null,
