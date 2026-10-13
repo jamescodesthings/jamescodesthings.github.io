@@ -36,6 +36,13 @@
   border-radius: 999px;
 }
 
+/* With JS on (data-js, set before first paint), the hidden time slot keeps its width so the pill
+   doesn't grow when local-time.js reveals it; Lighthouse CI fails a shift over 0.01. */
+[data-js] .status-pill [data-local-time][hidden] {
+  display: inline;
+  visibility: hidden;
+}
+
 .status-pill__dot {
   flex: none;
   width: 0.5rem;
