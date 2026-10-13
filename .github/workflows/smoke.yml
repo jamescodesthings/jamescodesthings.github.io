@@ -1,0 +1,24 @@
+name: Smoke check
+
+# Checks the live sites every morning while they're being shared, and on any change to the check
+# itself. A scheduled run that fails emails the repo owner.
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/smoke.sh
+      - .github/workflows/smoke.yml
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install PDF tools
+        run: sudo apt-get update -q && sudo apt-get install -yq poppler-utils
+
+      - name: Check the live sites
+        run: scripts/smoke.sh
