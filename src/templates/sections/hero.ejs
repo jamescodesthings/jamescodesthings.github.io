@@ -18,7 +18,8 @@
   <svg class="home-hero__dots home-hero__dots--sun" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#hero-dots)" /></svg>
   <div class="home-hero__inner container">
     <% if (site.status) { %>
-    <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span><%= keep(site.status) %></p>
+    <%# local-time.js fills the time slot ("· 19:32 local") in site.timeZone; without JS it stays hidden. %>
+    <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span><span><%= keep(site.status) %><% if (site.timeZone) { %><time data-local-time data-tz="<%= site.timeZone %>" hidden></time><% } %></span></p>
     <% } %>
     <h1 class="home-hero__name" id="hero-title">James Macmillan</h1>
     <p class="home-hero__tagline"><svg class="home-hero__mark" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M3 18h18" /><path d="M5 18a7 7 0 0 1 14 0" /><path d="M12 11v1.5M7.05 13.05l1.06 1.06M16.95 13.05l-1.06 1.06" /><path class="home-hero__shadow" d="M12 18v-4.5" /></svg> <%= keep('senior software engineer · maker · photographer') %></p>

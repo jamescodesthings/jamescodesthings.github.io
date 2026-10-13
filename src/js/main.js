@@ -8,6 +8,7 @@ import { initRail } from './rail.js';
 import { initToast, toast } from './toast.js';
 import { initKonami, initLogoTaps, openGame } from './konami.js';
 import { initConsole } from './console.js';
+import { initLocalTime } from './local-time.js';
 
 export { toast };
 
@@ -16,6 +17,7 @@ initTheme();
 initSettings();
 initRail({ toast });
 initCopyEmail();
+initLocalTime();
 initVideos();
 // After the settings popover and the rail, so their Escape handlers run first and mark the event handled.
 initFab();
