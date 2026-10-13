@@ -1,8 +1,10 @@
 name: Build and Deploy
 
+# Every branch builds and runs Lighthouse CI, so a broken change fails on its branch.
+# Only main publishes.
 on:
   push:
-    branches: [main]
+    branches: ['**']
 
 jobs:
   build:
@@ -65,6 +67,7 @@ jobs:
 
   deploy:
     needs: [build, lighthouse]
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Download site
