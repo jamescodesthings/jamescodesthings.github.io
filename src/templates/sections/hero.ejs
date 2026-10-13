@@ -2,7 +2,7 @@
   // locals: site (data/site.json), links (data/links.json).
   const cv = links.find(l => l.primary);
   const social = links.filter(l => !l.primary);
-  // Non-breaking spaces keep each "·" on the line before it and "Birmingham, UK" together, so a narrow screen wraps between items, never inside one.
+  // Non-breaking spaces keep each "·" on the line before it and "Coventry, UK" together, so a narrow screen wraps between items, never inside one.
   const keep = text => text.replace(/ · /g, '\u00a0· ').replace(/, /g, ',\u00a0');
 -%>
 <section id="<%= rail.id %>" class="home-hero" aria-labelledby="hero-title" data-rail-icon="<%= rail.icon %>" data-rail-title="<%= rail.title %>">
