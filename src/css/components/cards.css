@@ -19,9 +19,18 @@
   min-width: 0;
 }
 
+/* The home page shows one row per lane. On a phone that row is a single card. */
+.card-grid--row > li + li {
+  display: none;
+}
+
 @container cards (min-width: 520px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-grid--row > li + li {
+    display: flex;
   }
 }
 

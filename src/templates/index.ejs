@@ -1,6 +1,8 @@
 <%
   // locals: site, now, links, projects ({work[], make[]}), photos[], blogPosts[], formatDate, stamp.
-  const featured = list => list.filter(p => p.featured);
+  // One full row per lane: a wide card and one more. Phones show only the first (cards.css), and
+  // the lane's "All projects" link leads to the rest.
+  const featured = list => list.filter(p => p.featured).slice(0, 2);
   const cv = links.find(l => l.primary);
   const instagram = links.find(l => l.name === 'Instagram');
   const proof = site.proof.map(item => ({
@@ -68,7 +70,7 @@
           </ul>
           <% } %>
           <div class="card-grid-wrap">
-            <ul class="card-grid">
+            <ul class="card-grid card-grid--row">
               <% featured(projects.work).forEach(function (project, i) { %>
               <li<%- i === 0 ? ' class="card-grid__wide"' : '' %>><%- include('sections/project-card', { project, wide: i === 0 }) %></li>
               <% }); %>
@@ -85,7 +87,7 @@
         <div class="container">
           <%- include('sections/section-head', R.make) %>
           <div class="card-grid-wrap">
-            <ul class="card-grid">
+            <ul class="card-grid card-grid--row">
               <% featured(projects.make).forEach(function (project, i) { %>
               <li<%- i === 0 ? ' class="card-grid__wide"' : '' %>><%- include('sections/project-card', { project, wide: i === 0 }) %></li>
               <% }); %>

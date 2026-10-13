@@ -58,8 +58,70 @@
   text-wrap: balance;
 }
 
-.home-hero__prompt {
+/* The sundial mark before the tagline. Its shadow swings against the sun through the page's day
+   and fades out for the night. */
+.home-hero__mark {
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.15em;
+  vertical-align: -0.2em;
   color: var(--color-accent);
+}
+
+.home-hero__shadow {
+  transform-box: view-box;
+  transform-origin: 12px 18px;
+  animation: gnomon var(--day) linear infinite;
+}
+
+@keyframes gnomon {
+  0% {
+    opacity: 0;
+    transform: rotate(75deg);
+  }
+  12% {
+    opacity: 1;
+    transform: rotate(55deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  68% {
+    opacity: 1;
+    transform: rotate(-55deg);
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: rotate(-75deg);
+  }
+}
+
+/* The sundial hero: the dot grid catches the sun as it crosses on the same day as the buttons and
+   cards. Silver light by night, a soft shadow by day. Only the dots change; nothing else moves. */
+.home-hero__dots--sun {
+  color: var(--color-sun);
+  opacity: 0.6;
+  mask-image: radial-gradient(circle 30rem at var(--sun-x) var(--sun-y), #000, transparent 75%);
+  animation: day var(--day) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) .home-hero__dots--sun {
+    display: none;
+  }
+
+  :root:not([data-motion='full']) .home-hero__shadow {
+    animation: none;
+  }
+}
+
+:root[data-motion='reduce'] .home-hero__dots--sun {
+  display: none;
+}
+
+:root[data-motion='reduce'] .home-hero__shadow {
+  animation: none;
 }
 
 .home-hero__bio {
@@ -104,5 +166,11 @@
 @media (min-width: 768px) {
   .home-hero {
     padding-block: var(--space-4xl) var(--space-3xl);
+  }
+}
+
+@media print {
+  .home-hero__dots--sun {
+    display: none;
   }
 }

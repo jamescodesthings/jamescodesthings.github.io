@@ -33,26 +33,6 @@
   color: var(--color-text);
 }
 
-.footer-cv {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  min-height: 44px;
-  padding: 0 var(--space-md);
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  font-weight: 500;
-  color: var(--color-on-accent);
-  text-decoration: none;
-  background: var(--color-accent);
-  border-radius: var(--radius);
-}
-
-.footer-cv:hover {
-  color: var(--color-on-accent);
-  background: var(--color-link-hover);
-}
-
 .footer-links,
 .footer-social {
   display: flex;

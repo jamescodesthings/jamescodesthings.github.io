@@ -15,7 +15,7 @@
       "icon": "blog"
     }
   ],
-  "image": null,
+  "image": "/assets/blog-images/v2/side.png",
   "date": "2026-05",
   "featured": true,
   "order": 3

@@ -7,7 +7,7 @@
     { "label": "GitHub", "url": "https://github.com/jamescodesthings/jamescodesthings.github.io", "icon": "github" },
     { "label": "How it works", "url": "/blog/2026-03-30-how-this-site-works.html", "icon": "blog" }
   ],
-  "image": null,
+  "image": "/assets/projects/codesthings-site.png",
   "date": "2026-10",
   "featured": true,
   "order": 2

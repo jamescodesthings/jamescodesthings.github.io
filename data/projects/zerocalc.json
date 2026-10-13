@@ -7,7 +7,7 @@
     { "label": "Build guide", "url": "/blog/2026-05-01-zerocalc.html", "icon": "blog" },
     { "label": "GitHub", "url": "https://github.com/jamescodesthings/picocalc_trixie", "icon": "github" }
   ],
-  "image": null,
+  "image": "/assets/blog-images/cover-wide.png",
   "date": "2026-05",
   "featured": true,
   "order": 1
