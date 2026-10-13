@@ -33,12 +33,13 @@
   cursor: pointer;
 }
 
-.campsnap-fab-btn:hover {
-  background: var(--color-surface);
+.campsnap-fab-btn:is(:hover, :focus-visible) {
+  border-color: var(--color-sun);
 }
 
-.campsnap-fab-accent {
-  fill: var(--color-accent);
+.campsnap-fab-btn:focus-visible {
+  outline: 2px solid var(--color-sun);
+  outline-offset: 3px;
 }
 
 .campsnap-fab-popover {
@@ -86,10 +87,6 @@
   object-fit: cover;
   background: var(--color-surface-raised);
   border-radius: var(--radius);
-}
-
-.campsnap-fab-popover .video-toggle {
-  align-self: flex-start;
 }
 
 .campsnap-fab-caption {

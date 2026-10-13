@@ -131,3 +131,31 @@ test('motionAllowed honours the OS setting and data-motion', () => {
   assert.equal(motionAllowed(motionWin({ mode: 'reduce' })), false);
   assert.equal(motionAllowed(motionWin({ mode: 'full', reduce: true })), true);
 });
+
+test('"Get the filters" closes the popover and seeks the CampSnap card when it is on the page', () => {
+  const e = fakeEnv();
+  const link = el('link');
+  link.hash = '#project-campsnap-filters';
+  e.popover.querySelector = sel => (sel === '.campsnap-fab-link' ? link : null);
+  const classes = new Set();
+  const cardLink = { classList: { add: c => classes.add('link:' + c), remove() {} }, focus() {} };
+  const card = {
+    classList: { add: c => classes.add('card:' + c), remove() {} },
+    scrollIntoView() {},
+    querySelector: sel => (sel === '.project-link' ? cardLink : null),
+  };
+  e.win.document.getElementById = id =>
+    id === 'project-campsnap-filters'
+      ? card
+      : { campsnapFab: el('fab'), campsnapFabBtn: e.btn, campsnapPopover: e.popover, campsnapClose: e.closeBtn }[id];
+  e.win.document.documentElement = { getAttribute: () => null };
+  e.win.matchMedia = () => ({ matches: false });
+  e.win.setTimeout = () => {};
+  initFab(e.win);
+  let prevented = false;
+  link.handlers.click({ preventDefault: () => (prevented = true) });
+  assert.equal(prevented, true);
+  assert.equal(e.popover.hidden, true);
+  assert.ok(classes.has('card:is-sought'));
+  assert.ok(classes.has('link:is-sought'));
+});

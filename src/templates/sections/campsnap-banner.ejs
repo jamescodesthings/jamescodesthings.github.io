@@ -7,9 +7,11 @@
     <a class="text-link" href="/campsnap"><span>codesthings.com/campsnap</span><%- include('icon', { name: 'arrow', size: 18 }) %></a>
   </div>
   <div class="spotlight__media">
-    <video class="spotlight__video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline" data-autoplay>
-      <source src="/assets/zipline.mp4" type="video/mp4" />
-    </video>
-    <button type="button" class="video-toggle" data-video-toggle>Pause video</button>
+    <div class="video-frame">
+      <video class="spotlight__video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline" data-autoplay>
+        <source src="/assets/zipline.mp4" type="video/mp4" />
+      </video>
+      <button type="button" class="video-toggle" data-video-toggle aria-label="Play video"><%- include('icon', { name: 'play', size: 36 }) %></button>
+    </div>
   </div>
 </div>

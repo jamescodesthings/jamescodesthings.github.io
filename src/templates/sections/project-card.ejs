@@ -1,8 +1,10 @@
 <%
   // locals: project (validated data/projects entry), wide (bool; spans two columns when the grid has three).
   const isWide = typeof wide !== 'undefined' && wide;
+  // The id lets a link point at the card (/#project-campsnap-filters); seek.js lights it on arrival.
+  const id = 'project-' + project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 -%>
-<article class="project-card<%= isWide ? ' project-card--wide' : '' %>">
+<article id="<%= id %>" class="project-card<%= isWide ? ' project-card--wide' : '' %>">
   <div class="project-card__media">
     <% if (project.imageData) { %>
     <%- include('picture', { image: project.imageData, alt: '', sizes: isWide ? '(min-width: 64rem) 45vw, 100vw' : '(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw', priority: false }) %>

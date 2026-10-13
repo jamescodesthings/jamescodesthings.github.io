@@ -1,4 +1,5 @@
 import { playVideo, pauseVideo } from './video.js';
+import { seek } from './seek.js';
 
 const KEY = 'campsnapFabDismissed';
 const MIN_AUTO_OPEN_WIDTH = 480;
@@ -49,6 +50,18 @@ export function initFab(win = window) {
 
   btn.addEventListener('click', () => (isOpen() ? close() : open()));
   closeBtn.addEventListener('click', close);
+  // "Get the filters" points at the CampSnap card on the home page. When the card is on this page,
+  // close the popover and bring the card to the visitor instead of reloading.
+  const link = popover.querySelector('.campsnap-fab-link');
+  if (link) {
+    link.addEventListener('click', event => {
+      const card = doc.getElementById((link.hash || '').slice(1));
+      if (!card) return;
+      event.preventDefault();
+      close();
+      seek(card, card.querySelector('.project-link'), win);
+    });
+  }
   doc.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !event.defaultPrevented && isOpen()) close();
   });

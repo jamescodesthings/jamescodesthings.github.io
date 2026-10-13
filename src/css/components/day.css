@@ -41,13 +41,16 @@
 
 /* The primary button: a small sun, and a faster day under the pointer. The two layers cross-fade,
    so the speed never jumps. */
-.btn--primary {
+.btn--primary,
+.campsnap-fab-btn {
   position: relative;
   isolation: isolate;
 }
 
 .btn--primary::before,
 .btn--primary::after,
+.campsnap-fab-btn::before,
+.campsnap-fab-btn::after,
 .project-card::before,
 .proof__item::before {
   content: '';
@@ -65,7 +68,9 @@
 }
 
 .btn--primary::before,
-.btn--primary::after {
+.btn--primary::after,
+.campsnap-fab-btn::before,
+.campsnap-fab-btn::after {
   background: radial-gradient(
     circle 46px at var(--sun-x) var(--sun-y),
     color-mix(in srgb, var(--color-sun) var(--sun-mix), transparent),
@@ -75,16 +80,17 @@
   transition: opacity 0.6s ease;
 }
 
-.btn--primary::after {
+.btn--primary::after,
+.campsnap-fab-btn::after {
   opacity: 0;
   animation-duration: var(--day-hover);
 }
 
-.btn--primary:is(:hover, :focus-visible)::before {
+:is(.btn--primary, .campsnap-fab-btn):is(:hover, :focus-visible)::before {
   opacity: 0;
 }
 
-.btn--primary:is(:hover, :focus-visible)::after {
+:is(.btn--primary, .campsnap-fab-btn):is(:hover, :focus-visible)::after {
   opacity: 1;
 }
 
@@ -100,21 +106,61 @@
   );
 }
 
+/* Arriving from "Get the filters" (seek.js): the card's sun runs at the hover pace and its border
+   takes the sun colour, then the link it holds lights a moment later. Both settle back after a
+   few seconds. With motion off the border and the link still mark the way, without the movement. */
+.project-card {
+  transition: border-color 0.9s var(--ease-sun);
+}
+
+.project-card.is-sought {
+  border-color: var(--color-sun);
+}
+
+.project-card.is-sought::before {
+  animation-duration: var(--day-hover);
+}
+
+/* The underline fades in from clear. The delay sits on the sought state only, so ordinary hover
+   stays instant. */
+.project-link {
+  text-decoration-color: transparent;
+}
+
+.project-link.is-sought {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-sun);
+  transition:
+    color 0.6s var(--ease-sun) 0.9s,
+    text-decoration-color 0.6s var(--ease-sun) 0.9s;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion='full']) :is(.btn--primary, .project-card, .proof__item)::before,
-  :root:not([data-motion='full']) .btn--primary::after {
+  :root:not([data-motion='full']) :is(.btn--primary, .campsnap-fab-btn, .project-card, .proof__item)::before,
+  :root:not([data-motion='full']) :is(.btn--primary, .campsnap-fab-btn)::after {
     display: none;
+  }
+
+  :root:not([data-motion='full']) :is(.project-card, .project-link.is-sought) {
+    transition: none;
   }
 }
 
-:root[data-motion='reduce'] :is(.btn--primary, .project-card, .proof__item)::before,
-:root[data-motion='reduce'] .btn--primary::after {
+:root[data-motion='reduce'] :is(.btn--primary, .campsnap-fab-btn, .project-card, .proof__item)::before,
+:root[data-motion='reduce'] :is(.btn--primary, .campsnap-fab-btn)::after {
   display: none;
+}
+
+:root[data-motion='reduce'] :is(.project-card, .project-link.is-sought) {
+  transition: none;
 }
 
 @media print {
   .btn--primary::before,
   .btn--primary::after,
+  .campsnap-fab-btn::before,
+  .campsnap-fab-btn::after,
   .project-card::before,
   .proof__item::before {
     display: none;

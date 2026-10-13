@@ -2,6 +2,7 @@ import { initTheme } from './theme.js';
 import { initCopyEmail } from './copy-email.js';
 import { initVideos } from './video.js';
 import { initFab } from './fab.js';
+import { seekFromHash } from './seek.js';
 import { initSettings } from './settings.js';
 import { initRail } from './rail.js';
 import { initToast, toast } from './toast.js';
@@ -18,6 +19,8 @@ initCopyEmail();
 initVideos();
 // After the settings popover and the rail, so their Escape handlers run first and mark the event handled.
 initFab();
+// A link to /#project-<slug> (the CampSnap button's "Get the filters" from another page) lights that card.
+seekFromHash();
 
 // Easter eggs. Terminal mode loads on first use; the game (and its font) only when triggered.
 const openTerminal = () => import('./terminal.js').then(m => m.openTerminal());

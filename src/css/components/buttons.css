@@ -71,18 +71,40 @@
   text-decoration-color: var(--color-underline);
 }
 
+/* Videos pause and play with a tap on the video itself. The toggle is a transparent button laid
+   over the video, labelled with what a tap does, and shows a play mark only while paused. */
+.video-frame {
+  position: relative;
+  width: 100%;
+}
+
 .video-toggle {
-  min-height: 44px;
-  padding: 0 var(--space-md);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-text);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  background: none;
+  border: 0;
   border-radius: var(--radius);
   cursor: pointer;
 }
 
-.video-toggle:hover {
-  background: var(--color-surface-raised);
+.video-toggle .icon {
+  box-sizing: content-box;
+  padding: 0.75rem;
+  background: rgb(0 0 0 / 0.55);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-toggle[data-state='paused'] .icon {
+  opacity: 1;
+}
+
+.video-toggle:focus-visible {
+  outline: 2px solid var(--color-sun);
+  outline-offset: 3px;
 }
