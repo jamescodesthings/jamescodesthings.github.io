@@ -1,7 +1,10 @@
 import { motionAllowed } from './motion.js';
 
+// The toggle is a transparent button over the video: tapping the video pauses or plays it. The
+// label says what a tap does; data-state shows the paused icon only while paused.
 function setButton(btn, playing) {
-  btn.textContent = playing ? 'Pause video' : 'Play video';
+  btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+  btn.dataset.state = playing ? 'playing' : 'paused';
 }
 
 // Starts a video unless the visitor has paused it. Autoplay only runs when motion is allowed.

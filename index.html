@@ -220,7 +220,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
     <p class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span>Available now · Coventry, UK</p>
     
     <h1 class="home-hero__name" id="hero-title">James Macmillan</h1>
-    <p class="home-hero__tagline"><span class="home-hero__prompt" aria-hidden="true">&gt;</span> senior software engineer · maker · photographer<span class="home-hero__cursor" aria-hidden="true"></span></p>
+    <p class="home-hero__tagline"><span class="home-hero__prompt" aria-hidden="true">&gt;</span> senior software engineer · maker · photographer</p>
     <p class="home-hero__bio">A pragmatic engineer who builds for the web, and makes things.</p>
     <ul class="home-hero__links">
       
@@ -431,7 +431,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
           <div class="card-grid-wrap">
             <ul class="card-grid">
               
-              <li class="card-grid__wide"><article class="project-card project-card--wide">
+              <li class="card-grid__wide"><article id="project-campsnap-filters" class="project-card project-card--wide">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -452,7 +452,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
   </div>
   <div class="project-card__body">
     <h3 class="project-card__title">CampSnap Filters</h3>
-    <p class="project-card__summary">Free film and retro video looks for the CampSnap CS8, built by a Node pipeline that generates each pack.</p>
+    <p class="project-card__summary">Free film and retro video looks for the CampSnap Pro, built by a Node pipeline that generates each pack.</p>
     <p class="project-card__stat">Used by photographers worldwide</p>
     
     <ul class="tags" aria-label="Stack">
@@ -506,7 +506,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </article>
 </li>
               
-              <li><article class="project-card">
+              <li><article id="project-codesthings-com" class="project-card">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -581,7 +581,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </article>
 </li>
               
-              <li><article class="project-card">
+              <li><article id="project-zshconfig" class="project-card">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -696,7 +696,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
           <div class="card-grid-wrap">
             <ul class="card-grid">
               
-              <li class="card-grid__wide"><article class="project-card project-card--wide">
+              <li class="card-grid__wide"><article id="project-zerocalc" class="project-card project-card--wide">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -771,7 +771,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </article>
 </li>
               
-              <li><article class="project-card">
+              <li><article id="project-the-dome-whoop-canopy" class="project-card">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -827,7 +827,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </article>
 </li>
               
-              <li><article class="project-card">
+              <li><article id="project-picocalc-grip-stand-handle" class="project-card">
   <div class="project-card__media">
     
     <div class="project-card__placeholder" aria-hidden="true"><svg
@@ -963,10 +963,25 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </a>
   </div>
   <div class="spotlight__media">
-    <video class="spotlight__video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline" data-autoplay>
-      <source src="/assets/zipline.mp4" type="video/mp4" />
-    </video>
-    <button type="button" class="video-toggle" data-video-toggle>Pause video</button>
+    <div class="video-frame">
+      <video class="spotlight__video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline" data-autoplay>
+        <source src="/assets/zipline.mp4" type="video/mp4" />
+      </video>
+      <button type="button" class="video-toggle" data-video-toggle aria-label="Play video"><svg
+  class="icon "
+  width="36"
+  height="36"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M6 3l14 9-14 9z" /></svg>
+</button>
+    </div>
   </div>
 </div>
 
@@ -1261,12 +1276,27 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
   focusable="false"
 ><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
 </button>
-    <video class="campsnap-fab-video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline">
-      <source src="/assets/zipline.mp4" type="video/mp4" />
-    </video>
-    <button type="button" class="video-toggle" data-video-toggle>Pause video</button>
+    <div class="video-frame">
+      <video class="campsnap-fab-video" muted loop playsinline preload="none" poster="/assets/zipline-poster.jpg" width="640" height="480" aria-label="CampSnap filter demo on a zipline">
+        <source src="/assets/zipline.mp4" type="video/mp4" />
+      </video>
+      <button type="button" class="video-toggle" data-video-toggle aria-label="Play video"><svg
+  class="icon "
+  width="28"
+  height="28"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+><path d="M6 3l14 9-14 9z" /></svg>
+</button>
+    </div>
     <p class="campsnap-fab-caption">I feel like you're just here for the campsnap filters.</p>
-    <a href="/campsnap" class="campsnap-fab-link"><span>Get the filters</span><svg
+    <a href="/#project-campsnap-filters" class="campsnap-fab-link"><span>Get the filters</span><svg
   class="icon "
   width="16"
   height="16"
@@ -1282,17 +1312,12 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
 </a>
   </div>
   <button type="button" class="campsnap-fab-btn" id="campsnapFabBtn" aria-label="CampSnap filters" aria-expanded="false" aria-controls="campsnapPopover">
-    <svg id="Campsnap" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30" fill="currentColor" aria-hidden="true" focusable="false">
-      <rect x="0" y="96.78" width="512" height="318.44" rx="12" ry="12" />
-      <rect class="campsnap-fab-accent" x="26.99" y="125.98" width="458.02" height="108.48" />
-      <circle cx="262.1" cy="268.31" r="108.48" />
-      <circle class="campsnap-fab-accent" cx="262.1" cy="268.31" r="84.37" />
-      <circle cx="262.1" cy="268.31" r="60.27" />
-      <rect x="378.88" y="145.23" width="87.41" height="69.98" rx="6" ry="6" />
-      <circle class="campsnap-fab-accent" cx="232.23" cy="249.58" r="11.68" />
-      <circle class="campsnap-fab-accent" cx="249.93" cy="234.46" r="6.03" />
-      <circle class="campsnap-fab-accent" cx="394.6" cy="167.27" r="7.15" />
-      <circle class="campsnap-fab-accent" cx="405.45" cy="158.01" r="3.69" />
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <rect x="2" y="5" width="20" height="14" rx="2" />
+      <path d="M2 9.5h20" />
+      <circle cx="11.5" cy="13.5" r="3.5" />
+      <rect x="17" y="6.5" width="3" height="1.5" rx="0.5" />
     </svg>
   </button>
 </div>
@@ -1404,7 +1429,7 @@ Hi. You're reading the source, so we'd get on. The CV is at /cv and the code is 
     <p class="footer-meta">
       <span>&copy; 2026 James Macmillan</span>
       
-      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/5fd1752fc08f379e193a4be1adb7f0b0c33e6fe5" rel="noopener">v5fd1752 &middot; built 13 Oct 2026</a>
+      <a href="https://github.com/jamescodesthings/jamescodesthings.github.io/commit/e0c9f315886d1253f01bcd67d1f0c2d35010ea1c" rel="noopener">ve0c9f31 &middot; built 13 Oct 2026</a>
       
     </p>
   </div>
