@@ -7,6 +7,7 @@
     { "label": "GitHub", "url": "https://github.com/jamescodesthings/motor-town-economy-mod-guide", "icon": "github" }
   ],
   "image": null,
+  "art": "motor-town-economy-modding",
   "date": "2026-01",
   "featured": false,
   "order": 4

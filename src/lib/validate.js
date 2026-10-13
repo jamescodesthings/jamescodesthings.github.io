@@ -75,6 +75,9 @@ export function validateProject(obj, file) {
   if (typeof obj.order !== 'number' || Number.isNaN(obj.order)) fail(file, '"order" must be a number');
   if (obj.stat != null && !isText(obj.stat)) fail(file, '"stat" must be a non-empty string when present');
   if (obj.image != null && !isText(obj.image)) fail(file, '"image" must be a string or null');
+  if (obj.art != null && !(typeof obj.art === 'string' && /^[a-z0-9-]+$/.test(obj.art))) {
+    fail(file, '"art" must be a lowercase slug naming src/templates/art/<art>.ejs');
+  }
   if (obj.date != null && !(typeof obj.date === 'string' && /^\d{4}-(0[1-9]|1[0-2])$/.test(obj.date))) {
     fail(file, '"date" must be YYYY-MM or null');
   }

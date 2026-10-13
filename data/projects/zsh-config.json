@@ -5,6 +5,7 @@
   "stack": ["Zsh", "zinit", "Homebrew"],
   "links": [{ "label": "GitHub", "url": "https://github.com/jamescodesthings/zsh-config", "icon": "github" }],
   "image": null,
+  "art": "zsh-config",
   "date": "2026-10",
   "featured": true,
   "order": 3

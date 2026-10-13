@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { readdir, readFile, access } from 'node:fs/promises';
 import { validateProject, validatePhoto } from '../src/lib/validate.js';
 import { loadData } from '../src/lib/data.js';
 
@@ -142,4 +143,27 @@ test('loadData names the file for a JSON syntax error', async () => {
   for (const n of ['site', 'now', 'links']) await writeFile(join(root, 'data', `${n}.json`), '{}');
   await writeFile(join(root, 'data', 'uses.json'), '{ nope');
   await assert.rejects(loadData(root), /uses\.json/);
+});
+
+test('art accepts a lowercase slug or null', () => {
+  validateProject(project({ art: 'zsh-config' }), 'a.json');
+  validateProject(project({ art: null }), 'a.json');
+});
+
+for (const bad of ['Bad Name', '../x', '', 5]) {
+  test(`art rejects ${JSON.stringify(bad)}`, () => {
+    assert.throws(() => validateProject(project({ art: bad }), 'a.json'), /art/);
+  });
+}
+
+test('every project art names a partial, and no project has both image and art', async () => {
+  const dir = new URL('../data/projects/', import.meta.url);
+  for (const name of (await readdir(dir)).filter(n => n.endsWith('.json'))) {
+    const p = JSON.parse(await readFile(new URL(name, dir), 'utf8'));
+    if (p.art == null) continue;
+    assert.equal(p.image == null, true, `${name} sets both "image" and "art"`);
+    await access(new URL(`../src/templates/art/${p.art}.ejs`, import.meta.url)).catch(() => {
+      assert.fail(`${name}: src/templates/art/${p.art}.ejs is missing`);
+    });
+  }
 });
