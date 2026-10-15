@@ -17,7 +17,7 @@ import {
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { atomFeed, sitemap, robots, pagePathFor, postSummary } from './lib/feeds.js';
-import { ogSlugFor, ogCardPath, cachedOgCard, EXTRA_CARDS } from './lib/og.js';
+import { ogSlugFor, ogCardPath, cachedOgCard, EXTRA_CARDS, OG_VERSION } from './lib/og.js';
 import { getBuildStamp } from './lib/buildstamp.js';
 import { processImage, pictureHtml, resolveAssetPath, resolvePhotoPath, POST_SIZES } from './lib/images.js';
 
@@ -47,8 +47,9 @@ export async function renderPage(template, data, outPath) {
   if (!data.post?.draft) renderedPaths.add(outPath);
   const cardPath = ogCardPath(outPath);
   if (cardPath) {
-    // head.ejs reads ogImage; the slug comes from the same helper buildOg writes with.
-    data = { ...data, ogImage: `${siteUrl}${cardPath}` };
+    // head.ejs reads ogImage; the slug comes from the same helper buildOg writes with. ?v= changes with the card design,
+    // because LinkedIn and others cache a share image by URL for days.
+    data = { ...data, ogImage: `${siteUrl}${cardPath}?v=${OG_VERSION}` };
     ogCards.set(outPath, {
       title: String(data.title ?? '').replace(TITLE_SUFFIX, ''),
       summary: data.description || data.site?.tagline || '',
