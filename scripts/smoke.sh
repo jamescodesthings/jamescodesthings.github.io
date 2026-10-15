@@ -14,7 +14,7 @@ fail=0
 bad() { echo "FAIL $*"; fail=1; }
 fetch() { curl -s -o /dev/null -L -A 'Mozilla/5.0 smoke' --max-time 20 -w '%{http_code}' "$1"; }
 # One retry: GitHub Pages answers 503 for a few seconds while a deploy lands.
-code() { local c; c=$(fetch "$1"); case "$c" in 200 | 403 | 429) ;; *) sleep 5; c=$(fetch "$1") ;; esac; echo "$c"; }
+code() { local c; c=$(fetch "$1"); case "$c" in 200 | 403 | 429 | 999) ;; *) sleep 5; c=$(fetch "$1") ;; esac; echo "$c"; }
 
 pages=(/ /cv/ /campsnap/ /projects/ /blog/ /now /uses /colophon /about-cookies /privacy-notice /feed.xml)
 for p in "${pages[@]}"; do
@@ -23,7 +23,7 @@ for p in "${pages[@]}"; do
 done
 
 # Links from the three pages people are sent to. Sites that block or rate-limit scripted requests
-# (403, 429; Instagram does both from CI) are reported as skipped rather than failed, and font
+# (403, 429, and LinkedIn's 999; Instagram does both of the first two from CI) are reported as skipped rather than failed, and font
 # preconnect hosts are left out.
 : > "$work/raw"
 for p in / /cv/ /campsnap/; do
@@ -47,7 +47,7 @@ while read -r u; do
   c=$(code "$u")
   case "$c" in
     200) ;;
-    403 | 429) echo "skip $c $u (blocks or rate-limits scripts; check by hand if it changed)" ;;
+    403 | 429 | 999) echo "skip $c $u (blocks or rate-limits scripts; check by hand if it changed)" ;;
     *) bad "$c $u" ;;
   esac
 done < "$work/links"
