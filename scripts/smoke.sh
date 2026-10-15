@@ -16,7 +16,7 @@ fetch() { curl -s -o /dev/null -L -A 'Mozilla/5.0 smoke' --max-time 20 -w '%{htt
 # One retry: GitHub Pages answers 503 for a few seconds while a deploy lands.
 code() { local c; c=$(fetch "$1"); case "$c" in 200 | 403 | 429 | 999) ;; *) sleep 5; c=$(fetch "$1") ;; esac; echo "$c"; }
 
-pages=(/ /cv/ /campsnap/ /projects/ /blog/ /now /uses /colophon /about-cookies /privacy-notice /feed.xml)
+pages=(/ /cv/ /campsnap/ /projects/ /blog/ /now /uses /colophon /about-cookies /privacy-notice /feed.xml /og/cv.png)
 for p in "${pages[@]}"; do
   c=$(code "$base$p")
   [ "$c" = 200 ] || bad "$c $base$p"
