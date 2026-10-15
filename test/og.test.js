@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import sharp from 'sharp';
-import { renderOgCard, ogSlugFor, ogCardPath } from '../src/lib/og.js';
+import { renderOgCard, ogSlugFor, ogCardPath, EXTRA_CARDS } from '../src/lib/og.js';
 
 test('renderOgCard returns a 1200x630 PNG', async () => {
   const png = await renderOgCard({ title: 'ZeroCalc', summary: 'A small calculator.', path: '/blog/zerocalc.html' });
@@ -28,4 +28,11 @@ test('ogSlugFor maps output paths to card slugs', () => {
   assert.equal(ogSlugFor('privacy-notice.html'), 'privacy-notice');
   assert.equal(ogSlugFor('404.html'), null);
   assert.equal(ogCardPath('now.html'), '/og/now.png');
+});
+
+test('the CV gets a card at /og/cv.png, where the cv repo points its og:image', async () => {
+  const cv = EXTRA_CARDS.find(card => card.path === '/cv');
+  assert.ok(cv);
+  assert.equal(ogCardPath(cv.outPath), '/og/cv.png');
+  assert.equal((await sharp(await renderOgCard(cv)).metadata()).width, 1200);
 });

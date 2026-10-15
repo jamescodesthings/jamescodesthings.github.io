@@ -17,7 +17,7 @@ import {
 import { loadData as loadSiteData } from './lib/data.js';
 import { bundleCss } from './lib/css.js';
 import { atomFeed, sitemap, robots, pagePathFor, postSummary } from './lib/feeds.js';
-import { ogSlugFor, ogCardPath, cachedOgCard } from './lib/og.js';
+import { ogSlugFor, ogCardPath, cachedOgCard, EXTRA_CARDS } from './lib/og.js';
 import { getBuildStamp } from './lib/buildstamp.js';
 import { processImage, pictureHtml, resolveAssetPath, resolvePhotoPath, POST_SIZES } from './lib/images.js';
 
@@ -277,6 +277,7 @@ export async function buildFeeds(data) {
 
 // Draws one 1200x630 card per rendered page (not 404) into public/og/<slug>.png, through the .cache/og cache.
 export async function buildOg() {
+  for (const { outPath, ...card } of EXTRA_CARDS) ogCards.set(outPath, card);
   for (const [outPath, card] of ogCards) {
     const png = await cachedOgCard(card, ogCacheDir);
     await mkdirp(resolve(outputDir, 'og'));

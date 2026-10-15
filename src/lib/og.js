@@ -9,11 +9,11 @@ const here = dirname(fileURLToPath(import.meta.url));
 const fontDir = resolve(here, '../assets/fonts/og');
 
 // Bump when the card design changes, so cached PNGs are rebuilt.
-export const OG_VERSION = 3;
+export const OG_VERSION = 4;
 
 // Moonlit (dark-theme) values copied from src/css/tokens.css (--color-bg, --color-heading, --color-accent,
 // --color-muted). A server-rendered PNG has no CSS, so they live here; keep them in step with tokens.css.
-const COLOR = { bg: '#090b12', text: '#f0ece4', accent: '#a9bce0', muted: '#9ca3af' };
+const COLOR = { bg: '#090b12', text: '#f0ece4', accent: '#a9bce0', muted: '#9ca3af', dots: '#d4d8e2', sun: '#e6ecf7' };
 
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
@@ -51,6 +51,27 @@ function loadFonts() {
 // The "ct" mark from src/templates/sections/logo.ejs (mark variant), with the accent stem and ink fixed.
 const monogram = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="104" height="104"><path d="M44 8 V44 A9 9 0 0 0 53 53 H56" fill="none" stroke="${COLOR.accent}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M34.61 46.61 A15 15 0 1 1 24 21 H56" fill="none" stroke="${COLOR.text}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
+// The night sky from the hero and the LinkedIn banner (resources/profiles/linkedin/banner.svg): the hero's dot field,
+// lit around the moon, and the dotted arc the light takes across the sites. Kept faint so the text carries the card.
+const MOON = { x: 886, y: 146 };
+const sky = `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}"><defs><pattern id="d" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.25" fill="${COLOR.dots}"/></pattern><radialGradient id="l" cx="${MOON.x}" cy="${MOON.y}" r="300" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="m"><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#l)"/></mask></defs><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#d)" opacity="0.05"/><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#d)" opacity="0.4" mask="url(#m)"/><path d="M 380 700 Q 840 -420 1300 700" fill="none" stroke="${COLOR.sun}" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="2 10" stroke-linecap="round"/><circle cx="${MOON.x}" cy="${MOON.y}" r="7" fill="${COLOR.sun}"/></svg>`;
+
+// The sundial mark from the hero tagline (src/templates/sections/hero.ejs), drawn in the accent colour.
+const sundial = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="${COLOR.accent}" stroke-width="1.75" stroke-linecap="round"><path d="M3 18h18"/><path d="M5 18a7 7 0 0 1 14 0"/><path d="M12 11v1.5M7.05 13.05l1.06 1.06M16.95 13.05l-1.06 1.06"/><path d="M12 18v-4.5"/></svg>`;
+
+const svgSrc = svg => `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+
+// Cards for pages another repo publishes under codesthings.com. The CV (jamescodesthings/cv) points its og:image at
+// /og/cv.png, so its card matches the rest of the site; buildOg draws these alongside the rendered pages.
+export const EXTRA_CARDS = [
+  {
+    outPath: 'cv/index.html',
+    title: 'James Macmillan · CV',
+    summary: 'Senior Software Engineer. Full-stack, cloud and mobile, in Node.js and .NET on GCP and AWS.',
+    path: '/cv',
+  },
+];
+
 const clip = (text, max) => {
   const t = String(text ?? '')
     .replace(/\s+/g, ' ')
@@ -75,16 +96,19 @@ function tree({ title, summary, path }) {
       boxSizing: 'border-box',
       background: COLOR.bg,
       color: COLOR.text,
+      position: 'relative',
     },
     [
       {
         type: 'img',
         props: {
-          src: `data:image/svg+xml;base64,${Buffer.from(monogram).toString('base64')}`,
-          width: 104,
-          height: 104,
+          src: svgSrc(sky),
+          width: OG_WIDTH,
+          height: OG_HEIGHT,
+          style: { position: 'absolute', top: 0, left: 0 },
         },
       },
+      { type: 'img', props: { src: svgSrc(monogram), width: 104, height: 104 } },
       el('div', { flexDirection: 'column', gap: 28, width: OG_WIDTH - 144 }, [
         el(
           'div',
@@ -99,7 +123,10 @@ function tree({ title, summary, path }) {
         ),
         el('div', { fontFamily: 'Figtree', fontSize: 34, lineHeight: 1.35, color: COLOR.muted }, clip(summary, 150)),
       ]),
-      el('div', { fontFamily: 'Geist Mono', fontSize: 28, color: COLOR.accent }, clip(shown, 80)),
+      el('div', { alignItems: 'center', gap: 14, fontFamily: 'Geist Mono', fontSize: 28, color: COLOR.accent }, [
+        { type: 'img', props: { src: svgSrc(sundial), width: 34, height: 34 } },
+        clip(shown, 80),
+      ]),
     ],
   );
 }
