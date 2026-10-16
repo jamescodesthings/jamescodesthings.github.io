@@ -8,7 +8,7 @@
     { "label": "Site", "url": "/campsnap", "icon": "web" },
     { "label": "GitHub", "url": "https://github.com/jamescodesthings/campsnap", "icon": "github" }
   ],
-  "image": "/assets/projects/campsnap-pro.jpg",
+  "image": "/assets/projects/campsnap-filters.jpg",
   "date": "2026-07",
   "featured": true,
   "order": 1
