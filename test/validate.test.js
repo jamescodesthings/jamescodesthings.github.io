@@ -58,6 +58,17 @@ test('root-absolute site paths pass; other schemes throw', () => {
   assert.throws(() => validateProject(project({ links }), 'foo.json'), /url/);
 });
 
+test('one link may be primary; two throw, and a non-boolean throws', () => {
+  validateProject(project({ links: [{ label: 'x', url: '/campsnap', icon: 'web', primary: true }] }), 'foo.json');
+  const two = [
+    { label: 'x', url: '/campsnap', icon: 'web', primary: true },
+    { label: 'y', url: 'https://example.com/', icon: 'web', primary: true },
+  ];
+  assert.throws(() => validateProject(project({ links: two }), 'foo.json'), /foo\.json.*primary/);
+  const bad = [{ label: 'x', url: '/campsnap', icon: 'web', primary: 'yes' }];
+  assert.throws(() => validateProject(project({ links: bad }), 'foo.json'), /foo\.json.*primary/);
+});
+
 test('summary of 110 passes, 111 throws', () => {
   validateProject(project({ summary: 'a'.repeat(110) }), 'foo.json');
   assert.throws(() => validateProject(project({ summary: 'a'.repeat(111) }), 'foo.json'), /foo\.json.*summary/);

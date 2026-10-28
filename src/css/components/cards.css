@@ -201,3 +201,36 @@
   text-decoration: underline;
   text-decoration-color: var(--color-underline);
 }
+
+/* A card with one primary action: the link's ::after covers the card, so a tap anywhere follows it, and the
+   link itself stands out as the thing to do. The card's hover already lifts the surface. */
+.project-link--primary {
+  font-weight: var(--weight-accent);
+  color: var(--color-accent);
+}
+
+.project-link--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.project-card--linked {
+  cursor: pointer;
+}
+
+.project-card--linked:hover .project-link--primary {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--color-underline);
+}
+
+.project-card--linked:focus-within {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.project-card--linked .project-link--primary:focus-visible {
+  outline: none;
+}

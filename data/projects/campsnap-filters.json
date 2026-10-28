@@ -4,12 +4,9 @@
   "summary": "Free film and retro video looks for the CampSnap Pro, built by a Node pipeline that generates each pack.",
   "stack": ["Node", "Sharp", "EJS", "Docker"],
   "stat": "Used by photographers worldwide",
-  "links": [
-    { "label": "Site", "url": "/campsnap", "icon": "web" },
-    { "label": "GitHub", "url": "https://github.com/jamescodesthings/campsnap", "icon": "github" }
-  ],
+  "links": [{ "label": "Go to the filter site", "url": "/campsnap", "icon": "web", "primary": true }],
   "image": "/assets/projects/campsnap-filters.jpg",
-  "date": "2025-10",
+  "date": "2026-07",
   "featured": true,
   "order": 1
 }

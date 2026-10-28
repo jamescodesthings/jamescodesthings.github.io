@@ -70,7 +70,11 @@ export function validateProject(obj, file) {
         file,
         `"links[${i}].url" must be an http(s) URL or a root-absolute path like /blog/x.html, got ${JSON.stringify(link.url)}`,
       );
+    if (link.primary != null && typeof link.primary !== 'boolean')
+      fail(file, `"links[${i}].primary" must be a boolean`);
   });
+  // A primary link makes the whole card tap through to it, so there can be only one.
+  if (obj.links.filter(link => link.primary).length > 1) fail(file, 'only one link may be "primary"');
   if (typeof obj.featured !== 'boolean') fail(file, '"featured" must be a boolean');
   if (typeof obj.order !== 'number' || Number.isNaN(obj.order)) fail(file, '"order" must be a number');
   if (obj.stat != null && !isText(obj.stat)) fail(file, '"stat" must be a non-empty string when present');
