@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Usage: scripts/smoke.sh [-h|--help] [-v|--verbose] [-q|--quiet] [--plain]
+#   -h  show the cheat sheet   -v  name each URL checked   -q  only failures   --plain  no colour
+# Exit 0 ok, 1 a check failed, 2 bad flag.
 # Checks the live sites (codesthings.com, /cv and /campsnap) the way a visitor meets them: every
 # page answers 200, every link on the home page, the CV and the CampSnap page resolves, the CV
 # PDFs open within their page limits, and nothing published carries a phone number. Exits
@@ -6,18 +9,22 @@
 # `make smoke` in the codesthings.com top-level repo runs it after a deploy.
 #   SMOKE_BASE=http://localhost:8080 scripts/smoke.sh   checks a local build instead.
 set -uo pipefail
+. "$(dirname "$0")/lib.sh"
+cli_parse codesthings smoke -- "$@"
 
 base="${SMOKE_BASE:-https://codesthings.com}"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 fail=0
-bad() { echo "FAIL $*"; fail=1; }
+failures=()
+bad() { failures+=("$*"); fail=1; }
 fetch() { curl -s -o /dev/null -L -A 'Mozilla/5.0 smoke' --max-time 20 -w '%{http_code}' "$1"; }
 # One retry: GitHub Pages answers 503 for a few seconds while a deploy lands.
 code() { local c; c=$(fetch "$1"); case "$c" in 200 | 401 | 403 | 429 | 999) ;; *) sleep 5; c=$(fetch "$1") ;; esac; echo "$c"; }
 
 pages=(/ /cv/ /campsnap/ /projects/ /blog/ /now /uses /colophon /about-cookies /privacy-notice /feed.xml /og/cv.png)
 for p in "${pages[@]}"; do
+  [ "$CLI_VERBOSE" = 1 ] && say info "check $base$p"
   c=$(code "$base$p")
   [ "$c" = 200 ] || bad "$c $base$p"
 done
@@ -44,10 +51,11 @@ done
 sort -u "$work/raw" > "$work/links"
 
 while read -r u; do
+  [ "$CLI_VERBOSE" = 1 ] && say info "check $u"
   c=$(code "$u")
   case "$c" in
     200) ;;
-    401 | 403 | 429 | 999) echo "skip $c $u (blocks or rate-limits scripts; check by hand if it changed)" ;;
+    401 | 403 | 429 | 999) [ "$CLI_QUIET" = 1 ] || say warn "skip $c $u (blocks or rate-limits scripts; check by hand if it changed)" ;;
     *) bad "$c $u" ;;
   esac
 done < "$work/links"
@@ -76,5 +84,6 @@ while IFS=$'\t' read -r name max; do
   fi
 done < "$work/pdfs"
 
-if [ "$fail" = 0 ]; then echo "smoke ok: $base"; fi
+for f in "${failures[@]+"${failures[@]}"}"; do say fail "$f"; done
+if [ "$fail" = 0 ]; then say ok "smoke ok: $base"; fi
 exit "$fail"

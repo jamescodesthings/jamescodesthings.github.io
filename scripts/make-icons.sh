@@ -3,7 +3,11 @@
 # src/templates/sections/logo.ejs. Needs Node (with the repo's ejs), rsvg-convert and ImageMagick (magick).
 # favicon.svg follows the visitor's OS theme. The ICO, the touch icon and og-logo.png are fixed images in
 # the moonlit night palette, so they read on light and dark alike.
+# Usage: scripts/make-icons.sh [-h|--help] [-v|--verbose] [-q|--quiet] [--plain]
 set -euo pipefail
+. "$(dirname "$0")/lib.sh"
+cli_parse codesthings base-website -- "$@"
+wrote() { if [ "$CLI_VERBOSE" = 1 ]; then say info "wrote $1"; fi; }
 cd "$(dirname "$0")/.."
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
@@ -44,6 +48,7 @@ cat >src/assets/favicon.svg <<SVG
   ${mark_css}
 </svg>
 SVG
+wrote src/assets/favicon.svg
 
 # Square moonlit tile: mark centred at 75% so it survives rounded-corner masks.
 printf '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%s"/><g transform="translate(8 8) scale(0.75)">%s</g></svg>' \
@@ -52,6 +57,8 @@ rsvg-convert -w 180 -h 180 "$tmp/tile.svg" -o src/assets/apple-touch-icon.png
 rsvg-convert -w 16 -h 16 "$tmp/tile.svg" -o "$tmp/16.png"
 rsvg-convert -w 32 -h 32 "$tmp/tile.svg" -o "$tmp/32.png"
 magick "$tmp/16.png" "$tmp/32.png" src/assets/favicon.ico
+wrote src/assets/apple-touch-icon.png
+wrote src/assets/favicon.ico
 
 # Fallback share card, 1200x630, matching the LinkedIn banner in codesthings-resources: the wordmark on
 # the night page, a faint grid, a dotted arc for the path of the light and a small moon past its top.
@@ -76,3 +83,5 @@ cat >"$tmp/og.svg" <<SVG
 </svg>
 SVG
 rsvg-convert "$tmp/og.svg" -o src/assets/og-logo.png
+wrote src/assets/og-logo.png
+say ok "icons and share card written to src/assets"
