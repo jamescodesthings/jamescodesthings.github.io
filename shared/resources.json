@@ -1,0 +1,9 @@
+{
+  "resources": "405cb7e3c659cd4c20a0a774cda5635a1a071a22",
+  "files": [
+    {
+      "from": "icons/svg",
+      "to": "shared/icons"
+    }
+  ]
+}

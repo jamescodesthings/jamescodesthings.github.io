@@ -1,6 +1,7 @@
 import Debug from 'debug';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
 import { readFile as fsReadFile, readdir, writeFile as fsWriteFile, mkdir, rm, copyFile, stat } from 'fs/promises';
 import ejs from 'ejs';
 import config from './config.js';
@@ -99,11 +100,39 @@ export function formatLongDate(dateStr) {
   return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 
+const iconDir = resolve(root, 'shared/icons');
+const iconCache = new Map();
+
+// The drawing inside shared/icons/<name>.svg (vendored from the resources repo), without the outer <svg>.
+// Whitespace between tags is dropped so the markup is the same as the old inline map. An unknown name throws.
+export function iconInner(name) {
+  if (!/^[a-z0-9-]+$/.test(String(name))) throw new Error(`Invalid icon name: ${name}`);
+  if (!iconCache.has(name)) {
+    let svg;
+    try {
+      svg = readFileSync(resolve(iconDir, `${name}.svg`), 'utf8');
+    } catch {
+      throw new Error(`Unknown icon "${name}": no shared/icons/${name}.svg (run make sync-resources?)`);
+    }
+    const inner = svg
+      .replace(/^[\s\S]*?<svg[^>]*>/, '')
+      .replace(/<\/svg>[\s\S]*$/, '')
+      .replace(/>\s+</g, '><')
+      .trim();
+    iconCache.set(name, inner);
+  }
+  return iconCache.get(name);
+}
+
 export async function renderTemplate(templatePath, data) {
   debug(` - Rendering ${templatePath}`);
   const template = await readFile(templatePath);
-  return ejs.render(template, data, {
-    filename: templatePath,
-    views: [resolve(root, config.templateDir)],
-  });
+  return ejs.render(
+    template,
+    { ...data, iconInner },
+    {
+      filename: templatePath,
+      views: [resolve(root, config.templateDir)],
+    },
+  );
 }

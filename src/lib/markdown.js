@@ -7,6 +7,7 @@ import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import { createHighlighter, createCssVariablesTheme } from 'shiki';
 import { findTitleLine } from './text.js';
+import { iconInner } from '../utils.js';
 import { collectImageRefs, processHtmlImages } from './images.js';
 
 const ICON_FILE = new URL('../templates/sections/icon.ejs', import.meta.url);
@@ -60,7 +61,7 @@ async function loadIcons(names) {
   const template = await readFile(ICON_FILE, 'utf8');
   const out = {};
   for (const name of names) {
-    const svg = ejs.render(template, { name, size: 18 }, { filename: ICON_FILE.pathname });
+    const svg = ejs.render(template, { name, size: 18, iconInner }, { filename: ICON_FILE.pathname });
     out[name] = svg.replace(/\s*\n\s*/g, ' ').trim();
   }
   return out;

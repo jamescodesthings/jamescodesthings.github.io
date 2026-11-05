@@ -27,8 +27,13 @@ clean:
 	rm -rf public
 .PHONY: clean
 
+# vendor the shared icons from ../resources into shared/ (commit the result)
+sync-resources:
+	node shared/sync-resources.js
+.PHONY: sync-resources
+
 # list these targets
 help:
-	awk '/^# /{d=substr($$0,3)} /^[a-z-]+:/{sub(":.*","",$$1); printf "%-10s %s\n",$$1,d}' Makefile
+	awk '/^# /{d=substr($$0,3)} /^[a-z-]+:/{sub(":.*","",$$1); printf "%-15s %s\n",$$1,d}' Makefile
 	echo "Sheets: cheat codesthings base-website"
 .PHONY: help
