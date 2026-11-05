@@ -1,5 +1,6 @@
 # Claude Code
 .claude/
+.hub/
 CLAUDE.md
 docs/
 .playwright-mcp/
